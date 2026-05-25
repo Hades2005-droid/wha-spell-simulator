@@ -1,0 +1,11 @@
+# IDE
+.vscode/
+
+# AI assistant
+.codex/
+.claude/
+
+# node
+node_modules/
+dist/
+npm-debug.log*

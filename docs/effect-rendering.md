@@ -1,0 +1,93 @@
+# Effect Rendering Notes
+
+Note: The current renderer code is messy and implementation-heavy. It can be replaced with a better renderer as long as the replacement consumes the `SpellIR` contract described in `docs/spell-ir.md`.
+
+The effect renderer turns `SpellIR` into particles on the effect canvas. It is visual-only code: gameplay meaning belongs in the compiler, while these files decide how a compiled spell should look.
+
+## Shared Model
+
+All active element effects start from the same renderer model:
+
+- `activePortalPlane()` projects the completed ring into a tilted ellipse. Particles emit from that portal instead of the flat paper ring.
+- `portalOutDirection()` converts paper-local `direction.x`, `direction.y`, and `direction.z` into a 2D screen direction. Positive `z` lifts the effect upward from the paper.
+- `elementFlow()` packages `direction`, perpendicular `side`, `effectScale`, `focus`, and `convergence` for element files.
+- `narrowedByFocusAndConvergence()` reduces source width and jitter. More focus means a tighter stream. More convergence means particles spawn closer to the compressed centerline.
+- `convergenceFlow()` builds the shared convergence centerline, progress, radius, and rigidity controls.
+- `convergePoint()` compresses points sideways around the current effect path. It does not pull the whole effect back toward the paper plane.
+- `scaledParticleCount()` scales the particle budget by `emission`, then caps it with `config.renderer.particleCap`.
+
+The renderer treats `dt` as frame units at roughly 60 FPS. Particle velocities are tuned in pixels per frame, then multiplied by `dt`.
+
+## SpellIR Inputs
+
+The most important renderer inputs are:
+
+- `effectScale`: grows the portal area, particle size, and particle count. The compiler derives it from primary sigil size.
+- `force`: increases speed, pressure, particle size, and active distance.
+- `spread`: widens the source area and adds sideways noise.
+- `stability`: lowers wobble and increases damping. Lower stability makes particles drift and flicker more.
+- `gravity`: keeps water and fire moving as streams when high. Low gravity becomes suspension.
+- `focus`: narrows source width and jitter.
+- `convergence`: compresses the effect's sideways spread around its current path while preserving forward motion.
+- `emission`: fades spawning and alpha near the end of the spell lifetime.
+
+## Element Behaviors
+
+### Fire
+
+Fire uses glowing radial particles. Normal fire is a fast stream along `direction`; low-gravity fire switches to a suspended flame cloud above the portal.
+
+Key calculations:
+
+- Source area shrinks with `focus` and `convergence`.
+- Speed scales with `force`, `effectScale`, and suspension.
+- Particle radius scales with `force` and `effectScale`.
+- Low `stability` adds flicker and wander.
+- Suspended fire uses home positions, spring tension, and damping so particles hover instead of leaving the portal.
+
+### Water
+
+Water uses local 3D-like coordinates: `forward`, `height`, `depth`, and `lateral`. Those values are projected back to the 2D canvas each frame.
+
+Key calculations:
+
+- `pressure` comes from `force` and `effectScale`.
+- `horizontalSpeed` and `verticalSpeed` mix pressure with the compiled direction.
+- `gravityForce` pulls free-stream height down. Low gravity switches water to a suspended blob-like cluster.
+- `streamLength` limits how far a free stream can travel.
+- Water draws broad mass first, then inner core, then small deterministic highlights.
+- Suspended water uses the same spring-home idea as suspended fire, but in local coordinates.
+
+### Wind
+
+Wind is a set of curved line particles. Each particle travels in the compiled direction with a small curl velocity.
+
+Key calculations:
+
+- Source radii and surface jitter use the shared focus and convergence narrowing helper.
+- Speed scales with `force` and `effectScale`.
+- Curl increases when `stability` is low.
+- Particle depth increases alpha and line width over lifetime.
+
+### Earth
+
+Earth is a stream of square particles. It moves slower and heavier than wind, with larger damping.
+
+Key calculations:
+
+- Source radii and surface jitter use the shared focus and convergence narrowing helper.
+- Speed is lower than other elements and scales with `force`.
+- Particle size grows slightly with lifetime depth.
+- Convergence reduces velocity and display size as the material compresses inward.
+
+### Light
+
+Light is a narrow beam made from particles with short trails. Each particle stores a trail and is steered back toward its lane.
+
+Key calculations:
+
+- Speed is deterministic per flow, then randomized per particle.
+- `laneCohesion` pulls particles back to their ideal beam path.
+- `lateralDamping` removes sideways velocity.
+- `trailLength` grows with `stability`, making cleaner spells look smoother.
+- Multiple stroke passes draw a wide glow, a middle beam, and a bright core.
