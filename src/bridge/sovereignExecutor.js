@@ -222,6 +222,9 @@ async function executeSovereignDelegate(context) {
   }
 }
 
+// Named exports
+export { SOVEREIGN_EFFECTS };
+
 export default {
   isSovereignSpell,
   executeSovereignEffect,
