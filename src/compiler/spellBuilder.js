@@ -120,6 +120,63 @@ function calculateSpellDuration({ primarySemantic, deltas, quality, neatness }) 
   );
 }
 
+/**
+ * Compile a sovereign spell that controls the Shadow Garden Mesh
+ */
+function compileSovereignSpell({ primary, glyphAST, effect, config }) {
+  const active = Boolean(glyphAST.ring.complete);
+  const prepared = !active;
+
+  // Execute sovereign effect
+  let executionResult = null;
+  if (active) {
+    // Only execute when spell is complete (ring closed)
+    executeSovereignEffect(effect, {
+      spellIR: null,
+      glyphAST,
+      primary
+    }).then(result => {
+      console.log(`[Sovereign] ${primary.id} executed:`, result);
+    }).catch(error => {
+      console.error(`[Sovereign] ${primary.id} failed:`, error);
+    });
+  }
+
+  return {
+    type: "SovereignSpellIR",
+    active,
+    prepared,
+    valid: true,
+    status: active ? `Sovereign: ${primary.displayName || primary.id}` : `Prepared: ${primary.displayName || primary.id}`,
+    activatedAt: active ? performance.now() : null,
+    element: primary.element || "light",
+    elementConfidence: primary.confidence,
+    primarySizeNorm: primary.sizeNorm,
+    effectScale: 1.5,
+    primaryManifestation: "sovereign",
+    manifestations: { sovereign: { strength: 1.0 } },
+    direction: { x: 0, y: 0, z: 1, xTiltDeg: 0, yTiltDeg: 0, tiltFromZDeg: 0 },
+    directionCoherence: 1,
+    gravity: 0,
+    force: 0.95,
+    spread: 0.8,
+    focus: 1,
+    range: 1,
+    duration: active ? Infinity : 0,
+    stability: 1,
+    quality: 1,
+    neatness: 1,
+    warnings: [],
+    sovereign: {
+      id: primary.id,
+      code: primary.code || primary.terminalCode,
+      effect: effect,
+      authority: primary.authority || "4.2_sovereign"
+    },
+    signature: `sovereign:${primary.id}:${effect}:${active ? "active" : "prepared"}`
+  };
+}
+
 export function compileSpell({ glyphAST, config }) {
   if (!glyphAST?.ring?.found) {
     return invalidSpell("No ring detected", glyphAST ?? { globalMetrics: {} });
