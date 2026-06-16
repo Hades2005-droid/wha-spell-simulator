@@ -1,4 +1,3 @@
-Add support for sovereign spells in spell compilation
 /**
  * Shadow Garden Mesh Bridge
  * Central hub connecting Cursor, Perplexity, Grok Terminal, Linear, Gemini, and other services
@@ -501,5 +500,7 @@ export const MeshBridge = {
   BRIDGE_STATUS,
   MESH_ENDPOINTS
 };
+
+export { BRIDGE_STATUS, MESH_ENDPOINTS };
 
 export default MeshBridge;
