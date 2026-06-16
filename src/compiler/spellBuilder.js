@@ -8,10 +8,23 @@ import {
 } from "./semanticRules.js";
 import { directionFromSurfaceVector } from "./spellDirection.js";
 import { calculateSpellQuality, calculateSpellStability } from "./spellQuality.js";
+import { isSovereignSpell, executeSovereignEffect } from "../bridge/sovereignExecutor.js";
 
 const PRIMARY_SIGIL_AMBIGUITY_GAP = 0.05;
 
 const SUPPORTED_ELEMENTS = new Set(["fire", "water", "wind", "earth", "light"]);
+
+// Sovereign sigils that control the Shadow Garden Mesh
+const SUPPORTED_SOVEREIGN_SIGILS = new Set([
+  "sovereign-lock",
+  "sovereign-halt",
+  "sovereign-release",
+  "sovereign-boundary",
+  "sovereign-mesh",
+  "sovereign-voice",
+  "sovereign-status",
+  "sovereign-delegate"
+]);
 
 const SPELL_PARAMETER_TUNING = {
   focusBase: 0.46,
@@ -140,6 +153,19 @@ export function compileSpell({ glyphAST, config }) {
 
   if (!SUPPORTED_ELEMENTS.has(primary.element)) {
     return invalidSpell("Unsupported element", glyphAST, [GLYPH_WARNINGS.primaryElementUnsupported]);
+  }
+
+  // Check for sovereign spell
+  if (primary.id && isSovereignSpell(primary.id)) {
+    const effect = primary.effect || primary.semantic?.effect;
+    if (effect) {
+      return compileSovereignSpell({
+        primary,
+        glyphAST,
+        effect,
+        config
+      });
+    }
   }
 
   const signs = glyphAST.signs ?? [];
