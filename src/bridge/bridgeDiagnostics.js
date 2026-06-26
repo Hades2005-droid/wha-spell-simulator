@@ -135,6 +135,7 @@ export function updateBridgePanel() {
     grokRealtime: "🎤",
     linear: "📋",
     gemini: "✨",
+    localModelControl: "🧠",
     sillyTavern1: "🎭",
     sillyTavern2: "🎭",
     comfyUI: "🎨"
@@ -146,6 +147,7 @@ export function updateBridgePanel() {
     grokRealtime: "Grok Voice",
     linear: "Linear",
     gemini: "Gemini/Echo",
+    localModelControl: "Local Model Control",
     sillyTavern1: "SillyTavern 1",
     sillyTavern2: "SillyTavern 2",
     comfyUI: "ComfyUI"

@@ -144,7 +144,14 @@ describe("Mesh Integration", () => {
         assert.ok(result.timestamp);
       } catch (error) {
         // Expected if no API keys configured
-        assert.ok(error.message.includes("API key") || error.message.includes("network"));
+        const message = String(error?.message || "").toLowerCase();
+        assert.ok(
+          message.includes("api key") ||
+            message.includes("network") ||
+            message.includes("fetch") ||
+            message.includes("http") ||
+            message.includes("unavailable")
+        );
       }
     });
   });

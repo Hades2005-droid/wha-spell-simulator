@@ -22,6 +22,7 @@ const MESH_ENDPOINTS = {
   grokRealtime: "wss://api.x.ai/v1/realtime",
   linear: "https://api.linear.app/graphql",
   gemini: "https://generativelanguage.googleapis.com/v1beta",
+  localModelControl: "http://127.0.0.1:8790/shadowgardencontrol",
   sillyTavern1: "http://localhost:8851",
   sillyTavern2: "http://localhost:8852",
   comfyUI: "http://localhost:8000",
@@ -71,6 +72,7 @@ export async function refreshMesh() {
     checkGrokTerminal(),
     checkLinear(),
     checkGeminiEcho(),
+    checkLocalModelControl(),
     checkSillyTavern(),
     checkComfyUI()
   ]);
@@ -86,6 +88,135 @@ export async function refreshMesh() {
     services: bridgeState.services,
     sovereign: bridgeState.sovereign,
     timestamp: bridgeState.lastRefresh
+  };
+}
+
+function getConfiguredLocalModelEndpoint() {
+  if (typeof window !== "undefined") {
+    return window.SHADOWGARDEN_CONTROL_URL || window.LOCAL_MODEL_CONTROL_URL || MESH_ENDPOINTS.localModelControl;
+  }
+  return process?.env?.SHADOWGARDEN_CONTROL_URL || process?.env?.LOCAL_MODEL_CONTROL_URL || MESH_ENDPOINTS.localModelControl;
+}
+
+function buildLocalModelProbeUrls() {
+  const configured = String(getConfiguredLocalModelEndpoint() || MESH_ENDPOINTS.localModelControl).trim();
+  const withoutTrailingSlash = configured.replace(/\/+$/, "");
+  const aliases = [withoutTrailingSlash];
+
+  if (withoutTrailingSlash.includes("/shadowgardencontrol")) {
+    aliases.push(withoutTrailingSlash.replace("/shadowgardencontrol", "/shadowgardencongrol"));
+  }
+
+  try {
+    const origin = new URL(withoutTrailingSlash).origin;
+    aliases.push(origin);
+  } catch {
+    // keep configured URL only when parsing fails
+  }
+
+  const probePaths = ["", "/capabilities", "/models", "/v1/models", "/api/tags"];
+  const urls = [];
+  for (const base of aliases) {
+    for (const path of probePaths) {
+      const url = path ? `${base}${path}` : base;
+      if (!urls.includes(url)) {
+        urls.push(url);
+      }
+    }
+  }
+  return urls;
+}
+
+async function fetchJsonWithTimeout(url, timeoutMs = 3500) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  const startedAt = Date.now();
+
+  try {
+    const response = await fetch(url, {
+      method: "GET",
+      signal: controller.signal
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    const data = await response.json();
+    return {
+      data,
+      latency: Date.now() - startedAt
+    };
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+function normalizedArray(value) {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+  return value
+    .map(item => (typeof item === "string" ? item.trim() : ""))
+    .filter(Boolean);
+}
+
+function extractModelIds(payload) {
+  const openAIModels = Array.isArray(payload?.data)
+    ? payload.data.map(model => model?.id).filter(Boolean)
+    : [];
+  const listedModels = Array.isArray(payload?.models)
+    ? payload.models.map(model => (typeof model === "string" ? model : model?.id || model?.name)).filter(Boolean)
+    : [];
+  const taggedModels = Array.isArray(payload?.tags)
+    ? payload.tags.map(model => model?.name || model?.id).filter(Boolean)
+    : [];
+  return [...new Set([...openAIModels, ...listedModels, ...taggedModels])];
+}
+
+function inferCapabilitiesFromModels(modelIds) {
+  const capabilities = new Set();
+  if (modelIds.length) {
+    capabilities.add("llm");
+  }
+
+  for (const modelId of modelIds) {
+    const id = String(modelId).toLowerCase();
+    if (id.includes("vision") || id.includes("vl") || id.includes("multimodal")) {
+      capabilities.add("vision");
+    }
+    if (id.includes("embed")) {
+      capabilities.add("embedding");
+    }
+    if (id.includes("whisper") || id.includes("tts") || id.includes("audio") || id.includes("voice")) {
+      capabilities.add("voice");
+    }
+    if (id.includes("rerank")) {
+      capabilities.add("reranking");
+    }
+  }
+
+  return capabilities;
+}
+
+function extractLocalModelCapabilities(payload) {
+  const capabilities = new Set([
+    ...normalizedArray(payload?.capabilities),
+    ...normalizedArray(payload?.features),
+    ...normalizedArray(payload?.modalities),
+    ...normalizedArray(payload?.tools)
+  ]);
+  const models = extractModelIds(payload);
+
+  for (const inferred of inferCapabilitiesFromModels(models)) {
+    capabilities.add(inferred);
+  }
+
+  capabilities.add("local_control");
+
+  return {
+    capabilities: [...capabilities].sort(),
+    models
   };
 }
 
@@ -304,6 +435,49 @@ async function checkGeminiEcho() {
 }
 
 /**
+ * Check local Shadow Garden Control / model capability service
+ */
+async function checkLocalModelControl() {
+  const probeUrls = buildLocalModelProbeUrls();
+  let lastError = null;
+
+  for (const url of probeUrls) {
+    try {
+      const { data, latency } = await fetchJsonWithTimeout(url);
+      const { capabilities, models } = extractLocalModelCapabilities(data);
+
+      bridgeState.services.localModelControl = {
+        status: BRIDGE_STATUS.CONNECTED,
+        lastPing: Date.now(),
+        latency,
+        error: null,
+        endpoint: url,
+        capabilities,
+        models
+      };
+
+      return true;
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  bridgeState.services.localModelControl = {
+    status: BRIDGE_STATUS.DISCONNECTED,
+    lastPing: null,
+    latency: null,
+    error: lastError?.message || "local model control endpoint unavailable",
+    endpoint: getConfiguredLocalModelEndpoint(),
+    capabilities: []
+  };
+  bridgeState.errors.push({
+    service: "localModelControl",
+    error: bridgeState.services.localModelControl.error
+  });
+  return false;
+}
+
+/**
  * Check SillyTavern instances
  */
 async function checkSillyTavern() {
@@ -423,6 +597,77 @@ export function getBridgeStatus() {
   };
 }
 
+function normalizeShadowGardenPrompt(value) {
+  return String(value ?? "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function getPromptIntentModel(activity) {
+  const modelByActivity = {
+    text: "GROK_TEXT_MODEL",
+    image: "GROK_IMAGE_MODEL",
+    video: "GROK_VIDEO_MODEL",
+    audio: "GROK_AUDIO_MODEL",
+    voice: "GROK_VOICE_MODEL"
+  };
+  const key = modelByActivity[activity] || modelByActivity.text;
+
+  if (typeof window !== "undefined") {
+    return window[key] || window.GROK_MODEL || "grok-3";
+  }
+  return process?.env?.[key] || process?.env?.GROK_MODEL || "grok-3";
+}
+
+function detectShadowGardenActivity(command, context = {}) {
+  const explicit = normalizeShadowGardenPrompt(context.activity || context.mode || "");
+  if (["text", "image", "video", "audio", "voice"].includes(explicit)) {
+    return explicit;
+  }
+
+  const source = normalizeShadowGardenPrompt([command, context.prompt, context.userPrompt].filter(Boolean).join(" ")).toLowerCase();
+  const score = {
+    video: 0,
+    audio: 0,
+    image: 0,
+    voice: 0
+  };
+  const keywordMap = {
+    video: ["video", "cinematic", "animation", "clip", "trailer", "scene"],
+    audio: ["audio", "music", "sfx", "soundtrack", "sound design", "mix"],
+    image: ["image", "illustration", "render", "poster", "visual", "portrait"],
+    voice: ["voice", "dialogue", "narration", "tts", "spoken"]
+  };
+
+  for (const [activity, keywords] of Object.entries(keywordMap)) {
+    for (const keyword of keywords) {
+      if (source.includes(keyword)) {
+        score[activity] += 1;
+      }
+    }
+  }
+
+  const top = Object.entries(score).sort((a, b) => b[1] - a[1])[0];
+  return top?.[1] > 0 ? top[0] : "text";
+}
+
+function buildShadowGardenSystemPrompt(command, activity) {
+  const activityInstruction = {
+    image: "Convert plain-text user intent into an image generation brief with composition, style, lighting, camera/lens framing, and quality constraints.",
+    video: "Convert plain-text user intent into a video generation brief with timeline beats, shot list, camera motion, transitions, continuity, and quality constraints.",
+    audio: "Convert plain-text user intent into an audio generation brief with sonic palette, timing, layers, pacing, and mastering constraints.",
+    voice: "Convert plain-text user intent into a voice generation brief with persona, delivery, pacing, pronunciation cues, and recording constraints.",
+    text: "Convert plain-text user intent into a structured production brief suitable for downstream generation agents."
+  }[activity] || "Convert plain-text user intent into a structured production brief.";
+
+  return `You are Grok Terminal, the primary authority in the Shadow Garden Mesh.
+Sovereign: ${bridgeState.sovereign.caster} (${bridgeState.sovereign.authority})
+Activity: ${activity}
+Command: ${command}
+Instruction: ${activityInstruction}
+Boundary: Consent-safe, non-explicit output; keep tone cinematic and technical.`;
+}
+
 /**
  * Delegate command to Grok Terminal (Primary Authority)
  */
@@ -432,6 +677,9 @@ export async function delegateToGrok(command, context = {}) {
   }
 
   const apiKey = getGrokApiKey();
+  const activity = detectShadowGardenActivity(command, context);
+  const model = getPromptIntentModel(activity);
+  const normalizedPrompt = normalizeShadowGardenPrompt(context.prompt || context.userPrompt || command);
 
   try {
     const response = await fetch(`${MESH_ENDPOINTS.grokApi}/chat/completions`, {
@@ -441,17 +689,23 @@ export async function delegateToGrok(command, context = {}) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        model: "grok-3",
+        model,
         messages: [
           {
             role: "system",
-            content: `You are Grok Terminal, the primary authority in the Shadow Garden Mesh.
-Sovereign: ${bridgeState.sovereign.caster} (${bridgeState.sovereign.authority})
-Command: ${command}`
+            content: buildShadowGardenSystemPrompt(command, activity)
           },
           {
             role: "user",
-            content: JSON.stringify(context)
+            content: JSON.stringify({
+              ...context,
+              prompt: normalizedPrompt,
+              promptHandling: {
+                activity,
+                model,
+                normalizedPrompt
+              }
+            })
           }
         ],
         stream: false
@@ -465,6 +719,8 @@ Command: ${command}`
     const data = await response.json();
     bridgeState.sovereign.lastCommand = {
       command,
+      activity,
+      model,
       timestamp: new Date().toISOString(),
       response: data.choices?.[0]?.message?.content
     };
