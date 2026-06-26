@@ -1,4 +1,4 @@
-import { boundsForPoints, clamp, distance } from "../utils/geometry.js";
+import { boundsForPoints, clamp, distance } from '../utils/geometry.js';
 
 function asPointArray(stroke) {
   return Array.isArray(stroke) ? stroke : stroke.points ?? [];
@@ -37,7 +37,7 @@ function resampleStroke(points, targetCount) {
     const next = points[segmentIndex];
     result.push({
       x: previous.x + (next.x - previous.x) * local,
-      y: previous.y + (next.y - previous.y) * local
+      y: previous.y + (next.y - previous.y) * local,
     });
   }
 
@@ -48,7 +48,7 @@ function roundPoint(point, digits) {
   const factor = 10 ** digits;
   return {
     x: Math.round(point.x * factor) / factor,
-    y: Math.round(point.y * factor) / factor
+    y: Math.round(point.y * factor) / factor,
   };
 }
 
@@ -64,7 +64,7 @@ export function normalizeStrokesForTemplate(strokes, options = {}) {
   if (!allPoints.length) {
     return {
       sourceAspectRatio: 1,
-      strokes: []
+      strokes: [],
     };
   }
 
@@ -74,24 +74,22 @@ export function normalizeStrokesForTemplate(strokes, options = {}) {
     : Math.max(bounds.width, bounds.height, 1);
   const center = {
     x: bounds.minX + bounds.width / 2,
-    y: bounds.minY + bounds.height / 2
+    y: bounds.minY + bounds.height / 2,
   };
   const normalizedStrokes = sourceStrokes.map((points) => {
     const sampled = resampleStroke(points, samplesPerStroke);
-    return sampled.map((point) =>
-      roundPoint(
-        {
-          x: (point.x - center.x) / scale + 0.5,
-          y: (point.y - center.y) / scale + 0.5
-        },
-        digits
-      )
-    );
+    return sampled.map((point) => roundPoint(
+      {
+        x: (point.x - center.x) / scale + 0.5,
+        y: (point.y - center.y) / scale + 0.5,
+      },
+      digits,
+    ));
   });
 
   return {
     sourceAspectRatio:
       Math.round((bounds.width / Math.max(options.fitToBounds ? 0.0001 : 1, bounds.height)) * 1000) / 1000,
-    strokes: normalizedStrokes
+    strokes: normalizedStrokes,
   };
 }

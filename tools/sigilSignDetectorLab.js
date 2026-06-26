@@ -1,7 +1,7 @@
-import { CONFIG } from "../src/config.js";
-import { loadDictionary } from "../src/dictionary/dictionaryLoader.js";
-import { DrawingCapture } from "../src/input/drawingCapture.js";
-import { createStrokeStore } from "../src/input/strokeStore.js";
+import { CONFIG } from '../src/config.js';
+import { loadDictionary } from '../src/dictionary/dictionaryLoader.js';
+import { DrawingCapture } from '../src/input/drawingCapture.js';
+import { createStrokeStore } from '../src/input/strokeStore.js';
 import {
   allPoints,
   angleDegFromCenter,
@@ -13,38 +13,38 @@ import {
   directedStrokeAngle,
   dominantAxisOrientationDeg,
   endpointClosedness,
-  strokeLength
-} from "../src/utils/geometry.js";
-import { cleanStrokes } from "../src/parser/strokeCleaner.js";
-import { recognizeCandidates } from "../src/parser/symbolRecognizer.js";
-import { scoreStrokeTemplate } from "../src/parser/templateMatcher.js";
-import { normalizeStrokesForTemplate } from "../src/parser/templateNormalizer.js";
-import { writeJson } from "../src/debug/debugOverlay.js";
-import { drawStrokes } from "../src/renderer/glyphOverlayRenderer.js";
-import { drawPaper } from "../src/renderer/paperRenderer.js";
+  strokeLength,
+} from '../src/utils/geometry.js';
+import { cleanStrokes } from '../src/parser/strokeCleaner.js';
+import { recognizeCandidates } from '../src/parser/symbolRecognizer.js';
+import { scoreStrokeTemplate } from '../src/parser/templateMatcher.js';
+import { normalizeStrokesForTemplate } from '../src/parser/templateNormalizer.js';
+import { writeJson } from '../src/debug/debugOverlay.js';
+import { drawStrokes } from '../src/renderer/glyphOverlayRenderer.js';
+import { drawPaper } from '../src/renderer/paperRenderer.js';
 
 const elements = {
-  canvas: document.querySelector("#detectorCanvas"),
-  statusPill: document.querySelector("#statusPill"),
-  undoButton: document.querySelector("#undoButton"),
-  clearButton: document.querySelector("#clearButton"),
-  dictionaryMode: document.querySelector("#dictionaryMode"),
-  referenceOverlay: document.querySelector("#referenceOverlay"),
-  paperOverlayToggle: document.querySelector("#paperOverlayToggle"),
-  recognizedValue: document.querySelector("#recognizedValue"),
-  kindValue: document.querySelector("#kindValue"),
-  idValue: document.querySelector("#idValue"),
-  confidenceValue: document.querySelector("#confidenceValue"),
-  templateValue: document.querySelector("#templateValue"),
-  inkValue: document.querySelector("#inkValue"),
-  explainedValue: document.querySelector("#explainedValue"),
-  rotationValue: document.querySelector("#rotationValue"),
-  matchList: document.querySelector("#matchList"),
-  recognitionOutput: document.querySelector("#recognitionOutput"),
-  candidateOutput: document.querySelector("#candidateOutput")
+  canvas: document.querySelector('#detectorCanvas'),
+  statusPill: document.querySelector('#statusPill'),
+  undoButton: document.querySelector('#undoButton'),
+  clearButton: document.querySelector('#clearButton'),
+  dictionaryMode: document.querySelector('#dictionaryMode'),
+  referenceOverlay: document.querySelector('#referenceOverlay'),
+  paperOverlayToggle: document.querySelector('#paperOverlayToggle'),
+  recognizedValue: document.querySelector('#recognizedValue'),
+  kindValue: document.querySelector('#kindValue'),
+  idValue: document.querySelector('#idValue'),
+  confidenceValue: document.querySelector('#confidenceValue'),
+  templateValue: document.querySelector('#templateValue'),
+  inkValue: document.querySelector('#inkValue'),
+  explainedValue: document.querySelector('#explainedValue'),
+  rotationValue: document.querySelector('#rotationValue'),
+  matchList: document.querySelector('#matchList'),
+  recognitionOutput: document.querySelector('#recognitionOutput'),
+  candidateOutput: document.querySelector('#candidateOutput'),
 };
 
-const ctx = elements.canvas.getContext("2d");
+const ctx = elements.canvas.getContext('2d');
 const store = createStrokeStore();
 let capture = null;
 let dictionary = null;
@@ -59,49 +59,49 @@ function rounded(value) {
   if (Array.isArray(value)) {
     return value.map(rounded);
   }
-  if (value && typeof value === "object") {
+  if (value && typeof value === 'object') {
     return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, rounded(item)]));
   }
-  return typeof value === "number" ? Math.round(value * 1000) / 1000 : value;
+  return typeof value === 'number' ? Math.round(value * 1000) / 1000 : value;
 }
 
 function escapeHtml(value) {
-  return String(value ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll("\"", "&quot;");
+  return String(value ?? '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;');
 }
 
-function setStatus(text, className = "") {
+function setStatus(text, className = '') {
   elements.statusPill.textContent = text;
   elements.statusPill.className = `status-pill ${className}`.trim();
 }
 
 function statusLabel(status) {
   switch (status) {
-    case "valid_messy":
-      return "Valid Messy";
-    case "contaminated":
-      return "Contaminated";
-    case "ambiguous":
-      return "Ambiguous";
-    case "valid":
-      return "Recognized";
-    case "unknown":
+    case 'valid_messy':
+      return 'Valid Messy';
+    case 'contaminated':
+      return 'Contaminated';
+    case 'ambiguous':
+      return 'Ambiguous';
+    case 'valid':
+      return 'Recognized';
+    case 'unknown':
     default:
-      return "No Confident Match";
+      return 'No Confident Match';
   }
 }
 
 function statusClass(status, recognized) {
-  if (status === "contaminated" || status === "unknown") {
-    return "invalid";
+  if (status === 'contaminated' || status === 'unknown') {
+    return 'invalid';
   }
-  if (status === "valid_messy" || status === "ambiguous") {
-    return "prepared";
+  if (status === 'valid_messy' || status === 'ambiguous') {
+    return 'prepared';
   }
-  return recognized ? "active" : "";
+  return recognized ? 'active' : '';
 }
 
 function activeDictionary() {
@@ -111,8 +111,8 @@ function activeDictionary() {
 
   const mode = elements.dictionaryMode.value;
   return {
-    sigils: mode === "signs" ? [] : dictionary.sigils,
-    signs: mode === "sigils" ? [] : dictionary.signs
+    sigils: mode === 'signs' ? [] : dictionary.sigils,
+    signs: mode === 'sigils' ? [] : dictionary.signs,
   };
 }
 
@@ -130,12 +130,12 @@ function selectedReferenceEntry() {
 
 function populateReferenceOverlay() {
   const options = [
-    `<option value="">No trace reference</option>`,
+    '<option value="">No trace reference</option>',
     ...(dictionary?.sigils ?? [])
       .filter((entry) => entry.strokeTemplate?.strokes?.length)
-      .map((entry) => `<option value="${escapeHtml(entry.id)}">${escapeHtml(entry.displayName ?? entry.id)}</option>`)
+      .map((entry) => `<option value="${escapeHtml(entry.id)}">${escapeHtml(entry.displayName ?? entry.id)}</option>`),
   ];
-  elements.referenceOverlay.innerHTML = options.join("");
+  elements.referenceOverlay.innerHTML = options.join('');
 }
 
 function classifyRadialFacing(directedAngle, radialAngle) {
@@ -146,18 +146,18 @@ function classifyRadialFacing(directedAngle, radialAngle) {
   const best = Math.min(outward, inward, counterclockwise, clockwise);
 
   if (best > 48) {
-    return "unclear";
+    return 'unclear';
   }
   if (best === outward) {
-    return "outward";
+    return 'outward';
   }
   if (best === inward) {
-    return "inward";
+    return 'inward';
   }
   if (best === counterclockwise) {
-    return "counterclockwise";
+    return 'counterclockwise';
   }
-  return "clockwise";
+  return 'clockwise';
 }
 
 function rotateTemplatePoint(point, degrees) {
@@ -172,7 +172,7 @@ function rotateTemplatePoint(point, degrees) {
   const y = point.y - 0.5;
   return {
     x: x * cos - y * sin + 0.5,
-    y: x * sin + y * cos + 0.5
+    y: x * sin + y * cos + 0.5,
   };
 }
 
@@ -181,7 +181,7 @@ function templatePointToCanvas(point, candidate, rotationDeg) {
   const scale = Math.max(candidate.bounds.width, candidate.bounds.height, 1);
   return {
     x: candidate.center.x + (rotated.x - 0.5) * scale,
-    y: candidate.center.y + (rotated.y - 0.5) * scale
+    y: candidate.center.y + (rotated.y - 0.5) * scale,
   };
 }
 
@@ -198,7 +198,7 @@ function normalizedTemplateStrokes(strokeTemplate) {
   const normalized = normalizeStrokesForTemplate(strokeTemplate.strokes, {
     samplesPerStroke: 40,
     fitToBounds: true,
-    digits: 5
+    digits: 5,
   }).strokes;
   normalizedStrokeTemplateCache.set(strokeTemplate, normalized);
   return normalized;
@@ -213,11 +213,11 @@ function drawReferenceOverlay(ctx, candidate, match) {
   const rotationDeg = match.templateMatch?.rotationDeg ?? 0;
 
   ctx.save();
-  ctx.lineCap = "round";
-  ctx.lineJoin = "round";
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
   ctx.lineWidth = 6;
-  ctx.strokeStyle = "rgba(255, 247, 219, 0.92)";
-  ctx.shadowColor = "rgba(36, 27, 22, 0.42)";
+  ctx.strokeStyle = 'rgba(255, 247, 219, 0.92)';
+  ctx.shadowColor = 'rgba(36, 27, 22, 0.42)';
   ctx.shadowBlur = 6;
 
   for (const stroke of strokes) {
@@ -236,7 +236,7 @@ function drawReferenceOverlay(ctx, candidate, match) {
 
   ctx.shadowBlur = 0;
   ctx.lineWidth = 2.25;
-  ctx.strokeStyle = "rgba(31, 111, 115, 0.95)";
+  ctx.strokeStyle = 'rgba(31, 111, 115, 0.95)';
 
   for (const stroke of strokes) {
     if (!stroke.length) {
@@ -263,16 +263,16 @@ function drawTraceReferenceOverlay(ctx, entry) {
 
   const center = {
     x: elements.canvas.width / 2,
-    y: elements.canvas.height / 2
+    y: elements.canvas.height / 2,
   };
   const scale = Math.min(elements.canvas.width, elements.canvas.height) * 0.52;
 
   ctx.save();
-  ctx.lineCap = "round";
-  ctx.lineJoin = "round";
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
   ctx.lineWidth = 10;
-  ctx.strokeStyle = "rgba(255, 247, 219, 0.72)";
-  ctx.shadowColor = "rgba(36, 27, 22, 0.2)";
+  ctx.strokeStyle = 'rgba(255, 247, 219, 0.72)';
+  ctx.shadowColor = 'rgba(36, 27, 22, 0.2)';
   ctx.shadowBlur = 8;
 
   for (const stroke of strokes) {
@@ -289,7 +289,7 @@ function drawTraceReferenceOverlay(ctx, entry) {
 
   ctx.shadowBlur = 0;
   ctx.lineWidth = 3;
-  ctx.strokeStyle = "rgba(184, 69, 49, 0.6)";
+  ctx.strokeStyle = 'rgba(184, 69, 49, 0.6)';
   ctx.setLineDash([10, 8]);
 
   for (const stroke of strokes) {
@@ -321,7 +321,7 @@ function buildStandaloneCandidate(strokes) {
   const center = centerOfBounds(bounds);
   const canvasCenter = {
     x: elements.canvas.width / 2,
-    y: elements.canvas.height / 2
+    y: elements.canvas.height / 2,
   };
   const syntheticRingRadius = Math.min(elements.canvas.width, elements.canvas.height) * 0.42;
   const length = strokes.reduce((sum, stroke) => sum + strokeLength(stroke), 0);
@@ -333,7 +333,7 @@ function buildStandaloneCandidate(strokes) {
   const overdrawAmount = clamp(length / compactPerimeter - 0.72, 0, 1);
 
   return {
-    candidateId: "lab-candidate",
+    candidateId: 'lab-candidate',
     strokeIds: strokes.map((stroke) => stroke.id),
     rawStrokeCount: strokes.length,
     cleanedStrokeCount: strokes.length,
@@ -341,7 +341,7 @@ function buildStandaloneCandidate(strokes) {
     center,
     radiusNorm: 0.5,
     angleDeg,
-    layer: "any",
+    layer: 'any',
     nearBoundary: false,
     sizeNorm: size / Math.max(1, syntheticRingRadius * 2),
     lengthNorm: length / Math.max(1, Math.PI * 2 * syntheticRingRadius),
@@ -351,15 +351,15 @@ function buildStandaloneCandidate(strokes) {
     closedness: endpointClosedness(strokes, Math.max(1, size)),
     overdrawAmount,
     neatness: clamp(0.92 - overdrawAmount * 0.28 - Math.max(0, strokes.length - 4) * 0.035),
-    strokes
+    strokes,
   };
 }
 
 function scopedEntries() {
   const scoped = activeDictionary();
   return [
-    ...scoped.sigils.map((entry) => ({ kind: "sigil", entry })),
-    ...scoped.signs.map((entry) => ({ kind: "sign", entry }))
+    ...scoped.sigils.map((entry) => ({ kind: 'sigil', entry })),
+    ...scoped.signs.map((entry) => ({ kind: 'sign', entry })),
   ];
 }
 
@@ -369,12 +369,12 @@ function scoreEntries(candidate) {
     .map(({ kind, entry }) => {
       const templateMatch = scoreStrokeTemplate(candidate, entry.strokeTemplate, {
         rotationInvariant: entry.recognitionRotationInvariant ?? true,
-        allowedRotationsDeg: entry.allowedRotationsDeg
+        allowedRotationsDeg: entry.allowedRotationsDeg,
       });
       return {
         kind,
         entry,
-        templateMatch
+        templateMatch,
       };
     })
     .sort((a, b) => b.templateMatch.confidence - a.templateMatch.confidence);
@@ -383,17 +383,17 @@ function scoreEntries(candidate) {
 function renderStrokeTemplatePreview(entry) {
   const strokes = normalizedTemplateStrokes(entry.strokeTemplate);
   if (!strokes?.length) {
-    return "";
+    return '';
   }
 
   const polylines = strokes
     .map((stroke) => {
       const points = stroke
         .map((point) => `${Math.round((8 + point.x * 84) * 10) / 10},${Math.round((8 + point.y * 84) * 10) / 10}`)
-        .join(" ");
+        .join(' ');
       return `<polyline points="${points}"></polyline>`;
     })
-    .join("");
+    .join('');
 
   return `
     <div class="reference-preview detector-match-preview" aria-hidden="true">
@@ -406,16 +406,16 @@ function renderStrokeTemplatePreview(entry) {
 
 function renderMatchList(matches) {
   if (!matches.length) {
-    elements.matchList.innerHTML = `<p class="reference-note">Draw one sigil or sign.</p>`;
+    elements.matchList.innerHTML = '<p class="reference-note">Draw one sigil or sign.</p>';
     return;
   }
 
   elements.matchList.innerHTML = matches
     .slice(0, 8)
     .map(({ kind, entry, templateMatch }, index) => {
-      const confidence = templateMatch.confidence;
+      const { confidence } = templateMatch;
       return `
-        <article class="reference-card detector-match-card ${index === 0 ? "best" : ""}">
+        <article class="reference-card detector-match-card ${index === 0 ? 'best' : ''}">
           ${renderStrokeTemplatePreview(entry)}
           <div class="detector-match-body">
             <div class="reference-card-header">
@@ -434,7 +434,7 @@ function renderMatchList(matches) {
         </article>
       `;
     })
-    .join("");
+    .join('');
 }
 
 function analyze() {
@@ -453,7 +453,7 @@ function analyze() {
       cleanedStrokes,
       candidate: null,
       recognition: null,
-      matches: []
+      matches: [],
     };
     updateDecision(null, []);
     return;
@@ -466,7 +466,7 @@ function analyze() {
     cleanedStrokes,
     candidate,
     recognition,
-    matches
+    matches,
   };
   updateDecision(recognition, matches);
 }
@@ -474,13 +474,13 @@ function analyze() {
 function updateDecision(recognition, matches) {
   const bestMatch = matches[0]?.templateMatch ?? null;
   const recognized = Boolean(recognition?.recognized);
-  const status = recognition?.recognitionStatus ?? (matches.length ? "unknown" : "valid");
+  const status = recognition?.recognitionStatus ?? (matches.length ? 'unknown' : 'valid');
 
-  setStatus(matches.length ? statusLabel(status) : "Ready", statusClass(status, recognized));
+  setStatus(matches.length ? statusLabel(status) : 'Ready', statusClass(status, recognized));
   elements.undoButton.disabled = store.count() === 0;
   elements.recognizedValue.textContent = String(recognized);
-  elements.kindValue.textContent = recognition?.kind ?? "none";
-  elements.idValue.textContent = recognition?.id ?? "none";
+  elements.kindValue.textContent = recognition?.kind ?? 'none';
+  elements.idValue.textContent = recognition?.id ?? 'none';
   elements.confidenceValue.textContent = percent(recognition?.confidence);
   elements.templateValue.textContent = percent(bestMatch?.confidence);
   elements.inkValue.textContent = percent(bestMatch?.inkScore);
@@ -494,9 +494,9 @@ function updateDecision(recognition, matches) {
     rounded({
       candidate: analysis?.candidate
         ? {
-            ...analysis.candidate,
-            strokes: undefined
-          }
+          ...analysis.candidate,
+          strokes: undefined,
+        }
         : null,
       topMatches: matches.slice(0, 8).map(({ kind, entry, templateMatch }) => ({
         kind,
@@ -509,9 +509,9 @@ function updateDecision(recognition, matches) {
         templateCoveredRatio: templateMatch.templateCoveredRatio,
         unexplainedInkRatio: templateMatch.unexplainedInkRatio,
         contaminationRisk: templateMatch.contaminationRisk,
-        rotationDeg: templateMatch.rotationDeg
-      }))
-    })
+        rotationDeg: templateMatch.rotationDeg,
+      })),
+    }),
   );
 }
 
@@ -530,7 +530,7 @@ function render() {
   if (showPaperOverlay && analysis?.candidate?.bounds) {
     const { bounds } = analysis.candidate;
     ctx.save();
-    ctx.strokeStyle = analysis.recognition?.recognized ? "rgba(31, 111, 115, 0.72)" : "rgba(184, 69, 49, 0.62)";
+    ctx.strokeStyle = analysis.recognition?.recognized ? 'rgba(31, 111, 115, 0.72)' : 'rgba(184, 69, 49, 0.62)';
     ctx.lineWidth = 2;
     ctx.setLineDash([8, 6]);
     ctx.strokeRect(bounds.minX - 8, bounds.minY - 8, bounds.width + 16, bounds.height + 16);
@@ -545,19 +545,19 @@ function setupControls() {
     elements.referenceOverlay.disabled = !elements.paperOverlayToggle.checked;
   }
 
-  elements.undoButton.addEventListener("click", () => {
+  elements.undoButton.addEventListener('click', () => {
     store.undo();
     analyze();
   });
-  elements.clearButton.addEventListener("click", () => {
+  elements.clearButton.addEventListener('click', () => {
     store.clear();
     analyze();
   });
-  elements.dictionaryMode.addEventListener("change", analyze);
-  elements.referenceOverlay.addEventListener("change", () => {
+  elements.dictionaryMode.addEventListener('change', analyze);
+  elements.referenceOverlay.addEventListener('change', () => {
     analyze();
   });
-  elements.paperOverlayToggle.addEventListener("change", syncOverlayControls);
+  elements.paperOverlayToggle.addEventListener('change', syncOverlayControls);
   syncOverlayControls();
 }
 
@@ -565,7 +565,7 @@ async function init() {
   setupControls();
   capture = new DrawingCapture(elements.canvas, store, CONFIG, {
     onPreview: analyze,
-    onCommit: analyze
+    onCommit: analyze,
   });
 
   try {
@@ -573,11 +573,11 @@ async function init() {
     populateReferenceOverlay();
     capture.enable();
     analyze();
-    setStatus("Ready");
+    setStatus('Ready');
     requestAnimationFrame(render);
   } catch (error) {
     console.error(error);
-    setStatus("Dictionary load failed", "invalid");
+    setStatus('Dictionary load failed', 'invalid');
   }
 }
 

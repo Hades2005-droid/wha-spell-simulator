@@ -20,7 +20,7 @@ export function randomBetween(min, max) {
 export function perpendicularVector(vector) {
   return {
     x: -vector.y,
-    y: vector.x
+    y: vector.x,
   };
 }
 
@@ -31,7 +31,7 @@ export function normalizeVector(vector) {
   }
   return {
     x: vector.x / magnitude,
-    y: vector.y / magnitude
+    y: vector.y / magnitude,
   };
 }
 
@@ -71,7 +71,9 @@ export function allPoints(strokes) {
 
 export function boundsForPoints(points) {
   if (!points.length) {
-    return { minX: 0, minY: 0, maxX: 0, maxY: 0, width: 0, height: 0 };
+    return {
+      minX: 0, minY: 0, maxX: 0, maxY: 0, width: 0, height: 0,
+    };
   }
 
   let minX = Infinity;
@@ -92,7 +94,7 @@ export function boundsForPoints(points) {
     maxX,
     maxY,
     width: maxX - minX,
-    height: maxY - minY
+    height: maxY - minY,
   };
 }
 
@@ -103,7 +105,7 @@ export function boundsForStrokes(strokes) {
 export function centerOfBounds(bounds) {
   return {
     x: bounds.minX + bounds.width / 2,
-    y: bounds.minY + bounds.height / 2
+    y: bounds.minY + bounds.height / 2,
   };
 }
 
@@ -113,11 +115,11 @@ function centroid(points) {
   }
   const total = points.reduce(
     (sum, point) => ({ x: sum.x + point.x, y: sum.y + point.y }),
-    { x: 0, y: 0 }
+    { x: 0, y: 0 },
   );
   return {
     x: total.x / points.length,
-    y: total.y / points.length
+    y: total.y / points.length,
   };
 }
 
@@ -128,7 +130,7 @@ export function expandBounds(bounds, amount) {
     maxX: bounds.maxX + amount,
     maxY: bounds.maxY + amount,
     width: bounds.width + amount * 2,
-    height: bounds.height + amount * 2
+    height: bounds.height + amount * 2,
   };
 }
 
@@ -148,7 +150,7 @@ export function vectorFromAngleDeg(angleDeg) {
   const radians = degreesToRadians(angleDeg);
   return {
     x: Math.cos(radians),
-    y: -Math.sin(radians)
+    y: -Math.sin(radians),
   };
 }
 
@@ -230,7 +232,7 @@ export function endpointClosedness(strokes, size) {
 }
 
 export function formatNumber(value, digits = 3) {
-  if (typeof value !== "number" || !Number.isFinite(value)) {
+  if (typeof value !== 'number' || !Number.isFinite(value)) {
     return value;
   }
   return Number(value.toFixed(digits));

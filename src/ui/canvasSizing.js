@@ -25,6 +25,6 @@ export function setupCanvasSizing({ elements, store, onCanvasResized }) {
   syncCanvasSize();
   const resizeObserver = new ResizeObserver(syncCanvasSize);
   resizeObserver.observe(elements.canvasShell);
-  window.addEventListener("orientationchange", syncCanvasSize);
+  window.addEventListener('orientationchange', syncCanvasSize);
   return resizeObserver;
 }

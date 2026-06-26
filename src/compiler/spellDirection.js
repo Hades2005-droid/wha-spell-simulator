@@ -1,4 +1,6 @@
-import { clamp, degreesToRadians, radiansToDegrees, roundedDegrees } from "../utils/geometry.js";
+import {
+  clamp, degreesToRadians, radiansToDegrees, roundedDegrees,
+} from '../utils/geometry.js';
 
 const MAX_COMPONENT_TILT_DEG = 82;
 const FORCE_TILT_MAX_DEG = 76;
@@ -20,7 +22,7 @@ export function directionFromTiltAngles(xTiltDeg = 0, yTiltDeg = 0) {
     z,
     xTiltDeg: roundedDegrees(xTilt),
     yTiltDeg: roundedDegrees(yTilt),
-    tiltFromZDeg: roundedDegrees(radiansToDegrees(Math.acos(z)))
+    tiltFromZDeg: roundedDegrees(radiansToDegrees(Math.acos(z))),
   };
 }
 
@@ -43,6 +45,6 @@ export function directionFromSurfaceVector(surfaceDirection, force) {
     z,
     xTiltDeg: roundedDegrees(radiansToDegrees(Math.atan2(x, z))),
     yTiltDeg: roundedDegrees(radiansToDegrees(Math.atan2(y, z))),
-    tiltFromZDeg: roundedDegrees(tiltFromZDeg)
+    tiltFromZDeg: roundedDegrees(tiltFromZDeg),
   };
 }

@@ -1,17 +1,17 @@
-import { clamp } from "../utils/geometry.js";
+import { clamp } from '../utils/geometry.js';
 
 export function mapRadiusToLayer(radiusNorm, config) {
-  const layers = config.layers;
-  let layer = "outside";
+  const { layers } = config;
+  let layer = 'outside';
 
   if (radiusNorm <= layers.centerMax) {
-    layer = "center";
+    layer = 'center';
   } else if (radiusNorm <= layers.middleMax) {
-    layer = "middle";
+    layer = 'middle';
   } else if (radiusNorm <= layers.outerMax) {
-    layer = "outer";
+    layer = 'outer';
   } else if (radiusNorm <= layers.boundaryMax) {
-    layer = "ringBoundary";
+    layer = 'ringBoundary';
   }
 
   const boundaries = [0, layers.centerMax, layers.middleMax, layers.outerMax, layers.boundaryMax];
@@ -20,6 +20,6 @@ export function mapRadiusToLayer(radiusNorm, config) {
 
   return {
     layer,
-    nearBoundary: boundaryDistanceScore < 0.55
+    nearBoundary: boundaryDistanceScore < 0.55,
   };
 }

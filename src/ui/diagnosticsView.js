@@ -1,11 +1,13 @@
-import { buildDiagnosticState } from "../debug/diagnosticState.js";
-import { writeJson } from "../debug/debugOverlay.js";
+import { buildDiagnosticState } from '../debug/diagnosticState.js';
+import { writeJson } from '../debug/debugOverlay.js';
 
-export function updateDiagnostics({ elements, store, pipeline, spellIR }) {
+export function updateDiagnostics({
+  elements, store, pipeline, spellIR,
+}) {
   const diagnosticState = buildDiagnosticState({
     rawStrokes: store.getStrokes(),
     pipeline,
-    spellIR
+    spellIR,
   });
 
   writeJson(elements.astPanel, diagnosticState.glyphAST);
@@ -15,22 +17,22 @@ export function updateDiagnostics({ elements, store, pipeline, spellIR }) {
     ring: diagnosticState.ring,
     classifications: diagnosticState.classifications,
     candidates: diagnosticState.candidates,
-    recognitions: diagnosticState.recognitions
+    recognitions: diagnosticState.recognitions,
   });
 }
 
 export async function copyDiagnosticPanel(panelId, button) {
   const panel = document.getElementById(panelId);
-  const text = panel?.dataset.rawJson ?? panel?.textContent ?? "";
+  const text = panel?.dataset.rawJson ?? panel?.textContent ?? '';
   if (!text.trim()) {
     return;
   }
 
   try {
     await navigator.clipboard.writeText(text);
-    button.textContent = "Copied";
+    button.textContent = 'Copied';
     window.setTimeout(() => {
-      button.textContent = "Copy";
+      button.textContent = 'Copy';
     }, 900);
   } catch {
     const selection = window.getSelection();
@@ -38,11 +40,11 @@ export async function copyDiagnosticPanel(panelId, button) {
     range.selectNodeContents(panel);
     selection.removeAllRanges();
     selection.addRange(range);
-    document.execCommand("copy");
+    document.execCommand('copy');
     selection.removeAllRanges();
   }
 }
 
 export function updateDiagnosticsMode(elements) {
-  document.body.classList.toggle("diagnostics-visible", elements.diagnosticsToggle.checked);
+  document.body.classList.toggle('diagnostics-visible', elements.diagnosticsToggle.checked);
 }

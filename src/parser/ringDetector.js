@@ -8,9 +8,9 @@ import {
   distance,
   mean,
   stddev,
-  strokeLength
-} from "../utils/geometry.js";
-import { analyzeTopologicalClosure } from "./topologicalFloodFill.js";
+  strokeLength,
+} from '../utils/geometry.js';
+import { analyzeTopologicalClosure } from './topologicalFloodFill.js';
 
 const MIN_CLOSURE_RELEVANT_POINT_RATIO = 0.15;
 const RING_BIN_COUNT = 96;
@@ -86,8 +86,8 @@ function fitCircle(points) {
   let sumXY2 = 0;
 
   for (const point of points) {
-    const x = point.x;
-    const y = point.y;
+    const { x } = point;
+    const { y } = point;
     const x2 = x * x;
     const y2 = y * y;
     sumX += x;
@@ -105,9 +105,9 @@ function fitCircle(points) {
     [
       [sumX2, sumXY, sumX],
       [sumXY, sumY2, sumY],
-      [sumX, sumY, points.length]
+      [sumX, sumY, points.length],
     ],
-    [sumX3 + sumXY2, sumX2Y + sumY3, sumX2 + sumY2]
+    [sumX3 + sumXY2, sumX2Y + sumY3, sumX2 + sumY2],
   );
 
   if (!result) {
@@ -123,7 +123,7 @@ function fitCircle(points) {
 
   return {
     center,
-    radius: Math.sqrt(radiusSquared)
+    radius: Math.sqrt(radiusSquared),
   };
 }
 
@@ -131,7 +131,7 @@ function fallbackCircle(strokes) {
   const bounds = boundsForStrokes(strokes);
   return {
     center: centerOfBounds(bounds),
-    radius: (bounds.width + bounds.height) / 4
+    radius: (bounds.width + bounds.height) / 4,
   };
 }
 
@@ -167,7 +167,7 @@ function largestGap(bins) {
   return {
     startAngle: (bestStart % size) * binDegrees,
     endAngle: ((bestStart + bestLength) % size) * binDegrees,
-    sizeDegrees: bestLength * binDegrees
+    sizeDegrees: bestLength * binDegrees,
   };
 }
 
@@ -197,7 +197,7 @@ function strokeCircleMetrics(stroke, circle, config, bins = null) {
       const t = step / steps;
       const point = {
         x: previous.x + (current.x - previous.x) * t,
-        y: previous.y + (current.y - previous.y) * t
+        y: previous.y + (current.y - previous.y) * t,
       };
       const nearCircle = Math.abs(distance(point, circle.center) - circle.radius) <= halfWidth;
       if (nearCircle) {
@@ -212,7 +212,7 @@ function strokeCircleMetrics(stroke, circle, config, bins = null) {
   return {
     totalLength,
     nearLength,
-    nearRatio: totalLength > 0 ? nearLength / totalLength : 0
+    nearRatio: totalLength > 0 ? nearLength / totalLength : 0,
   };
 }
 
@@ -235,7 +235,7 @@ function measureOpenCoverage(strokes, circle, config) {
     coverageRatio,
     gap,
     gapArcLength: degreesToRadians(gap.sizeDegrees) * circle.radius,
-    nearCircleInkRatio: totalLength > 0 ? nearLength / totalLength : 0
+    nearCircleInkRatio: totalLength > 0 ? nearLength / totalLength : 0,
   };
 }
 
@@ -247,8 +247,7 @@ function measureRing(strokes, config, referenceRing = null, topology = null) {
 
   const fitted = points.length >= 8 ? fitCircle(points) ?? fallbackCircle(strokes) : null;
   const center = referenceRing?.center ?? fitted?.center ?? topology?.center;
-  const radius =
-    referenceRing?.radius ?? fitted?.radius ?? topology?.radius ?? mean(points.map((point) => distance(point, center)));
+  const radius = referenceRing?.radius ?? fitted?.radius ?? topology?.radius ?? mean(points.map((point) => distance(point, center)));
   if (!center || !Number.isFinite(radius) || radius <= 0) {
     return null;
   }
@@ -282,7 +281,7 @@ function measureRing(strokes, config, referenceRing = null, topology = null) {
     lineSmoothness,
     neatness,
     overdrawAmount: clamp(overdraw, 0, 1),
-    strokeIds: strokes.map((stroke) => stroke.id)
+    strokeIds: strokes.map((stroke) => stroke.id),
   };
 }
 
@@ -305,7 +304,7 @@ function strokeAngularCoverage(stroke, circle, config) {
   return {
     ...metrics,
     coveredBinCount,
-    angularSpanDeg: coveredBinCount * (360 / Math.max(1, bins.length))
+    angularSpanDeg: coveredBinCount * (360 / Math.max(1, bins.length)),
   };
 }
 
@@ -340,8 +339,8 @@ function collectTopologicalRingStrokes(strokes, topology, config) {
   const ringStrokes = edgeStrokes.filter((stroke) => {
     const metrics = strokeCircleMetrics(stroke, refinedCircle, config);
     return (
-      metrics.nearLength >= TOPOLOGY_RING_STROKE_MIN_NEAR_CIRCLE_LENGTH_PX &&
-      metrics.nearRatio >= TOPOLOGY_RING_STROKE_MIN_NEAR_CIRCLE_RATIO
+      metrics.nearLength >= TOPOLOGY_RING_STROKE_MIN_NEAR_CIRCLE_LENGTH_PX
+      && metrics.nearRatio >= TOPOLOGY_RING_STROKE_MIN_NEAR_CIRCLE_RATIO
     );
   });
 
@@ -364,8 +363,7 @@ function closureRelevantStrokes(strokes, referenceRing, config) {
     }
 
     const pointCount = Math.max(1, stroke.points.length);
-    const insideOrBoundaryRatio =
-      stroke.points.filter((point) => distance(point, referenceRing.center) <= boundaryRadius).length / pointCount;
+    const insideOrBoundaryRatio = stroke.points.filter((point) => distance(point, referenceRing.center) <= boundaryRadius).length / pointCount;
 
     return insideOrBoundaryRatio >= MIN_CLOSURE_RELEVANT_POINT_RATIO;
   });
@@ -380,7 +378,7 @@ function scoreCandidate(ring, config) {
   return clamp(
     ring.completeness * 0.38 + ring.roundness * 0.25 + ring.neatness * 0.19 + radiusScore * 0.08 + closureBonus,
     0,
-    1.3
+    1.3,
   );
 }
 
@@ -393,7 +391,7 @@ function addTopologicalCandidate(candidates, strokes, config) {
     if (measured && score > 0) {
       candidates.push({
         ...measured,
-        score
+        score,
       });
     }
   }
@@ -422,14 +420,14 @@ function buildOpenRingCandidates(strokes, config) {
     const measured = measureRing(ringStrokes, config, firstPass);
     const score = scoreCandidate(measured, config);
     if (
-      measured &&
-      score > 0 &&
-      measured.completeness >= FOUND_COMPLETENESS &&
-      measured.roundness >= MIN_ROUNDNESS
+      measured
+      && score > 0
+      && measured.completeness >= FOUND_COMPLETENESS
+      && measured.roundness >= MIN_ROUNDNESS
     ) {
       candidates.push({
         ...measured,
-        score
+        score,
       });
     }
   }
@@ -488,7 +486,7 @@ function summarizeUnsupportedRing(candidate) {
     radius: candidate.radius,
     complete: candidate.complete,
     completeness: candidate.completeness,
-    strokeIds: candidate.strokeIds
+    strokeIds: candidate.strokeIds,
   };
 }
 
@@ -523,7 +521,7 @@ export function detectRing(strokes, previousRing, config) {
       completeness: 0,
       activationEvent: false,
       strokeIds: [],
-      unsupportedNestedRings: []
+      unsupportedNestedRings: [],
     };
   }
 
@@ -534,25 +532,24 @@ export function detectRing(strokes, previousRing, config) {
   const unsupportedNestedRings = distinctRings
     .slice(1)
     .filter(
-      (candidate) =>
-        candidate.radius < ring.radius * 0.78 &&
-        candidate.roundness >= 0.68 &&
-        candidate.complete
+      (candidate) => candidate.radius < ring.radius * 0.78
+        && candidate.roundness >= 0.68
+        && candidate.complete,
     )
     .map(summarizeUnsupportedRing);
 
   const activationEvent = Boolean(
-      previousRing?.found &&
-      !previousRing.complete &&
-      ring.complete &&
-      previousRing.completeness >= ACTIVATION_COMPLETENESS_FLOOR &&
-      unsupportedMultipleRings.length === 0
+    previousRing?.found
+      && !previousRing.complete
+      && ring.complete
+      && previousRing.completeness >= ACTIVATION_COMPLETENESS_FLOOR
+      && unsupportedMultipleRings.length === 0,
   );
 
   return {
     ...ring,
     activationEvent,
     unsupportedNestedRings,
-    unsupportedMultipleRings
+    unsupportedMultipleRings,
   };
 }

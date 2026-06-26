@@ -1,5 +1,5 @@
-import { clamp, degreesToRadians, normalizeAngleDeg } from "../utils/geometry.js";
-import { normalizeStrokesForTemplate } from "./templateNormalizer.js";
+import { clamp, degreesToRadians, normalizeAngleDeg } from '../utils/geometry.js';
+import { normalizeStrokesForTemplate } from './templateNormalizer.js';
 
 const INK_SIZE = 40;
 const CORE_RADIUS = 1;
@@ -29,7 +29,7 @@ function rotationTransform(degrees) {
   const radians = degreesToRadians(degrees);
   return {
     cos: Math.cos(radians),
-    sin: Math.sin(radians)
+    sin: Math.sin(radians),
   };
 }
 
@@ -47,14 +47,14 @@ function rotatePoint(point, transform) {
   const y = point.y - 0.5;
   return {
     x: x * transform.cos - y * transform.sin + 0.5,
-    y: x * transform.sin + y * transform.cos + 0.5
+    y: x * transform.sin + y * transform.cos + 0.5,
   };
 }
 
 function createLayer(size) {
   return {
     mask: new Uint8Array(size * size),
-    ink: 0
+    ink: 0,
   };
 }
 
@@ -109,7 +109,7 @@ function renderInk(strokes, rotationDeg = 0, size = INK_SIZE) {
   const ink = {
     core: createLayer(size),
     soft: createLayer(size),
-    loose: createLayer(size)
+    loose: createLayer(size),
   };
   const transform = rotationTransform(rotationDeg);
 
@@ -144,7 +144,7 @@ function templateInk(strokeTemplate) {
   const normalized = normalizeStrokesForTemplate(strokeTemplate.strokes ?? [], {
     samplesPerStroke: CANDIDATE_SAMPLES_PER_STROKE,
     fitToBounds: true,
-    digits: 5
+    digits: 5,
   });
   const ink = renderInk(normalized.strokes ?? [], 0);
   templateInkCache.set(strokeTemplate, ink);
@@ -158,9 +158,9 @@ function candidateInk(candidate, rotationDeg) {
       normalized: normalizeStrokesForTemplate(candidate.strokes, {
         samplesPerStroke: CANDIDATE_SAMPLES_PER_STROKE,
         fitToBounds: true,
-        digits: 5
+        digits: 5,
       }),
-      rotations: new Map()
+      rotations: new Map(),
     };
     candidateInkCache.set(candidate, cached);
   }
@@ -242,7 +242,7 @@ function cellStats(candidateInk, referenceInk) {
   return {
     requiredCellCoverage,
     forbiddenCellInkRatio,
-    regionScore
+    regionScore,
   };
 }
 
@@ -261,36 +261,36 @@ function compareInk(candidateInk, referenceInk) {
       contaminationRisk: 1,
       requiredCellCoverage: 0,
       forbiddenCellInkRatio: 1,
-      regionScore: 0
+      regionScore: 0,
     };
   }
 
   const candidateExplainedRatio = clamp(
-    maskOverlap(candidateInk.core.mask, referenceInk.loose.mask) / candidateInkCount
+    maskOverlap(candidateInk.core.mask, referenceInk.loose.mask) / candidateInkCount,
   );
   const templateCoveredRatio = clamp(
-    maskOverlap(referenceInk.core.mask, candidateInk.loose.mask) / referenceInkCount
+    maskOverlap(referenceInk.core.mask, candidateInk.loose.mask) / referenceInkCount,
   );
   const softDiceScore = diceScore(
     candidateInk.soft.mask,
     referenceInk.soft.mask,
     candidateInk.soft.ink,
-    referenceInk.soft.ink
+    referenceInk.soft.ink,
   );
   const unexplainedInkRatio = clamp(1 - candidateExplainedRatio);
   const missingInkRatio = clamp(1 - templateCoveredRatio);
   const regions = cellStats(candidateInk, referenceInk);
   const inkScore = clamp(
-    candidateExplainedRatio * 0.32 +
-      templateCoveredRatio * 0.32 +
-      softDiceScore * 0.14 +
-      regions.requiredCellCoverage * 0.16 +
-      (1 - regions.forbiddenCellInkRatio) * 0.06
+    candidateExplainedRatio * 0.32
+      + templateCoveredRatio * 0.32
+      + softDiceScore * 0.14
+      + regions.requiredCellCoverage * 0.16
+      + (1 - regions.forbiddenCellInkRatio) * 0.06,
   );
   const contaminationRisk = clamp(
-    clamp((unexplainedInkRatio - 0.26) / 0.34) * 0.58 +
-      clamp((missingInkRatio - 0.46) / 0.34) * 0.22 +
-      clamp((regions.forbiddenCellInkRatio - 0.18) / 0.46) * 0.2
+    clamp((unexplainedInkRatio - 0.26) / 0.34) * 0.58
+      + clamp((missingInkRatio - 0.46) / 0.34) * 0.22
+      + clamp((regions.forbiddenCellInkRatio - 0.18) / 0.46) * 0.2,
   );
 
   return {
@@ -301,7 +301,7 @@ function compareInk(candidateInk, referenceInk) {
     unexplainedInkRatio,
     missingInkRatio,
     contaminationRisk,
-    ...regions
+    ...regions,
   };
 }
 
@@ -310,7 +310,7 @@ export function scoreStrokeTemplate(candidate, strokeTemplate, options = {}) {
     return {
       available: false,
       confidence: 0,
-      rotationDeg: 0
+      rotationDeg: 0,
     };
   }
 
@@ -328,7 +328,7 @@ export function scoreStrokeTemplate(candidate, strokeTemplate, options = {}) {
     contaminationRisk: 1,
     requiredCellCoverage: 0,
     forbiddenCellInkRatio: 1,
-    regionScore: 0
+    regionScore: 0,
   };
 
   for (const rotationDeg of rotationSet(options)) {
@@ -339,15 +339,14 @@ export function scoreStrokeTemplate(candidate, strokeTemplate, options = {}) {
       best = {
         rotationDeg,
         rankingScore,
-        ...inkMatch
+        ...inkMatch,
       };
     }
   }
 
-  const contaminationCap =
-    best.unexplainedInkRatio > 0.36 && best.templateCoveredRatio < 0.82
-      ? clamp(0.62 - (best.unexplainedInkRatio - 0.36) * 0.8, 0.2, 1)
-      : 1;
+  const contaminationCap = best.unexplainedInkRatio > 0.36 && best.templateCoveredRatio < 0.82
+    ? clamp(0.62 - (best.unexplainedInkRatio - 0.36) * 0.8, 0.2, 1)
+    : 1;
 
   return {
     available: true,
@@ -363,6 +362,6 @@ export function scoreStrokeTemplate(candidate, strokeTemplate, options = {}) {
     contaminationRisk: best.contaminationRisk,
     requiredCellCoverage: best.requiredCellCoverage,
     forbiddenCellInkRatio: best.forbiddenCellInkRatio,
-    regionScore: best.regionScore
+    regionScore: best.regionScore,
   };
 }

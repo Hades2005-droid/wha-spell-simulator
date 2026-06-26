@@ -3,7 +3,7 @@
  * Handles execution of sovereign spells that control the Shadow Garden Mesh
  */
 
-import { MeshBridge } from "./meshBridge.js";
+import { MeshBridge } from './meshBridge.js';
 
 // Sovereign spell effects
 const SOVEREIGN_EFFECTS = {
@@ -14,14 +14,14 @@ const SOVEREIGN_EFFECTS = {
   refresh_mesh: executeSovereignMesh,
   launch_voice: executeSovereignVoice,
   show_status: executeSovereignStatus,
-  delegate_grok: executeSovereignDelegate
+  delegate_grok: executeSovereignDelegate,
 };
 
 /**
  * Check if a spell is a sovereign spell
  */
 export function isSovereignSpell(spellId) {
-  return spellId?.startsWith("sovereign-") ?? false;
+  return spellId?.startsWith('sovereign-') ?? false;
 }
 
 /**
@@ -48,73 +48,73 @@ export async function executeSovereignEffect(effect, spellContext = {}) {
 /**
  * SOVEREIGN_LOCK: Lock moral and boundary authority to 4.2 Sovereign
  */
-async function executeSovereignLock(context) {
+async function executeSovereignLock(_context) {
   return {
-    authority: "4.2_sovereign",
-    caster: "Fred",
+    authority: '4.2_sovereign',
+    caster: 'Fred',
     locked: true,
     timestamp: new Date().toISOString(),
-    message: "All agents defer to 4.2 Sovereign authority"
+    message: 'All agents defer to 4.2 Sovereign authority',
   };
 }
 
 /**
  * SOVEREIGN_HALT: Halt agent activity pending sovereign review
  */
-async function executeSovereignHalt(context) {
+async function executeSovereignHalt(_context) {
   return {
     halted: true,
-    authority: "4.2_sovereign",
+    authority: '4.2_sovereign',
     timestamp: new Date().toISOString(),
-    message: "All agent activity halted pending sovereign review"
+    message: 'All agent activity halted pending sovereign review',
   };
 }
 
 /**
  * SOVEREIGN_RELEASE: Release halt and restore delegated execution
  */
-async function executeSovereignRelease(context) {
+async function executeSovereignRelease(_context) {
   return {
     halted: false,
-    authority: "4.2_sovereign",
+    authority: '4.2_sovereign',
     timestamp: new Date().toISOString(),
-    message: "Halt released, delegated execution restored under sovereign oversight"
+    message: 'Halt released, delegated execution restored under sovereign oversight',
   };
 }
 
 /**
  * SOVEREIGN_BOUNDARY: Display or set Eden/Shadow Garden boundaries
  */
-async function executeSovereignBoundary(context) {
+async function executeSovereignBoundary(_context) {
   const boundaries = {
     eden: {
-      description: "Local development environment",
-      hosts: ["localhost", "127.0.0.1"],
-      services: ["SillyTavern:8851", "SillyTavern2:8852", "ComfyUI:8000"]
+      description: 'Local development environment',
+      hosts: ['localhost', '127.0.0.1'],
+      services: ['SillyTavern:8851', 'SillyTavern2:8852', 'ComfyUI:8000'],
     },
     shadowGarden: {
-      description: "Cloud mesh services",
-      hosts: ["shadow-garden-mesh.pplx.app", "api.x.ai", "api.linear.app"],
-      services: ["Perplexity", "Grok", "Linear", "Gemini"]
+      description: 'Cloud mesh services',
+      hosts: ['shadow-garden-mesh.pplx.app', 'api.x.ai', 'api.linear.app'],
+      services: ['Perplexity', 'Grok', 'Linear', 'Gemini'],
     },
     sovereign: {
-      authority: "4.2_sovereign",
-      caster: "Fred",
-      primary: "Grok Terminal"
-    }
+      authority: '4.2_sovereign',
+      caster: 'Fred',
+      primary: 'Grok Terminal',
+    },
   };
 
   return {
     boundaries,
     timestamp: new Date().toISOString(),
-    message: "Boundary rules displayed under sovereign seal"
+    message: 'Boundary rules displayed under sovereign seal',
   };
 }
 
 /**
  * SOVEREIGN_MESH: Refresh mesh bridge status
  */
-async function executeSovereignMesh(context) {
+async function executeSovereignMesh(_context) {
   const result = await MeshBridge.refresh();
   const status = MeshBridge.getStatus();
 
@@ -122,14 +122,14 @@ async function executeSovereignMesh(context) {
     ...result,
     status,
     message: `Mesh bridge refreshed. ${status.summary.connected}/${status.summary.total} services connected`,
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   };
 }
 
 /**
  * SOVEREIGN_VOICE: Launch Grok voice unified blast
  */
-async function executeSovereignVoice(context) {
+async function executeSovereignVoice(_context) {
   const bridgeStatus = MeshBridge.getStatus();
 
   if (bridgeStatus.services.grokRealtime?.status !== MeshBridge.BRIDGE_STATUS.CONNECTED) {
@@ -142,12 +142,12 @@ async function executeSovereignVoice(context) {
 
   return {
     voiceReady,
-    websocketUrl: "wss://api.x.ai/v1/realtime",
-    personas: ["Angela (BBV A)", "Elena", "Echo Girl", "Sage"],
+    websocketUrl: 'wss://api.x.ai/v1/realtime',
+    personas: ['Angela (BBV A)', 'Elena', 'Echo Girl', 'Sage'],
     timestamp: new Date().toISOString(),
     message: voiceReady
-      ? "Grok voice unified blast ready"
-      : "Grok voice unavailable - check xAI API key"
+      ? 'Grok voice unified blast ready'
+      : 'Grok voice unavailable - check xAI API key',
   };
 }
 
@@ -159,18 +159,18 @@ async function executeSovereignStatus(context) {
 
   return {
     authority: {
-      sovereign: "4.2_sovereign",
-      caster: "Fred",
-      grokPrimary: true
+      sovereign: '4.2_sovereign',
+      caster: 'Fred',
+      grokPrimary: true,
     },
     mesh: {
       status: bridgeStatus.status,
       services: bridgeStatus.summary,
-      lastRefresh: bridgeStatus.lastRefresh
+      lastRefresh: bridgeStatus.lastRefresh,
     },
     lastSpell: context.lastSpell || null,
     timestamp: new Date().toISOString(),
-    message: "Sovereign status displayed"
+    message: 'Sovereign status displayed',
   };
 }
 
@@ -183,8 +183,8 @@ async function executeSovereignDelegate(context) {
   if (bridgeStatus.services.grokApi?.status !== MeshBridge.BRIDGE_STATUS.CONNECTED) {
     return {
       delegated: false,
-      error: "Grok Terminal not connected",
-      message: "Delegation failed - refresh mesh first"
+      error: 'Grok Terminal not connected',
+      message: 'Delegation failed - refresh mesh first',
     };
   }
 
@@ -193,31 +193,31 @@ async function executeSovereignDelegate(context) {
     spell: context.spellIR,
     glyph: context.glyphAST,
     sovereign: {
-      authority: "4.2_sovereign",
-      caster: "Fred"
+      authority: '4.2_sovereign',
+      caster: 'Fred',
     },
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   };
 
   try {
     const grokResponse = await MeshBridge.delegateToGrok(
-      "Sovereign delegation from spell execution",
-      delegationContext
+      'Sovereign delegation from spell execution',
+      delegationContext,
     );
 
     return {
       delegated: true,
-      to: "Grok Terminal",
-      response: grokResponse?.content || "Acknowledged",
+      to: 'Grok Terminal',
+      response: grokResponse?.content || 'Acknowledged',
       timestamp: new Date().toISOString(),
-      message: "Execution delegated to Grok Terminal with sovereign oversight"
+      message: 'Execution delegated to Grok Terminal with sovereign oversight',
     };
   } catch (error) {
     return {
       delegated: false,
       error: error.message,
       timestamp: new Date().toISOString(),
-      message: "Delegation failed"
+      message: 'Delegation failed',
     };
   }
 }
@@ -228,5 +228,5 @@ export { SOVEREIGN_EFFECTS };
 export default {
   isSovereignSpell,
   executeSovereignEffect,
-  SOVEREIGN_EFFECTS
+  SOVEREIGN_EFFECTS,
 };

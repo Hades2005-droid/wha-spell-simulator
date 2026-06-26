@@ -1,10 +1,10 @@
-import { formatNumber } from "../utils/geometry.js";
+import { formatNumber } from '../utils/geometry.js';
 
 function roundForDisplay(value) {
   if (Array.isArray(value)) {
     return value.map(roundForDisplay);
   }
-  if (value && typeof value === "object") {
+  if (value && typeof value === 'object') {
     return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, roundForDisplay(item)]));
   }
   return formatNumber(value);
@@ -15,7 +15,7 @@ export function buildDiagnosticState({ rawStrokes, pipeline, spellIR }) {
     rawStrokes: {
       strokeCount: rawStrokes.length,
       pointCount: rawStrokes.reduce((sum, stroke) => sum + stroke.points.length, 0),
-      drawOrder: rawStrokes.map((stroke) => stroke.id)
+      drawOrder: rawStrokes.map((stroke) => stroke.id),
     },
     ring: pipeline?.glyphAST?.ring ?? null,
     classifications: pipeline?.classifications ?? [],
@@ -25,6 +25,6 @@ export function buildDiagnosticState({ rawStrokes, pipeline, spellIR }) {
     }),
     recognitions: pipeline?.recognitions ?? [],
     glyphAST: pipeline?.glyphAST ?? null,
-    spellIR
+    spellIR,
   });
 }

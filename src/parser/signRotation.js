@@ -2,13 +2,13 @@ import {
   boundsForStrokes,
   centerOfBounds,
   degreesToRadians,
-  normalizeAngleDeg
-} from "../utils/geometry.js";
+  normalizeAngleDeg,
+} from '../utils/geometry.js';
 
 const CANONICAL_SIGN_ANGLE_DEG = 270;
 const SIGN_ROTATION_TOLERANCE_DEG = 15;
 
-// Based on what observed in fan's wiki: Sign templates are authored/registered 
+// Based on what observed in fan's wiki: Sign templates are authored/registered
 // as if the sign sits at the bottom of the ring.
 // Rotate a copy of each sign candidate into that frame before template matching.
 function signCandidateToTemplateRotationDeg(candidateAngleDeg) {
@@ -29,7 +29,7 @@ function rotationTransform(degrees) {
   const radians = degreesToRadians(degrees);
   return {
     cos: Math.cos(radians),
-    sin: Math.sin(radians)
+    sin: Math.sin(radians),
   };
 }
 
@@ -42,7 +42,7 @@ function rotatePoint(point, center, transform) {
   const y = point.y - center.y;
   return {
     x: center.x + x * transform.cos - y * transform.sin,
-    y: center.y + x * transform.sin + y * transform.cos
+    y: center.y + x * transform.sin + y * transform.cos,
   };
 }
 
@@ -57,7 +57,7 @@ function rotateCandidate(candidate, rotationDeg) {
   const center = candidate.center ?? centerOfBounds(candidate.bounds);
   const strokes = candidate.strokes.map((stroke) => ({
     ...stroke,
-    points: stroke.points.map((point) => rotatePoint(point, center, transform))
+    points: stroke.points.map((point) => rotatePoint(point, center, transform)),
   }));
   const bounds = boundsForStrokes(strokes);
 
@@ -67,20 +67,20 @@ function rotateCandidate(candidate, rotationDeg) {
     center: centerOfBounds(bounds),
     orientationDeg: normalizeAngleDeg((candidate.orientationDeg ?? 0) + rotationDeg),
     directedOrientationDeg: normalizeAngleDeg((candidate.directedOrientationDeg ?? 0) + rotationDeg),
-    strokes
+    strokes,
   };
 }
 
 export function recognitionPlanForSymbol(kind, entry, candidate) {
   // Only support sign rotation for now.
-  if (kind !== "sign") {
+  if (kind !== 'sign') {
     return {
       candidate,
       baseRotationDeg: 0,
       options: {
         rotationInvariant: entry.recognitionRotationInvariant ?? true,
-        allowedRotationsDeg: entry.allowedRotationsDeg
-      }
+        allowedRotationsDeg: entry.allowedRotationsDeg,
+      },
     };
   }
 
@@ -92,7 +92,7 @@ export function recognitionPlanForSymbol(kind, entry, candidate) {
     baseRotationDeg,
     options: {
       rotationInvariant: false,
-      allowedRotationsDeg: signRecognitionRotations()
-    }
+      allowedRotationsDeg: signRecognitionRotations(),
+    },
   };
 }

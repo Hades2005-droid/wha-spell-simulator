@@ -3,10 +3,10 @@ import {
   drawRingDebug,
   drawStrokeIdDebug,
   drawStrokes,
-  drawGlowingStrokes
-} from "./glyphOverlayRenderer.js";
-import { drawGuides, drawPaper } from "./paperRenderer.js";
-import { SpellEffectRenderer } from "./spellEffectRenderer.js";
+  drawGlowingStrokes,
+} from './glyphOverlayRenderer.js';
+import { drawGuides, drawPaper } from './paperRenderer.js';
+import { SpellEffectRenderer } from './spellEffectRenderer.js';
 
 function getActivatedStrokeIds(pipeline) {
   if (!pipeline) {
@@ -17,21 +17,23 @@ function getActivatedStrokeIds(pipeline) {
   return new Set([
     ...(ring?.strokeIds ?? []),
     ...(primarySigil?.strokeIds ?? []),
-    ...((signs ?? []).flatMap((sign) => sign.strokeIds ?? []))
+    ...((signs ?? []).flatMap((sign) => sign.strokeIds ?? [])),
   ]);
 }
 
 export class CanvasRenderer {
   constructor({ glyphCanvas, effectCanvas, config }) {
     this.glyphCanvas = glyphCanvas;
-    this.glyphCtx = glyphCanvas.getContext("2d");
+    this.glyphCtx = glyphCanvas.getContext('2d');
     this.effectRenderer = new SpellEffectRenderer(effectCanvas, config);
     this.config = config;
   }
 
-  renderGlyph({ strokes, currentStroke, pipeline, showGuides, showDebug }) {
-    const width = this.glyphCanvas.width;
-    const height = this.glyphCanvas.height;
+  renderGlyph({
+    strokes, currentStroke, pipeline, showGuides, showDebug,
+  }) {
+    const { width } = this.glyphCanvas;
+    const { height } = this.glyphCanvas;
     drawPaper(this.glyphCtx, width, height);
 
     if (showGuides) {
@@ -50,7 +52,9 @@ export class CanvasRenderer {
     }
   }
 
-  renderActivatedGlyph({ activatedAt, duration, strokes, pipeline, timestamp }) {
+  renderActivatedGlyph({
+    activatedAt, duration, strokes, pipeline, timestamp,
+  }) {
     const activatedStrokeIds = getActivatedStrokeIds(pipeline);
     const glowDuration = Math.max(250, duration * 1000);
     drawGlowingStrokes(
@@ -59,11 +63,13 @@ export class CanvasRenderer {
       activatedStrokeIds,
       strokes,
       glowDuration,
-      timestamp
+      timestamp,
     );
   }
 
-  renderEffect({ spellIR, ring, timestamp, showGuides }) {
+  renderEffect({
+    spellIR, ring, timestamp, showGuides,
+  }) {
     this.effectRenderer.render(spellIR, ring, timestamp, { showGuides });
   }
 }

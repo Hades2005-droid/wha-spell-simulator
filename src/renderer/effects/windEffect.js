@@ -1,4 +1,4 @@
-import { randomBetween } from "../../utils/geometry.js";
+import { randomBetween } from '../../utils/geometry.js';
 import {
   activePortalPlane,
   convergePoint,
@@ -11,8 +11,8 @@ import {
   pruneParticles,
   randomPortalPoint,
   scaledParticleCount,
-  steadyParticleAlpha
-} from "./effectUtils.js";
+  steadyParticleAlpha,
+} from './effectUtils.js';
 
 function windFlowConfig(spellIR, ring, portal, frame) {
   const flow = elementFlow(spellIR, portal, frame);
@@ -23,7 +23,7 @@ function windFlowConfig(spellIR, ring, portal, frame) {
     sourceRadiusX: narrowedByFocusAndConvergence(Math.min(0.92, 0.44 + scale * 0.1 + spellIR.spread * 0.24), focus, convergence.strength, 0.3, 0.28),
     sourceRadiusY: narrowedByFocusAndConvergence(Math.min(0.92, 0.5 + scale * 0.08 + spellIR.spread * 0.22), focus, convergence.strength, 0.3, 0.28),
     surfaceJitter: narrowedByFocusAndConvergence(ring.radius * (0.04 + spellIR.spread * 0.1) * scale, focus, convergence.strength, 0.42, 0.34),
-    speed: randomBetween(2.4, 5.2) * (0.6 + spellIR.force) * (0.88 + scale * 0.12) * (1 - convergence.strength * 0.28)
+    speed: randomBetween(2.4, 5.2) * (0.6 + spellIR.force) * (0.88 + scale * 0.12) * (1 - convergence.strength * 0.28),
   };
 }
 
@@ -31,7 +31,7 @@ function spawnWindParticle(spellIR, portal, flow) {
   const source = randomPortalPoint(
     portal,
     flow.sourceRadiusX,
-    flow.sourceRadiusY
+    flow.sourceRadiusY,
   );
   const phase = randomBetween(0, Math.PI * 2);
 
@@ -43,7 +43,7 @@ function spawnWindParticle(spellIR, portal, flow) {
     curl: randomBetween(-0.018, 0.018) * (1 + (1 - spellIR.stability) * 3),
     phase,
     age: 0,
-    life: flow.convergence.active ? flow.convergence.life : randomBetween(38, 76)
+    life: flow.convergence.active ? flow.convergence.life : randomBetween(38, 76),
   };
 }
 
@@ -58,7 +58,7 @@ export function drawWindEffect(ctx, state, spellIR, ring, dt, config) {
     state.particles.push(spawnWindParticle(spellIR, portal, flow));
   }
 
-  ctx.lineCap = "round";
+  ctx.lineCap = 'round';
   for (const particle of state.particles) {
     particle.age += dt;
     const oldX = particle.x;

@@ -5,10 +5,10 @@ import {
   dominantAxisOrientationDeg,
   normalizeAngleDeg,
   pathLength,
-  strokeLength
-} from "../utils/geometry.js";
-import { recognitionPlanForSymbol } from "./signRotation.js";
-import { scoreStrokeTemplate } from "./templateMatcher.js";
+  strokeLength,
+} from '../utils/geometry.js';
+import { recognitionPlanForSymbol } from './signRotation.js';
+import { scoreStrokeTemplate } from './templateMatcher.js';
 
 const RECOGNITION_AMBIGUITY_GAP = 0.065;
 const SIMPLE_SIGN_STROKE_LIMIT = 6;
@@ -16,7 +16,7 @@ const SIMPLE_SIGN_MIN_TEMPLATE_COVERAGE = 0.78;
 const templateFeatureCache = new WeakMap();
 
 function allowedLayerScore(entry, candidate) {
-  if (candidate.layer === "any") {
+  if (candidate.layer === 'any') {
     return 1;
   }
   if (!entry.allowedLayers?.length) {
@@ -49,7 +49,7 @@ function recognitionThresholds(config) {
   const recognition = config.recognition ?? {};
   return {
     minConfidence: recognition.minConfidence ?? 0.48,
-    ambiguityGap: RECOGNITION_AMBIGUITY_GAP
+    ambiguityGap: RECOGNITION_AMBIGUITY_GAP,
   };
 }
 
@@ -123,14 +123,14 @@ function templateFeatures(strokeTemplate) {
     elongation: Math.max(width, height) / Math.max(0.001, Math.min(width, height)),
     strokeCount: strokes.length,
     orientationDeg: dominantAxisOrientationDeg(points),
-    strokeProfile: strokeLengthProfile(strokes, (stroke) => stroke)
+    strokeProfile: strokeLengthProfile(strokes, (stroke) => stroke),
   };
   templateFeatureCache.set(strokeTemplate, features);
   return features;
 }
 
 function candidateFeatures(candidate) {
-  const bounds = candidate.bounds;
+  const { bounds } = candidate;
   const width = Math.max(1, bounds.width);
   const height = Math.max(1, bounds.height);
   const elongation = Math.max(width, height) / Math.max(1, Math.min(width, height));
@@ -143,10 +143,9 @@ function candidateFeatures(candidate) {
   const totalStrokeLength = strokeProfiles.reduce((sum, stroke) => sum + stroke.length, 0);
   const dominantStroke = strokeProfiles[0] ?? { length: 0 };
   const secondaryStroke = strokeProfiles[1] ?? { length: 0 };
-  const strokeLengthImbalance =
-    strokeProfiles.length > 1
-      ? (dominantStroke.length - secondaryStroke.length) / Math.max(0.001, totalStrokeLength)
-      : 0;
+  const strokeLengthImbalance = strokeProfiles.length > 1
+    ? (dominantStroke.length - secondaryStroke.length) / Math.max(0.001, totalStrokeLength)
+    : 0;
   const elongationNorm = clamp((elongation - 1) / 3);
   const axisDominance = clamp(strokeLengthImbalance * 1.35 + elongationNorm * 0.35);
 
@@ -157,37 +156,33 @@ function candidateFeatures(candidate) {
     strokeCount: candidate.strokes.length,
     strokeLengthImbalance,
     axisDominance,
-    strokeProfile: strokeLengthProfile(candidate.strokes, (stroke) => stroke.points ?? [])
+    strokeProfile: strokeLengthProfile(candidate.strokes, (stroke) => stroke.points ?? []),
   };
 }
 
 function structuralCompatibility(kind, entry, candidate, features, templateMatch) {
   const template = templateFeatures(entry.strokeTemplate);
   const aspectScore = aspectCompatibility(features.aspectRatio, template.aspectRatio, templateMatch.rotationDeg ?? 0);
-  const overdrawCompatible =
-    templateMatch.candidateExplainedRatio >= 0.9 &&
-    templateMatch.templateCoveredRatio >= 0.82 &&
-    templateMatch.unexplainedInkRatio <= 0.16;
+  const overdrawCompatible = templateMatch.candidateExplainedRatio >= 0.9
+    && templateMatch.templateCoveredRatio >= 0.82
+    && templateMatch.unexplainedInkRatio <= 0.16;
   const rawCountScore = strokeCountCompatibility(features.strokeCount, template.strokeCount);
   const rawProfileScore = profileCompatibility(features.strokeProfile, template.strokeProfile);
-  const countScore =
-    overdrawCompatible && features.strokeCount > template.strokeCount
-      ? Math.max(rawCountScore, 0.86)
-      : rawCountScore;
-  const profileScore =
-    overdrawCompatible && features.strokeCount > template.strokeCount
-      ? Math.max(rawProfileScore, 0.82)
-      : rawProfileScore;
+  const countScore = overdrawCompatible && features.strokeCount > template.strokeCount
+    ? Math.max(rawCountScore, 0.86)
+    : rawCountScore;
+  const profileScore = overdrawCompatible && features.strokeCount > template.strokeCount
+    ? Math.max(rawProfileScore, 0.82)
+    : rawProfileScore;
   const rotatedCandidateAxis = normalizeAngleDeg(candidate.orientationDeg + (templateMatch.rotationDeg ?? 0));
   const axisScore = clamp(1 - undirectedAngularDifference(rotatedCandidateAxis, template.orientationDeg) / 90);
-  const smallSign = kind === "sign" && template.strokeCount <= SIMPLE_SIGN_STROKE_LIMIT;
+  const smallSign = kind === 'sign' && template.strokeCount <= SIMPLE_SIGN_STROKE_LIMIT;
   const strokeStructureScore = smallSign
     ? countScore * 0.58 + profileScore * 0.42
     : countScore * 0.24 + profileScore * 0.76;
-  const score =
-    kind === "sign"
-      ? strokeStructureScore * 0.68 + aspectScore * 0.2 + axisScore * 0.12
-      : aspectScore * 0.54 + profileScore * 0.28 + countScore * 0.18;
+  const score = kind === 'sign'
+    ? strokeStructureScore * 0.68 + aspectScore * 0.2 + axisScore * 0.12
+    : aspectScore * 0.54 + profileScore * 0.28 + countScore * 0.18;
 
   return {
     score: clamp(score),
@@ -198,7 +193,7 @@ function structuralCompatibility(kind, entry, candidate, features, templateMatch
     candidateAspectRatio: features.aspectRatio,
     templateAspectRatio: template.aspectRatio,
     candidateStrokeCount: features.strokeCount,
-    templateStrokeCount: template.strokeCount
+    templateStrokeCount: template.strokeCount,
   };
 }
 
@@ -208,17 +203,14 @@ function isContaminatedMatch(candidate, best) {
     return false;
   }
 
-  const highRiskExtraInk =
-    templateMatch.contaminationRisk >= 0.62 &&
-    templateMatch.unexplainedInkRatio >= 0.34;
-  const oversizedWeakMatch =
-    candidate.sizeNorm >= 0.42 &&
-    templateMatch.unexplainedInkRatio >= 0.26 &&
-    best.confidence < 0.7;
-  const wrongRegionInk =
-    templateMatch.forbiddenCellInkRatio >= 0.42 &&
-    templateMatch.requiredCellCoverage <= 0.82 &&
-    best.confidence < 0.72;
+  const highRiskExtraInk = templateMatch.contaminationRisk >= 0.62
+    && templateMatch.unexplainedInkRatio >= 0.34;
+  const oversizedWeakMatch = candidate.sizeNorm >= 0.42
+    && templateMatch.unexplainedInkRatio >= 0.26
+    && best.confidence < 0.7;
+  const wrongRegionInk = templateMatch.forbiddenCellInkRatio >= 0.42
+    && templateMatch.requiredCellCoverage <= 0.82
+    && best.confidence < 0.72;
 
   return highRiskExtraInk || oversizedWeakMatch || wrongRegionInk;
 }
@@ -230,39 +222,38 @@ function isMessyMatch(candidate, best) {
   }
 
   return (
-    candidate.overdrawAmount >= 0.24 ||
-    candidate.neatness <= 0.74 ||
-    (templateMatch.candidateExplainedRatio >= 0.9 && templateMatch.softDiceScore < 0.74)
+    candidate.overdrawAmount >= 0.24
+    || candidate.neatness <= 0.74
+    || (templateMatch.candidateExplainedRatio >= 0.9 && templateMatch.softDiceScore < 0.74)
   );
 }
 
 function recognitionStatus(candidate, best, second, secondSameKind, accepted, thresholds) {
   if (!best) {
-    return "unknown";
+    return 'unknown';
   }
   if (isContaminatedMatch(candidate, best)) {
-    return "contaminated";
+    return 'contaminated';
   }
   if (best.structuralMatch?.score < 0.42 && best.confidence < 0.7) {
-    return "ambiguous";
+    return 'ambiguous';
   }
   if (!accepted) {
-    return "unknown";
+    return 'unknown';
   }
 
   const competitor = Math.max(second.confidence ?? 0, secondSameKind.confidence ?? 0);
   const bestInk = best.templateMatch ?? {};
-  const clearInkIdentity =
-    bestInk.inkScore >= 0.92 &&
-    bestInk.candidateExplainedRatio >= 0.98 &&
-    bestInk.templateCoveredRatio >= 0.98;
+  const clearInkIdentity = bestInk.inkScore >= 0.92
+    && bestInk.candidateExplainedRatio >= 0.98
+    && bestInk.templateCoveredRatio >= 0.98;
   if (!clearInkIdentity && best.confidence - competitor < thresholds.ambiguityGap) {
-    return "ambiguous";
+    return 'ambiguous';
   }
   if (isMessyMatch(candidate, best)) {
-    return "valid_messy";
+    return 'valid_messy';
   }
-  return "valid";
+  return 'valid';
 }
 
 function scoreByStrokeTemplate(kind, entry, candidate, features) {
@@ -272,57 +263,53 @@ function scoreByStrokeTemplate(kind, entry, candidate, features) {
   if (!strokeTemplate?.strokes?.length) {
     return {
       confidence: 0,
-      templateMatch: null
+      templateMatch: null,
     };
   }
 
   const recognitionPlan = recognitionPlanForSymbol(kind, entry, candidate);
-  const matchFeatures = kind === "sign" ? candidateFeatures(recognitionPlan.candidate) : features;
+  const matchFeatures = kind === 'sign' ? candidateFeatures(recognitionPlan.candidate) : features;
   const rawTemplateMatch = scoreStrokeTemplate(recognitionPlan.candidate, strokeTemplate, recognitionPlan.options);
   const templateMatch = {
     ...rawTemplateMatch,
     rotationDeg: normalizeAngleDeg(recognitionPlan.baseRotationDeg + (rawTemplateMatch.rotationDeg ?? 0)),
     recognitionRotationDeg:
       normalizeAngleDeg(
-        recognitionPlan.baseRotationDeg +
-          (rawTemplateMatch.recognitionRotationDeg ?? rawTemplateMatch.rotationDeg ?? 0)
-      )
+        recognitionPlan.baseRotationDeg
+          + (rawTemplateMatch.recognitionRotationDeg ?? rawTemplateMatch.rotationDeg ?? 0),
+      ),
   };
   const structuralMatch = structuralCompatibility(
     kind,
     entry,
     recognitionPlan.candidate,
     matchFeatures,
-    rawTemplateMatch
+    rawTemplateMatch,
   );
   const sizeScore = rangeScore(candidate.sizeNorm, 0.045, 0.46);
-  const simpleSignStructureMultiplier =
-    kind === "sign" && structuralMatch.templateStrokeCount <= SIMPLE_SIGN_STROKE_LIMIT
-      ? 0.42 + structuralMatch.strokeCountScore * 0.58
-      : 1;
-  const simpleSignIncompleteCap =
-    kind === "sign" &&
-    structuralMatch.templateStrokeCount <= SIMPLE_SIGN_STROKE_LIMIT &&
-    templateMatch.templateCoveredRatio < SIMPLE_SIGN_MIN_TEMPLATE_COVERAGE
-      ? 0.44
-      : 1;
-  const grossStructureMismatchCap =
-    structuralMatch.score < 0.18 && templateMatch.templateCoveredRatio < 0.5 ? 0.44 : 1;
-  const contextualScore =
-    templateMatch.confidence * 0.68 +
-    structuralMatch.score * 0.13 +
-    layerScore * 0.1 +
-    sizeScore * 0.04 +
-    candidate.neatness * 0.05;
+  const simpleSignStructureMultiplier = kind === 'sign' && structuralMatch.templateStrokeCount <= SIMPLE_SIGN_STROKE_LIMIT
+    ? 0.42 + structuralMatch.strokeCountScore * 0.58
+    : 1;
+  const simpleSignIncompleteCap = kind === 'sign'
+    && structuralMatch.templateStrokeCount <= SIMPLE_SIGN_STROKE_LIMIT
+    && templateMatch.templateCoveredRatio < SIMPLE_SIGN_MIN_TEMPLATE_COVERAGE
+    ? 0.44
+    : 1;
+  const grossStructureMismatchCap = structuralMatch.score < 0.18 && templateMatch.templateCoveredRatio < 0.5 ? 0.44 : 1;
+  const contextualScore = templateMatch.confidence * 0.68
+    + structuralMatch.score * 0.13
+    + layerScore * 0.1
+    + sizeScore * 0.04
+    + candidate.neatness * 0.05;
   const contextLiftCap = templateMatch.confidence + 0.035;
   return {
     confidence: Math.min(
       clamp(Math.min(contextualScore, contextLiftCap) * simpleSignStructureMultiplier),
       simpleSignIncompleteCap,
-      grossStructureMismatchCap
+      grossStructureMismatchCap,
     ),
     templateMatch,
-    structuralMatch
+    structuralMatch,
   };
 }
 
@@ -341,7 +328,7 @@ function publicCandidate(candidate) {
     directedOrientationDeg: candidate.directedOrientationDeg,
     radialFacing: candidate.radialFacing,
     overdrawAmount: candidate.overdrawAmount,
-    neatness: candidate.neatness
+    neatness: candidate.neatness,
   };
 }
 
@@ -362,8 +349,8 @@ function publicCandidate(candidate) {
 //    only in diagnostics.
 export function recognizeCandidates(candidates, dictionary, config) {
   const entries = [
-    ...dictionary.sigils.map((entry) => ({ kind: "sigil", entry })),
-    ...dictionary.signs.map((entry) => ({ kind: "sign", entry }))
+    ...dictionary.sigils.map((entry) => ({ kind: 'sigil', entry })),
+    ...dictionary.signs.map((entry) => ({ kind: 'sign', entry })),
   ];
 
   return candidates.map((candidate) => {
@@ -373,21 +360,20 @@ export function recognizeCandidates(candidates, dictionary, config) {
       .map(({ kind, entry }) => ({
         kind,
         entry,
-        ...scoreByStrokeTemplate(kind, entry, candidate, features)
+        ...scoreByStrokeTemplate(kind, entry, candidate, features),
       }))
       .sort((a, b) => b.confidence - a.confidence);
 
     const best = scored[0];
     const second = scored[1] ?? { confidence: 0, entry: null, kind: null };
-    const secondSameKind =
-      scored.find((score) => score.kind === best?.kind && score.entry.id !== best?.entry.id) ?? {
-        confidence: 0,
-        entry: null,
-        kind: null
-      };
+    const secondSameKind = scored.find((score) => score.kind === best?.kind && score.entry.id !== best?.entry.id) ?? {
+      confidence: 0,
+      entry: null,
+      kind: null,
+    };
     const acceptedByConfidence = Boolean(best && best.confidence >= thresholds.minConfidence);
     const status = recognitionStatus(candidate, best, second, secondSameKind, acceptedByConfidence, thresholds);
-    const accepted = acceptedByConfidence && (status === "valid" || status === "valid_messy");
+    const accepted = acceptedByConfidence && (status === 'valid' || status === 'valid_messy');
     const bestTemplateMatch = best?.templateMatch ?? null;
     const bestStructuralMatch = best?.structuralMatch ?? null;
     const topMatches = scored.slice(0, 3).map((score) => ({
@@ -403,21 +389,21 @@ export function recognizeCandidates(candidates, dictionary, config) {
       strokeCountScore: score.structuralMatch?.strokeCountScore ?? 0,
       strokeProfileScore: score.structuralMatch?.strokeProfileScore ?? 0,
       rotationDeg: score.templateMatch?.rotationDeg ?? 0,
-      recognitionRotationDeg: score.templateMatch?.recognitionRotationDeg ?? score.templateMatch?.rotationDeg ?? 0
+      recognitionRotationDeg: score.templateMatch?.recognitionRotationDeg ?? score.templateMatch?.rotationDeg ?? 0,
     }));
     const bestGuess = best
       ? {
-          kind: best.kind,
-          id: best.entry.id,
-          confidence: best.confidence
-        }
+        kind: best.kind,
+        id: best.entry.id,
+        confidence: best.confidence,
+      }
       : null;
 
     return {
       ...publicCandidate(candidate),
       recognized: accepted,
       recognitionStatus: status,
-      kind: accepted ? best.kind : "unknown",
+      kind: accepted ? best.kind : 'unknown',
       id: accepted ? best.entry.id : null,
       displayName: accepted ? best.entry.displayName : null,
       element: accepted ? best.entry.element ?? null : null,
@@ -429,7 +415,7 @@ export function recognizeCandidates(candidates, dictionary, config) {
         elongation: features.elongation,
         elongationNorm: features.elongationNorm,
         strokeLengthImbalance: features.strokeLengthImbalance,
-        axisDominance: features.axisDominance
+        axisDominance: features.axisDominance,
       },
       diagnostics: {
         bestGuess: accepted ? null : bestGuess,
@@ -443,7 +429,7 @@ export function recognizeCandidates(candidates, dictionary, config) {
           unexplainedInkRatio: bestTemplateMatch?.unexplainedInkRatio ?? 1,
           missingInkRatio: bestTemplateMatch?.missingInkRatio ?? 1,
           contaminationRisk: bestTemplateMatch?.contaminationRisk ?? 0,
-          forbiddenCellInkRatio: bestTemplateMatch?.forbiddenCellInkRatio ?? 1
+          forbiddenCellInkRatio: bestTemplateMatch?.forbiddenCellInkRatio ?? 1,
         },
         structure: {
           score: bestStructuralMatch?.score ?? 0,
@@ -454,10 +440,10 @@ export function recognizeCandidates(candidates, dictionary, config) {
           candidateAspectRatio: bestStructuralMatch?.candidateAspectRatio ?? features.aspectRatio,
           templateAspectRatio: bestStructuralMatch?.templateAspectRatio ?? 1,
           candidateStrokeCount: bestStructuralMatch?.candidateStrokeCount ?? features.strokeCount,
-          templateStrokeCount: bestStructuralMatch?.templateStrokeCount ?? 0
+          templateStrokeCount: bestStructuralMatch?.templateStrokeCount ?? 0,
         },
-        topMatches
-      }
+        topMatches,
+      },
     };
   });
 }

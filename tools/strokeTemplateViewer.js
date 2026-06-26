@@ -1,18 +1,18 @@
-import { CONFIG } from "../src/config.js";
-import { drawPaper } from "../src/renderer/paperRenderer.js";
+import { CONFIG } from '../src/config.js';
+import { drawPaper } from '../src/renderer/paperRenderer.js';
 
 const elements = {
-  canvas: document.querySelector("#previewCanvas"),
-  input: document.querySelector("#templateInput"),
-  renderButton: document.querySelector("#renderButton"),
-  clearButton: document.querySelector("#clearButton"),
-  metricsOutput: document.querySelector("#metricsOutput"),
-  statusPill: document.querySelector("#statusPill")
+  canvas: document.querySelector('#previewCanvas'),
+  input: document.querySelector('#templateInput'),
+  renderButton: document.querySelector('#renderButton'),
+  clearButton: document.querySelector('#clearButton'),
+  metricsOutput: document.querySelector('#metricsOutput'),
+  statusPill: document.querySelector('#statusPill'),
 };
 
-const ctx = elements.canvas.getContext("2d");
+const ctx = elements.canvas.getContext('2d');
 
-function setStatus(text, className = "") {
+function setStatus(text, className = '') {
   elements.statusPill.textContent = text;
   elements.statusPill.className = `status-pill ${className}`.trim();
 }
@@ -28,28 +28,28 @@ function parseTemplate(value) {
 
 function validateTemplate(template) {
   if (!template || !Array.isArray(template.strokes)) {
-    throw new Error("JSON must be a strokeTemplate object or an entry with strokeTemplate.");
+    throw new Error('JSON must be a strokeTemplate object or an entry with strokeTemplate.');
   }
 
   const strokes = template.strokes.map((stroke) => {
     if (!Array.isArray(stroke)) {
-      throw new Error("Each stroke must be an array of points.");
+      throw new Error('Each stroke must be an array of points.');
     }
     return stroke
       .map((point) => ({
         x: Number(point.x),
-        y: Number(point.y)
+        y: Number(point.y),
       }))
       .filter((point) => Number.isFinite(point.x) && Number.isFinite(point.y));
   });
 
   if (!strokes.some((stroke) => stroke.length > 1)) {
-    throw new Error("Template must contain at least one stroke with two valid points.");
+    throw new Error('Template must contain at least one stroke with two valid points.');
   }
 
   return {
     sourceAspectRatio: Number(template.sourceAspectRatio) || 1,
-    strokes
+    strokes,
   };
 }
 
@@ -70,14 +70,14 @@ function drawingBounds(template, width, height) {
     x: (width - drawWidth) / 2,
     y: (height - drawHeight) / 2,
     width: drawWidth,
-    height: drawHeight
+    height: drawHeight,
   };
 }
 
 function templatePointToCanvas(point, bounds) {
   return {
     x: bounds.x + point.x * bounds.width,
-    y: bounds.y + point.y * bounds.height
+    y: bounds.y + point.y * bounds.height,
   };
 }
 
@@ -86,7 +86,7 @@ function drawTemplate(template) {
 
   const bounds = drawingBounds(template, elements.canvas.width, elements.canvas.height);
   ctx.save();
-  ctx.strokeStyle = "rgba(36, 27, 22, 0.18)";
+  ctx.strokeStyle = 'rgba(36, 27, 22, 0.18)';
   ctx.lineWidth = 1;
   ctx.setLineDash([8, 8]);
   ctx.strokeRect(bounds.x, bounds.y, bounds.width, bounds.height);
@@ -95,8 +95,8 @@ function drawTemplate(template) {
   ctx.save();
   ctx.strokeStyle = CONFIG.renderer.inkColor;
   ctx.lineWidth = 7;
-  ctx.lineCap = "round";
-  ctx.lineJoin = "round";
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
 
   for (const stroke of template.strokes) {
     if (stroke.length < 2) {
@@ -120,7 +120,7 @@ function templateMetrics(template) {
   return {
     sourceAspectRatio: Math.round(template.sourceAspectRatio * 1000) / 1000,
     strokeCount,
-    pointCount
+    pointCount,
   };
 }
 
@@ -129,21 +129,21 @@ function renderTemplate() {
     const template = validateTemplate(parseTemplate(elements.input.value));
     drawTemplate(template);
     elements.metricsOutput.textContent = JSON.stringify(templateMetrics(template), null, 2);
-    setStatus("Rendered", "prepared");
+    setStatus('Rendered', 'prepared');
   } catch (error) {
     clearPreview();
     elements.metricsOutput.textContent = error.message;
-    setStatus("Invalid JSON", "invalid");
+    setStatus('Invalid JSON', 'invalid');
   }
 }
 
 function setupControls() {
-  elements.renderButton.addEventListener("click", renderTemplate);
-  elements.clearButton.addEventListener("click", () => {
-    elements.input.value = "";
-    elements.metricsOutput.textContent = "Paste a strokeTemplate object or a full dictionary entry, then click Render.";
+  elements.renderButton.addEventListener('click', renderTemplate);
+  elements.clearButton.addEventListener('click', () => {
+    elements.input.value = '';
+    elements.metricsOutput.textContent = 'Paste a strokeTemplate object or a full dictionary entry, then click Render.';
     clearPreview();
-    setStatus("Ready");
+    setStatus('Ready');
   });
 }
 

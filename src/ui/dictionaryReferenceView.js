@@ -1,9 +1,9 @@
 function escapeHtml(value) {
-  return String(value ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll("\"", "&quot;");
+  return String(value ?? '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;');
 }
 
 function getStrokeTemplate(entry) {
@@ -11,12 +11,12 @@ function getStrokeTemplate(entry) {
 }
 
 function entryRecognitionLabel(entry) {
-  return getStrokeTemplate(entry)?.strokes?.length ? "stroke reference" : "not configured";
+  return getStrokeTemplate(entry)?.strokes?.length ? 'stroke reference' : 'not configured';
 }
 
 function renderStrokePreview(strokes) {
   if (!strokes?.length) {
-    return "";
+    return '';
   }
 
   const polylines = strokes
@@ -33,11 +33,11 @@ function renderStrokePreview(strokes) {
           return `${Math.round(previewX * 10) / 10},${Math.round(previewY * 10) / 10}`;
         })
         .filter(Boolean)
-        .join(" ");
+        .join(' ');
 
-      return points ? `<polyline points="${points}"></polyline>` : "";
+      return points ? `<polyline points="${points}"></polyline>` : '';
     })
-    .join("");
+    .join('');
 
   return `
     <div class="reference-preview" aria-hidden="true">
@@ -53,21 +53,20 @@ function renderStrokeTemplatePreview(entry) {
 }
 
 function renderReferenceCard(entry, kind) {
-  const layerText = entry.allowedLayers?.join(", ") || "any";
-  const elementText = kind === "sigil" && entry.element ? entry.element : "";
-  const elementBadge = elementText ? `<span>${escapeHtml(elementText)}</span>` : "";
+  const layerText = entry.allowedLayers?.join(', ') || 'any';
+  const elementText = kind === 'sigil' && entry.element ? entry.element : '';
+  const elementBadge = elementText ? `<span>${escapeHtml(elementText)}</span>` : '';
   const hasStrokeReference = Boolean(getStrokeTemplate(entry)?.strokes?.length);
-  const sourceDetails =
-    kind === "sign" && entry.sourceNotes
-      ? `
+  const sourceDetails = kind === 'sign' && entry.sourceNotes
+    ? `
         <details class="reference-source">
           <summary>Source notes</summary>
           <p>${escapeHtml(entry.sourceNotes)}</p>
         </details>
       `
-      : "";
+    : '';
   return `
-    <article class="reference-card ${hasStrokeReference ? "has-template" : ""}">
+    <article class="reference-card ${hasStrokeReference ? 'has-template' : ''}">
       ${renderStrokeTemplatePreview(entry)}
       <div>
         <div class="reference-card-header">
@@ -85,19 +84,19 @@ function renderReferenceCard(entry, kind) {
 }
 
 function renderSampleSpellCard(sample) {
-  const manifestations = sample.manifestations?.length ? sample.manifestations.join(", ") : "none";
+  const manifestations = sample.manifestations?.length ? sample.manifestations.join(', ') : 'none';
   const hasStrokeReference = Boolean(sample.strokes?.length);
   return `
-    <article class="reference-card ${hasStrokeReference ? "has-template" : ""}">
+    <article class="reference-card ${hasStrokeReference ? 'has-template' : ''}">
       ${renderStrokePreview(sample.strokes)}
       <div>
         <div class="reference-card-header">
           <strong>${escapeHtml(sample.displayName ?? sample.id)}</strong>
-          ${sample.element ? `<span>${escapeHtml(sample.element)}</span>` : ""}
+          ${sample.element ? `<span>${escapeHtml(sample.element)}</span>` : ''}
         </div>
         <p class="reference-card-description">${escapeHtml(sample.description)}</p>
         <dl>
-          <div><dt>Element</dt><dd>${escapeHtml(sample.element ?? "none")}</dd></div>
+          <div><dt>Element</dt><dd>${escapeHtml(sample.element ?? 'none')}</dd></div>
           <div><dt>Manifestations</dt><dd>${escapeHtml(manifestations)}</dd></div>
         </dl>
       </div>
@@ -112,11 +111,11 @@ export function renderDictionaryReference(elements, dictionary) {
 
   elements.sampleSpellReferenceCards.innerHTML = (dictionary.sampleSpells ?? [])
     .map((sample) => renderSampleSpellCard(sample))
-    .join("");
+    .join('');
   elements.sigilReferenceCards.innerHTML = (dictionary.sigils ?? [])
-    .map((entry) => renderReferenceCard(entry, "sigil"))
-    .join("");
+    .map((entry) => renderReferenceCard(entry, 'sigil'))
+    .join('');
   elements.signReferenceCards.innerHTML = (dictionary.signs ?? [])
-    .map((entry) => renderReferenceCard(entry, "sign"))
-    .join("");
+    .map((entry) => renderReferenceCard(entry, 'sign'))
+    .join('');
 }

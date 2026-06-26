@@ -1,4 +1,4 @@
-import { renderJsonTree } from "./jsonTreeRenderer.js";
+import { renderJsonTree } from './jsonTreeRenderer.js';
 
 export function writeJson(element, value) {
   if (!element) {
@@ -7,6 +7,6 @@ export function writeJson(element, value) {
 
   const jsonText = JSON.stringify(value, null, 2);
   element.dataset.rawJson = jsonText;
-  element.classList.add("diagnostic-json");
+  element.classList.add('diagnostic-json');
   element.replaceChildren(renderJsonTree(value));
 }

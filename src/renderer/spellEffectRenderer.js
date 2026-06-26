@@ -1,10 +1,10 @@
-import { drawFireEffect } from "./effects/fireEffect.js";
-import { drawWaterEffect } from "./effects/waterEffect.js";
-import { drawWindEffect } from "./effects/windEffect.js";
-import { drawEarthEffect } from "./effects/earthEffect.js";
-import { drawLightEffect } from "./effects/lightEffect.js";
-import { resetParticleState } from "./effects/effectUtils.js";
-import { clamp } from "../utils/geometry.js";
+import { drawFireEffect } from './effects/fireEffect.js';
+import { drawWaterEffect } from './effects/waterEffect.js';
+import { drawWindEffect } from './effects/windEffect.js';
+import { drawEarthEffect } from './effects/earthEffect.js';
+import { drawLightEffect } from './effects/lightEffect.js';
+import { resetParticleState } from './effects/effectUtils.js';
+import { clamp } from '../utils/geometry.js';
 
 const SPELL_END_FADE_MS = 420;
 const TARGET_FRAME_MS = 16.67;
@@ -31,7 +31,7 @@ const EFFECTS = {
   water: drawWaterEffect,
   wind: drawWindEffect,
   earth: drawEarthEffect,
-  light: drawLightEffect
+  light: drawLightEffect,
 };
 
 function spellDurationMs(spellIR) {
@@ -41,7 +41,7 @@ function spellDurationMs(spellIR) {
 
 function spellEmission(spellIR, timestamp) {
   const durationMs = spellDurationMs(spellIR);
-  if (!spellIR?.active || durationMs <= 0 || typeof spellIR.activatedAt !== "number") {
+  if (!spellIR?.active || durationMs <= 0 || typeof spellIR.activatedAt !== 'number') {
     return 0;
   }
 
@@ -56,7 +56,7 @@ function spellEmission(spellIR, timestamp) {
 export class SpellEffectRenderer {
   constructor(canvas, config) {
     this.canvas = canvas;
-    this.ctx = canvas.getContext("2d");
+    this.ctx = canvas.getContext('2d');
     this.config = config;
     this.state = { particles: [] };
     this.lastSignature = null;
@@ -64,9 +64,9 @@ export class SpellEffectRenderer {
   }
 
   render(spellIR, ring, timestamp, options = {}) {
-    const width = this.canvas.width;
-    const height = this.canvas.height;
-    const ctx = this.ctx;
+    const { width } = this.canvas;
+    const { height } = this.canvas;
+    const { ctx } = this;
     ctx.clearRect(0, 0, width, height);
 
     if (!ring?.found || !spellIR) {
@@ -75,7 +75,7 @@ export class SpellEffectRenderer {
 
     const dt = Math.min(
       DELTA_FRAME_MAX,
-      Math.max(DELTA_FRAME_MIN, this.lastTime === null ? 1 : (timestamp - this.lastTime) / TARGET_FRAME_MS)
+      Math.max(DELTA_FRAME_MIN, this.lastTime === null ? 1 : (timestamp - this.lastTime) / TARGET_FRAME_MS),
     );
     this.lastTime = timestamp;
 
@@ -114,7 +114,7 @@ export class SpellEffectRenderer {
 
     const renderSpellIR = { ...spellIR, emission };
     ctx.save();
-    ctx.globalCompositeOperation = "lighter";
+    ctx.globalCompositeOperation = 'lighter';
     drawEffect(ctx, this.state, renderSpellIR, ring, dt, this.config);
     ctx.restore();
   }
@@ -152,7 +152,7 @@ export class SpellEffectRenderer {
       ring.center.y,
       ring.radius * (FAILED_FLICKER_RADIUS_SCALE + pulse * FAILED_FLICKER_RADIUS_PULSE_SCALE),
       0,
-      FULL_CIRCLE_RAD
+      FULL_CIRCLE_RAD,
     );
     this.ctx.stroke();
     this.ctx.restore();

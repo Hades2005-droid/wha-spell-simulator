@@ -1,4 +1,4 @@
-import { distance } from "../utils/geometry.js";
+import { distance } from '../utils/geometry.js';
 
 // {x, y, pressure, t}
 export function canvasPointFromEvent(event, canvas) {
@@ -9,8 +9,8 @@ export function canvasPointFromEvent(event, canvas) {
   return {
     x: (event.clientX - rect.left) * scaleX,
     y: (event.clientY - rect.top) * scaleY,
-    pressure: typeof event.pressure === "number" && event.pressure > 0 ? event.pressure : 0.5,
-    t: performance.now()
+    pressure: typeof event.pressure === 'number' && event.pressure > 0 ? event.pressure : 0.5,
+    t: performance.now(),
   };
 }
 

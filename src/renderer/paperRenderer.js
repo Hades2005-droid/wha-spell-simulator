@@ -1,12 +1,12 @@
-import { degreesToRadians } from "../utils/geometry.js";
+import { degreesToRadians } from '../utils/geometry.js';
 
 export function drawPaper(ctx, width, height) {
   ctx.clearRect(0, 0, width, height);
 
   const gradient = ctx.createLinearGradient(0, 0, width, 0);
-  gradient.addColorStop(0, "#f7dfac");
-  gradient.addColorStop(0.45, "#f4df9f");
-  gradient.addColorStop(1, "#fae8a5");
+  gradient.addColorStop(0, '#f7dfac');
+  gradient.addColorStop(0.45, '#f4df9f');
+  gradient.addColorStop(1, '#fae8a5');
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, width, height);
 }
@@ -18,7 +18,7 @@ export function drawGuides(ctx, ring, width, height, config) {
     radius * config.layers.centerMax,
     radius * config.layers.middleMax,
     radius * config.layers.outerMax,
-    radius
+    radius,
   ];
 
   ctx.save();

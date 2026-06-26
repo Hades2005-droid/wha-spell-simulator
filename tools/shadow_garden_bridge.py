@@ -36,6 +36,7 @@ KEYWORDS_IMAGE = ("image", "illustration", "poster", "render", "portrait", "visu
 KEYWORDS_VIDEO = ("video", "cinematic", "clip", "animation", "scene", "movie", "trailer")
 KEYWORDS_AUDIO = ("audio", "music", "soundtrack", "sfx", "sound effect", "sound design")
 KEYWORDS_VOICE = ("voice", "dialogue", "narration", "spoken", "tts")
+KEYWORDS_QWEN = ("qwen", "qwen2", "qwen3", "qen3", "2qwen")
 
 
 @dataclass(frozen=True)
@@ -46,6 +47,9 @@ class BridgeConfig:
     grok_video_model: str
     grok_audio_model: str
     grok_text_model: str
+    grok_qwen_model: str
+    grok_qwen2_model: str
+    grok_qwen3_model: str
     dry_run: bool
     cursor_binary: str | None
 
@@ -82,7 +86,24 @@ def infer_activity(prompt: str, explicit_activity: str | None = None) -> str:
     return top_activity if top_score > 0 else "text"
 
 
-def selected_model(config: BridgeConfig, activity: str) -> str:
+def infer_model_family(prompt: str) -> str:
+    lower = normalize_prompt(prompt).lower()
+    if any(keyword in lower for keyword in ("qwen3", "qen3")):
+        return "qwen3"
+    if any(keyword in lower for keyword in ("qwen2", "qwen 2", "2qwen")):
+        return "qwen2"
+    if any(keyword in lower for keyword in KEYWORDS_QWEN):
+        return "qwen"
+    return "general"
+
+
+def selected_model(config: BridgeConfig, activity: str, family: str = "general") -> str:
+    if family == "qwen3":
+        return config.grok_qwen3_model
+    if family == "qwen2":
+        return config.grok_qwen2_model
+    if family == "qwen":
+        return config.grok_qwen_model
     return {
         "voice": config.grok_voice_model,
         "image": config.grok_image_model,
@@ -119,6 +140,28 @@ def build_activity_prompt(activity: str, raw_prompt: str) -> str:
     )
 
 
+def build_perplexity_review_prompt(raw_prompt: str, activity: str, family: str, model: str) -> str:
+    cleaned = normalize_prompt(raw_prompt)
+    family_line = {
+        "qwen3": "Focus on Qwen3 local model behavior, routing, prompt shaping, and output quality.",
+        "qwen2": "Focus on Qwen2 local model behavior, routing, prompt shaping, and output quality.",
+        "qwen": "Focus on Qwen-family local model behavior, routing, prompt shaping, and output quality.",
+        "general": "Focus on the current local model process behavior, routing, prompt shaping, and output quality.",
+    }.get(family, "Focus on local model process behavior, routing, prompt shaping, and output quality.")
+    return "\n".join(
+        [
+            "Perplexity review brief for Shadow Garden local-model refinement.",
+            f"Activity: {activity}",
+            f"Model: {model}",
+            f"Family: {family}",
+            family_line,
+            "Please analyze plain-text prompt handling, intent detection, model selection, failure modes, and ways to improve image/audio/video/voice generation handoff.",
+            "Return actionable recommendations, edge cases, and a short checklist for validation.",
+            f"Source prompt: {cleaned}",
+        ]
+    )
+
+
 def load_config(*, dry_run: bool) -> BridgeConfig:
     cursor_binary = shutil.which("cursor")
     return BridgeConfig(
@@ -128,6 +171,9 @@ def load_config(*, dry_run: bool) -> BridgeConfig:
         grok_video_model=os.getenv("GROK_VIDEO_MODEL", "grok-video-latest"),
         grok_audio_model=os.getenv("GROK_AUDIO_MODEL", "grok-audio-latest"),
         grok_text_model=os.getenv("GROK_TEXT_MODEL", "grok-3"),
+        grok_qwen_model=os.getenv("GROK_QWEN_MODEL", os.getenv("GROK_TEXT_MODEL", "grok-3")),
+        grok_qwen2_model=os.getenv("GROK_QWEN2_MODEL", os.getenv("GROK_QWEN_MODEL", os.getenv("GROK_TEXT_MODEL", "grok-3"))),
+        grok_qwen3_model=os.getenv("GROK_QWEN3_MODEL", os.getenv("GROK_QWEN_MODEL", os.getenv("GROK_TEXT_MODEL", "grok-3"))),
         dry_run=dry_run,
         cursor_binary=cursor_binary,
     )
@@ -267,14 +313,16 @@ def cast_plaintext_prompts(
 
     for raw_prompt in prompts:
         inferred_activity = infer_activity(raw_prompt, activity)
+        family = infer_model_family(raw_prompt)
         prompt = build_activity_prompt(inferred_activity, raw_prompt)
-        model = selected_model(config, inferred_activity)
+        model = selected_model(config, inferred_activity, family)
         cursor_command = f"[SHADOW_GARDEN:{inferred_activity}:{model}] {prompt}"
+        perplexity_prompt = build_perplexity_review_prompt(raw_prompt, inferred_activity, family, model)
 
-        print(f"Activity: {inferred_activity} | Model: {model}")
+        print(f"Activity: {inferred_activity} | Family: {family} | Model: {model}")
         print(f"Input: {normalize_prompt(raw_prompt)}")
         print(f"Prompt: {prompt}")
-        print(f"Perplexity bridge (manual): {prompt}")
+        print(f"Perplexity brief:\n{perplexity_prompt}")
 
         cursor_result = invoke_cursor(
             config,

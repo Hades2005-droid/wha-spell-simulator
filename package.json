@@ -7,9 +7,17 @@
     "dev": "vite --host 127.0.0.1 --port 5173",
     "start": "npm run dev",
     "build": "vite build",
-    "test": "node --test tests/*.test.js"
+    "test": "node --test tests/*.test.js",
+    "lint": "eslint src/ tests/ tools/",
+    "lint:fix": "eslint src/ tests/ tools/ --fix",
+    "format": "prettier --write 'src/**/*.js' 'tests/**/*.js' 'tools/**/*.js'",
+    "format:check": "prettier --check 'src/**/*.js' 'tests/**/*.js' 'tools/**/*.js'"
   },
   "devDependencies": {
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.32.0",
+    "prettier": "^3.8.5",
     "vite": "^6.4.0"
   }
 }

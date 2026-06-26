@@ -1,16 +1,16 @@
 const GLOW_LAYERS = [
   {
-    shadowColor: "rgb(110, 185, 212)",
+    shadowColor: 'rgb(110, 185, 212)',
     shadowBlur: ({ pulse, flicker, glowAlpha }) => (24 + pulse * 18 + flicker * 10) * glowAlpha,
     strokeStyle: ({ pulse, glowAlpha }) => `rgba(120, 220, 255, ${(0.18 + pulse * 0.12) * glowAlpha})`,
-    lineWidth: ({ pulse, glowAlpha }) => 4 + (8 + pulse * 2) * glowAlpha
+    lineWidth: ({ pulse, glowAlpha }) => 4 + (8 + pulse * 2) * glowAlpha,
   },
   {
-    shadowColor: "rgb(117, 150, 161)",
+    shadowColor: 'rgb(117, 150, 161)',
     shadowBlur: ({ pulse, glowAlpha }) => (10 + pulse * 6) * glowAlpha,
     strokeStyle: ({ pulse, glowAlpha }) => `rgba(187, 225, 237, ${(0.88 + pulse * 0.12) * glowAlpha})`,
-    lineWidth: ({ pulse, glowAlpha }) => 1.8 + (2 + pulse * 0.6) * glowAlpha
-  }
+    lineWidth: ({ pulse, glowAlpha }) => 1.8 + (2 + pulse * 0.6) * glowAlpha,
+  },
 ];
 
 function hasStrokePoints(stroke) {
@@ -33,10 +33,10 @@ function drawSingleStroke(ctx, stroke, options = {}) {
   }
 
   ctx.save();
-  ctx.strokeStyle = options.color ?? "#241b16";
+  ctx.strokeStyle = options.color ?? '#241b16';
   ctx.lineWidth = options.lineWidth ?? 4.2;
-  ctx.lineCap = "round";
-  ctx.lineJoin = "round";
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
   ctx.globalAlpha = options.alpha ?? 1;
   traceStrokePath(ctx, stroke);
   ctx.stroke();
@@ -68,7 +68,7 @@ function strokeLabelAnchor(stroke) {
       const local = segmentLength <= 0 ? 0 : (targetLength - walkedLength) / segmentLength;
       return {
         x: previous.x + (current.x - previous.x) * local,
-        y: previous.y + (current.y - previous.y) * local
+        y: previous.y + (current.y - previous.y) * local,
       };
     }
     walkedLength += segmentLength;
@@ -80,15 +80,15 @@ function strokeLabelAnchor(stroke) {
 function clampLabelPosition(ctx, x, y, width, height) {
   return {
     x: Math.max(4, Math.min(ctx.canvas.width - width - 4, x)),
-    y: Math.max(height + 4, Math.min(ctx.canvas.height - 4, y))
+    y: Math.max(height + 4, Math.min(ctx.canvas.height - 4, y)),
   };
 }
 
 function drawGlowingStrokeLayer(ctx, stroke, glow, layer) {
   ctx.save();
-  ctx.globalCompositeOperation = "lighter";
-  ctx.lineCap = "round";
-  ctx.lineJoin = "round";
+  ctx.globalCompositeOperation = 'lighter';
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
   ctx.shadowBlur = layer.shadowBlur(glow);
   ctx.shadowColor = layer.shadowColor;
   ctx.strokeStyle = layer.strokeStyle(glow);
@@ -106,7 +106,7 @@ function drawSingleGlowingStroke(ctx, stroke, timestamp, glowAlpha = 1) {
   const glow = {
     pulse: 0.5 + Math.sin(timestamp * 0.004) * 0.5,
     flicker: Math.random() * 0.08,
-    glowAlpha
+    glowAlpha,
   };
 
   for (const layer of GLOW_LAYERS) {
@@ -119,7 +119,7 @@ export function drawStrokes(ctx, strokes, currentStroke, config) {
     drawSingleStroke(ctx, stroke, {
       color: config.renderer.inkColor,
       lineWidth: 4.4,
-      alpha: 0.94
+      alpha: 0.94,
     });
   }
 
@@ -127,7 +127,7 @@ export function drawStrokes(ctx, strokes, currentStroke, config) {
     drawSingleStroke(ctx, currentStroke, {
       color: config.renderer.inkColor,
       lineWidth: 4.4,
-      alpha: 0.72
+      alpha: 0.72,
     });
   }
 }
@@ -147,7 +147,7 @@ function activeGlowStrokes(activatedStrokeIds, strokes) {
 function glowAlphaAt(timestamp, activatedAt, duration) {
   const elapsed = timestamp - activatedAt;
   const t = Math.min(1, elapsed / duration);
-  return Math.pow(1 - t, 2);
+  return (1 - t) ** 2;
 }
 
 export function drawGlowingStrokes(
@@ -156,7 +156,7 @@ export function drawGlowingStrokes(
   activatedStrokeIds,
   strokes,
   duration,
-  timestamp = performance.now()
+  timestamp = performance.now(),
 ) {
   if (!activatedStrokeIds?.size || !activatedAt) {
     return;
@@ -179,14 +179,14 @@ export function drawRingDebug(ctx, ring) {
 
   ctx.save();
   ctx.lineWidth = 2;
-  ctx.strokeStyle = ring.complete ? "rgba(184, 69, 49, 0.72)" : "rgba(31, 111, 115, 0.72)";
+  ctx.strokeStyle = ring.complete ? 'rgba(184, 69, 49, 0.72)' : 'rgba(31, 111, 115, 0.72)';
   ctx.setLineDash(ring.complete ? [] : [10, 10]);
   ctx.beginPath();
   ctx.arc(ring.center.x, ring.center.y, ring.radius, 0, Math.PI * 2);
   ctx.stroke();
 
   ctx.setLineDash([]);
-  ctx.fillStyle = "rgba(36, 27, 22, 0.62)";
+  ctx.fillStyle = 'rgba(36, 27, 22, 0.62)';
   ctx.beginPath();
   ctx.arc(ring.center.x, ring.center.y, 4, 0, Math.PI * 2);
   ctx.fill();
@@ -195,7 +195,7 @@ export function drawRingDebug(ctx, ring) {
 
 export function drawStrokeIdDebug(ctx, strokes) {
   ctx.save();
-  ctx.textBaseline = "middle";
+  ctx.textBaseline = 'middle';
   ctx.lineWidth = 1;
 
   for (const stroke of strokes ?? []) {
@@ -212,14 +212,14 @@ export function drawStrokeIdDebug(ctx, strokes) {
     const boxHeight = 18;
     const position = clampLabelPosition(ctx, anchor.x + 7, anchor.y - 9, boxWidth, boxHeight);
 
-    ctx.fillStyle = "rgba(255, 251, 233, 0.88)";
-    ctx.strokeStyle = "rgba(36, 27, 22, 0.34)";
+    ctx.fillStyle = 'rgba(255, 251, 233, 0.88)';
+    ctx.strokeStyle = 'rgba(36, 27, 22, 0.34)';
     ctx.beginPath();
     ctx.roundRect(position.x, position.y - boxHeight / 2, boxWidth, boxHeight, 5);
     ctx.fill();
     ctx.stroke();
 
-    ctx.fillStyle = "rgba(36, 27, 22, 0.86)";
+    ctx.fillStyle = 'rgba(36, 27, 22, 0.86)';
     ctx.fillText(label, position.x + paddingX, position.y + paddingY - 2);
   }
 
@@ -234,8 +234,8 @@ export function drawCandidateDebug(ctx, candidates, recognitions) {
   for (const candidate of candidates ?? []) {
     const recognition = byCandidate.get(candidate.candidateId);
     const accepted = recognition?.recognized;
-    ctx.strokeStyle = accepted ? "rgba(31, 111, 115, 0.82)" : "rgba(184, 69, 49, 0.74)";
-    ctx.fillStyle = accepted ? "rgba(31, 111, 115, 0.92)" : "rgba(184, 69, 49, 0.92)";
+    ctx.strokeStyle = accepted ? 'rgba(31, 111, 115, 0.82)' : 'rgba(184, 69, 49, 0.74)';
+    ctx.fillStyle = accepted ? 'rgba(31, 111, 115, 0.92)' : 'rgba(184, 69, 49, 0.92)';
     ctx.strokeRect(candidate.bounds.minX, candidate.bounds.minY, candidate.bounds.width, candidate.bounds.height);
     const label = accepted
       ? `${recognition.id} ${Math.round(recognition.confidence * 100)}`

@@ -10,9 +10,9 @@ import {
   dominantAxisOrientationDeg,
   endpointClosedness,
   expandBounds,
-  strokeLength
-} from "../utils/geometry.js";
-import { summarizePolar } from "./coordinateNormalizer.js";
+  strokeLength,
+} from '../utils/geometry.js';
+import { summarizePolar } from './coordinateNormalizer.js';
 
 const BBOX_PADDING_NORM = 0.075;
 const CENTER_DISTANCE_NORM = 0.2;
@@ -35,9 +35,8 @@ function shouldGroup(a, b, ring, config) {
   const padding = ring.radius * BBOX_PADDING_NORM;
   const aBounds = expandBounds(a.metrics.bounds, padding);
   const bBounds = expandBounds(b.metrics.bounds, padding);
-  const centersClose =
-    distance(centerOfBounds(a.metrics.bounds), centerOfBounds(b.metrics.bounds)) <=
-    ring.radius * CENTER_DISTANCE_NORM;
+  const centersClose = distance(centerOfBounds(a.metrics.bounds), centerOfBounds(b.metrics.bounds))
+    <= ring.radius * CENTER_DISTANCE_NORM;
   const endpointsClose = endpointDistance(a, b) <= ring.radius * ENDPOINT_DISTANCE_NORM;
   return boundsOverlap(aBounds, bBounds) || centersClose || endpointsClose;
 }
@@ -50,18 +49,18 @@ function classifyRadialFacing(directedAngle, radialAngle) {
   const best = Math.min(outward, inward, counterclockwise, clockwise);
 
   if (best > 48) {
-    return "unclear";
+    return 'unclear';
   }
   if (best === outward) {
-    return "outward";
+    return 'outward';
   }
   if (best === inward) {
-    return "inward";
+    return 'inward';
   }
   if (best === counterclockwise) {
-    return "counterclockwise";
+    return 'counterclockwise';
   }
-  return "clockwise";
+  return 'clockwise';
 }
 
 function buildCandidate(strokes, index, ring, config) {
@@ -99,7 +98,7 @@ function buildCandidate(strokes, index, ring, config) {
     closedness,
     overdrawAmount,
     neatness: clamp(0.92 - overdrawAmount * 0.28 - Math.max(0, strokes.length - 4) * 0.035),
-    strokes
+    strokes,
   };
 }
 

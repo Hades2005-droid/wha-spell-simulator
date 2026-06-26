@@ -1,4 +1,4 @@
-import { randomBetween } from "../../utils/geometry.js";
+import { randomBetween } from '../../utils/geometry.js';
 import {
   activePortalPlane,
   convergePoint,
@@ -11,8 +11,8 @@ import {
   pruneParticles,
   randomPortalPoint,
   scaledParticleCount,
-  steadyParticleAlpha
-} from "./effectUtils.js";
+  steadyParticleAlpha,
+} from './effectUtils.js';
 
 function earthFlowConfig(spellIR, ring, portal, frame) {
   const flow = elementFlow(spellIR, portal, frame);
@@ -23,7 +23,7 @@ function earthFlowConfig(spellIR, ring, portal, frame) {
     sourceRadiusX: narrowedByFocusAndConvergence(Math.min(0.78, 0.34 + scale * 0.1 + spellIR.spread * 0.18), focus, convergence.strength, 0.28, 0.32),
     sourceRadiusY: narrowedByFocusAndConvergence(Math.min(0.78, 0.4 + scale * 0.08 + spellIR.spread * 0.16), focus, convergence.strength, 0.28, 0.32),
     surfaceJitter: narrowedByFocusAndConvergence(ring.radius * (0.025 + spellIR.spread * 0.06) * scale, focus, convergence.strength, 0.4, 0.34),
-    speed: randomBetween(0.8, 2.8) * (0.6 + spellIR.force) * (0.9 + scale * 0.08) * (1 - convergence.strength * 0.32)
+    speed: randomBetween(0.8, 2.8) * (0.6 + spellIR.force) * (0.9 + scale * 0.08) * (1 - convergence.strength * 0.32),
   };
 }
 
@@ -31,7 +31,7 @@ function spawnEarthParticle(spellIR, portal, flow) {
   const source = randomPortalPoint(
     portal,
     flow.sourceRadiusX,
-    flow.sourceRadiusY
+    flow.sourceRadiusY,
   );
   const phase = randomBetween(0, Math.PI * 2);
 
@@ -43,7 +43,7 @@ function spawnEarthParticle(spellIR, portal, flow) {
     radius: randomBetween(4, 11) * (0.85 + flow.scale * 0.2),
     phase,
     age: 0,
-    life: flow.convergence.active ? flow.convergence.life : randomBetween(50, 92)
+    life: flow.convergence.active ? flow.convergence.life : randomBetween(50, 92),
   };
 }
 

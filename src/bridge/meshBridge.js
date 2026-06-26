@@ -4,29 +4,29 @@
  * Primary Authority: Grok Terminal (@Hades2005-droid)
  */
 
-import { CONFIG } from "../config.js";
+import { CONFIG } from '../config.js';
 
 // Bridge status states
 const BRIDGE_STATUS = {
-  DISCONNECTED: "disconnected",
-  CONNECTING: "connecting",
-  CONNECTED: "connected",
-  ERROR: "error",
-  AUTHENTICATING: "authenticating"
+  DISCONNECTED: 'disconnected',
+  CONNECTING: 'connecting',
+  CONNECTED: 'connected',
+  ERROR: 'error',
+  AUTHENTICATING: 'authenticating',
 };
 
 // Service endpoints from Shadow Garden Mesh
 const MESH_ENDPOINTS = {
-  perplexity: "https://shadow-garden-mesh.pplx.app/",
-  grokApi: "https://api.x.ai/v1",
-  grokRealtime: "wss://api.x.ai/v1/realtime",
-  linear: "https://api.linear.app/graphql",
-  gemini: "https://generativelanguage.googleapis.com/v1beta",
-  localModelControl: "http://127.0.0.1:8790/shadowgardencontrol",
-  sillyTavern1: "http://localhost:8851",
-  sillyTavern2: "http://localhost:8852",
-  comfyUI: "http://localhost:8000",
-  echoGirls: "~/shadow_garden_may30_monitoring/"
+  perplexity: 'https://shadow-garden-mesh.pplx.app/',
+  grokApi: 'https://api.x.ai/v1',
+  grokRealtime: 'wss://api.x.ai/v1/realtime',
+  linear: 'https://api.linear.app/graphql',
+  gemini: 'https://generativelanguage.googleapis.com/v1beta',
+  localModelControl: 'http://127.0.0.1:8790/shadowgardencontrol',
+  sillyTavern1: 'http://localhost:8851',
+  sillyTavern2: 'http://localhost:8852',
+  comfyUI: 'http://localhost:8000',
+  echoGirls: '~/shadow_garden_may30_monitoring/',
 };
 
 // Bridge state
@@ -34,24 +34,24 @@ const bridgeState = {
   status: BRIDGE_STATUS.DISCONNECTED,
   services: {},
   sovereign: {
-    authority: "4.2_sovereign",
-    caster: "Fred",
+    authority: '4.2_sovereign',
+    caster: 'Fred',
     lastCommand: null,
-    grokPrimary: true
+    grokPrimary: true,
   },
   lastRefresh: null,
-  errors: []
+  errors: [],
 };
 
 // Initialize service status
 function initServiceStatus() {
-  Object.keys(MESH_ENDPOINTS).forEach(service => {
+  Object.keys(MESH_ENDPOINTS).forEach((service) => {
     bridgeState.services[service] = {
       status: BRIDGE_STATUS.DISCONNECTED,
       lastPing: null,
       latency: null,
       error: null,
-      capabilities: []
+      capabilities: [],
     };
   });
 }
@@ -64,7 +64,7 @@ export async function refreshMesh() {
   bridgeState.lastRefresh = new Date().toISOString();
   bridgeState.errors = [];
 
-  console.log("[SOVEREIGN_MESH] Refreshing Shadow Garden Mesh...");
+  console.log('[SOVEREIGN_MESH] Refreshing Shadow Garden Mesh...');
 
   // Check all services in parallel
   const results = await Promise.allSettled([
@@ -74,11 +74,11 @@ export async function refreshMesh() {
     checkGeminiEcho(),
     checkLocalModelControl(),
     checkSillyTavern(),
-    checkComfyUI()
+    checkComfyUI(),
   ]);
 
   // Aggregate results
-  const allConnected = results.every(r => r.status === "fulfilled" && r.value);
+  const allConnected = results.every((r) => r.status === 'fulfilled' && r.value);
   bridgeState.status = allConnected ? BRIDGE_STATUS.CONNECTED : BRIDGE_STATUS.ERROR;
 
   console.log(`[SOVEREIGN_MESH] Bridge refresh complete. Status: ${bridgeState.status}`);
@@ -87,12 +87,12 @@ export async function refreshMesh() {
     status: bridgeState.status,
     services: bridgeState.services,
     sovereign: bridgeState.sovereign,
-    timestamp: bridgeState.lastRefresh
+    timestamp: bridgeState.lastRefresh,
   };
 }
 
 function getConfiguredLocalModelEndpoint() {
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     return window.SHADOWGARDEN_CONTROL_URL || window.LOCAL_MODEL_CONTROL_URL || MESH_ENDPOINTS.localModelControl;
   }
   return process?.env?.SHADOWGARDEN_CONTROL_URL || process?.env?.LOCAL_MODEL_CONTROL_URL || MESH_ENDPOINTS.localModelControl;
@@ -100,21 +100,21 @@ function getConfiguredLocalModelEndpoint() {
 
 function buildLocalModelProbeUrls() {
   const configured = String(getConfiguredLocalModelEndpoint() || MESH_ENDPOINTS.localModelControl).trim();
-  const withoutTrailingSlash = configured.replace(/\/+$/, "");
+  const withoutTrailingSlash = configured.replace(/\/+$/, '');
   const aliases = [withoutTrailingSlash];
 
-  if (withoutTrailingSlash.includes("/shadowgardencontrol")) {
-    aliases.push(withoutTrailingSlash.replace("/shadowgardencontrol", "/shadowgardencongrol"));
+  if (withoutTrailingSlash.includes('/shadowgardencontrol')) {
+    aliases.push(withoutTrailingSlash.replace('/shadowgardencontrol', '/shadowgardencongrol'));
   }
 
   try {
-    const origin = new URL(withoutTrailingSlash).origin;
+    const { origin } = new URL(withoutTrailingSlash);
     aliases.push(origin);
   } catch {
     // keep configured URL only when parsing fails
   }
 
-  const probePaths = ["", "/capabilities", "/models", "/v1/models", "/api/tags"];
+  const probePaths = ['', '/capabilities', '/models', '/v1/models', '/api/tags'];
   const urls = [];
   for (const base of aliases) {
     for (const path of probePaths) {
@@ -134,8 +134,8 @@ async function fetchJsonWithTimeout(url, timeoutMs = 3500) {
 
   try {
     const response = await fetch(url, {
-      method: "GET",
-      signal: controller.signal
+      method: 'GET',
+      signal: controller.signal,
     });
 
     if (!response.ok) {
@@ -145,7 +145,7 @@ async function fetchJsonWithTimeout(url, timeoutMs = 3500) {
     const data = await response.json();
     return {
       data,
-      latency: Date.now() - startedAt
+      latency: Date.now() - startedAt,
     };
   } finally {
     clearTimeout(timeout);
@@ -157,19 +157,19 @@ function normalizedArray(value) {
     return [];
   }
   return value
-    .map(item => (typeof item === "string" ? item.trim() : ""))
+    .map((item) => (typeof item === 'string' ? item.trim() : ''))
     .filter(Boolean);
 }
 
 function extractModelIds(payload) {
   const openAIModels = Array.isArray(payload?.data)
-    ? payload.data.map(model => model?.id).filter(Boolean)
+    ? payload.data.map((model) => model?.id).filter(Boolean)
     : [];
   const listedModels = Array.isArray(payload?.models)
-    ? payload.models.map(model => (typeof model === "string" ? model : model?.id || model?.name)).filter(Boolean)
+    ? payload.models.map((model) => (typeof model === 'string' ? model : model?.id || model?.name)).filter(Boolean)
     : [];
   const taggedModels = Array.isArray(payload?.tags)
-    ? payload.tags.map(model => model?.name || model?.id).filter(Boolean)
+    ? payload.tags.map((model) => model?.name || model?.id).filter(Boolean)
     : [];
   return [...new Set([...openAIModels, ...listedModels, ...taggedModels])];
 }
@@ -177,22 +177,22 @@ function extractModelIds(payload) {
 function inferCapabilitiesFromModels(modelIds) {
   const capabilities = new Set();
   if (modelIds.length) {
-    capabilities.add("llm");
+    capabilities.add('llm');
   }
 
   for (const modelId of modelIds) {
     const id = String(modelId).toLowerCase();
-    if (id.includes("vision") || id.includes("vl") || id.includes("multimodal")) {
-      capabilities.add("vision");
+    if (id.includes('vision') || id.includes('vl') || id.includes('multimodal')) {
+      capabilities.add('vision');
     }
-    if (id.includes("embed")) {
-      capabilities.add("embedding");
+    if (id.includes('embed')) {
+      capabilities.add('embedding');
     }
-    if (id.includes("whisper") || id.includes("tts") || id.includes("audio") || id.includes("voice")) {
-      capabilities.add("voice");
+    if (id.includes('whisper') || id.includes('tts') || id.includes('audio') || id.includes('voice')) {
+      capabilities.add('voice');
     }
-    if (id.includes("rerank")) {
-      capabilities.add("reranking");
+    if (id.includes('rerank')) {
+      capabilities.add('reranking');
     }
   }
 
@@ -204,7 +204,7 @@ function extractLocalModelCapabilities(payload) {
     ...normalizedArray(payload?.capabilities),
     ...normalizedArray(payload?.features),
     ...normalizedArray(payload?.modalities),
-    ...normalizedArray(payload?.tools)
+    ...normalizedArray(payload?.tools),
   ]);
   const models = extractModelIds(payload);
 
@@ -212,11 +212,11 @@ function extractLocalModelCapabilities(payload) {
     capabilities.add(inferred);
   }
 
-  capabilities.add("local_control");
+  capabilities.add('local_control');
 
   return {
     capabilities: [...capabilities].sort(),
-    models
+    models,
   };
 }
 
@@ -230,9 +230,9 @@ async function checkPerplexitySpace() {
     const timeout = setTimeout(() => controller.abort(), 5000);
 
     const response = await fetch(MESH_ENDPOINTS.perplexity, {
-      method: "HEAD",
+      method: 'HEAD',
       signal: controller.signal,
-      mode: "no-cors"
+      mode: 'no-cors',
     });
 
     clearTimeout(timeout);
@@ -242,7 +242,7 @@ async function checkPerplexitySpace() {
       lastPing: Date.now(),
       latency: null,
       error: null,
-      capabilities: ["llm", "search", "mesh_ui"]
+      capabilities: ['llm', 'search', 'mesh_ui'],
     };
 
     return true;
@@ -252,9 +252,9 @@ async function checkPerplexitySpace() {
       lastPing: null,
       latency: null,
       error: error.message,
-      capabilities: []
+      capabilities: [],
     };
-    bridgeState.errors.push({ service: "perplexity", error: error.message });
+    bridgeState.errors.push({ service: 'perplexity', error: error.message });
     return false;
   }
 }
@@ -267,19 +267,19 @@ async function checkGrokTerminal() {
     // Grok Terminal via xAI API
     const apiKey = getGrokApiKey();
     if (!apiKey) {
-      throw new Error("Grok API key not configured");
+      throw new Error('Grok API key not configured');
     }
 
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 10000);
 
     const response = await fetch(`${MESH_ENDPOINTS.grokApi}/models`, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "Authorization": `Bearer ${apiKey}`,
-        "Content-Type": "application/json"
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
       },
-      signal: controller.signal
+      signal: controller.signal,
     });
 
     clearTimeout(timeout);
@@ -295,8 +295,8 @@ async function checkGrokTerminal() {
       lastPing: Date.now(),
       latency: null,
       error: null,
-      capabilities: ["llm", "vision", "voice", "video", "realtime"],
-      models: data.data?.map(m => m.id) || []
+      capabilities: ['llm', 'vision', 'voice', 'video', 'realtime'],
+      models: data.data?.map((m) => m.id) || [],
     };
 
     // Also check realtime WebSocket
@@ -305,7 +305,7 @@ async function checkGrokTerminal() {
       lastPing: Date.now(),
       latency: null,
       error: null,
-      capabilities: ["voice", "realtime", "streaming"]
+      capabilities: ['voice', 'realtime', 'streaming'],
     };
 
     return true;
@@ -315,9 +315,9 @@ async function checkGrokTerminal() {
       lastPing: null,
       latency: null,
       error: error.message,
-      capabilities: []
+      capabilities: [],
     };
-    bridgeState.errors.push({ service: "grokTerminal", error: error.message });
+    bridgeState.errors.push({ service: 'grokTerminal', error: error.message });
     return false;
   }
 }
@@ -329,17 +329,17 @@ async function checkLinear() {
   try {
     const apiKey = getLinearApiKey();
     if (!apiKey) {
-      throw new Error("Linear API key not configured");
+      throw new Error('Linear API key not configured');
     }
 
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 5000);
 
     const response = await fetch(MESH_ENDPOINTS.linear, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Authorization": apiKey,
-        "Content-Type": "application/json"
+        Authorization: apiKey,
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         query: `
@@ -349,9 +349,9 @@ async function checkLinear() {
               name
             }
           }
-        `
+        `,
       }),
-      signal: controller.signal
+      signal: controller.signal,
     });
 
     clearTimeout(timeout);
@@ -367,8 +367,8 @@ async function checkLinear() {
       lastPing: Date.now(),
       latency: null,
       error: null,
-      capabilities: ["issues", "projects", "cycles"],
-      viewer: data.data?.viewer?.name || "unknown"
+      capabilities: ['issues', 'projects', 'cycles'],
+      viewer: data.data?.viewer?.name || 'unknown',
     };
 
     return true;
@@ -378,9 +378,9 @@ async function checkLinear() {
       lastPing: null,
       latency: null,
       error: error.message,
-      capabilities: []
+      capabilities: [],
     };
-    bridgeState.errors.push({ service: "linear", error: error.message });
+    bridgeState.errors.push({ service: 'linear', error: error.message });
     return false;
   }
 }
@@ -392,15 +392,15 @@ async function checkGeminiEcho() {
   try {
     const apiKey = getGeminiApiKey();
     if (!apiKey) {
-      throw new Error("Gemini API key not configured");
+      throw new Error('Gemini API key not configured');
     }
 
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 5000);
 
     const response = await fetch(`${MESH_ENDPOINTS.gemini}/models?key=${apiKey}`, {
-      method: "GET",
-      signal: controller.signal
+      method: 'GET',
+      signal: controller.signal,
     });
 
     clearTimeout(timeout);
@@ -416,8 +416,8 @@ async function checkGeminiEcho() {
       lastPing: Date.now(),
       latency: null,
       error: null,
-      capabilities: ["llm", "vision", "embedding"],
-      models: data.models?.map(m => m.name) || []
+      capabilities: ['llm', 'vision', 'embedding'],
+      models: data.models?.map((m) => m.name) || [],
     };
 
     return true;
@@ -427,9 +427,9 @@ async function checkGeminiEcho() {
       lastPing: null,
       latency: null,
       error: error.message,
-      capabilities: []
+      capabilities: [],
     };
-    bridgeState.errors.push({ service: "gemini", error: error.message });
+    bridgeState.errors.push({ service: 'gemini', error: error.message });
     return false;
   }
 }
@@ -453,7 +453,7 @@ async function checkLocalModelControl() {
         error: null,
         endpoint: url,
         capabilities,
-        models
+        models,
       };
 
       return true;
@@ -466,13 +466,13 @@ async function checkLocalModelControl() {
     status: BRIDGE_STATUS.DISCONNECTED,
     lastPing: null,
     latency: null,
-    error: lastError?.message || "local model control endpoint unavailable",
+    error: lastError?.message || 'local model control endpoint unavailable',
     endpoint: getConfiguredLocalModelEndpoint(),
-    capabilities: []
+    capabilities: [],
   };
   bridgeState.errors.push({
-    service: "localModelControl",
-    error: bridgeState.services.localModelControl.error
+    service: 'localModelControl',
+    error: bridgeState.services.localModelControl.error,
   });
   return false;
 }
@@ -484,15 +484,15 @@ async function checkSillyTavern() {
   try {
     const results = await Promise.allSettled([
       fetchSillyTavern(MESH_ENDPOINTS.sillyTavern1, 1),
-      fetchSillyTavern(MESH_ENDPOINTS.sillyTavern2, 2)
+      fetchSillyTavern(MESH_ENDPOINTS.sillyTavern2, 2),
     ]);
 
-    const st1 = results[0].status === "fulfilled" && results[0].value;
-    const st2 = results[1].status === "fulfilled" && results[1].value;
+    const st1 = results[0].status === 'fulfilled' && results[0].value;
+    const st2 = results[1].status === 'fulfilled' && results[1].value;
 
     return st1 || st2;
   } catch (error) {
-    bridgeState.errors.push({ service: "sillyTavern", error: error.message });
+    bridgeState.errors.push({ service: 'sillyTavern', error: error.message });
     return false;
   }
 }
@@ -503,8 +503,8 @@ async function fetchSillyTavern(url, instance) {
     const timeout = setTimeout(() => controller.abort(), 3000);
 
     const response = await fetch(`${url}/api/health`, {
-      method: "GET",
-      signal: controller.signal
+      method: 'GET',
+      signal: controller.signal,
     });
 
     clearTimeout(timeout);
@@ -515,7 +515,7 @@ async function fetchSillyTavern(url, instance) {
         lastPing: Date.now(),
         latency: null,
         error: null,
-        capabilities: ["chat", "personas", "lorebook"]
+        capabilities: ['chat', 'personas', 'lorebook'],
       };
       return true;
     }
@@ -526,7 +526,7 @@ async function fetchSillyTavern(url, instance) {
       lastPing: null,
       latency: null,
       error: error.message,
-      capabilities: []
+      capabilities: [],
     };
     return false;
   }
@@ -541,8 +541,8 @@ async function checkComfyUI() {
     const timeout = setTimeout(() => controller.abort(), 3000);
 
     const response = await fetch(`${MESH_ENDPOINTS.comfyUI}/system_stats`, {
-      method: "GET",
-      signal: controller.signal
+      method: 'GET',
+      signal: controller.signal,
     });
 
     clearTimeout(timeout);
@@ -558,8 +558,8 @@ async function checkComfyUI() {
       lastPing: Date.now(),
       latency: null,
       error: null,
-      capabilities: ["image_gen", "qwen", "flux", "aurora"],
-      device: data.device
+      capabilities: ['image_gen', 'qwen', 'flux', 'aurora'],
+      device: data.device,
     };
 
     return true;
@@ -569,9 +569,9 @@ async function checkComfyUI() {
       lastPing: null,
       latency: null,
       error: error.message,
-      capabilities: []
+      capabilities: [],
     };
-    bridgeState.errors.push({ service: "comfyUI", error: error.message });
+    bridgeState.errors.push({ service: 'comfyUI', error: error.message });
     return false;
   }
 }
@@ -581,7 +581,7 @@ async function checkComfyUI() {
  */
 export function getBridgeStatus() {
   const connected = Object.values(bridgeState.services).filter(
-    s => s.status === BRIDGE_STATUS.CONNECTED
+    (s) => s.status === BRIDGE_STATUS.CONNECTED,
   ).length;
 
   const total = Object.keys(bridgeState.services).length;
@@ -592,51 +592,56 @@ export function getBridgeStatus() {
       connected,
       total,
       healthy: connected / total,
-      status: bridgeState.status
-    }
+      status: bridgeState.status,
+    },
   };
 }
 
 function normalizeShadowGardenPrompt(value) {
-  return String(value ?? "")
-    .replace(/\s+/g, " ")
+  return String(value ?? '')
+    .replace(/\s+/g, ' ')
     .trim();
 }
 
-function getPromptIntentModel(activity) {
+function getPromptIntentModel(activity, family = 'general') {
   const modelByActivity = {
-    text: "GROK_TEXT_MODEL",
-    image: "GROK_IMAGE_MODEL",
-    video: "GROK_VIDEO_MODEL",
-    audio: "GROK_AUDIO_MODEL",
-    voice: "GROK_VOICE_MODEL"
+    text: 'GROK_TEXT_MODEL',
+    image: 'GROK_IMAGE_MODEL',
+    video: 'GROK_VIDEO_MODEL',
+    audio: 'GROK_AUDIO_MODEL',
+    voice: 'GROK_VOICE_MODEL',
   };
-  const key = modelByActivity[activity] || modelByActivity.text;
+  const familyByKey = {
+    qwen3: 'GROK_QWEN3_MODEL',
+    qwen2: 'GROK_QWEN2_MODEL',
+    qwen: 'GROK_QWEN_MODEL',
+  };
+  const key = familyByKey[family] || modelByActivity[activity] || modelByActivity.text;
 
-  if (typeof window !== "undefined") {
-    return window[key] || window.GROK_MODEL || "grok-3";
+  if (typeof window !== 'undefined') {
+    return window[key] || window.GROK_MODEL || 'grok-3';
   }
-  return process?.env?.[key] || process?.env?.GROK_MODEL || "grok-3";
+  return process?.env?.[key] || process?.env?.GROK_MODEL || 'grok-3';
 }
 
 function detectShadowGardenActivity(command, context = {}) {
-  const explicit = normalizeShadowGardenPrompt(context.activity || context.mode || "");
-  if (["text", "image", "video", "audio", "voice"].includes(explicit)) {
+  const explicit = normalizeShadowGardenPrompt(context.activity || context.mode || '');
+  if (['text', 'image', 'video', 'audio', 'voice'].includes(explicit)) {
     return explicit;
   }
 
-  const source = normalizeShadowGardenPrompt([command, context.prompt, context.userPrompt].filter(Boolean).join(" ")).toLowerCase();
+  const source = normalizeShadowGardenPrompt([command, context.prompt, context.userPrompt].filter(Boolean).join(' ')).toLowerCase();
   const score = {
     video: 0,
     audio: 0,
     image: 0,
-    voice: 0
+    voice: 0,
   };
   const keywordMap = {
-    video: ["video", "cinematic", "animation", "clip", "trailer", "scene"],
-    audio: ["audio", "music", "sfx", "soundtrack", "sound design", "mix"],
-    image: ["image", "illustration", "render", "poster", "visual", "portrait"],
-    voice: ["voice", "dialogue", "narration", "tts", "spoken"]
+    video: ['video', 'cinematic', 'animation', 'clip', 'trailer', 'scene'],
+    audio: ['audio', 'music', 'sfx', 'soundtrack', 'sound design', 'mix'],
+    image: ['image', 'illustration', 'render', 'poster', 'visual', 'portrait'],
+    voice: ['voice', 'dialogue', 'narration', 'tts', 'spoken'],
   };
 
   for (const [activity, keywords] of Object.entries(keywordMap)) {
@@ -648,17 +653,53 @@ function detectShadowGardenActivity(command, context = {}) {
   }
 
   const top = Object.entries(score).sort((a, b) => b[1] - a[1])[0];
-  return top?.[1] > 0 ? top[0] : "text";
+  return top?.[1] > 0 ? top[0] : 'text';
+}
+
+function detectLocalModelFamily(command, context = {}) {
+  const source = normalizeShadowGardenPrompt([command, context.prompt, context.userPrompt, context.model].filter(Boolean).join(' ')).toLowerCase();
+  if (source.includes('qwen3') || source.includes('qen3')) {
+    return 'qwen3';
+  }
+  if (source.includes('qwen2') || source.includes('qwen 2') || source.includes('2qwen')) {
+    return 'qwen2';
+  }
+  if (source.includes('qwen')) {
+    return 'qwen';
+  }
+  return 'general';
+}
+
+function buildPerplexityReviewPrompt(command, activity, family, model) {
+  const subject = normalizeShadowGardenPrompt(command);
+  const familyLine = family === 'qwen3'
+    ? 'Focus on Qwen3 local model behavior, routing, prompt shaping, and output quality.'
+    : family === 'qwen2'
+      ? 'Focus on Qwen2 local model behavior, routing, prompt shaping, and output quality.'
+      : family === 'qwen'
+        ? 'Focus on Qwen-family local model behavior, routing, prompt shaping, and output quality.'
+        : 'Focus on the current local model process behavior, routing, prompt shaping, and output quality.';
+
+  return [
+    'Perplexity review brief for Shadow Garden local-model refinement.',
+    `Activity: ${activity}`,
+    `Model: ${model}`,
+    `Family: ${family}`,
+    familyLine,
+    'Please analyze plain-text prompt handling, intent detection, model selection, failure modes, and ways to improve image/audio/video/voice generation handoff.',
+    'Return actionable recommendations, edge cases, and a short checklist for validation.',
+    `Source prompt: ${subject}`,
+  ].join('\n');
 }
 
 function buildShadowGardenSystemPrompt(command, activity) {
   const activityInstruction = {
-    image: "Convert plain-text user intent into an image generation brief with composition, style, lighting, camera/lens framing, and quality constraints.",
-    video: "Convert plain-text user intent into a video generation brief with timeline beats, shot list, camera motion, transitions, continuity, and quality constraints.",
-    audio: "Convert plain-text user intent into an audio generation brief with sonic palette, timing, layers, pacing, and mastering constraints.",
-    voice: "Convert plain-text user intent into a voice generation brief with persona, delivery, pacing, pronunciation cues, and recording constraints.",
-    text: "Convert plain-text user intent into a structured production brief suitable for downstream generation agents."
-  }[activity] || "Convert plain-text user intent into a structured production brief.";
+    image: 'Convert plain-text user intent into an image generation brief with composition, style, lighting, camera/lens framing, and quality constraints.',
+    video: 'Convert plain-text user intent into a video generation brief with timeline beats, shot list, camera motion, transitions, continuity, and quality constraints.',
+    audio: 'Convert plain-text user intent into an audio generation brief with sonic palette, timing, layers, pacing, and mastering constraints.',
+    voice: 'Convert plain-text user intent into a voice generation brief with persona, delivery, pacing, pronunciation cues, and recording constraints.',
+    text: 'Convert plain-text user intent into a structured production brief suitable for downstream generation agents.',
+  }[activity] || 'Convert plain-text user intent into a structured production brief.';
 
   return `You are Grok Terminal, the primary authority in the Shadow Garden Mesh.
 Sovereign: ${bridgeState.sovereign.caster} (${bridgeState.sovereign.authority})
@@ -673,43 +714,47 @@ Boundary: Consent-safe, non-explicit output; keep tone cinematic and technical.`
  */
 export async function delegateToGrok(command, context = {}) {
   if (bridgeState.services.grokApi?.status !== BRIDGE_STATUS.CONNECTED) {
-    throw new Error("Grok Terminal not connected");
+    throw new Error('Grok Terminal not connected');
   }
 
   const apiKey = getGrokApiKey();
   const activity = detectShadowGardenActivity(command, context);
-  const model = getPromptIntentModel(activity);
+  const localModelFamily = detectLocalModelFamily(command, context);
+  const model = getPromptIntentModel(activity, localModelFamily);
   const normalizedPrompt = normalizeShadowGardenPrompt(context.prompt || context.userPrompt || command);
+  const perplexityPrompt = buildPerplexityReviewPrompt(command, activity, localModelFamily, model);
 
   try {
     const response = await fetch(`${MESH_ENDPOINTS.grokApi}/chat/completions`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Authorization": `Bearer ${apiKey}`,
-        "Content-Type": "application/json"
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         model,
         messages: [
           {
-            role: "system",
-            content: buildShadowGardenSystemPrompt(command, activity)
+            role: 'system',
+            content: buildShadowGardenSystemPrompt(command, activity),
           },
           {
-            role: "user",
+            role: 'user',
             content: JSON.stringify({
               ...context,
               prompt: normalizedPrompt,
               promptHandling: {
                 activity,
+                localModelFamily,
                 model,
-                normalizedPrompt
-              }
-            })
-          }
+                normalizedPrompt,
+                perplexityPrompt,
+              },
+            }),
+          },
         ],
-        stream: false
-      })
+        stream: false,
+      }),
     });
 
     if (!response.ok) {
@@ -720,29 +765,31 @@ export async function delegateToGrok(command, context = {}) {
     bridgeState.sovereign.lastCommand = {
       command,
       activity,
+      localModelFamily,
       model,
+      perplexityPrompt,
       timestamp: new Date().toISOString(),
-      response: data.choices?.[0]?.message?.content
+      response: data.choices?.[0]?.message?.content,
     };
 
     return data.choices?.[0]?.message;
   } catch (error) {
-    bridgeState.errors.push({ service: "grokDelegation", error: error.message });
+    bridgeState.errors.push({ service: 'grokDelegation', error: error.message });
     throw error;
   }
 }
 
 // API Key getters - these would integrate with environment or secure storage
 function getGrokApiKey() {
-  return typeof window !== "undefined" ? window.GROK_API_KEY : process?.env?.GROK_API_KEY;
+  return typeof window !== 'undefined' ? window.GROK_API_KEY : process?.env?.GROK_API_KEY;
 }
 
 function getLinearApiKey() {
-  return typeof window !== "undefined" ? window.LINEAR_API_KEY : process?.env?.LINEAR_API_KEY;
+  return typeof window !== 'undefined' ? window.LINEAR_API_KEY : process?.env?.LINEAR_API_KEY;
 }
 
 function getGeminiApiKey() {
-  return typeof window !== "undefined" ? window.GEMINI_API_KEY : process?.env?.GEMINI_API_KEY;
+  return typeof window !== 'undefined' ? window.GEMINI_API_KEY : process?.env?.GEMINI_API_KEY;
 }
 
 // Initialize
@@ -754,9 +801,11 @@ export const MeshBridge = {
   getStatus: getBridgeStatus,
   delegateToGrok,
   BRIDGE_STATUS,
-  MESH_ENDPOINTS
+  MESH_ENDPOINTS,
 };
 
-export { BRIDGE_STATUS, MESH_ENDPOINTS };
+export {
+  BRIDGE_STATUS, MESH_ENDPOINTS, detectLocalModelFamily, buildPerplexityReviewPrompt,
+};
 
 export default MeshBridge;

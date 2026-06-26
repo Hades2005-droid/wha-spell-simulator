@@ -3,7 +3,7 @@
  * Displays Shadow Garden Mesh bridge status and diagnostics
  */
 
-import { MeshBridge } from "./meshBridge.js";
+import { MeshBridge } from './meshBridge.js';
 
 let bridgePanel = null;
 let isVisible = false;
@@ -11,14 +11,14 @@ let isVisible = false;
 /**
  * Create bridge diagnostics panel
  */
-export function createBridgePanel(container) {
+export function createBridgePanel(_container) {
   if (bridgePanel) {
     return bridgePanel;
   }
 
-  const panel = document.createElement("div");
-  panel.id = "bridge-diagnostics";
-  panel.className = "bridge-panel";
+  const panel = document.createElement('div');
+  panel.id = 'bridge-diagnostics';
+  panel.className = 'bridge-panel';
   panel.style.cssText = `
     position: fixed;
     top: 20px;
@@ -55,8 +55,8 @@ export function createBridgePanel(container) {
   document.body.appendChild(panel);
 
   // Event listeners
-  panel.querySelector("#bridge-close").addEventListener("click", hideBridgePanel);
-  panel.querySelector("#bridge-refresh").addEventListener("click", () => {
+  panel.querySelector('#bridge-close').addEventListener('click', hideBridgePanel);
+  panel.querySelector('#bridge-refresh').addEventListener('click', () => {
     MeshBridge.refresh().then(() => updateBridgePanel());
   });
 
@@ -71,7 +71,7 @@ export function showBridgePanel() {
   if (!bridgePanel) {
     createBridgePanel();
   }
-  bridgePanel.style.display = "block";
+  bridgePanel.style.display = 'block';
   isVisible = true;
   updateBridgePanel();
 }
@@ -81,7 +81,7 @@ export function showBridgePanel() {
  */
 export function hideBridgePanel() {
   if (bridgePanel) {
-    bridgePanel.style.display = "none";
+    bridgePanel.style.display = 'none';
   }
   isVisible = false;
 }
@@ -106,11 +106,11 @@ export function updateBridgePanel() {
   }
 
   const status = MeshBridge.getStatus();
-  const statusEl = bridgePanel.querySelector("#bridge-status");
-  const servicesEl = bridgePanel.querySelector("#bridge-services");
+  const statusEl = bridgePanel.querySelector('#bridge-status');
+  const servicesEl = bridgePanel.querySelector('#bridge-services');
 
   // Status summary
-  const statusColor = status.status === "connected" ? "#4caf50" : status.status === "error" ? "#f44336" : "#ff9800";
+  const statusColor = status.status === 'connected' ? '#4caf50' : status.status === 'error' ? '#f44336' : '#ff9800';
   statusEl.innerHTML = `
     <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
       <span>Bridge Status:</span>
@@ -123,49 +123,49 @@ export function updateBridgePanel() {
     ${status.errors.length > 0 ? `
       <div style="margin-top: 8px; padding: 8px; background: rgba(244, 67, 54, 0.2); border-radius: 4px; font-size: 10px;">
         <div style="color: #f44336; font-weight: bold;">Errors (${status.errors.length}):</div>
-        ${status.errors.map(e => `<div>${e.service}: ${e.error}</div>`).join("")}
+        ${status.errors.map((e) => `<div>${e.service}: ${e.error}</div>`).join('')}
       </div>
-    ` : ""}
+    ` : ''}
   `;
 
   // Services list
   const serviceIcons = {
-    perplexity: "🔮",
-    grokApi: "🤖",
-    grokRealtime: "🎤",
-    linear: "📋",
-    gemini: "✨",
-    localModelControl: "🧠",
-    sillyTavern1: "🎭",
-    sillyTavern2: "🎭",
-    comfyUI: "🎨"
+    perplexity: '🔮',
+    grokApi: '🤖',
+    grokRealtime: '🎤',
+    linear: '📋',
+    gemini: '✨',
+    localModelControl: '🧠',
+    sillyTavern1: '🎭',
+    sillyTavern2: '🎭',
+    comfyUI: '🎨',
   };
 
   const serviceNames = {
-    perplexity: "Perplexity Space",
-    grokApi: "Grok API",
-    grokRealtime: "Grok Voice",
-    linear: "Linear",
-    gemini: "Gemini/Echo",
-    localModelControl: "Local Model Control",
-    sillyTavern1: "SillyTavern 1",
-    sillyTavern2: "SillyTavern 2",
-    comfyUI: "ComfyUI"
+    perplexity: 'Perplexity Space',
+    grokApi: 'Grok API',
+    grokRealtime: 'Grok Voice',
+    linear: 'Linear',
+    gemini: 'Gemini/Echo',
+    localModelControl: 'Local Model Control',
+    sillyTavern1: 'SillyTavern 1',
+    sillyTavern2: 'SillyTavern 2',
+    comfyUI: 'ComfyUI',
   };
 
   servicesEl.innerHTML = Object.entries(status.services).map(([name, service]) => {
-    const icon = serviceIcons[name] || "⚪";
+    const icon = serviceIcons[name] || '⚪';
     const displayName = serviceNames[name] || name;
-    const statusColor = service.status === "connected" ? "#4caf50" : service.status === "error" ? "#f44336" : "#9e9e9e";
-    const lastPing = service.lastPing ? `${Date.now() - service.lastPing}ms ago` : "never";
+    const statusColor = service.status === 'connected' ? '#4caf50' : service.status === 'error' ? '#f44336' : '#9e9e9e';
+    const lastPing = service.lastPing ? `${Date.now() - service.lastPing}ms ago` : 'never';
 
     return `
       <div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 0; border-bottom: 1px solid rgba(92, 74, 54, 0.3);">
         <span>${icon} ${displayName}</span>
-        <span style="color: ${statusColor}; font-size: 10px;">${service.status} ${service.lastPing ? `(${lastPing})` : ""}</span>
+        <span style="color: ${statusColor}; font-size: 10px;">${service.status} ${service.lastPing ? `(${lastPing})` : ''}</span>
       </div>
     `;
-  }).join("");
+  }).join('');
 }
 
 /**
@@ -173,14 +173,14 @@ export function updateBridgePanel() {
  */
 export function integrateWithDiagnostics(elements) {
   // Add bridge toggle button to diagnostics panel
-  const diagnosticsPanel = elements.diagnosticsPanel;
+  const { diagnosticsPanel } = elements;
   if (!diagnosticsPanel) {
     return;
   }
 
-  const bridgeToggle = document.createElement("button");
-  bridgeToggle.id = "bridge-toggle";
-  bridgeToggle.textContent = "🌐 Mesh";
+  const bridgeToggle = document.createElement('button');
+  bridgeToggle.id = 'bridge-toggle';
+  bridgeToggle.textContent = '🌐 Mesh';
   bridgeToggle.style.cssText = `
     padding: 4px 12px;
     background: #5c4a36;
@@ -191,9 +191,9 @@ export function integrateWithDiagnostics(elements) {
     font-size: 12px;
     margin-left: 8px;
   `;
-  bridgeToggle.addEventListener("click", toggleBridgePanel);
+  bridgeToggle.addEventListener('click', toggleBridgePanel);
 
-  const header = diagnosticsPanel.querySelector(".diagnostics-header");
+  const header = diagnosticsPanel.querySelector('.diagnostics-header');
   if (header) {
     header.appendChild(bridgeToggle);
   }
@@ -205,5 +205,5 @@ export default {
   hideBridgePanel,
   toggleBridgePanel,
   updateBridgePanel,
-  integrateWithDiagnostics
+  integrateWithDiagnostics,
 };

@@ -1,4 +1,4 @@
-import { clamp, perpendicularVector, randomBetween } from "../../utils/geometry.js";
+import { clamp, perpendicularVector, randomBetween } from '../../utils/geometry.js';
 import {
   activePortalPlane,
   convergenceFlow,
@@ -13,8 +13,8 @@ import {
   pruneParticles,
   scaledParticleCount,
   spellLifetimeFrames,
-  steadyParticleAlpha
-} from "./effectUtils.js";
+  steadyParticleAlpha,
+} from './effectUtils.js';
 
 const DEPTH_SCALE = 0.58;
 const WATER_ALPHA_SCALE = 0.58;
@@ -55,31 +55,31 @@ function waterFlowConfig(spellIR, ring, portal, frame) {
     horizontalSpeed: pressure * (0.08 + (0.22 + horizontalShare * 0.86) * travelFactor),
     verticalSpeed: pressure * (0.16 + (0.62 + verticalShare * 0.52) * travelFactor),
     gravityForce:
-      (0.052 + spellIR.force * 0.038 + (1 - spellIR.stability) * 0.018) *
-      gravity *
-      (1 - Math.max(convergenceStrength, convergenceProgress)),
+      (0.052 + spellIR.force * 0.038 + (1 - spellIR.stability) * 0.018)
+      * gravity
+      * (1 - Math.max(convergenceStrength, convergenceProgress)),
     streamLength:
-      ring.radius *
-      (0.16 + scale * 0.04 + (0.76 + spellIR.range * 0.34 + spellIR.force * 0.96) * travelFactor) *
-      (1 - convergenceStrength * 0.34),
+      ring.radius
+      * (0.16 + scale * 0.04 + (0.76 + spellIR.range * 0.34 + spellIR.force * 0.96) * travelFactor)
+      * (1 - convergenceStrength * 0.34),
     streamDepth:
-      ring.radius *
-      (0.035 + spellIR.spread * 0.07 + suspension * 0.08) *
-      (0.8 + scale * 0.18) *
-      (1 - convergenceStrength * 0.48) *
-      (1 - focus * 0.38),
+      ring.radius
+      * (0.035 + spellIR.spread * 0.07 + suspension * 0.08)
+      * (0.8 + scale * 0.18)
+      * (1 - convergenceStrength * 0.48)
+      * (1 - focus * 0.38),
     lateralPush:
-      ring.radius *
-      (0.004 + spellIR.spread * 0.018) *
-      (1.12 - spellIR.stability * 0.38) *
-      (1 - convergenceStrength * 0.44) *
-      (1 - focus * 0.42),
+      ring.radius
+      * (0.004 + spellIR.spread * 0.018)
+      * (1.12 - spellIR.stability * 0.38)
+      * (1 - convergenceStrength * 0.44)
+      * (1 - focus * 0.42),
     depthPush:
-      ring.radius *
-      (0.004 + spellIR.spread * 0.016) *
-      (1.08 - spellIR.stability * 0.34) *
-      (1 - convergenceStrength * 0.44) *
-      (1 - focus * 0.42),
+      ring.radius
+      * (0.004 + spellIR.spread * 0.016)
+      * (1.08 - spellIR.stability * 0.34)
+      * (1 - convergenceStrength * 0.44)
+      * (1 - focus * 0.42),
     maxHeightHint: ring.radius * (0.9 + spellIR.force * 1.2 + scale * 0.12),
     suspendedLife: spellLifetimeFrames(spellIR),
     suspendedHeight: ring.radius * (0.34 + spellIR.force * 0.16 + spellIR.spread * 0.1 + scale * 0.08),
@@ -89,7 +89,7 @@ function waterFlowConfig(spellIR, ring, portal, frame) {
     suspendedTension: 0.012 + spellIR.stability * 0.014,
     suspendedDamping: 0.958 + spellIR.stability * 0.026,
     minRadius: 3.6 * (0.86 + scale * 0.14),
-    radiusScale: (0.82 + scale * 0.2) * (0.92 + spellIR.force * 0.18) * (1 - convergenceStrength * 0.14)
+    radiusScale: (0.82 + scale * 0.2) * (0.92 + spellIR.force * 0.18) * (1 - convergenceStrength * 0.14),
   };
 }
 
@@ -100,7 +100,7 @@ function randomPortalSource(portal, flow) {
 
   return {
     x: portal.center.x + Math.cos(angle) * flow.sourceRadiusX * radius,
-    y: portal.center.y + Math.sin(angle) * flow.sourceRadiusY * radius
+    y: portal.center.y + Math.sin(angle) * flow.sourceRadiusY * radius,
   };
 }
 
@@ -114,7 +114,7 @@ function spawnSuspendedWaterParticle(spellIR, portal, flow, frame) {
   const baseRadius = randomBetween(7.4, 14.6) * flow.radiusScale;
   const homeForward = flow.directionCoherence * flow.suspendedRadius * 0.72 + randomBetween(
     -flow.suspendedRadius * 0.08,
-    flow.suspendedRadius * 0.08
+    flow.suspendedRadius * 0.08,
   );
 
   return {
@@ -136,7 +136,7 @@ function spawnSuspendedWaterParticle(spellIR, portal, flow, frame) {
     radius: baseRadius,
     phase,
     age: 0,
-    life: flow.suspendedLife
+    life: flow.suspendedLife,
   };
 }
 
@@ -167,7 +167,7 @@ function spawnWaterParticle(spellIR, ring, portal, flow, frame) {
     radius: baseRadius,
     phase,
     age: 0,
-    life: flow.converging ? flow.suspendedLife : randomBetween(56, 98) * (0.84 + spellIR.stability * 0.32)
+    life: flow.converging ? flow.suspendedLife : randomBetween(56, 98) * (0.84 + spellIR.stability * 0.32),
   };
 }
 
@@ -237,7 +237,7 @@ function updateWaterParticle(particle, flow, dt) {
 function projectWaterParticle(particle, flow) {
   const base = {
     x: particle.sourceX + flow.direction.x * particle.forward + flow.side.x * particle.lateral,
-    y: particle.sourceY + flow.direction.y * particle.forward - particle.height + particle.depth * DEPTH_SCALE
+    y: particle.sourceY + flow.direction.y * particle.forward - particle.height + particle.depth * DEPTH_SCALE,
   };
 
   return convergePoint(base, flow.convergence, particle.phase);
@@ -253,13 +253,13 @@ function drawWaterMass(ctx, projected, particle, flow, alpha) {
     0,
     projected.x,
     projected.y,
-    radius * 1.24
+    radius * 1.24,
   );
 
   gradient.addColorStop(0, `rgba(87, 190, 245, ${alpha * 0.16})`);
   gradient.addColorStop(0.28, `rgba(36, 150, 229, ${alpha * 0.2})`);
   gradient.addColorStop(0.68, `rgba(8, 95, 202, ${alpha * 0.14})`);
-  gradient.addColorStop(1, "rgba(4, 61, 173, 0)");
+  gradient.addColorStop(1, 'rgba(4, 61, 173, 0)');
 
   ctx.fillStyle = gradient;
   ctx.beginPath();
@@ -277,13 +277,13 @@ function drawWaterCore(ctx, projected, particle, flow, alpha) {
     0,
     projected.x,
     projected.y,
-    radius * 1.08
+    radius * 1.08,
   );
 
   core.addColorStop(0, `rgba(128, 218, 255, ${alpha * 0.07})`);
   core.addColorStop(0.24, `rgba(55, 171, 238, ${alpha * 0.14})`);
   core.addColorStop(0.72, `rgba(18, 122, 218, ${alpha * 0.1})`);
-  core.addColorStop(1, "rgba(7, 83, 202, 0)");
+  core.addColorStop(1, 'rgba(7, 83, 202, 0)');
 
   ctx.fillStyle = core;
   ctx.beginPath();
@@ -307,16 +307,15 @@ function drawWaterHighlight(ctx, projected, particle, alpha) {
     radius * 0.72,
     -0.34,
     0,
-    Math.PI * 2
+    Math.PI * 2,
   );
   ctx.fill();
 }
 
 function visibleWaterParticle(particle, flow, spellIR) {
-  const alpha =
-    flow.suspended || flow.converging
-      ? steadyParticleAlpha(particle, spellIR, 12)
-      : particleAlpha(particle) * Math.min(1, particle.age / 8) * effectOpacity(spellIR);
+  const alpha = flow.suspended || flow.converging
+    ? steadyParticleAlpha(particle, spellIR, 12)
+    : particleAlpha(particle) * Math.min(1, particle.age / 8) * effectOpacity(spellIR);
   if (alpha <= 0) {
     return null;
   }
@@ -352,12 +351,12 @@ export function drawWaterEffect(ctx, state, spellIR, ring, dt, config) {
 
   // Draw low-alpha blue layers first so the paper can show through the water body.
   ctx.save();
-  ctx.globalCompositeOperation = "source-over";
+  ctx.globalCompositeOperation = 'source-over';
   for (const { particle, projected, alpha } of visibleParticles) {
     drawWaterMass(ctx, projected, particle, flow, alpha);
   }
 
-  ctx.globalCompositeOperation = "screen";
+  ctx.globalCompositeOperation = 'screen';
   for (const { particle, projected, alpha } of visibleParticles) {
     drawWaterCore(ctx, projected, particle, flow, alpha);
     drawWaterHighlight(ctx, projected, particle, alpha);

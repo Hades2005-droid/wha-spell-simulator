@@ -1,5 +1,5 @@
-import { angleDegFromCenter, distance } from "../utils/geometry.js";
-import { mapRadiusToLayer } from "./layerMapper.js";
+import { angleDegFromCenter, distance } from '../utils/geometry.js';
+import { mapRadiusToLayer } from './layerMapper.js';
 
 // Convert canvas coordinates into ring-relative measurements. radiusNorm is
 // the point's distance as a fraction of the detected ring radius, and centeredY
@@ -11,7 +11,7 @@ function normalizePoint(point, ring) {
     radiusNorm,
     angleDeg: angleDegFromCenter(point, ring.center),
     centeredX: point.x - ring.center.x,
-    centeredY: ring.center.y - point.y
+    centeredY: ring.center.y - point.y,
   };
 }
 
@@ -22,12 +22,12 @@ export function classifyStrokesAgainstRing(strokes, ring, config) {
   if (!ring.found) {
     return strokes.map((stroke) => ({
       strokeId: stroke.id,
-      classification: "unbounded",
+      classification: 'unbounded',
       insideRatio: 0,
       outsideRatio: 0,
       boundaryRatio: 0,
       usedByParser: false,
-      canJoinSymbol: false
+      canJoinSymbol: false,
     }));
   }
 
@@ -37,39 +37,35 @@ export function classifyStrokesAgainstRing(strokes, ring, config) {
     if (ringStrokeIds.has(stroke.id)) {
       return {
         strokeId: stroke.id,
-        classification: "ring",
+        classification: 'ring',
         insideRatio: 0,
         outsideRatio: 0,
         boundaryRatio: 1,
         usedByParser: false,
-        canJoinSymbol: false
+        canJoinSymbol: false,
       };
     }
 
     const normalized = stroke.points.map((point) => normalizePoint(point, ring));
-    const insideRatio =
-      normalized.filter((point) => point.radiusNorm < config.layers.outerMax).length / Math.max(1, normalized.length);
-    const boundaryRatio =
-      normalized.filter(
-        (point) =>
-          point.radiusNorm >= config.layers.outerMax - config.layers.boundaryTolerance &&
-          point.radiusNorm <= config.layers.boundaryMax
-      ).length / Math.max(1, normalized.length);
-    const outsideRatio =
-      normalized.filter((point) => point.radiusNorm > config.layers.boundaryMax).length / Math.max(1, normalized.length);
+    const insideRatio = normalized.filter((point) => point.radiusNorm < config.layers.outerMax).length / Math.max(1, normalized.length);
+    const boundaryRatio = normalized.filter(
+      (point) => point.radiusNorm >= config.layers.outerMax - config.layers.boundaryTolerance
+          && point.radiusNorm <= config.layers.boundaryMax,
+    ).length / Math.max(1, normalized.length);
+    const outsideRatio = normalized.filter((point) => point.radiusNorm > config.layers.boundaryMax).length / Math.max(1, normalized.length);
 
     // These ratios deliberately leave a little tolerance around the outer layer
     // so near-boundary sign strokes can still join symbols when they are mostly
     // on the paper instead of being treated as stray outside ink.
-    let classification = "inside";
+    let classification = 'inside';
     if (outsideRatio > 0.62) {
-      classification = "outside";
+      classification = 'outside';
     } else if (insideRatio > 0.12 && outsideRatio > 0.18) {
-      classification = "boundary-crossing";
+      classification = 'boundary-crossing';
     } else if (boundaryRatio > 0.55 && insideRatio < 0.45) {
-      classification = "boundary-near";
+      classification = 'boundary-near';
     }
-    const usedByParser = classification === "inside" && insideRatio >= 0.45;
+    const usedByParser = classification === 'inside' && insideRatio >= 0.45;
 
     return {
       strokeId: stroke.id,
@@ -79,7 +75,7 @@ export function classifyStrokesAgainstRing(strokes, ring, config) {
       boundaryRatio,
       usedByParser,
       canJoinSymbol:
-        usedByParser || (classification === "boundary-near" && outsideRatio <= 0.08)
+        usedByParser || (classification === 'boundary-near' && outsideRatio <= 0.08),
     };
   });
 }
@@ -90,6 +86,6 @@ export function summarizePolar(point, ring, config) {
   return {
     radiusNorm: normalized.radiusNorm,
     angleDeg: normalized.angleDeg,
-    ...layer
+    ...layer,
   };
 }

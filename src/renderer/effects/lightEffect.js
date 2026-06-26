@@ -1,4 +1,4 @@
-import { randomBetween } from "../../utils/geometry.js";
+import { randomBetween } from '../../utils/geometry.js';
 import {
   activePortalPlane,
   convergePoint,
@@ -11,8 +11,8 @@ import {
   pruneParticles,
   randomPortalPoint,
   scaledParticleCount,
-  steadyParticleAlpha
-} from "./effectUtils.js";
+  steadyParticleAlpha,
+} from './effectUtils.js';
 
 function lightFlowConfig(spellIR, ring, portal, frame) {
   const flow = elementFlow(spellIR, portal, frame);
@@ -26,7 +26,7 @@ function lightFlowConfig(spellIR, ring, portal, frame) {
     sideJitter: narrowedByFocusAndConvergence(ring.radius * (0.006 + spellIR.spread * 0.018) * scale, focus, convergence.strength, 0.4, 0.34),
     laneCohesion: 0.074 + spellIR.stability * 0.06 + convergence.progress * 0.04 + focus * 0.04,
     lateralDamping: 0.22 + spellIR.stability * 0.24 + convergence.progress * 0.22 + focus * 0.14,
-    trailLength: Math.round(17 + spellIR.stability * 10)
+    trailLength: Math.round(17 + spellIR.stability * 10),
   };
 }
 
@@ -51,7 +51,7 @@ function spawnLightParticle(spellIR, ring, portal, flow) {
     travel: 0,
     age: 0,
     life: flow.convergence.active ? flow.convergence.life : randomBetween(76, 132) * (0.86 + spellIR.stability * 0.34),
-    trail: new Array(flow.trailLength).fill(null).map(() => ({ x, y }))
+    trail: new Array(flow.trailLength).fill(null).map(() => ({ x, y })),
   };
 }
 
@@ -102,8 +102,8 @@ function drawLightStream(ctx, particle, spellIR, flow) {
   const lineWidth = particle.radius * (1.35 + depth * 0.46) * (0.92 + spellIR.force * 0.22) * (1 - flow.convergence.progress * 0.22);
 
   ctx.save();
-  ctx.lineCap = "round";
-  ctx.lineJoin = "round";
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
   ctx.strokeStyle = `rgba(255, 249, 180, ${alpha * 0.11})`;
   ctx.lineWidth = lineWidth * 6.4;
   traceLightTrail(ctx, particle.trail, flow, particle.phase);

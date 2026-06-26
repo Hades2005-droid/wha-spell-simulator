@@ -8,15 +8,15 @@ async function readJson(url) {
 
 export async function loadDictionary() {
   const [sigils, signs, sampleSpells, sovereignSpells] = await Promise.all([
-    readJson(new URL("./sigils.json", import.meta.url)),
-    readJson(new URL("./signs.json", import.meta.url)),
-    readJson(new URL("./sample-spells.json", import.meta.url)),
-    readJson(new URL("./sovereign-spells.json", import.meta.url)).catch(() => [])
+    readJson(new URL('./sigils.json', import.meta.url)),
+    readJson(new URL('./signs.json', import.meta.url)),
+    readJson(new URL('./sample-spells.json', import.meta.url)),
+    readJson(new URL('./sovereign-spells.json', import.meta.url)).catch(() => []),
   ]);
 
   return {
     sigils,
     signs,
-    sampleSpells: [...sampleSpells, ...sovereignSpells]
+    sampleSpells: [...sampleSpells, ...sovereignSpells],
   };
 }

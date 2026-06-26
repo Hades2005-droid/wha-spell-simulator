@@ -1,4 +1,6 @@
-import { boundsForStrokes, clamp, distance, mean, stddev } from "../utils/geometry.js";
+import {
+  boundsForStrokes, clamp, distance, mean, stddev,
+} from '../utils/geometry.js';
 
 const CELL_SIZE_PX = 1;
 const PADDING_PX = 18;
@@ -14,7 +16,7 @@ function cellCenter(index, raster) {
   const y = Math.floor(index / raster.width);
   return {
     x: raster.offsetX + (x + 0.5) * raster.cellSize,
-    y: raster.offsetY + (y + 0.5) * raster.cellSize
+    y: raster.offsetY + (y + 0.5) * raster.cellSize,
   };
 }
 
@@ -42,7 +44,7 @@ function createRaster(strokes) {
     blocked: new Uint8Array(size),
     water: new Uint8Array(size),
     outsideEdge: new Uint8Array(size),
-    strokeIdsByCell: new Array(size)
+    strokeIdsByCell: new Array(size),
   };
 }
 
@@ -103,10 +105,10 @@ function rasterizeStrokes(strokes, raster) {
           raster,
           {
             x: previous.x + (current.x - previous.x) * t,
-            y: previous.y + (current.y - previous.y) * t
+            y: previous.y + (current.y - previous.y) * t,
           },
           strokeRadius,
-          stroke.id
+          stroke.id,
         );
       }
     }
@@ -129,7 +131,7 @@ function floodExterior(raster) {
   const queueState = {
     queue: new Int32Array(raster.size),
     head: 0,
-    tail: 0
+    tail: 0,
   };
 
   for (let x = 0; x < raster.width; x += 1) {
@@ -145,7 +147,7 @@ function floodExterior(raster) {
     [1, 0],
     [-1, 0],
     [0, 1],
-    [0, -1]
+    [0, -1],
   ];
 
   while (queueState.head < queueState.tail) {
@@ -177,7 +179,7 @@ function findDryComponents(raster) {
     [1, 0],
     [-1, 0],
     [0, 1],
-    [0, -1]
+    [0, -1],
   ];
   let componentCount = 0;
   let largest = [];
@@ -224,7 +226,7 @@ function findDryComponents(raster) {
 
   return {
     componentCount,
-    largest
+    largest,
   };
 }
 
@@ -244,7 +246,7 @@ function collectOutsideEdge(raster) {
 
   return {
     edgePixels,
-    strokeIds: [...strokeIds]
+    strokeIds: [...strokeIds],
   };
 }
 
@@ -255,13 +257,13 @@ function scoreCircle(edgePixels, config) {
       radius: 0,
       rmse: Infinity,
       normalizedRmse: Infinity,
-      perfection: 0
+      perfection: 0,
     };
   }
 
   const center = {
     x: mean(edgePixels.map((point) => point.x)),
-    y: mean(edgePixels.map((point) => point.y))
+    y: mean(edgePixels.map((point) => point.y)),
   };
   const distances = edgePixels.map((point) => distance(point, center));
   const radius = mean(distances);
@@ -277,7 +279,7 @@ function scoreCircle(edgePixels, config) {
     radius,
     rmse,
     normalizedRmse,
-    perfection
+    perfection,
   };
 }
 
@@ -300,7 +302,7 @@ export function analyzeTopologicalClosure(strokes, config) {
       enclosedAreaPx: 0,
       componentCount: 0,
       edgePixelCount: 0,
-      strokeIds: []
+      strokeIds: [],
     };
   }
 
@@ -318,14 +320,13 @@ export function analyzeTopologicalClosure(strokes, config) {
 
   const minAreaPx = Math.max(
     MIN_ENCLOSED_AREA_PX,
-    boundsAreaPx * MIN_ENCLOSED_AREA_RATIO
+    boundsAreaPx * MIN_ENCLOSED_AREA_RATIO,
   );
   const edge = collectOutsideEdge(raster);
   const circle = scoreCircle(edge.edgePixels, config);
-  const closed =
-    enclosedAreaPx >= minAreaPx &&
-    circle.radius >= config.ring.minRadius &&
-    circle.perfection >= MIN_PERFECTION;
+  const closed = enclosedAreaPx >= minAreaPx
+    && circle.radius >= config.ring.minRadius
+    && circle.perfection >= MIN_PERFECTION;
 
   return {
     closed,
@@ -348,7 +349,7 @@ export function analyzeTopologicalClosure(strokes, config) {
       offsetY: raster.offsetY,
       blockedPixelCount: countCells(raster.blocked),
       waterPixelCount: countCells(raster.water),
-      dryPixelCount: dry.largest.length
-    }
+      dryPixelCount: dry.largest.length,
+    },
   };
 }

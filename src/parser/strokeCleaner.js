@@ -1,4 +1,4 @@
-import { boundsForPoints, pathLength } from "../utils/geometry.js";
+import { boundsForPoints, pathLength } from '../utils/geometry.js';
 
 function smoothPoints(points) {
   if (points.length < 4) {
@@ -16,7 +16,7 @@ function smoothPoints(points) {
     return {
       ...point,
       x: previous.x * 0.25 + point.x * 0.5 + next.x * 0.25,
-      y: previous.y * 0.25 + point.y * 0.5 + next.y * 0.25
+      y: previous.y * 0.25 + point.y * 0.5 + next.y * 0.25,
     };
   });
 }
@@ -38,8 +38,8 @@ export function cleanStrokes(rawStrokes, config) {
         metrics: {
           length,
           bounds,
-          pointCount: points.length
-        }
+          pointCount: points.length,
+        },
       };
     })
     .filter((stroke) => stroke.metrics.length >= config.input.minStrokeLength);

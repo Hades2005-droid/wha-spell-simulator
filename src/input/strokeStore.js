@@ -9,7 +9,7 @@ export function createStrokeStore() {
         id: `s${nextId++}`,
         points: points.map((point) => ({ ...point })),
         startedAt: points[0]?.t ?? now,
-        endedAt: points[points.length - 1]?.t ?? now
+        endedAt: points[points.length - 1]?.t ?? now,
       };
       strokes = [...strokes, stroke];
       return stroke;
@@ -32,20 +32,20 @@ export function createStrokeStore() {
         points: stroke.points.map((point) => ({
           ...point,
           x: point.x * scaleX,
-          y: point.y * scaleY
-        }))
+          y: point.y * scaleY,
+        })),
       }));
     },
 
     getStrokes() {
       return strokes.map((stroke) => ({
         ...stroke,
-        points: stroke.points.map((point) => ({ ...point }))
+        points: stroke.points.map((point) => ({ ...point })),
       }));
     },
 
     count() {
       return strokes.length;
-    }
+    },
   };
 }

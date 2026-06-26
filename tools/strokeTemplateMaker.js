@@ -1,25 +1,25 @@
-import { CONFIG } from "../src/config.js";
-import { DrawingCapture } from "../src/input/drawingCapture.js";
-import { createStrokeStore } from "../src/input/strokeStore.js";
-import { normalizeStrokesForTemplate } from "../src/parser/templateNormalizer.js";
-import { drawStrokes } from "../src/renderer/glyphOverlayRenderer.js";
-import { drawPaper } from "../src/renderer/paperRenderer.js";
+import { CONFIG } from '../src/config.js';
+import { DrawingCapture } from '../src/input/drawingCapture.js';
+import { createStrokeStore } from '../src/input/strokeStore.js';
+import { normalizeStrokesForTemplate } from '../src/parser/templateNormalizer.js';
+import { drawStrokes } from '../src/renderer/glyphOverlayRenderer.js';
+import { drawPaper } from '../src/renderer/paperRenderer.js';
 
 const elements = {
-  canvas: document.querySelector("#templateCanvas"),
-  undoButton: document.querySelector("#undoButton"),
-  clearButton: document.querySelector("#clearButton"),
-  exportButton: document.querySelector("#exportButton"),
-  copyButton: document.querySelector("#copyButton"),
-  output: document.querySelector("#templateOutput"),
-  statusPill: document.querySelector("#statusPill")
+  canvas: document.querySelector('#templateCanvas'),
+  undoButton: document.querySelector('#undoButton'),
+  clearButton: document.querySelector('#clearButton'),
+  exportButton: document.querySelector('#exportButton'),
+  copyButton: document.querySelector('#copyButton'),
+  output: document.querySelector('#templateOutput'),
+  statusPill: document.querySelector('#statusPill'),
 };
 
 const store = createStrokeStore();
-const ctx = elements.canvas.getContext("2d");
+const ctx = elements.canvas.getContext('2d');
 let capture = null;
 
-function setStatus(text, className = "") {
+function setStatus(text, className = '') {
   elements.statusPill.textContent = text;
   elements.statusPill.className = `status-pill ${className}`.trim();
 }
@@ -29,7 +29,7 @@ function render() {
   drawStrokes(ctx, store.getStrokes(), capture?.getCurrentStroke(), CONFIG);
 
   ctx.save();
-  ctx.strokeStyle = "rgba(36, 27, 22, 0.24)";
+  ctx.strokeStyle = 'rgba(36, 27, 22, 0.24)';
   ctx.lineWidth = 1;
   ctx.setLineDash([8, 8]);
   ctx.beginPath();
@@ -47,14 +47,14 @@ function buildTemplateExport() {
   const rawStrokes = store.getStrokes();
   return normalizeStrokesForTemplate(rawStrokes, {
     samplesPerStroke: 32,
-    digits: 4
+    digits: 4,
   });
 }
 
 function exportTemplate() {
   const exported = buildTemplateExport();
   elements.output.value = JSON.stringify(exported, null, 2);
-  setStatus("Reference exported", "prepared");
+  setStatus('Reference exported', 'prepared');
 }
 
 async function copyTemplate() {
@@ -63,34 +63,34 @@ async function copyTemplate() {
   }
   try {
     await navigator.clipboard.writeText(elements.output.value);
-    setStatus("Copied", "active");
+    setStatus('Copied', 'active');
   } catch {
-    setStatus("Copy blocked", "invalid");
+    setStatus('Copy blocked', 'invalid');
   }
 }
 
 function setupControls() {
-  elements.undoButton.addEventListener("click", () => {
+  elements.undoButton.addEventListener('click', () => {
     store.undo();
   });
-  elements.clearButton.addEventListener("click", () => {
+  elements.clearButton.addEventListener('click', () => {
     store.clear();
-    elements.output.value = "";
-    setStatus("Cleared");
+    elements.output.value = '';
+    setStatus('Cleared');
   });
-  elements.exportButton.addEventListener("click", exportTemplate);
-  elements.copyButton.addEventListener("click", copyTemplate);
+  elements.exportButton.addEventListener('click', exportTemplate);
+  elements.copyButton.addEventListener('click', copyTemplate);
 }
 
 function init() {
   capture = new DrawingCapture(elements.canvas, store, CONFIG, {
     onCommit: () => {
-      setStatus("Drawing captured", "prepared");
-    }
+      setStatus('Drawing captured', 'prepared');
+    },
   });
   capture.enable();
   setupControls();
-  setStatus("Ready");
+  setStatus('Ready');
   requestAnimationFrame(render);
 }
 

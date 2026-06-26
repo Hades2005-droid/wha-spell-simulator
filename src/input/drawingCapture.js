@@ -1,5 +1,5 @@
-import { canvasPointFromEvent, shouldKeepPoint } from "./pointerNormalizer.js";
-import { pathLength } from "../utils/geometry.js";
+import { canvasPointFromEvent, shouldKeepPoint } from './pointerNormalizer.js';
+import { pathLength } from '../utils/geometry.js';
 
 export class DrawingCapture {
   constructor(canvas, strokeStore, config, callbacks = {}) {
@@ -28,18 +28,18 @@ export class DrawingCapture {
     if (this.enabled) {
       return;
     }
-    this.canvas.addEventListener("pointerdown", this.handlePointerDown);
-    this.canvas.addEventListener("pointermove", this.handlePointerMove);
-    this.canvas.addEventListener("pointerup", this.handlePointerUp);
-    this.canvas.addEventListener("pointercancel", this.handlePointerUp);
+    this.canvas.addEventListener('pointerdown', this.handlePointerDown);
+    this.canvas.addEventListener('pointermove', this.handlePointerMove);
+    this.canvas.addEventListener('pointerup', this.handlePointerUp);
+    this.canvas.addEventListener('pointercancel', this.handlePointerUp);
     this.enabled = true;
   }
 
   disable() {
-    this.canvas.removeEventListener("pointerdown", this.handlePointerDown);
-    this.canvas.removeEventListener("pointermove", this.handlePointerMove);
-    this.canvas.removeEventListener("pointerup", this.handlePointerUp);
-    this.canvas.removeEventListener("pointercancel", this.handlePointerUp);
+    this.canvas.removeEventListener('pointerdown', this.handlePointerDown);
+    this.canvas.removeEventListener('pointermove', this.handlePointerMove);
+    this.canvas.removeEventListener('pointerup', this.handlePointerUp);
+    this.canvas.removeEventListener('pointercancel', this.handlePointerUp);
     this.enabled = false;
   }
 
@@ -48,8 +48,8 @@ export class DrawingCapture {
       return null;
     }
     return {
-      id: "preview",
-      points: this.currentPoints.map((point) => ({ ...point }))
+      id: 'preview',
+      points: this.currentPoints.map((point) => ({ ...point })),
     };
   }
 

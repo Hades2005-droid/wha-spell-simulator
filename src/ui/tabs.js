@@ -1,9 +1,9 @@
-import { copyDiagnosticPanel } from "./diagnosticsView.js";
+import { copyDiagnosticPanel } from './diagnosticsView.js';
 
 function switchRootPanel(elements, panelId) {
   const panels = [elements.dictionaryRootPanel, elements.diagnosticRootPanel];
   elements.panelTabButtons.forEach((button) => {
-    button.classList.toggle("active", button.dataset.panelRoot === panelId);
+    button.classList.toggle('active', button.dataset.panelRoot === panelId);
   });
   panels.forEach((panel) => {
     panel.hidden = panel.id !== panelId;
@@ -13,8 +13,8 @@ function switchRootPanel(elements, panelId) {
 export function setupTabs(elements) {
   const diagnosticPanels = [elements.parserPanelShell, elements.astPanelShell, elements.irPanelShell];
   elements.diagnosticTabButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      elements.diagnosticTabButtons.forEach((item) => item.classList.toggle("active", item === button));
+    button.addEventListener('click', () => {
+      elements.diagnosticTabButtons.forEach((item) => item.classList.toggle('active', item === button));
       diagnosticPanels.forEach((panel) => {
         panel.hidden = panel.id !== `${button.dataset.diagnosticPanel}Shell`;
       });
@@ -22,7 +22,7 @@ export function setupTabs(elements) {
   });
 
   elements.diagnosticCopyButtons.forEach((button) => {
-    button.addEventListener("click", () => {
+    button.addEventListener('click', () => {
       copyDiagnosticPanel(button.dataset.copyPanel, button);
     });
   });
@@ -30,11 +30,11 @@ export function setupTabs(elements) {
   const dictionaryPanels = [
     elements.sampleSpellReferencePanel,
     elements.sigilReferencePanel,
-    elements.signReferencePanel
+    elements.signReferencePanel,
   ];
   elements.dictionaryTabButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      elements.dictionaryTabButtons.forEach((item) => item.classList.toggle("active", item === button));
+    button.addEventListener('click', () => {
+      elements.dictionaryTabButtons.forEach((item) => item.classList.toggle('active', item === button));
       dictionaryPanels.forEach((panel) => {
         panel.hidden = panel.id !== button.dataset.dictionaryPanel;
       });
@@ -42,7 +42,7 @@ export function setupTabs(elements) {
   });
 
   elements.panelTabButtons.forEach((button) => {
-    button.addEventListener("click", () => {
+    button.addEventListener('click', () => {
       switchRootPanel(elements, button.dataset.panelRoot);
     });
   });

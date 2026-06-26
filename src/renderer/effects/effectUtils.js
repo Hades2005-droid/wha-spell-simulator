@@ -1,4 +1,4 @@
-import { clamp, normalizeVector, perpendicularVector } from "../../utils/geometry.js";
+import { clamp, normalizeVector, perpendicularVector } from '../../utils/geometry.js';
 
 export function resetParticleState(state) {
   for (const key of Object.keys(state)) {
@@ -48,7 +48,7 @@ export function elementFlow(spellIR, portal, frame) {
     side: perpendicularVector(direction),
     scale: effectScale(spellIR),
     focus: effectFocus(spellIR),
-    convergence: convergenceFlow(spellIR, portal, frame)
+    convergence: convergenceFlow(spellIR, portal, frame),
   };
 }
 
@@ -68,15 +68,15 @@ function smoothstep(value) {
 
 function effectConvergence(spellIR) {
   const convergence = spellIR?.manifestations?.convergence ?? {};
-  const strength = manifestationStrength(spellIR, "convergence");
+  const strength = manifestationStrength(spellIR, 'convergence');
   return {
     strength,
     point: {
       x: clamp(convergence.point?.x ?? 0, -1, 1),
-      y: clamp(convergence.point?.y ?? 0, -1, 1)
+      y: clamp(convergence.point?.y ?? 0, -1, 1),
     },
     radius: clamp(convergence.radius ?? 0.14, 0.03, 0.6),
-    rigidity: clamp(convergence.rigidity ?? strength)
+    rigidity: clamp(convergence.rigidity ?? strength),
   };
 }
 
@@ -90,7 +90,7 @@ export function convergenceFlow(spellIR, portal, frame) {
   const side = perpendicularVector(direction);
   const origin = {
     x: portal.center.x + side.x * convergence.point.x * portal.radiusX + direction.x * convergence.point.y * portal.radiusY,
-    y: portal.center.y + side.y * convergence.point.x * portal.radiusX + direction.y * convergence.point.y * portal.radiusY
+    y: portal.center.y + side.y * convergence.point.x * portal.radiusX + direction.y * convergence.point.y * portal.radiusY,
   };
 
   return {
@@ -103,7 +103,7 @@ export function convergenceFlow(spellIR, portal, frame) {
     side,
     radiusX: portal.radiusX * convergence.radius,
     radiusY: portal.radiusY * convergence.radius,
-    life: lifetime + 36
+    life: lifetime + 36,
   };
 }
 
@@ -117,21 +117,21 @@ export function convergePoint(point, convergence, phase = 0, radiusScale = 1) {
   const remainingSpread = finalSpread + (1 - convergence.progress) * (1 - finalSpread);
   const relative = {
     x: point.x - convergence.origin.x,
-    y: point.y - convergence.origin.y
+    y: point.y - convergence.origin.y,
   };
   const forward = relative.x * convergence.direction.x + relative.y * convergence.direction.y;
   const centerline = {
     x: convergence.origin.x + convergence.direction.x * forward,
-    y: convergence.origin.y + convergence.direction.y * forward
+    y: convergence.origin.y + convergence.direction.y * forward,
   };
   const compressed = {
     x: centerline.x + convergence.side.x * Math.cos(phase) * convergence.radiusX * remainingSpread * radiusScale,
-    y: centerline.y + convergence.side.y * Math.sin(phase * 1.37) * convergence.radiusY * remainingSpread * radiusScale
+    y: centerline.y + convergence.side.y * Math.sin(phase * 1.37) * convergence.radiusY * remainingSpread * radiusScale,
   };
 
   return {
     x: point.x + (compressed.x - point.x) * convergence.progress,
-    y: point.y + (compressed.y - point.y) * convergence.progress
+    y: point.y + (compressed.y - point.y) * convergence.progress,
   };
 }
 
@@ -147,11 +147,11 @@ export function activePortalPlane(canvas, ring) {
   return {
     center: {
       x: ring.center.x,
-      y: originY + (ring.center.y - originY) * scaleY + liftY
+      y: originY + (ring.center.y - originY) * scaleY + liftY,
     },
     radiusX: ring.radius,
     radiusY: ring.radius * scaleY,
-    scaleY
+    scaleY,
   };
 }
 
@@ -160,7 +160,7 @@ export function randomPortalPoint(portal, radiusXScale = 1, radiusYScale = radiu
   const radius = Math.sqrt(Math.random());
   return {
     x: portal.center.x + Math.cos(angle) * portal.radiusX * radiusXScale * radius,
-    y: portal.center.y + Math.sin(angle) * portal.radiusY * radiusYScale * radius
+    y: portal.center.y + Math.sin(angle) * portal.radiusY * radiusYScale * radius,
   };
 }
 
@@ -174,7 +174,7 @@ export function portalOutDirection(spellIR) {
 
   return normalizeVector({
     x: paperX,
-    y: paperY * paperYScreenScale - paperZ
+    y: paperY * paperYScreenScale - paperZ,
   });
 }
 

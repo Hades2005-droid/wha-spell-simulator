@@ -1,4 +1,4 @@
-import { clamp, perpendicularVector, randomBetween } from "../../utils/geometry.js";
+import { clamp, perpendicularVector, randomBetween } from '../../utils/geometry.js';
 import {
   activePortalPlane,
   convergenceFlow,
@@ -15,8 +15,8 @@ import {
   randomPortalPoint,
   scaledParticleCount,
   spellLifetimeFrames,
-  steadyParticleAlpha
-} from "./effectUtils.js";
+  steadyParticleAlpha,
+} from './effectUtils.js';
 
 function fireFlowConfig(spellIR, ring, portal, frame) {
   const direction = portalOutDirection(spellIR);
@@ -42,7 +42,7 @@ function fireFlowConfig(spellIR, ring, portal, frame) {
     suspendedBob: ring.radius * (0.008 + (1 - spellIR.stability) * 0.014),
     suspendedWander: ring.radius * (0.012 + spellIR.spread * 0.03) * (1 - convergence.strength * 0.46) * (1 - focus * 0.44),
     suspendedTension: 0.014 + spellIR.stability * 0.018,
-    suspendedDamping: 0.954 + spellIR.stability * 0.03
+    suspendedDamping: 0.954 + spellIR.stability * 0.03,
   };
 }
 
@@ -66,26 +66,25 @@ function spawnSuspendedFireParticle(spellIR, ring, portal, flow, frame) {
     radius: randomBetween(8, 18) * (0.86 + spellIR.force * 0.22) * (0.82 + scale * 0.28),
     phase,
     age: 0,
-    life: flow.suspendedLife
+    life: flow.suspendedLife,
   };
 }
 
 function spawnFlowFireParticle(spellIR, ring, portal, flow) {
   const scale = effectScale(spellIR);
   const focus = effectFocus(spellIR);
-  const convergence = flow.convergence;
+  const { convergence } = flow;
   const source = randomPortalPoint(
     portal,
     Math.min(0.84, 0.36 + scale * 0.12 + spellIR.spread * 0.2) * (1 - convergence.strength * 0.34) * (1 - focus * 0.24),
-    Math.min(0.84, 0.42 + scale * 0.1 + spellIR.spread * 0.18) * (1 - convergence.strength * 0.34) * (1 - focus * 0.24)
+    Math.min(0.84, 0.42 + scale * 0.1 + spellIR.spread * 0.18) * (1 - convergence.strength * 0.34) * (1 - focus * 0.24),
   );
   const surfaceJitter = ring.radius * (0.025 + spellIR.spread * 0.05) * scale * (1 - focus * 0.4);
-  const speed =
-    randomBetween(1.8, 4.2) *
-    (0.5 + spellIR.force) *
-    (0.92 + scale * 0.12) *
-    (1 - flow.suspension * 0.42) *
-    (1 - convergence.strength * 0.24);
+  const speed = randomBetween(1.8, 4.2)
+    * (0.5 + spellIR.force)
+    * (0.92 + scale * 0.12)
+    * (1 - flow.suspension * 0.42)
+    * (1 - convergence.strength * 0.24);
   const jitter = (1 - spellIR.stability) * 1.8 * (1 - flow.suspension * 0.3) * (1 - convergence.strength * 0.4) * (1 - focus * 0.46);
   const phase = randomBetween(0, Math.PI * 2);
 
@@ -97,7 +96,7 @@ function spawnFlowFireParticle(spellIR, ring, portal, flow) {
     radius: randomBetween(5, 14) * (0.75 + spellIR.force) * (0.82 + scale * 0.28),
     phase,
     age: 0,
-    life: convergence.active ? convergence.life : randomBetween(32, 62) * (0.88 + spellIR.stability * 0.34)
+    life: convergence.active ? convergence.life : randomBetween(32, 62) * (0.88 + spellIR.stability * 0.34),
   };
 }
 
@@ -143,12 +142,12 @@ function drawFireParticle(ctx, particle, flow, spellIR, opacity) {
     0,
     point.x,
     point.y,
-    displayRadius * (1.2 - alpha * 0.2)
+    displayRadius * (1.2 - alpha * 0.2),
   );
 
   gradient.addColorStop(0, `rgba(255, 242, 160, ${alpha * 0.9})`);
   gradient.addColorStop(0.45, `rgba(243, 116, 43, ${alpha * 0.7})`);
-  gradient.addColorStop(1, `rgba(176, 47, 32, 0)`);
+  gradient.addColorStop(1, 'rgba(176, 47, 32, 0)');
   ctx.fillStyle = gradient;
   ctx.beginPath();
   ctx.arc(point.x, point.y, displayRadius, 0, Math.PI * 2);
@@ -165,7 +164,7 @@ export function drawFireEffect(ctx, state, spellIR, ring, dt, config) {
   const targetCount = scaledParticleCount(
     baseCount * (0.78 + scale * 0.32),
     spellIR,
-    config
+    config,
   );
   while (state.particles.length < targetCount) {
     state.particles.push(spawnFireParticle(spellIR, ring, portal, flow, state.fireFrame));
