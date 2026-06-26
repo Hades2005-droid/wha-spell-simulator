@@ -1,0 +1,35 @@
+{
+  "name": "Witch Hat Spell Simulator",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "eamodio.gitlens",
+        "GitHub.copilot"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "eslint.validate": ["javascript"],
+        "files.exclude": {
+          "**/node_modules": true,
+          "**/dist": true
+        }
+      }
+    }
+  },
+  "postCreateCommand": "npm install",
+  "forwardPorts": [5173],
+  "portsAttributes": {
+    "5173": {
+      "label": "Dev Server",
+      "onAutoForward": "notify"
+    }
+  }
+}
