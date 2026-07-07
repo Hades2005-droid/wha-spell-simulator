@@ -4,6 +4,12 @@
  *
  * Bridges parser/compiler output to NWW Asana Connector for soul-resonance tracking.
  * Supports both Node.js (via fetch polyfill) and browser environments.
+ *
+ * IMPORTANT: Server/CLI Boundary
+ * - Asana PAT (ASANA_API_TOKEN) is read from process.env in Node.js only
+ * - Browser clients must NOT call Asana APIs directly (requires backend server)
+ * - All reporting should go through a dedicated backend service
+ * - For testing: use mocked/stub responses via RUN_LIVE_ASANA_TESTS flag
  */
 
 /**
