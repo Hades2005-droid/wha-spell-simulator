@@ -99,3 +99,4 @@ npm test
 - [Parsed glyph output contract](docs/glyph-ast.md)
 - [Compiled spell output contract](docs/spell-ir.md)
 - [Visual effect renderer notes](docs/effect-rendering.md)
+- [NWW Asana Connector (optional telemetry reporting)](docs/asana-connector.md)
