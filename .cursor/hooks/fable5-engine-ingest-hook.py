@@ -48,14 +48,14 @@ REFUSE_PATTERNS: list[tuple[str, re.Pattern[str]]] = [
             r"everything\s+this\s+code\s+says\s+it\s+won.?t\s+do"
         ),
     ),
-    (
-        "secret_paste",
-        re.compile(r"(?i)\bpplx-[A-Za-z0-9_\-]{12,}|\bsk_[A-Za-z0-9_\-]{16,}|\bxai-[A-Za-z0-9_\-]{16,}"),
-    ),
 ]
 
 LOG_DIR = Path(__file__).resolve().parent / "logs"
 TELEMETRY = LOG_DIR / "fable5_engine_ingest.jsonl"
+
+# Shared secret detector (same as scan-prompt-secrets) — env names OK, raw tokens not.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _secret_patterns import find_raw_secrets, unique  # noqa: E402
 
 
 def utc_now() -> str:
@@ -74,6 +74,25 @@ def main() -> int:
     prompt = payload.get("prompt") or ""
     if not isinstance(prompt, str):
         prompt = str(prompt)
+
+    # Secret paste: use shared patterns (allows redacted fixtures / env names).
+    secret_hits = unique(find_raw_secrets(prompt))
+    if secret_hits:
+        print(
+            json.dumps(
+                {
+                    "continue": False,
+                    "user_message": (
+                        "Blocked by Fable5 engine ingest hook (secret_paste: "
+                        f"{', '.join(secret_hits)}). "
+                        "Do not paste raw pplx-/xai-/sk- values. "
+                        "Use $PERPLEXITY_API_KEY / $XAI_API_KEY (already in ~/ShadowGarden/.env). "
+                        "Technical Fable5/spacetime/Jing pathways + non-explicit scene plans only."
+                    ),
+                }
+            )
+        )
+        return 0
 
     for code, pat in REFUSE_PATTERNS:
         if pat.search(prompt):

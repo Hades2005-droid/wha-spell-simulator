@@ -48,9 +48,24 @@ _SHELL_DUMP_PATTERNS: list[tuple[str, re.Pattern[str]]] = [
     ),
 ]
 
+# Placeholders and fixture tokens — allowed in prompts/docs; not real credentials.
 _PLACEHOLDER_RE = re.compile(
-    r"(?i)(\[REDACTED\]|\$\{?[A-Z][A-Z0-9_]*\}?|<\s*(?:your|api|secret|token)[^>]*>|"
-    r"YOUR_[A-Z0-9_]+|xxx+|PLACEHOLDER|TODO_SET|env_only)"
+    r"(?i)("
+    r"\[REDACTED\]|"
+    r"\$\{?[A-Z][A-Z0-9_]*\}?|"
+    r"<\s*(?:your|api|secret|token)[^>]*>|"
+    r"YOUR_[A-Z0-9_]+|"
+    r"xxx+|"
+    r"PLACEHOLDER|"
+    r"TODO_SET|"
+    r"env_only|"
+    # Common redaction / example fixtures (never treat as live secrets)
+    r"\bpplx-(?:REDACTED(?:_FAKE)?(?:_[A-Z0-9_]+)?|example|fake|test|dummy)[A-Za-z0-9_\-]*\b|"
+    r"\bxai-(?:REDACTED(?:_FAKE)?(?:_[A-Z0-9_]+)?|example|fake|test|dummy)[A-Za-z0-9_\-]*\b|"
+    r"\bsk-(?:REDACTED|example|fake|test|dummy)[A-Za-z0-9_\-]*\b|"
+    r"\*\*\*+|"
+    r"<REDACTED>"
+    r")"
 )
 
 
