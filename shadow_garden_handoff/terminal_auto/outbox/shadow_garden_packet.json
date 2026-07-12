@@ -1,7 +1,7 @@
 {
   "schema": "shadow_garden.unified_packet.v1",
   "packet_version": "1.0.0-gate10",
-  "generated_at": "2026-07-12T07:29:38Z",
+  "generated_at": "2026-07-12T09:56:11Z",
   "gate": 10,
   "carrier": "love_and_harmony_6",
   "bridge_signature": "f2e596cd043d6819",
@@ -44,8 +44,17 @@
       "fable5_comfy_command",
       "recursive_node_bridge",
       "connector_bridge",
-      "complete_agent_bridge"
+      "complete_agent_bridge",
+      "q24_fable5_master_ingest"
     ]
+  },
+  "fable5_bedrock": {
+    "manifest": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/fable5_bedrock.json",
+    "version": "0.4.0-engine-bedrock-10-q24",
+    "q24_slim": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/q24_fable5_master_ingest.slim.json",
+    "q24_install": "/Users/fredwashere/wha-spell-simulator/q24",
+    "handoff_root": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff",
+    "src_module": "src/bedrock/fable5Bedrock.js"
   },
   "paths": {
     "wha": "/Users/fredwashere/wha-spell-simulator",
@@ -56,11 +65,16 @@
     "black_sun_registry": "/Users/fredwashere/shadow_garden_may30_monitoring/shaoshi_bridge/south_star/home_black_sun_registry.py",
     "phase2_coaching": "/Users/fredwashere/shadow_garden_may30_monitoring/shaoshi_bridge/outbox/claude_phase2_fable5_black_sun_coaching.md",
     "bedrock": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/PERPLEXITY_CONTEXT_BEDROCK.md",
-    "compact": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/fable5-compact.json"
+    "compact": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/fable5-compact.json",
+    "q24_slim": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/q24_fable5_master_ingest.slim.json",
+    "q24_install": "/Users/fredwashere/wha-spell-simulator/q24",
+    "fable5_bedrock": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/fable5_bedrock.json",
+    "bridge_5_to_6": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/shaoshi_bridge/outbox/bridge_5_to_6_claude_session.json",
+    "grok_harmony_6": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/shaoshi_bridge/outbox/grok_45_harmony_6_shadow_lane.json"
   },
   "self_test": {
-    "total": 10,
-    "passed": 10,
+    "total": 12,
+    "passed": 12,
     "failed": 0,
     "ok": true,
     "results": [
@@ -149,7 +163,7 @@
           "fable5": true,
           "comfyui": false,
           "eden": true,
-          "void_ignition": false,
+          "void_ignition": true,
           "ollama": true
         },
         "check": "local_ports"
@@ -160,6 +174,27 @@
         "gate": 10,
         "symbolic_only": true,
         "check": "gate10"
+      },
+      {
+        "ok": true,
+        "slim": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/q24_fable5_master_ingest.slim.json",
+        "full_exists": true,
+        "import_root_exists": true,
+        "source_available": true,
+        "install_root": "/Users/fredwashere/wha-spell-simulator/q24",
+        "installed": true,
+        "digest_sha256": "b6ea2cfc11cdd60be36d0e62cbe9a33eb5b4f5ba26ae56fa332ac3f5e436e5cc",
+        "files_copied": 11,
+        "check": "q24_master_ingest"
+      },
+      {
+        "ok": true,
+        "path": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/fable5_bedrock.json",
+        "version": "0.4.0-engine-bedrock-10-q24",
+        "q24_canonical_id": "q24_eternal_dao_temperance_14_harmony_paradox_ignite_19_10_1",
+        "missing_handoff": [],
+        "src_module_ok": true,
+        "check": "fable5_bedrock"
       }
     ]
   },
