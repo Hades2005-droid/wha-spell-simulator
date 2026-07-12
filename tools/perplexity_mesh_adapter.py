@@ -11,6 +11,23 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+try:
+    from .document_ingest import (
+        DEFAULT_MAX_CHARS,
+        DocumentIngestError,
+        NormalizedDocument,
+        document_prompt_block,
+        load_documents,
+    )
+except ImportError:
+    from document_ingest import (
+        DEFAULT_MAX_CHARS,
+        DocumentIngestError,
+        NormalizedDocument,
+        document_prompt_block,
+        load_documents,
+    )
+
 DEFAULT_API_URL = "https://api.perplexity.ai/chat/completions"
 DEFAULT_MODEL = "sonar"
 DEFAULT_STATUS_FILE = "/tmp/shadow_garden_perplexity_status.json"
@@ -42,20 +59,26 @@ def local_context() -> dict[str, Any]:
     return context
 
 
-def build_prompt(request: str, context: dict[str, Any]) -> str:
+def build_prompt(
+    request: str,
+    context: dict[str, Any],
+    documents: list[NormalizedDocument] | None = None,
+) -> str:
     normalized = " ".join((request or "").split())
     if not normalized:
         normalized = "Review the current local Shadow Garden mesh status."
-    return "\n".join(
-        [
-            "Shadow Garden local mesh review.",
-            "Boundary: docs-only technical analysis; do not control browser profiles, automate Comet, scrape third-party pages, extract credentials, or broadcast prompts to other agents.",
-            "Treat chronology/vector output as symbolic metadata only, not as factual authority or a decision system.",
-            "Review the following request and local status metadata for reliability, integration risks, and a short actionable checklist.",
-            f"Request: {normalized}",
-            f"Local status metadata: {json.dumps(context, ensure_ascii=False, sort_keys=True)}",
-        ]
-    )
+    lines = [
+        "Shadow Garden local mesh review.",
+        "Boundary: docs-only technical analysis; do not control browser profiles, automate Comet, scrape third-party pages, extract credentials, or broadcast prompts to other agents.",
+        "Treat chronology/vector output as symbolic metadata only, not as factual authority or a decision system.",
+        "Review the following request and local status metadata for reliability, integration risks, and a short actionable checklist.",
+        "Native PDF parts are not supported by this model path. Any PDF below has already been converted to bounded, redacted UTF-8 text.",
+        f"Request: {normalized}",
+        f"Local status metadata: {json.dumps(context, ensure_ascii=False, sort_keys=True)}",
+    ]
+    if documents:
+        lines.extend(document_prompt_block(document) for document in documents)
+    return "\n".join(lines)
 
 
 def build_payload(model: str, prompt: str, max_tokens: int) -> dict[str, Any]:
@@ -120,6 +143,13 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--output-file", default=DEFAULT_OUTPUT_FILE)
     parser.add_argument("--max-tokens", type=int, default=800)
     parser.add_argument("--timeout", type=float, default=30.0)
+    parser.add_argument(
+        "--document",
+        action="append",
+        default=[],
+        help="local text/PDF document to normalize before review; may be repeated",
+    )
+    parser.add_argument("--max-document-chars", type=int, default=DEFAULT_MAX_CHARS)
     parser.add_argument("--send", action="store_true", help="Explicitly allow one API request")
     return parser.parse_args(argv)
 
@@ -131,23 +161,43 @@ def main(argv: list[str] | None = None) -> int:
         return 2
 
     request_text = " ".join(args.request).strip()
+    try:
+        documents = load_documents(args.document, max_chars=args.max_document_chars)
+    except DocumentIngestError as exc:
+        status = {
+            "kind": "shadow_garden_perplexity_status",
+            "generated_at": utc_now(),
+            "status": "document_ingest_error",
+            "local_only_handoff": True,
+            "native_pdf_input": False,
+            "error": str(exc),
+        }
+        write_json(args.status_file, status)
+        print(json.dumps(status, ensure_ascii=False, indent=2), file=sys.stderr)
+        return 2
+
     context = local_context()
-    prompt = build_prompt(request_text, context)
+    prompt = build_prompt(request_text, context, documents)
     api_key = os.environ.get("PERPLEXITY_API_KEY", "")
     status: dict[str, Any] = {
         "kind": "shadow_garden_perplexity_status",
         "generated_at": utc_now(),
         "status": "ready" if api_key else "blocked_api_key_missing",
         "local_only_handoff": True,
+        "native_pdf_input": False,
         "browser_automation": False,
         "broadcast_to_agents": False,
         "api_key_present": bool(api_key),
         "api_url": args.api_url,
         "model": args.model,
         "context_files": list(context),
+        "document_names": [document.name for document in documents],
+        "document_count": len(documents),
+        "document_representations": [document.source_type for document in documents],
         "guardrails": [
             "env_only_secret",
             "dry_run_by_default",
+            "pdfs_normalized_to_text",
             "explicit_send_required",
             "no_browser_profile_control",
             "no_third_party_scraping",
