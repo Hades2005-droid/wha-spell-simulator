@@ -24,6 +24,9 @@ const SUPPORTED_SOVEREIGN_SIGILS = new Set([
   'sovereign-voice',
   'sovereign-status',
   'sovereign-delegate',
+  'sovereign-black-sun',
+  'sovereign-moon-gate',
+  'sovereign-recursive-spell',
 ]);
 
 const SPELL_PARAMETER_TUNING = {
