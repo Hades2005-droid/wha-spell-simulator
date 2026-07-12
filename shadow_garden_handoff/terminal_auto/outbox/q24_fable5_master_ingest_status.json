@@ -1,0 +1,86 @@
+{
+  "schema": "shadow_garden.q24_fable5_master_ingest_install.v1",
+  "installed_at": "2026-07-12T09:54:00Z",
+  "status": "INSTALLED_LOCAL",
+  "symbolic_only": true,
+  "local_only": true,
+  "slim": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/q24_fable5_master_ingest.slim.json",
+  "digest": {
+    "ok": true,
+    "full": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/Q24_FABLE5_MASTER_INGEST_DIGEST.json",
+    "digest_sha256": "b6ea2cfc11cdd60be36d0e62cbe9a33eb5b4f5ba26ae56fa332ac3f5e436e5cc"
+  },
+  "slim_pointer": {
+    "format": "shadow_garden.q24_fable5_master_ingest_digest.slim.v1",
+    "generated_at": "2026-07-12T09:34:22Z",
+    "digest_sha256": "b6ea2cfc11cdd60be36d0e62cbe9a33eb5b4f5ba26ae56fa332ac3f5e436e5cc",
+    "full": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/Q24_FABLE5_MASTER_INGEST_DIGEST.json",
+    "q24_import": "/Users/fredwashere/ShadowGarden/manual_imports/q24_unified",
+    "files_copied": 11,
+    "fable5_compact": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/fable5-compact.json",
+    "bedrock": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/PERPLEXITY_CONTEXT_BEDROCK.md",
+    "catalyst_3": {
+      "name": "bridge_5_to_6_claude_code_session_pointer",
+      "status": "staged_local_only",
+      "session_url": "https://claude.ai/code/session_01G6jmjJriJW51biCRWsnVPL",
+      "symbolic_routing": {
+        "bridge_5": "perplexity_fable_front_synthesis",
+        "bridge_6": "grok_4_5_harmony_back_validation",
+        "claude": "handoff_bridge_only"
+      },
+      "read_only_extraction": true,
+      "external_writes": false,
+      "connector_mutations": false
+    },
+    "local_only": true
+  },
+  "install": {
+    "ok": true,
+    "dest": "/Users/fredwashere/wha-spell-simulator/q24",
+    "files_copied": 10,
+    "copied": [
+      {
+        "rel": "autoload/GameSession.gd",
+        "sha256": "81f0fece90f808509a482e80a6e58d78c4a948bb5c9840c992ad56c30d9f6d16"
+      },
+      {
+        "rel": "autoload/SaveManager.gd",
+        "sha256": "3e415af07a69627bdd50504b7bfaf187f5eb0e57c1af6b95d7e8f80e29b3c382"
+      },
+      {
+        "rel": "autoload/ContentRegistry.gd",
+        "sha256": "68d87567050f64ec91ce36fd9042bc8cc1204441e6c4aded6bcb8e5ce21fb95a"
+      },
+      {
+        "rel": "adapters/Q24StateAdapter.gd",
+        "sha256": "3ab3b53fcdc527172417f3f1137ea5dcec5f6a4d20dc5de1fb9edf4671899ee4"
+      },
+      {
+        "rel": "canon/Q24_EternalDao_Temperance14_HarmonyParadox_19to10to1.tres",
+        "sha256": "44bc379af7bd312e8ee25e10f22e7b3931031cbcfbc87b12a772c318088ff42f"
+      },
+      {
+        "rel": "canon/q24_canonical.yaml",
+        "sha256": "44eb60223d25a64257632b5372f157b49fd3b62a5114f589eb2c2f641dc8fafc"
+      },
+      {
+        "rel": "q24_symbolic_registry.json",
+        "sha256": "af2bbc48d0345b6ec521bf1aebf24fb23fb1619159cff4e1c4ac69cdb30e251f"
+      },
+      {
+        "rel": "ren_py/game/q24_canon.rpy",
+        "sha256": "3f6b1cb59ad4a24f24f33b9d2accd409ff2657b937045e2ec3014c892652a19c"
+      },
+      {
+        "rel": "README.md",
+        "sha256": "4c647ff793aef531498c99555b650b09d5b6142a325caaa0c64e5b0517b1d3bd"
+      },
+      {
+        "rel": "report/Q24_Alpha_Component_Recommendation.md",
+        "sha256": "009c38c53d128abf998170efc3c782faea4720d7dc65d8f31d56e9d62061dafd"
+      }
+    ],
+    "missing": []
+  },
+  "bedrock": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/fable5_bedrock.json"
+}

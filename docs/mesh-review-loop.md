@@ -4,6 +4,24 @@ The mesh review loop combines local nine-node recursive telemetry with the exist
 
 See also: `docs/chronology-recursive-bridge.md` (full multi-agent map + Jing Power + Fable5/ComfyUI bridge) and `tools/complete_agent_bridge.sh`.
 
+## PDF-safe document handoff
+
+The text-review model path does not accept native PDF parts. Normalize local
+documents before a dry run or provider request; PDFs are parsed locally and
+sent onward only as bounded, redacted UTF-8 text:
+
+```sh
+python3 -m pip install -r requirements-tools.txt
+python3 tools/perplexity_mesh_adapter.py \
+  --request "Review the Q24 recommendation for ingestion risks." \
+  --document "/path/to/recommendation.pdf"
+```
+
+The adapter remains dry-run by default. It records `native_pdf_input: false`
+and never stores the original PDF bytes in the request payload. If a PDF has
+no extractable text, export it to `.txt`/`.md` or use a separately reviewed
+image/OCR workflow instead of retrying the native PDF upload.
+
 ## Local dry-run
 
 Run six bounded local cycles without an API key or network request:

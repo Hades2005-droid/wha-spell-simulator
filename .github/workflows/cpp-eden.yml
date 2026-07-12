@@ -1,0 +1,23 @@
+name: C++ Eden contract
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  catch2:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure CMake
+        run: cmake -S cpp -B build/eden -DCMAKE_BUILD_TYPE=Release -DEDEN_FETCH_CATCH2=ON
+
+      - name: Build Catch2 contract tests
+        run: cmake --build build/eden --parallel
+
+      - name: Run Catch2 contract tests
+        run: ctest --test-dir build/eden --output-on-failure

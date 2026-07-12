@@ -47,6 +47,30 @@ class PerplexityMeshAdapterTests(unittest.TestCase):
             payload = json.loads(Path(status_file).read_text(encoding="utf-8"))
             self.assertEqual(payload["status"], "blocked_api_key_missing")
 
+    def test_documents_are_normalized_before_review(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source = Path(directory) / "recommendation.md"
+            status_file = Path(directory) / "status.json"
+            source.write_text("Use this as reference content.", encoding="utf-8")
+            stdout = StringIO()
+            with patch.dict(os.environ, {}, clear=True), redirect_stdout(stdout):
+                result = main(
+                    [
+                        "--request",
+                        "Review the document",
+                        "--document",
+                        str(source),
+                        "--status-file",
+                        str(status_file),
+                    ]
+                )
+            payload = json.loads(status_file.read_text(encoding="utf-8"))
+
+        self.assertEqual(result, 0)
+        self.assertFalse(payload["native_pdf_input"])
+        self.assertEqual(payload["document_count"], 1)
+        self.assertIn("Use this as reference content.", payload["prompt_preview"])
+
 
 if __name__ == "__main__":
     unittest.main()

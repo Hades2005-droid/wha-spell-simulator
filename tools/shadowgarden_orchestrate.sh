@@ -19,11 +19,11 @@
 #
 # Env flags:
 #   SG_RUN_PACKET=1         Gate-10 shadow_garden_packet self-test (default: 1)
-#   SG_RUN_EXTENSION=1      emit Comet extension status  (default: 1)
+#   SG_RUN_EXTENSION=1      emit Comet extension status  (default: 0 — adult-site adjacent)
 #   SG_RUN_RECURSIVE=1      emit bounded recursive status (default: 1)
 #   SG_RUN_PERPLEXITY=1    emit dry-run review status (default: 1)
-#   SG_RUN_CONNECT=1        run connect_claude_env.sh   (default: 1)
-#   SG_RUN_CLAUDE_AGENT=1   run claude_integration.py   (default: 0, needs ANTHROPIC_API_KEY)
+#   SG_RUN_CONNECT=1        run connect_claude_env.sh   (default: 0 — safety cut)
+#   SG_RUN_CLAUDE_AGENT=1   run claude_integration.py   (default: 0, needs ANTHROPIC_API_KEY + CLAUDE_LIVE_OK)
 #   SG_RUN_DOTNET=1         run dotnet launch-claude-agent (default: 0, needs dotnet)
 #   SG_RUN_MCP_ECHO=1       print MCP config path       (default: 1)
 #   SG_PARALLEL=1           background 3+4 instead of sequential (default: 1)
@@ -35,10 +35,12 @@ WHA_ROOT="${WHA_ROOT:-/Users/fredwashere/wha-spell-simulator}"
 LOG="/tmp/shadow_garden_orchestrate.log"
 
 SG_RUN_PACKET="${SG_RUN_PACKET:-1}"
-SG_RUN_EXTENSION="${SG_RUN_EXTENSION:-1}"
+# Default OFF: extension workspace path is adult-site adjacent; opt-in only.
+SG_RUN_EXTENSION="${SG_RUN_EXTENSION:-0}"
 SG_RUN_RECURSIVE="${SG_RUN_RECURSIVE:-1}"
 SG_RUN_PERPLEXITY="${SG_RUN_PERPLEXITY:-1}"
-SG_RUN_CONNECT="${SG_RUN_CONNECT:-1}"
+# Default OFF: connect_claude_env can spawn non-neutral sovereign suite content.
+SG_RUN_CONNECT="${SG_RUN_CONNECT:-0}"
 SG_RUN_CLAUDE_AGENT="${SG_RUN_CLAUDE_AGENT:-0}"
 SG_RUN_DOTNET="${SG_RUN_DOTNET:-0}"
 SG_RUN_MCP_ECHO="${SG_RUN_MCP_ECHO:-1}"

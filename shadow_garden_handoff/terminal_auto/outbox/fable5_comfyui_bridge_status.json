@@ -1,7 +1,7 @@
 {
   "schema": "shadow_garden.integration_repo_roots.v1",
   "format_version": "1.0",
-  "generated_at": "2026-07-12T07:29:39Z",
+  "generated_at": "2026-07-12T10:05:34Z",
   "secrets_policy": "env_only",
   "lanes": {
     "perplexity": "fable5_synthesis",
@@ -60,15 +60,15 @@
     },
     {
       "id": "comfyui",
-      "url": "http://127.0.0.1:8188/",
-      "port": 8188,
+      "url": "http://127.0.0.1:8189/",
+      "port": 8189,
       "port_open": false,
       "http_code": 0
     },
     {
       "id": "comfyui_system_stats",
-      "url": "http://127.0.0.1:8188/system_stats",
-      "port": 8188,
+      "url": "http://127.0.0.1:8189/system_stats",
+      "port": 8189,
       "port_open": false,
       "http_code": 0
     },
@@ -83,8 +83,8 @@
       "id": "void_ignition",
       "url": "http://127.0.0.1:8790/api/health",
       "port": 8790,
-      "port_open": false,
-      "http_code": 0
+      "port_open": true,
+      "http_code": 200
     },
     {
       "id": "ollama",
@@ -133,21 +133,42 @@
     }
   },
   "env_key_presence": {
-    "XAI_API_KEY": true,
+    "XAI_API_KEY": false,
     "PERPLEXITY_API_KEY": true,
     "ANTHROPIC_API_KEY": false,
     "ELEVENLABS_API_KEY": true,
     "STABLE_HORDE_API_KEY": true,
     "COMFYUI_URL": true,
     "GITHUB_TOKEN": false,
+    "GH_TOKEN": false,
+    "GITHUB_OWNER": false,
+    "GITHUB_REPO": false,
+    "ATLASSIAN_API_TOKEN": true,
+    "ATLASSIAN_EMAIL": true,
+    "ATLASSIAN_DOMAIN": false,
+    "JIRA_BASE_URL": false,
+    "JIRA_PROJECT_KEY": false,
+    "CONFLUENCE_BASE_URL": false,
+    "CONFLUENCE_SPACE_KEY": false,
+    "X_API_KEY": false,
+    "X_API_SECRET": false,
+    "X_ACCESS_TOKEN": false,
+    "X_ACCESS_SECRET": false,
+    "X_BEARER_TOKEN": false,
+    "QDRANT_URL": false,
+    "QDRANT_API_KEY": false,
+    "QDRANT_COLLECTION": false,
     "LINEAR_API_KEY": false,
-    "SLACK_BOT_TOKEN": false
+    "SLACK_BOT_TOKEN": false,
+    "SLACK_APP_TOKEN": false,
+    "HARPA_API_URL": false,
+    "HARPA_API_KEY": false
   },
   "jing_power_summary": {
-    "jing_power": 9.86,
+    "jing_power": 13.61,
     "grok_ok": null,
     "comfyui_ok": null,
-    "sampled_at": "2026-07-12T07:12:20Z"
+    "sampled_at": "2026-07-12T10:03:18Z"
   },
   "guardrails": [
     "no_secret_values_in_status",

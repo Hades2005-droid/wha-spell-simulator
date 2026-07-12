@@ -19,6 +19,7 @@ import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 HOME = Path.home()
@@ -55,13 +56,19 @@ REPO_ROOTS: list[dict[str, str]] = [
     },
 ]
 
+COMFYUI_URL = os.environ.get("COMFYUI_URL", "http://127.0.0.1:8188").rstrip("/")
+_comfyui_endpoint = urlparse(COMFYUI_URL)
+COMFYUI_PORT = _comfyui_endpoint.port or (
+    443 if _comfyui_endpoint.scheme == "https" else 80
+)
+
 LOCAL_SERVICES: list[dict[str, Any]] = [
     {"id": "fable5_game", "url": "http://127.0.0.1:5619/", "port": 5619},
-    {"id": "comfyui", "url": "http://127.0.0.1:8188/", "port": 8188},
+    {"id": "comfyui", "url": f"{COMFYUI_URL}/", "port": COMFYUI_PORT},
     {
         "id": "comfyui_system_stats",
-        "url": "http://127.0.0.1:8188/system_stats",
-        "port": 8188,
+        "url": f"{COMFYUI_URL}/system_stats",
+        "port": COMFYUI_PORT,
     },
     {"id": "eden_burst_alpha", "url": "http://127.0.0.1:8791/", "port": 8791},
     {"id": "void_ignition", "url": "http://127.0.0.1:8790/api/health", "port": 8790},
@@ -107,8 +114,29 @@ ENV_NAMES_ONLY = [
     "STABLE_HORDE_API_KEY",
     "COMFYUI_URL",
     "GITHUB_TOKEN",
+    "GH_TOKEN",
+    "GITHUB_OWNER",
+    "GITHUB_REPO",
+    "ATLASSIAN_API_TOKEN",
+    "ATLASSIAN_EMAIL",
+    "ATLASSIAN_DOMAIN",
+    "JIRA_BASE_URL",
+    "JIRA_PROJECT_KEY",
+    "CONFLUENCE_BASE_URL",
+    "CONFLUENCE_SPACE_KEY",
+    "X_API_KEY",
+    "X_API_SECRET",
+    "X_ACCESS_TOKEN",
+    "X_ACCESS_SECRET",
+    "X_BEARER_TOKEN",
+    "QDRANT_URL",
+    "QDRANT_API_KEY",
+    "QDRANT_COLLECTION",
     "LINEAR_API_KEY",
     "SLACK_BOT_TOKEN",
+    "SLACK_APP_TOKEN",
+    "HARPA_API_URL",
+    "HARPA_API_KEY",
 ]
 
 

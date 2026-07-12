@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Q24CanonicalAnchor" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://q24/scripts/Q24CanonicalAnchor.gd" id="1_q24canon"]
+
+[resource]
+script = ExtResource("1_q24canon")
+canonical_id = "q24_eternal_dao_temperance_14_harmony_paradox_ignite_19_10_1"
+symbolic_only = true
+sequence = PackedInt32Array(19, 10, 1)
+anchor = 14
+reduce_anchor = false
+carrier = "love_and_harmony_6"
+display_en = "Eternal Dao: Temperance 14, Perfect Harmony Paradox"
+display_zh = "永恒之道：十四节制与完美和谐悖论"
+display_ja = "永遠の道：節制14と完全調和のパラドックス"
+display_ko = "영원의 도: 절제 14와 완벽한 조화의 역설"
+ignition_path = "19 -> 10 -> 1"
+fable5_bedrock_version = "0.4.0-engine-bedrock-10"
+quantum_gap_sig = "8116ed3788a22448"
+catalyst_circle_sig = "85d7b489eb360a65"
+bridge_signature = "f2e596cd043d6819"
+primordial_five = PackedStringArray("angela", "lainie", "sophie", "addie", "sabina")
+sovereign_zero = "hades"

@@ -49,6 +49,17 @@ const FABLE_VECTOR = Object.freeze([
   }),
 ]);
 
+const LOCAL_CONTROLS = Object.freeze({
+  approved: false,
+  contentReviewRequired: true,
+  executionMode: 'manifest_only',
+  externalRequests: 0,
+  localOnly: true,
+  modelOutputCommandsAllowed: false,
+  remoteWrites: false,
+  trainingAllowed: false,
+});
+
 function boundedNumber(value, fallback, minimum, maximum, name, integer = false) {
   const selected = value ?? fallback;
   if (!Number.isFinite(selected) || selected < minimum || selected > maximum) {
@@ -321,16 +332,7 @@ export function compileFable5MediaSpell({
     media: normalizedMediaOptions(medium, media),
     assetDigests: normalizedAssetDigests(assetDigests),
     iphone: iphoneCapabilities === undefined ? null : diagnoseIPhoneBridge(iphoneCapabilities),
-    controls: {
-      approved: false,
-      contentReviewRequired: true,
-      executionMode: 'manifest_only',
-      externalRequests: 0,
-      localOnly: true,
-      modelOutputCommandsAllowed: false,
-      remoteWrites: false,
-      trainingAllowed: false,
-    },
+    controls: { ...LOCAL_CONTROLS },
   };
   return {
     ...baseManifest,
@@ -342,6 +344,7 @@ export function compileFable5MediaSpell({
 }
 
 export { FABLE_VECTOR };
+export { LOCAL_CONTROLS };
 export { MAX_PARTY_SIZE };
 export { MEDIA_TYPES };
 export { PARTY_ROLES };

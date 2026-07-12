@@ -50,6 +50,7 @@ SECRET_PATTERNS = (
     re.compile(r"\bxai-[A-Za-z0-9_-]{12,}\b", re.IGNORECASE),
     re.compile(r"\bsk[-_][A-Za-z0-9_-]{12,}\b", re.IGNORECASE),
     re.compile(r"\bBearer\s+\S+", re.IGNORECASE),
+    re.compile(r"\bredacted[_-]fake[_-]credential[_-]placeholder\b", re.IGNORECASE),
     re.compile(
         r"(?i)(api[_-]?key|secret|token|password)\s*[:=]\s*['\"]?[a-zA-Z0-9_\-]{8,}"
     ),
