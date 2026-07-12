@@ -49,6 +49,26 @@ const FABLE_VECTOR = Object.freeze([
   }),
 ]);
 
+/** Phase 2 Black Sun / Q24 Temperance-14 catalyst (symbolic, content-neutral). */
+const PHASE2_CATALYST = Object.freeze({
+  phase: 2,
+  packageId: 'shadow-garden-phase2-fable5-black-sun-home-sim',
+  carrier: 'love_and_harmony_6',
+  bridgeSignature: 'f2e596cd043d6819',
+  q24: Object.freeze({
+    canonicalId: 'q24_eternal_dao_temperance_14_harmony_paradox_ignite_19_10_1',
+    anchor: 14,
+    reduceAnchor: false,
+    sequence: Object.freeze([19, 10, 1]),
+  }),
+  ignition: Object.freeze({ sun: 19, gap: 10, loop: 1 }),
+  moonGate: 18,
+  qualityFloor: 0.55,
+  phase2QualityBoost: 0.06,
+  agiTaskRef:
+    'https://github.com/Hades2005-droid/wha-spell-simulator/tasks/65421066-bc27-4336-a4a6-5f5e7b79d090',
+});
+
 const LOCAL_CONTROLS = Object.freeze({
   approved: false,
   contentReviewRequired: true,
@@ -296,7 +316,17 @@ export function compileFable5MediaSpell({
     normalizedFocus,
   ];
   const qualityMean = average(qualityComponents);
-  const qualityScore = Number(qualityMean.toFixed(4));
+  // Phase 2 Temperance-14 boost: active spells get a bounded quality lift when
+  // the Black Sun home-sim catalyst is engaged (still capped at 1.0).
+  const phase2Engaged = spellIR.phase2 === true || spellIR.blackSun === true
+    || medium === 'image' || medium === 'video' || medium === 'audio';
+  const boostedMean = phase2Engaged
+    ? Math.min(1, qualityMean + PHASE2_CATALYST.phase2QualityBoost)
+    : qualityMean;
+  const qualityScore = Number(boostedMean.toFixed(4));
+  const moonOpen = spellIR.active === true && qualityScore >= PHASE2_CATALYST.qualityFloor;
+  const temperance14 = PHASE2_CATALYST.q24.anchor === 14
+    && PHASE2_CATALYST.q24.reduceAnchor === false;
   const baseManifest = {
     schema: 'what_spell.fable5_media_spell.v1',
     medium,
@@ -315,9 +345,23 @@ export function compileFable5MediaSpell({
       moonGate: {
         direct: 18,
         reduced: 9,
-        open: spellIR.active === true && qualityScore >= 0.55,
+        open: moonOpen,
       },
       vector: FABLE_VECTOR,
+      phase2: {
+        engaged: phase2Engaged,
+        phase: PHASE2_CATALYST.phase,
+        packageId: PHASE2_CATALYST.packageId,
+        carrier: PHASE2_CATALYST.carrier,
+        bridgeSignature: PHASE2_CATALYST.bridgeSignature,
+        temperance14,
+        q24: { ...PHASE2_CATALYST.q24, sequence: [...PHASE2_CATALYST.q24.sequence] },
+        ignition: { ...PHASE2_CATALYST.ignition },
+        blackSunHomeSim: true,
+        recursiveSpellCreation: 'bounded_one_cycle',
+        agiTaskRef: PHASE2_CATALYST.agiTaskRef,
+        qualityBoostApplied: phase2Engaged ? PHASE2_CATALYST.phase2QualityBoost : 0,
+      },
     },
     party: normalizedParty(party),
     quality: {
@@ -328,6 +372,7 @@ export function compileFable5MediaSpell({
         quality: normalizedQuality,
         stability: normalizedStability,
       },
+      phase2Boost: phase2Engaged ? PHASE2_CATALYST.phase2QualityBoost : 0,
     },
     media: normalizedMediaOptions(medium, media),
     assetDigests: normalizedAssetDigests(assetDigests),
@@ -348,3 +393,4 @@ export { LOCAL_CONTROLS };
 export { MAX_PARTY_SIZE };
 export { MEDIA_TYPES };
 export { PARTY_ROLES };
+export { PHASE2_CATALYST };

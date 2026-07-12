@@ -45,6 +45,13 @@ test('compiles a deterministic approval-gated image spell manifest', () => {
   assert.equal(first.fable5.catalyst, 5);
   assert.equal(first.fable5.moonGate.direct, 18);
   assert.equal(first.fable5.moonGate.reduced, 9);
+  assert.equal(first.fable5.phase2.phase, 2);
+  assert.equal(first.fable5.phase2.temperance14, true);
+  assert.equal(first.fable5.phase2.q24.anchor, 14);
+  assert.equal(first.fable5.phase2.q24.reduceAnchor, false);
+  assert.deepEqual(first.fable5.phase2.q24.sequence, [19, 10, 1]);
+  assert.equal(first.quality.phase2Boost, 0.06);
+  assert.ok(first.quality.score >= 0.88);
 });
 
 test('compiles bounded video and audio renderer parameters', () => {

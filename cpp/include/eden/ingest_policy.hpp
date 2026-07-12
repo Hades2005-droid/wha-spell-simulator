@@ -120,19 +120,22 @@ class MetadataCatalog {
     if (record.bytes > policy_.maxRecordBytes) {
       return reject("record_byte_limit_exceeded");
     }
+    // Duplicate checks run before capacity limits so a full catalog still
+    // reports duplicate_path / duplicate_content instead of entry_limit_exceeded.
+    if (sources_.find(record.source) != sources_.end()) {
+      return reject("duplicate_path");
+    }
+    if (digests_.find(record.sha256) != digests_.end()) {
+      return reject("duplicate_content");
+    }
     if (records_.size() >= policy_.maxEntries) {
       return reject("entry_limit_exceeded");
     }
     if (record.bytes > policy_.maxBytes - std::min(totalBytes_, policy_.maxBytes)) {
       return reject("total_byte_limit_exceeded");
     }
-    if (!sources_.insert(record.source).second) {
-      return reject("duplicate_path");
-    }
-    if (!digests_.insert(record.sha256).second) {
-      sources_.erase(record.source);
-      return reject("duplicate_content");
-    }
+    sources_.insert(record.source);
+    digests_.insert(record.sha256);
 
     records_.push_back(record);
     totalBytes_ += record.bytes;

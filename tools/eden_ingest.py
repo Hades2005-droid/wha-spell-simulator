@@ -220,13 +220,10 @@ class EdenMetadataCatalog:
     def _absorb_file(self, path: Path, *, depth: int, scanned: bool = False) -> None:
         if not scanned and not self._consume_scan(path):
             return
-        if len(self.records) >= self.policy.max_entries:
-            self._reject(str(path), "entry_limit_exceeded")
-            return
+        # Duplicates before capacity so full catalogs still report duplicate_* reasons.
         if path in self._seen_paths:
             self._reject(str(path), "duplicate_path")
             return
-        self._seen_paths.add(path)
 
         if path.is_symlink():
             self._reject(str(path), "symlink_rejected")
@@ -251,7 +248,11 @@ class EdenMetadataCatalog:
         if digest in self._seen_digests:
             self._reject(str(path), "duplicate_content")
             return
+        if len(self.records) >= self.policy.max_entries:
+            self._reject(str(path), "entry_limit_exceeded")
+            return
 
+        self._seen_paths.add(path)
         self._seen_digests.add(digest)
         self._total_bytes += size
         self.records.append(

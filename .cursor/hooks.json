@@ -38,6 +38,22 @@
         "timeout": 20,
         "failClosed": false
       }
+    ],
+    "afterShellExecution": [
+      {
+        "command": "python3 .cursor/hooks/subagent-completion-report.py",
+        "matcher": "gh pr|gh run|git push|git merge",
+        "timeout": 15,
+        "failClosed": false,
+        "description": "agent-merge-pr-status"
+      }
+    ],
+    "sessionStart": [
+      {
+        "command": "python3 .cursor/hooks/fable5-engine-ingest-hook.py",
+        "timeout": 8,
+        "failClosed": false
+      }
     ]
   }
 }

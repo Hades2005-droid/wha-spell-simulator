@@ -91,6 +91,42 @@
       "element": "earth",
       "effect": "delegate_grok",
       "priority": 7
+    },
+    {
+      "id": "sovereign-black-sun",
+      "code": "SOVEREIGN_BLACK_SUN",
+      "displayName": "Sovereign Black Sun",
+      "description": "Phase 2 home-sim Black Sun anchor — Temperance 14, content-neutral registry gate.",
+      "invocation": "sovereign black sun",
+      "aliases": ["4.2 black sun", "SOVEREIGN_BLACK_SUN", "black-sun", "phase2"],
+      "element": "light",
+      "effect": "phase2_black_sun",
+      "priority": 8,
+      "phase": 2
+    },
+    {
+      "id": "sovereign-moon-gate",
+      "code": "SOVEREIGN_MOON_GATE",
+      "displayName": "Sovereign Moon Gate",
+      "description": "Phase 2 moon_18 catalyst gate checklist before land (deterministic party turn).",
+      "invocation": "sovereign moon gate",
+      "aliases": ["4.2 moon", "SOVEREIGN_MOON_GATE", "moon-18", "moon gate"],
+      "element": "water",
+      "effect": "phase2_moon_gate",
+      "priority": 9,
+      "phase": 2
+    },
+    {
+      "id": "sovereign-recursive-spell",
+      "code": "SOVEREIGN_RECURSIVE_SPELL",
+      "displayName": "Sovereign Recursive Spell",
+      "description": "Bounded one-cycle Phase 2 recursive spell evolve (local metadata only).",
+      "invocation": "sovereign recursive spell",
+      "aliases": ["4.2 recursive", "SOVEREIGN_RECURSIVE_SPELL", "recursive spell"],
+      "element": "earth",
+      "effect": "phase2_recursive_spell",
+      "priority": 10,
+      "phase": 2
     }
   ]
 }
