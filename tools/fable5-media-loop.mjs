@@ -16,14 +16,14 @@
 // FABLE5_DRIVE_DIR.
 //   FABLE5_OUT_DIR         default: ./eden-out
 
-import { createHash } from "node:crypto";
-import fs from "node:fs";
-import os from "node:os";
-import path from "node:path";
+import { createHash } from 'node:crypto';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 
-import { mergeLocalAssetSources, mediaKind } from "../src/compiler/fable5MediaAssets.js";
-import { compileFable5MediaSpell } from "../src/compiler/fable5MediaSpell.js";
-import { buildComfyUIMediaReview } from "../src/compiler/fable5MediaFeedback.js";
+import { mergeLocalAssetSources, mediaKind } from '../src/compiler/fable5MediaAssets.js';
+import { compileFable5MediaSpell } from '../src/compiler/fable5MediaSpell.js';
+import { buildComfyUIMediaReview } from '../src/compiler/fable5MediaFeedback.js';
 
 const MAX_FILES = Math.max(
   1,
@@ -31,13 +31,13 @@ const MAX_FILES = Math.max(
 );
 const MAX_DEPTH = 2;
 const DEFAULT_MEDIA_DIRS = [
-  path.join(os.homedir(), "Movies", "Grok-Videos"),
-  path.join(os.homedir(), "ShadowGarden", "exports"),
-  path.join(os.homedir(), "ComfyUI", "output"),
-  path.join(os.homedir(), "Documents", "ComfyUI", "output"),
+  path.join(os.homedir(), 'Movies', 'Grok-Videos'),
+  path.join(os.homedir(), 'ShadowGarden', 'exports'),
+  path.join(os.homedir(), 'ComfyUI', 'output'),
+  path.join(os.homedir(), 'Documents', 'ComfyUI', 'output'),
 ];
 
-function log(msg) { process.stderr.write(msg + "\n"); }
+function log(msg) { process.stderr.write(`${msg}\n`); }
 
 function scanMedia(root) {
   if (!root) return [];
@@ -60,13 +60,13 @@ function scanMedia(root) {
         pending.push({ directory: full, depth: current.depth + 1 });
         continue;
       }
-      if (!ent.isFile() || mediaKind(ent.name) === "other") continue;
+      if (!ent.isFile() || mediaKind(ent.name) === 'other') continue;
       try {
         const buf = fs.readFileSync(full);
         files.push({
           path: full,
           size: buf.length,
-          sha256: createHash("sha256").update(buf).digest("hex"),
+          sha256: createHash('sha256').update(buf).digest('hex'),
         });
       } catch { /* unreadable - skip */ }
     }
@@ -78,17 +78,17 @@ function mediaRoots() {
   const configured = process.env.FABLE5_MEDIA_DIRS
     ? process.env.FABLE5_MEDIA_DIRS.split(path.delimiter)
     : [
-        process.env.FABLE5_DOWNLOADS_DIR,
-        process.env.FABLE5_DRIVE_DIR,
-        ...DEFAULT_MEDIA_DIRS,
-      ].filter(Boolean);
+      process.env.FABLE5_DOWNLOADS_DIR,
+      process.env.FABLE5_DRIVE_DIR,
+      ...DEFAULT_MEDIA_DIRS,
+    ].filter(Boolean);
   return [...new Set(configured.map((root) => path.resolve(root)))];
 }
 
 function onePass(outDir) {
   const roots = mediaRoots();
 
-  log("\n[black-sun] scanning allowlisted local folders (nothing is uploaded)");
+  log('\n[black-sun] scanning allowlisted local folders (nothing is uploaded)');
   log(`  roots    : ${roots.length} (depth <= ${MAX_DEPTH}, files <= ${MAX_FILES}/root)`);
 
   const sources = roots.map((root, index) => ({
@@ -102,11 +102,21 @@ function onePass(outDir) {
 
   fs.mkdirSync(outDir, { recursive: true });
   const written = [];
-  for (const medium of ["image", "video", "audio"]) {
+  for (const medium of ['image', 'video', 'audio']) {
     const digests = merged.assets.filter((a) => a.medium === medium).map((a) => a.sha256);
     if (digests.length === 0) continue;
     const manifest = compileFable5MediaSpell({
-      spellIR: { element: "light", primaryManifestation: "aura", signature: `light:${medium}:true` },
+      spellIR: {
+        valid: true,
+        active: true,
+        element: 'light',
+        primaryManifestation: 'aura',
+        signature: `light:${medium}:true`,
+        quality: 0.8,
+        stability: 0.8,
+        neatness: 0.8,
+        focus: 0.8,
+      },
       medium,
       intent: `Local Fable 5 ${medium} study from allowlisted roots.`,
       assetDigests: digests,
@@ -117,15 +127,15 @@ function onePass(outDir) {
     written.push(file);
     log(`  ${medium.padEnd(6)} -> ${path.relative(process.cwd(), file)} (${digests.length} assets, local review, no endpoint)`);
   }
-  if (written.length === 0) log("  .. no media assets found in those folders yet");
-  log("[black-sun] pass complete · 0 external requests\n");
+  if (written.length === 0) log('  .. no media assets found in those folders yet');
+  log('[black-sun] pass complete · 0 external requests\n');
   return merged.count;
 }
 
 function main() {
   const args = process.argv.slice(2);
-  const watchIdx = args.indexOf("--watch");
-  const outDir = process.env.FABLE5_OUT_DIR || path.join(process.cwd(), "eden-out");
+  const watchIdx = args.indexOf('--watch');
+  const outDir = process.env.FABLE5_OUT_DIR || path.join(process.cwd(), 'eden-out');
 
   if (watchIdx === -1) { onePass(outDir); return; }
 
@@ -134,7 +144,7 @@ function main() {
   const tick = () => { try { onePass(outDir); } catch (err) { log(`  XX ${err.message}`); } };
   tick();
   const timer = setInterval(tick, seconds * 1000);
-  process.on("SIGINT", () => { clearInterval(timer); log("\n[black-sun] loop halted."); process.exit(0); });
+  process.on('SIGINT', () => { clearInterval(timer); log('\n[black-sun] loop halted.'); process.exit(0); });
 }
 
 main();

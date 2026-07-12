@@ -10,7 +10,7 @@
   "catalyst_3": {
     "name": "bridge_5_to_6_claude_code_session_pointer",
     "status": "staged_local_only",
-    "session_url": "https://claude.ai/code/session_01G6jmjJriJW51biCRWsnVPL",
+    "session_ref": "claude_bridge_5_to_6_session_pointer (local-only, not published)",
     "symbolic_routing": {
       "bridge_5": "perplexity_fable_front_synthesis",
       "bridge_6": "grok_4_5_harmony_back_validation",
