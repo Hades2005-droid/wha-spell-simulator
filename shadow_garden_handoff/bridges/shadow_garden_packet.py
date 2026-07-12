@@ -146,18 +146,43 @@ def check_home_black_sun() -> dict[str, Any]:
     path = MON / "shaoshi_bridge" / "south_star" / "home_black_sun_registry.py"
     if not path.is_file():
         return {"ok": False, "detail": f"missing {path}"}
-    spec = importlib.util.spec_from_file_location("home_black_sun_registry", path)
-    if spec is None or spec.loader is None:
-        return {"ok": False, "detail": "import spec failed"}
-    mod = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(mod)
-    session = mod.HomeBlackSunSession()
-    report = session.report()
-    assert report.get("symbolic_only") is True
-    assert report.get("carrier") == CARRIER
-    assert report.get("controls", {}).get("content_neutral_base_build") is True
+    # Subprocess isolation avoids importlib races when packet runs in parallel.
+    proc = subprocess.run(
+        [
+            sys.executable,
+            "-c",
+            (
+                "import importlib.util,json,sys;"
+                f"p={str(path)!r};"
+                "s=importlib.util.spec_from_file_location('home_black_sun_registry',p);"
+                "m=importlib.util.module_from_spec(s); s.loader.exec_module(m);"
+                "r=m.HomeBlackSunSession().report();"
+                "json.dump(r,sys.stdout)"
+            ),
+        ],
+        capture_output=True,
+        text=True,
+        timeout=30,
+        check=False,
+    )
+    if proc.returncode != 0:
+        return {
+            "ok": False,
+            "path": str(path),
+            "exit": proc.returncode,
+            "error": (proc.stderr or proc.stdout or "")[:240],
+        }
+    try:
+        report = json.loads(proc.stdout or "{}")
+    except json.JSONDecodeError as exc:
+        return {"ok": False, "path": str(path), "error": f"json: {exc}"}
+    ok = (
+        report.get("symbolic_only") is True
+        and report.get("carrier") == CARRIER
+        and report.get("controls", {}).get("content_neutral_base_build") is True
+    )
     return {
-        "ok": True,
+        "ok": ok,
         "path": str(path),
         "package_id": report.get("package_id"),
         "bridge_signature": report.get("bridge_signature"),
@@ -366,6 +391,30 @@ def check_black_sun_phase2_engine() -> dict[str, Any]:
     }
 
 
+def check_eden_metadata_ingest() -> dict[str, Any]:
+    path = WHA / "tools" / "eden_ingest.py"
+    if not path.is_file():
+        return {"ok": False, "detail": "missing eden_ingest.py"}
+    spec = importlib.util.spec_from_file_location("eden_ingest_packet_check", path)
+    if spec is None or spec.loader is None:
+        return {"ok": False, "detail": "import spec failed"}
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module
+    spec.loader.exec_module(module)
+    snapshot = module.EdenMetadataCatalog().snapshot()
+    controls = snapshot.get("controls", {})
+    return {
+        "ok": snapshot.get("accepted") == 0
+        and controls.get("local_only") is True
+        and controls.get("explicit_paths_only") is True
+        and controls.get("payloads_stored") is False
+        and snapshot.get("lunar", {}).get("moon_18", {}).get("sealed") is True,
+        "path": str(path),
+        "schema": snapshot.get("schema"),
+        "policy": snapshot.get("policy"),
+    }
+
+
 def check_fable5_bedrock() -> dict[str, Any]:
     if not FABLE5_BEDROCK.is_file():
         return {"ok": False, "detail": "missing fable5 bedrock manifest"}
@@ -406,6 +455,7 @@ def run_self_tests() -> dict[str, Any]:
         ("q24_master_ingest", check_q24_master_ingest),
         ("fable5_bedrock", check_fable5_bedrock),
         ("black_sun_phase2_engine", check_black_sun_phase2_engine),
+        ("eden_metadata_ingest", check_eden_metadata_ingest),
     ]
     results = [_run_check(name, fn) for name, fn in checks]
     passed = sum(1 for r in results if r.get("ok"))
@@ -439,6 +489,7 @@ def build_packet(*, run_tests: bool = True) -> dict[str, Any]:
             "fable5_game": "local_5619",
             "comfyui": "local_8188_manifest_only",
             "spacetime_alchemy": "engine",
+            "eden": "bounded_local_metadata",
         },
         "aggregates": {
             "engine": [
@@ -446,6 +497,7 @@ def build_packet(*, run_tests: bool = True) -> dict[str, Any]:
                 "chronology_engine",
                 "home_black_sun_registry",
                 "black_sun_phase2_engine",
+                "eden_metadata_ingest",
             ],
             "agent": [
                 "claude_shadowgarden",
@@ -486,6 +538,7 @@ def build_packet(*, run_tests: bool = True) -> dict[str, Any]:
             ),
             "compact": str(SG / "live/spacetime_alchemy/fable5-compact.json"),
             "phase2_engine": str(WHA / "tools" / "black_sun_phase2_engine.py"),
+            "eden_ingest": str(WHA / "tools" / "eden_ingest.py"),
             "phase2_gate": str(
                 WHA / "shadow_garden_handoff/gates/PHASE_2_BLACK_SUN_OPEN.md"
             ),

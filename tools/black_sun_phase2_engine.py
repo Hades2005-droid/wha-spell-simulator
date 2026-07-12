@@ -21,6 +21,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from eden_ingest import EdenMetadataCatalog, EdenPolicy
+
 SCHEMA = "shadow_garden.black_sun_phase2_engine.v1"
 PACKAGE_ID = "shadow-garden-phase2-fable5-black-sun-home-sim"
 CARRIER = "love_and_harmony_6"
@@ -113,6 +115,21 @@ def spacetime_snapshot() -> dict[str, Any]:
     return out
 
 
+def eden_snapshot(values: list[str] | None = None) -> dict[str, Any]:
+    """Read only explicitly configured local Eden paths."""
+
+    if values is None:
+        configured = os.environ.get("EDEN_INGEST_PATHS", "")
+        values = [item for item in configured.split(os.pathsep) if item]
+    configured_roots = os.environ.get("EDEN_INGEST_ALLOW_ROOTS", "")
+    roots = tuple(
+        Path(item).expanduser().resolve()
+        for item in configured_roots.split(os.pathsep)
+        if item
+    )
+    return EdenMetadataCatalog(policy=EdenPolicy(allowed_roots=roots)).absorb(values).snapshot()
+
+
 def apply_action(
     *,
     action: str,
@@ -195,6 +212,7 @@ def build_manifest() -> dict[str, Any]:
             "justice_toggle": toggle,
             "home_protected": session.home.snapshot(),
         },
+        "eden": eden_snapshot(),
         "engine_sample": {
             "phase": sample["state"]["phase"],
             "moon_18": sample["state"]["moon_18"],
@@ -230,6 +248,16 @@ def run_self_test() -> dict[str, Any]:
         "spacetime_import",
         spacetime.get("spacetime_import_ok") is True,
         chronology=spacetime.get("chronology"),
+    )
+
+    eden = eden_snapshot([])
+    record(
+        "eden_metadata_policy",
+        eden["accepted"] == 0
+        and eden["controls"]["local_only"] is True
+        and eden["controls"]["payloads_stored"] is False
+        and eden["lunar"]["moon_18"]["sealed"] is True,
+        controls=eden["controls"],
     )
 
     home_mod = load_home_black_sun()
@@ -319,6 +347,8 @@ def handle_json(payload: dict[str, Any]) -> dict[str, Any]:
         )
     if cmd == "manifest":
         return build_manifest()
+    if cmd == "ingest":
+        return eden_snapshot([str(path) for path in payload.get("paths") or []])
     if cmd == "self_test":
         return run_self_test()
     return {"ok": False, "error": f"unknown command: {cmd}"}
@@ -332,7 +362,14 @@ def main(argv: list[str] | None = None) -> int:
         "command",
         nargs="?",
         default="self-test",
-        choices=["self-test", "manifest", "apply", "replay", "json"],
+        choices=[
+            "self-test",
+            "manifest",
+            "apply",
+            "replay",
+            "ingest",
+            "json",
+        ],
     )
     parser.add_argument("--action", default="launch")
     parser.add_argument("--seed", type=int, default=42)
@@ -342,6 +379,12 @@ def main(argv: list[str] | None = None) -> int:
         "--actions",
         default="launch,fable,harmony,chariot,land",
         help="comma-separated replay actions",
+    )
+    parser.add_argument(
+        "--path",
+        action="append",
+        default=[],
+        help="explicit local Eden file or directory for the ingest command",
     )
     args = parser.parse_args(argv)
 
@@ -372,6 +415,11 @@ def main(argv: list[str] | None = None) -> int:
             mastery=args.mastery,
             max_turns=args.max_turns,
         )
+        print(json.dumps(result, indent=2))
+        return 0
+
+    if args.command == "ingest":
+        result = eden_snapshot(args.path)
         print(json.dumps(result, indent=2))
         return 0
 
