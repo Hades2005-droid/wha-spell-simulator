@@ -94,6 +94,7 @@ class EdenMetadataCatalog:
     _seen_paths: set[Path] = field(default_factory=set, init=False, repr=False)
     _seen_digests: set[str] = field(default_factory=set, init=False, repr=False)
     _total_bytes: int = field(default=0, init=False, repr=False)
+    _scanned_entries: int = field(default=0, init=False, repr=False)
 
     @property
     def total_bytes(self) -> int:
@@ -103,6 +104,9 @@ class EdenMetadataCatalog:
         """Absorb explicit local files/directories without retaining content."""
 
         for value in values:
+            if self._scanned_entries >= self._scan_limit:
+                self._reject(str(value), "entry_scan_limit_exceeded")
+                break
             self._absorb_target(value)
         return self
 
@@ -186,25 +190,36 @@ class EdenMetadataCatalog:
             root = Path(root_string)
             relative_root = root.relative_to(target)
             root_depth = len(relative_root.parts)
-            directories[:] = sorted(
-                directory
-                for directory in directories
-                if not (root / directory).is_symlink()
-                and not _has_secret_component(directory)
-                and root_depth < self.policy.max_depth
-            )
+            next_directories: list[str] = []
+            for directory in sorted(directories):
+                directory_path = root / directory
+                if not self._consume_scan(directory_path):
+                    directories[:] = []
+                    return
+                if directory_path.is_symlink():
+                    self._reject(str(directory_path), "symlink_rejected")
+                elif _has_secret_component(directory):
+                    self._reject(str(directory_path), "secret_named_path_rejected")
+                elif root_depth >= self.policy.max_depth:
+                    self._reject(str(directory_path), "depth_limit_exceeded")
+                else:
+                    next_directories.append(directory)
+            directories[:] = next_directories
             for filename in sorted(filenames):
                 candidate = root / filename
                 depth = root_depth
+                if not self._consume_scan(candidate):
+                    return
                 if _has_secret_component(filename):
                     self._reject(str(candidate), "secret_named_path_rejected")
-                    continue
-                if depth > self.policy.max_depth:
+                elif depth > self.policy.max_depth:
                     self._reject(str(candidate), "depth_limit_exceeded")
-                    continue
-                self._absorb_file(candidate, depth=depth)
+                else:
+                    self._absorb_file(candidate, depth=depth, scanned=True)
 
-    def _absorb_file(self, path: Path, *, depth: int) -> None:
+    def _absorb_file(self, path: Path, *, depth: int, scanned: bool = False) -> None:
+        if not scanned and not self._consume_scan(path):
+            return
         if len(self.records) >= self.policy.max_entries:
             self._reject(str(path), "entry_limit_exceeded")
             return
@@ -249,6 +264,17 @@ class EdenMetadataCatalog:
                 sha256=digest,
             )
         )
+
+    @property
+    def _scan_limit(self) -> int:
+        return self.policy.max_entries * 2 + self.policy.max_depth + 1
+
+    def _consume_scan(self, path: Path) -> bool:
+        if self._scanned_entries >= self._scan_limit:
+            self._reject(str(path), "entry_scan_limit_exceeded")
+            return False
+        self._scanned_entries += 1
+        return True
 
     def _reject(self, value: str, reason: str) -> None:
         self.rejected.append(

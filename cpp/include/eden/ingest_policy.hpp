@@ -79,18 +79,18 @@ inline RecordKind classifySource(const std::string& source) {
     lowered.push_back(static_cast<char>(
         std::tolower(static_cast<unsigned char>(character))));
   }
-  const std::string landMarkers[] = {"land", "terrain", "region", "world"};
-  for (const std::string& marker : landMarkers) {
-    if (lowered.find(marker) != std::string::npos) {
-      return RecordKind::Land;
-    }
-  }
   const std::string astroMarkers[] = {
       "astro", "astronomy", "node", "moon", "lunar", "celestial",
   };
   for (const std::string& marker : astroMarkers) {
     if (lowered.find(marker) != std::string::npos) {
       return RecordKind::AstroNode;
+    }
+  }
+  const std::string landMarkers[] = {"land", "terrain", "region", "world"};
+  for (const std::string& marker : landMarkers) {
+    if (lowered.find(marker) != std::string::npos) {
+      return RecordKind::Land;
     }
   }
   return RecordKind::Data;
