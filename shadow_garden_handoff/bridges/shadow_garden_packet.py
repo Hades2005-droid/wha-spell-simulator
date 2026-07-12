@@ -339,6 +339,33 @@ def check_q24_master_ingest() -> dict[str, Any]:
     }
 
 
+def check_black_sun_phase2_engine() -> dict[str, Any]:
+    path = WHA / "tools" / "black_sun_phase2_engine.py"
+    if not path.is_file():
+        return {"ok": False, "detail": "missing black_sun_phase2_engine.py"}
+    proc = subprocess.run(
+        [sys.executable, str(path), "self-test"],
+        capture_output=True,
+        text=True,
+        timeout=45,
+        check=False,
+    )
+    preview = (proc.stdout or "")[:400]
+    ok = proc.returncode == 0
+    if ok:
+        try:
+            payload = json.loads(proc.stdout or "{}")
+            ok = bool(payload.get("ok"))
+        except json.JSONDecodeError:
+            ok = False
+    return {
+        "ok": ok,
+        "path": str(path),
+        "exit": proc.returncode,
+        "stdout_preview": preview,
+    }
+
+
 def check_fable5_bedrock() -> dict[str, Any]:
     if not FABLE5_BEDROCK.is_file():
         return {"ok": False, "detail": "missing fable5 bedrock manifest"}
@@ -378,6 +405,7 @@ def run_self_tests() -> dict[str, Any]:
         ("gate10", check_gate10),
         ("q24_master_ingest", check_q24_master_ingest),
         ("fable5_bedrock", check_fable5_bedrock),
+        ("black_sun_phase2_engine", check_black_sun_phase2_engine),
     ]
     results = [_run_check(name, fn) for name, fn in checks]
     passed = sum(1 for r in results if r.get("ok"))
@@ -417,6 +445,7 @@ def build_packet(*, run_tests: bool = True) -> dict[str, Any]:
                 "spacetime_alchemy",
                 "chronology_engine",
                 "home_black_sun_registry",
+                "black_sun_phase2_engine",
             ],
             "agent": [
                 "claude_shadowgarden",
@@ -456,6 +485,10 @@ def build_packet(*, run_tests: bool = True) -> dict[str, Any]:
                 SG / "live/spacetime_alchemy/PERPLEXITY_CONTEXT_BEDROCK.md"
             ),
             "compact": str(SG / "live/spacetime_alchemy/fable5-compact.json"),
+            "phase2_engine": str(WHA / "tools" / "black_sun_phase2_engine.py"),
+            "phase2_gate": str(
+                WHA / "shadow_garden_handoff/gates/PHASE_2_BLACK_SUN_OPEN.md"
+            ),
             "q24_slim": str(Q24_SLIM),
             "q24_install": str(Q24_INSTALL),
             "fable5_bedrock": str(FABLE5_BEDROCK),

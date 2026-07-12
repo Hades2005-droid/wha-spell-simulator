@@ -1,7 +1,7 @@
 {
   "schema": "shadow_garden.unified_packet.v1",
   "packet_version": "1.0.0-gate10",
-  "generated_at": "2026-07-12T09:56:11Z",
+  "generated_at": "2026-07-12T10:00:40Z",
   "gate": 10,
   "carrier": "love_and_harmony_6",
   "bridge_signature": "f2e596cd043d6819",
@@ -33,7 +33,8 @@
     "engine": [
       "spacetime_alchemy",
       "chronology_engine",
-      "home_black_sun_registry"
+      "home_black_sun_registry",
+      "black_sun_phase2_engine"
     ],
     "agent": [
       "claude_shadowgarden",
@@ -66,6 +67,8 @@
     "phase2_coaching": "/Users/fredwashere/shadow_garden_may30_monitoring/shaoshi_bridge/outbox/claude_phase2_fable5_black_sun_coaching.md",
     "bedrock": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/PERPLEXITY_CONTEXT_BEDROCK.md",
     "compact": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/fable5-compact.json",
+    "phase2_engine": "/Users/fredwashere/wha-spell-simulator/tools/black_sun_phase2_engine.py",
+    "phase2_gate": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/gates/PHASE_2_BLACK_SUN_OPEN.md",
     "q24_slim": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/q24_fable5_master_ingest.slim.json",
     "q24_install": "/Users/fredwashere/wha-spell-simulator/q24",
     "fable5_bedrock": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/fable5_bedrock.json",
@@ -73,8 +76,8 @@
     "grok_harmony_6": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/shaoshi_bridge/outbox/grok_45_harmony_6_shadow_lane.json"
   },
   "self_test": {
-    "total": 12,
-    "passed": 12,
+    "total": 13,
+    "passed": 13,
     "failed": 0,
     "ok": true,
     "results": [
@@ -195,6 +198,13 @@
         "missing_handoff": [],
         "src_module_ok": true,
         "check": "fable5_bedrock"
+      },
+      {
+        "ok": true,
+        "path": "/Users/fredwashere/wha-spell-simulator/tools/black_sun_phase2_engine.py",
+        "exit": 0,
+        "stdout_preview": "{\n  \"schema\": \"shadow_garden.black_sun_phase2_engine.v1\",\n  \"generated_at\": \"2026-07-12T10:00:40Z\",\n  \"phase\": 2,\n  \"package_id\": \"shadow-garden-phase2-fable5-black-sun-home-sim\",\n  \"total\": 8,\n  \"passed\": 8,\n  \"failed\": 0,\n  \"ok\": true,\n  \"results\": [\n    {\n      \"check\": \"spacetime_compact\",\n      \"ok\": true,\n      \"compact_exists\": true\n    },\n    {\n      \"check\": \"spacetime_bedrock\",\n      \"ok",
+        "check": "black_sun_phase2_engine"
       }
     ]
   },

@@ -127,6 +127,7 @@ def main() -> int:
             "compact": "~/ShadowGarden/live/spacetime_alchemy/fable5-compact.json",
             "jing": "python3 -m spacetime_alchemy.jing_power_monitor --once",
             "packet": "python3 tools/shadow_garden_packet.py write",
+            "phase2": "python3 tools/black_sun_phase2_engine.py self-test",
         },
         "stream_mode": "metadata_only",
         "scrapes_x": False,
