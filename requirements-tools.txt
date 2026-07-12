@@ -1,2 +1,3 @@
 # Optional Python helpers used by the local Shadow Garden bridge.
 pypdf>=6.0,<7
+pytest>=8.0,<9

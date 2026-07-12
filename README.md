@@ -86,10 +86,24 @@ These tools are available from the app:
 
 ## Tests
 
-Run the Node test suite:
+Install the Node dependencies with the committed lockfile:
+
+```sh
+npm ci
+```
+
+Run the Node test suite and production build:
 
 ```sh
 npm test
+npm run build
+```
+
+Run the local Python bridge tests:
+
+```sh
+python3 -m pip install -r requirements-tools.txt
+python3 -m pytest -q
 ```
 
 ## Documentation
