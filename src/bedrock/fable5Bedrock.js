@@ -32,6 +32,15 @@ export const FABLE5_BEDROCK = {
     url: 'http://127.0.0.1:5619/',
     version: '0.4.0-engine-bedrock-10',
   },
+  eden: {
+    schema: 'shadow_garden.eden_metadata_catalog.v1',
+    ingester: 'tools/eden_ingest.py',
+    lanes: ['land', 'astro_node', 'data'],
+    explicitPathsOnly: true,
+    payloadsStored: false,
+    remoteFetch: false,
+    lunarMoonTarget: 18,
+  },
 };
 
 export function isFable5BedrockArtifact(relPath) {

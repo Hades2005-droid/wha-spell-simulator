@@ -44,6 +44,25 @@ echo '{"command":"apply_action","action":"launch","seed":42,"mastery":10}' \
 python3 tools/shadow_garden_packet.py write
 ```
 
+## Eden metadata lane
+
+Eden accepts only caller-supplied local paths. It classifies records as
+`land`, `astro_node`, or `data`, stores SHA-256 metadata only, and rejects
+remote sources, secret-named paths, symlinks, duplicates, and over-budget
+records. The lunar/moon value is a sealed symbolic target (`18`), not a
+credential or unlock.
+
+```bash
+# Explicit local inputs; repeat --path as needed.
+python3 tools/eden_ingest.py \
+  --path "$HOME/ShadowGarden/exports" \
+  --path "$HOME/ShadowGarden/live/spacetime_alchemy"
+
+# The Phase 2 manifest reads only EDEN_INGEST_PATHS when set.
+EDEN_INGEST_PATHS="$HOME/ShadowGarden/exports" \
+  python3 tools/black_sun_phase2_engine.py manifest
+```
+
 ## Catalyst objectives (from coaching packet)
 
 | Catalyst | Scope | Holder |

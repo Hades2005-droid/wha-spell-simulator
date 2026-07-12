@@ -1,7 +1,7 @@
 {
   "schema": "shadow_garden.integration_repo_roots.v1",
   "format_version": "1.0",
-  "generated_at": "2026-07-12T09:11:53Z",
+  "generated_at": "2026-07-12T10:05:34Z",
   "secrets_policy": "env_only",
   "lanes": {
     "perplexity": "fable5_synthesis",
@@ -62,15 +62,15 @@
       "id": "comfyui",
       "url": "http://127.0.0.1:8189/",
       "port": 8189,
-      "port_open": true,
-      "http_code": 200
+      "port_open": false,
+      "http_code": 0
     },
     {
       "id": "comfyui_system_stats",
       "url": "http://127.0.0.1:8189/system_stats",
       "port": 8189,
-      "port_open": true,
-      "http_code": 200
+      "port_open": false,
+      "http_code": 0
     },
     {
       "id": "eden_burst_alpha",
@@ -83,8 +83,8 @@
       "id": "void_ignition",
       "url": "http://127.0.0.1:8790/api/health",
       "port": 8790,
-      "port_open": false,
-      "http_code": 0
+      "port_open": true,
+      "http_code": 200
     },
     {
       "id": "ollama",
@@ -168,7 +168,7 @@
     "jing_power": 13.61,
     "grok_ok": null,
     "comfyui_ok": null,
-    "sampled_at": "2026-07-12T09:11:53Z"
+    "sampled_at": "2026-07-12T10:03:18Z"
   },
   "guardrails": [
     "no_secret_values_in_status",

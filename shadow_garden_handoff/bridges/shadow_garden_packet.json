@@ -1,7 +1,7 @@
 {
   "schema": "shadow_garden.unified_packet.v1",
   "packet_version": "1.0.0-gate10",
-  "generated_at": "2026-07-12T10:00:40Z",
+  "generated_at": "2026-07-12T10:05:49Z",
   "gate": 10,
   "carrier": "love_and_harmony_6",
   "bridge_signature": "f2e596cd043d6819",
@@ -203,7 +203,7 @@
         "ok": true,
         "path": "/Users/fredwashere/wha-spell-simulator/tools/black_sun_phase2_engine.py",
         "exit": 0,
-        "stdout_preview": "{\n  \"schema\": \"shadow_garden.black_sun_phase2_engine.v1\",\n  \"generated_at\": \"2026-07-12T10:00:40Z\",\n  \"phase\": 2,\n  \"package_id\": \"shadow-garden-phase2-fable5-black-sun-home-sim\",\n  \"total\": 8,\n  \"passed\": 8,\n  \"failed\": 0,\n  \"ok\": true,\n  \"results\": [\n    {\n      \"check\": \"spacetime_compact\",\n      \"ok\": true,\n      \"compact_exists\": true\n    },\n    {\n      \"check\": \"spacetime_bedrock\",\n      \"ok",
+        "stdout_preview": "{\n  \"schema\": \"shadow_garden.black_sun_phase2_engine.v1\",\n  \"generated_at\": \"2026-07-12T10:05:49Z\",\n  \"phase\": 2,\n  \"package_id\": \"shadow-garden-phase2-fable5-black-sun-home-sim\",\n  \"total\": 8,\n  \"passed\": 8,\n  \"failed\": 0,\n  \"ok\": true,\n  \"results\": [\n    {\n      \"check\": \"spacetime_compact\",\n      \"ok\": true,\n      \"compact_exists\": true\n    },\n    {\n      \"check\": \"spacetime_bedrock\",\n      \"ok",
         "check": "black_sun_phase2_engine"
       }
     ]
