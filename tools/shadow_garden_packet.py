@@ -43,6 +43,9 @@ DEFAULT_STATUS = Path("/tmp/shadow_garden_packet_status.json")
 DEFAULT_OUTBOX = (
     WHA / "shadow_garden_handoff" / "terminal_auto" / "outbox" / "shadow_garden_packet.json"
 )
+Q24_SLIM = WHA / "shadow_garden_handoff" / "bridges" / "q24_fable5_master_ingest.slim.json"
+FABLE5_BEDROCK = WHA / "shadow_garden_handoff" / "bridges" / "fable5_bedrock.json"
+Q24_INSTALL = WHA / "q24"
 
 # ---------------------------------------------------------------------------
 # controls (Gate-10 clean)
@@ -308,6 +311,56 @@ def check_gate10() -> dict[str, Any]:
     }
 
 
+def check_q24_master_ingest() -> dict[str, Any]:
+    if not Q24_SLIM.is_file():
+        return {"ok": False, "detail": "missing q24 slim pointer"}
+    slim = json.loads(Q24_SLIM.read_text(encoding="utf-8"))
+    full = Path(slim.get("full", ""))
+    import_root = Path(slim.get("q24_import", ""))
+    required = [
+        Q24_INSTALL / "autoload/GameSession.gd",
+        Q24_INSTALL / "canon/q24_canonical.yaml",
+        Q24_INSTALL / "canon/Q24_EternalDao_Temperance14_HarmonyParadox_19to10to1.tres",
+        Q24_INSTALL / "scripts/Q24CanonicalAnchor.gd",
+        Q24_INSTALL / "q24_symbolic_registry.json",
+    ]
+    installed = all(path.is_file() for path in required)
+    source_available = full.is_file() and import_root.is_dir()
+    return {
+        "ok": installed,
+        "slim": str(Q24_SLIM),
+        "full_exists": full.is_file(),
+        "import_root_exists": import_root.is_dir(),
+        "source_available": source_available,
+        "install_root": str(Q24_INSTALL),
+        "installed": installed,
+        "digest_sha256": slim.get("digest_sha256"),
+        "files_copied": slim.get("files_copied"),
+    }
+
+
+def check_fable5_bedrock() -> dict[str, Any]:
+    if not FABLE5_BEDROCK.is_file():
+        return {"ok": False, "detail": "missing fable5 bedrock manifest"}
+    manifest = json.loads(FABLE5_BEDROCK.read_text(encoding="utf-8"))
+    handoff = manifest.get("handoff", {})
+    missing = [
+        key
+        for key, rel in handoff.items()
+        if rel and not (WHA / rel).is_file()
+    ]
+    src_module = manifest.get("src", {}).get("bedrock_module", "")
+    src_ok = bool(src_module) and (WHA / src_module).is_file()
+    return {
+        "ok": not missing and src_ok,
+        "path": str(FABLE5_BEDROCK),
+        "version": manifest.get("version"),
+        "q24_canonical_id": manifest.get("q24_ingest", {}).get("canonical_id"),
+        "missing_handoff": missing,
+        "src_module_ok": src_ok,
+    }
+
+
 # ---------------------------------------------------------------------------
 # aggregate + self-test
 # ---------------------------------------------------------------------------
@@ -323,6 +376,8 @@ def run_self_tests() -> dict[str, Any]:
         ("recursive_bridge", check_recursive_bridge),
         ("local_ports", check_local_ports),
         ("gate10", check_gate10),
+        ("q24_master_ingest", check_q24_master_ingest),
+        ("fable5_bedrock", check_fable5_bedrock),
     ]
     results = [_run_check(name, fn) for name, fn in checks]
     passed = sum(1 for r in results if r.get("ok"))
@@ -330,7 +385,7 @@ def run_self_tests() -> dict[str, Any]:
         "total": len(results),
         "passed": passed,
         "failed": len(results) - passed,
-        "ok": passed == len(results) or passed >= 7,  # soft: core majority
+        "ok": passed == len(results) or passed >= 9,  # soft: core majority
         "results": results,
     }
 
@@ -373,7 +428,16 @@ def build_packet(*, run_tests: bool = True) -> dict[str, Any]:
                 "recursive_node_bridge",
                 "connector_bridge",
                 "complete_agent_bridge",
+                "q24_fable5_master_ingest",
             ],
+        },
+        "fable5_bedrock": {
+            "manifest": str(FABLE5_BEDROCK),
+            "version": "0.4.0-engine-bedrock-10-q24",
+            "q24_slim": str(Q24_SLIM),
+            "q24_install": str(Q24_INSTALL),
+            "handoff_root": str(WHA / "shadow_garden_handoff"),
+            "src_module": "src/bedrock/fable5Bedrock.js",
         },
         "paths": {
             "wha": str(WHA),
@@ -392,6 +456,17 @@ def build_packet(*, run_tests: bool = True) -> dict[str, Any]:
                 SG / "live/spacetime_alchemy/PERPLEXITY_CONTEXT_BEDROCK.md"
             ),
             "compact": str(SG / "live/spacetime_alchemy/fable5-compact.json"),
+            "q24_slim": str(Q24_SLIM),
+            "q24_install": str(Q24_INSTALL),
+            "fable5_bedrock": str(FABLE5_BEDROCK),
+            "bridge_5_to_6": str(
+                WHA
+                / "shadow_garden_handoff/shaoshi_bridge/outbox/bridge_5_to_6_claude_session.json"
+            ),
+            "grok_harmony_6": str(
+                WHA
+                / "shadow_garden_handoff/shaoshi_bridge/outbox/grok_45_harmony_6_shadow_lane.json"
+            ),
         },
         "self_test": tests,
         "claude_force_merge": {
