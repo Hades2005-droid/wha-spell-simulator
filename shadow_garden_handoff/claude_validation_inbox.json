@@ -1,0 +1,11 @@
+{
+  "status": "awaiting_claude_json",
+  "paste_claude_return_here": null,
+  "validation_rules": {
+    "review_scope_required": "design_review_and_deterministic_play_only",
+    "adult_video_urls_excluded_required": true,
+    "secrets_or_credentials_touched_required": false,
+    "external_writes_performed_required": false
+  },
+  "external_writes_allowed": false
+}

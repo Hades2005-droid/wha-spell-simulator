@@ -7,6 +7,7 @@ import {
   pathLength,
   strokeLength,
 } from '../utils/geometry.js';
+import { reportGlyphMetrics } from '../adapters/asana_adapter.js';
 import { recognitionPlanForSymbol } from './signRotation.js';
 import { scoreStrokeTemplate } from './templateMatcher.js';
 
@@ -447,3 +448,12 @@ export function recognizeCandidates(candidates, dictionary, config) {
     };
   });
 }
+
+// NWW Asana reporting hook (after recognition)
+export function reportAfterRecognition(glyphName, accuracy, config) {
+  const mastery = accuracy > 0.9 ? 'Master' : accuracy > 0.7 ? 'Adept' : 'Novice';
+  const soul = Math.round(accuracy * 80 + 20); // example
+  reportGlyphMetrics(glyphName, accuracy, mastery, soul, 'Copy technique resonance tracked');
+}
+
+// Call e.g. after match: reportAfterRecognition('example', 0.85, CONFIG);

@@ -1,0 +1,19 @@
+{
+  "gate": 10,
+  "status": "open_local_symbolic_only",
+  "graphic_content_stored": false,
+  "adult_urls_used": false,
+  "secrets_or_credentials_touched": false,
+  "external_writes_performed": false,
+  "last_clean_gate": 8,
+  "last_reported_tests": 55,
+  "carrier": "love_and_harmony_6",
+  "lanes": {
+    "fred": "emperor_4_human_approval_anchor",
+    "perplexity": "fable_5_synthesis_lane",
+    "grok_4_5": "harmony_6_back_lane",
+    "claude": "chariot_7_front_review_lane",
+    "terminal": "gate_10_local_continuity"
+  },
+  "protected_connectors": ["atlassian", "github", "x", "qdrant"]
+}

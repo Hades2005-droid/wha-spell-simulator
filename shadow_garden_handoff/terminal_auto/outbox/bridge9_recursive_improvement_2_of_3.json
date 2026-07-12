@@ -1,0 +1,14 @@
+{
+  "schema": "shadow_garden.bridge9_recursive_improvement.v1",
+  "step": "2_of_3",
+  "status": "accepted_local_pass",
+  "test_file": "/Users/fredwashere/shadow_garden_may30_monitoring/shaoshi_bridge/south_star/bridge_9/test_pipeline.py",
+  "tests_passed": 17,
+  "tests_total": 17,
+  "exit_code": 0,
+  "external_links_opened": false,
+  "asana_or_provider_integrations_used": false,
+  "credentials_used": false,
+  "next_step": "document_or_fix_environment_delta_for_previous_test_nine_nodes_failure",
+  "external_writes_performed": false
+}

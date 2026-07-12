@@ -1,0 +1,19 @@
+{
+  "schema": "shadow_garden.bridge_5_to_6.v1",
+  "status": "staged_local_only",
+  "claude_code_session_url": "https://claude.ai/code/session_01G6jmjJriJW51biCRWsnVPL",
+  "bridge_from": "perplexity_fable_5_front_synthesis",
+  "bridge_to": "grok_4_5_harmony_6_back_lane_validation",
+  "purpose": "lead_claude_to_6_via_read_only_project_extraction_and_json_return",
+  "symbolic_only": true,
+  "no_permission_escalation": true,
+  "external_writes_performed": false,
+  "protected_connectors": ["atlassian", "github", "x", "qdrant"],
+  "rules": {
+    "read_only": true,
+    "no_secrets": true,
+    "no_adult_video_urls": true,
+    "no_explicit_content": true,
+    "json_return_preferred": true
+  }
+}

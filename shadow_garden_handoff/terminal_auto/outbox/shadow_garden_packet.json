@@ -1,0 +1,175 @@
+{
+  "schema": "shadow_garden.unified_packet.v1",
+  "packet_version": "1.0.0-gate10",
+  "generated_at": "2026-07-12T07:29:38Z",
+  "gate": 10,
+  "carrier": "love_and_harmony_6",
+  "bridge_signature": "f2e596cd043d6819",
+  "phase": 2,
+  "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
+  "controls": {
+    "external_fetch": false,
+    "browser_automation": false,
+    "agent_broadcast": false,
+    "credentials_allowed": false,
+    "generated_code_execution": false,
+    "provider_calls": false,
+    "explicit_adult_rendering": false,
+    "content_neutral_base_build": true,
+    "gate10_symbolic_only": true,
+    "safe_abort": true
+  },
+  "credential_free": true,
+  "content_neutral": true,
+  "lanes": {
+    "claude": "front_review_black_sun",
+    "grok": "back_lane_harmony_6",
+    "perplexity": "fable5_synthesis",
+    "fable5_game": "local_5619",
+    "comfyui": "local_8188_manifest_only",
+    "spacetime_alchemy": "engine"
+  },
+  "aggregates": {
+    "engine": [
+      "spacetime_alchemy",
+      "chronology_engine",
+      "home_black_sun_registry"
+    ],
+    "agent": [
+      "claude_shadowgarden",
+      "claude_integration (index only)",
+      "claude_phase2_fable5_black_sun_coaching"
+    ],
+    "bridge": [
+      "fable5_comfy_command",
+      "recursive_node_bridge",
+      "connector_bridge",
+      "complete_agent_bridge"
+    ]
+  },
+  "paths": {
+    "wha": "/Users/fredwashere/wha-spell-simulator",
+    "shadow_garden": "/Users/fredwashere/ShadowGarden",
+    "monitoring": "/Users/fredwashere/shadow_garden_may30_monitoring",
+    "claude_shadowgarden": "/Users/fredwashere/wha-spell-simulator/tools/claude_shadowgarden.py",
+    "claude_integration": "/Users/fredwashere/shadow_garden_may30_monitoring/claude_integration.py",
+    "black_sun_registry": "/Users/fredwashere/shadow_garden_may30_monitoring/shaoshi_bridge/south_star/home_black_sun_registry.py",
+    "phase2_coaching": "/Users/fredwashere/shadow_garden_may30_monitoring/shaoshi_bridge/outbox/claude_phase2_fable5_black_sun_coaching.md",
+    "bedrock": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/PERPLEXITY_CONTEXT_BEDROCK.md",
+    "compact": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/fable5-compact.json"
+  },
+  "self_test": {
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "ok": true,
+    "results": [
+      {
+        "ok": true,
+        "path": "/Users/fredwashere/wha-spell-simulator/tools/chronology_engine.py",
+        "exit": 0,
+        "stdout_preview": "{\n  \"date\": {\n    \"kind\": \"shadow_garden_chronology_analysis\",\n    \"symbolic_only\": true,\n    \"date\": \"2026-07-08\",\n    \"raw_values\": {\n      \"micro_digit_sum\": 15,\n      \"micro_number_sum\": 15,\n      \"macro_digit_sum\": 25,\n      \"macro_number_sum\": 2041,\n      \"year_digit_sum\": 10,\n      \"year_number\": 2026,\n      \"month\": 7,\n      \"day_digit_sum\": 8,\n      \"day_number\": 8,\n      \"month_year_digi",
+        "check": "chronology_engine"
+      },
+      {
+        "ok": true,
+        "date": "2026-07-08",
+        "micro": 15,
+        "macro": 2041,
+        "primes": [
+          0,
+          1,
+          4,
+          7,
+          42
+        ],
+        "compact_path_exists": true,
+        "bedrock_exists": true,
+        "check": "spacetime_import"
+      },
+      {
+        "ok": true,
+        "path": "/Users/fredwashere/shadow_garden_may30_monitoring/shaoshi_bridge/south_star/home_black_sun_registry.py",
+        "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
+        "bridge_signature": "f2e596cd043d6819",
+        "phase": 2,
+        "check": "home_black_sun"
+      },
+      {
+        "ok": true,
+        "path": "/Users/fredwashere/wha-spell-simulator/tools/claude_shadowgarden.py",
+        "secret_env_presence": {
+          "ANTHROPIC_API_KEY": false,
+          "CLAUDE_API_KEY": false,
+          "CLAUDE_CODE_TOKEN": false,
+          "SHADOWGARDEN_CLAUDE_TOKEN": false,
+          "ANTHROPIC_OAUTH_TOKEN": false,
+          "ANTHROPIC_API_KEY_ID": false
+        },
+        "command_count": 8,
+        "mode": "dry_run",
+        "confirm_token_name": "CLAUDE_LIVE_OK",
+        "check": "claude_shadowgarden"
+      },
+      {
+        "ok": true,
+        "path": "/Users/fredwashere/shadow_garden_may30_monitoring/claude_integration.py",
+        "policy": "index_only_no_import",
+        "note": "Live Claude tool agent is opt-in; packet never auto-starts it.",
+        "check": "claude_integration_surface"
+      },
+      {
+        "ok": true,
+        "path": "/Users/fredwashere/shadow_garden_may30_monitoring/shaoshi_bridge/outbox/claude_phase2_fable5_black_sun_coaching.md",
+        "bytes": 6929,
+        "check": "claude_phase2_handoff"
+      },
+      {
+        "ok": true,
+        "path": "/Users/fredwashere/ShadowGarden/spacetime_alchemy/fable5_comfy_command.py",
+        "has_catalog_schema": true,
+        "consume_order": [
+          "PERPLEXITY_CONTEXT_BEDROCK.md",
+          "fable5-compact.json",
+          "comfyui_fable5_context_pack.json",
+          "jing_power_latest.json",
+          "spell_generator_latest.json"
+        ],
+        "check": "fable5_comfy_command"
+      },
+      {
+        "ok": true,
+        "path": "/Users/fredwashere/wha-spell-simulator/tools/recursive_node_bridge.py",
+        "exit": 0,
+        "check": "recursive_bridge"
+      },
+      {
+        "ok": true,
+        "ports": {
+          "fable5": true,
+          "comfyui": false,
+          "eden": true,
+          "void_ignition": false,
+          "ollama": true
+        },
+        "check": "local_ports"
+      },
+      {
+        "ok": true,
+        "path": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/gates/GATE_10_OPEN.md",
+        "gate": 10,
+        "symbolic_only": true,
+        "check": "gate10"
+      }
+    ]
+  },
+  "claude_force_merge": {
+    "hooks": [
+      "tools/claude_shadowgarden.py:run_packet_self_test",
+      "tools/complete_agent_bridge.sh:SG_RUN_PACKET",
+      "tools/shadowgarden_orchestrate.sh:SG_RUN_PACKET",
+      "shaoshi_bridge/outbox/claude_black_sun_packet_bridge.json"
+    ],
+    "policy": "dry_run_default_confirm_token_for_live"
+  }
+}
