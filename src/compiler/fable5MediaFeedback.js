@@ -1,4 +1,5 @@
 import { FABLE_VECTOR, MEDIA_TYPES } from './fable5MediaSpell.js';
+import { validateTechnicalSceneCatalyst } from './technicalSceneCatalyst.js';
 
 const DEFAULT_MAX_ITERATIONS = 3;
 const MIN_ACCEPTANCE_SCORE = 0.7;
@@ -195,6 +196,7 @@ export function buildComfyUIMediaReview({
   manifest,
   feedback,
   workflowId = 'fable5-media-review',
+  scenePlan,
 } = {}) {
   validateMediaManifest(manifest);
   const review = feedbackReference(feedback, manifest);
@@ -214,6 +216,7 @@ export function buildComfyUIMediaReview({
       sourceFingerprint: manifest.fingerprint,
     },
     feedback: review,
+    scenePlan: scenePlan === undefined ? null : validateTechnicalSceneCatalyst(scenePlan),
     controls: feedbackControls(),
   };
 }
