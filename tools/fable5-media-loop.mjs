@@ -107,6 +107,20 @@ function onePass(outDir) {
     log(`  ${medium.padEnd(6)} -> ${path.relative(process.cwd(), file)}  (${digests.length} assets · local review, no endpoint)`);
   }
   if (written.length === 0) log("  .. no media assets found in those folders yet");
+
+  // Record this pass's real, machine-readable status (local-only; egress paused).
+  fs.writeFileSync(
+    path.join(outDir, "last-cycle.json"),
+    JSON.stringify({
+      ts: new Date().toISOString(),
+      assets: merged.count,
+      byMedium: merged.byMedium,
+      manifests: written.map((f) => path.basename(f)),
+      externalRequests: 0,
+      remoteWrites: false,
+    }, null, 2),
+  );
+
   log("[black-sun] pass complete · 0 external requests\n");
   return merged.count;
 }
