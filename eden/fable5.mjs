@@ -6,10 +6,12 @@
 //   * no sampling params (temperature/top_p/top_k are rejected on Fable 5)
 //   * opt-in server-side refusal fallback to claude-opus-4-8
 //
+// The SDK is imported lazily inside ask() so this module loads even when
+// @anthropic-ai/sdk isn't installed — hooks that only need the numeric sim
+// (e.g. eden_spell.mjs on a fresh machine) keep working without it.
+//
 // Auth: `new Anthropic()` reads ANTHROPIC_API_KEY / ANTHROPIC_AUTH_TOKEN.
-// Requires:  npm install @anthropic-ai/sdk
-
-import Anthropic from "@anthropic-ai/sdk";
+// Requires (only when actually calling Fable 5):  npm install @anthropic-ai/sdk
 
 export const FABLE_MODEL = "claude-fable-5";
 export const FALLBACK_MODEL = "claude-opus-4-8";
@@ -26,11 +28,12 @@ export function hasCredentials() {
 /**
  * Send one prompt to Fable 5 and return the reply text.
  * @param {string} prompt
- * @param {{system?: string, maxTokens?: number, effort?: string, client?: Anthropic}} [opts]
+ * @param {{system?: string, maxTokens?: number, effort?: string, client?: object}} [opts]
  * @returns {Promise<string>}
  */
 export async function ask(prompt, opts = {}) {
   const { system, maxTokens = 8000, effort = "high", client } = opts;
+  const { default: Anthropic } = await import("@anthropic-ai/sdk");
   const c = client ?? new Anthropic();
 
   const resp = await c.beta.messages.create({
