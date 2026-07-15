@@ -1,0 +1,271 @@
+{
+  "schema": "shadow_garden.catalyst_spell_3.v1",
+  "format_version": "1.0",
+  "generated_at": "2026-07-15T20:11:00Z",
+  "spell": {
+    "id": "catalyst_spell_3",
+    "index": 3,
+    "source_spell_id": "phase2-temperance-14-toggle",
+    "displayName": "Temperance 14 Justice Toggle",
+    "element": "wind",
+    "goal": "Unify Gate-10 packet + Phase-2 recursive spell #3 (Temperance 14) into one local catalyst checklist for solar/lunar accessibility mode \u2014 no provider calls.",
+    "authorized_sources": "exact handoff packet + phase2_recursive_spells paths only",
+    "rule": "Manifest-only merge: preserve bridge_signature, packet controls, and spell #3 mechanic; do not execute remote connectors; Discord stays paused.",
+    "outcome": "Single local catalyst_spell_3 JSON/MD with provenance hashes and launch checklist",
+    "limits": [
+      "no Asana/MCP write",
+      "no Discord mutation",
+      "no auto-push",
+      "no unbounded recursive loop",
+      "no LAN rebind",
+      "provider_calls=false"
+    ],
+    "reevaluate": "after packet or phase2_recursive_spells regeneration",
+    "mechanic": "accessibility_mode_toggle",
+    "intent": "Dual render profile switch (MODE_SOLAR \u2194 MODE_LUNAR) keyed to Q24 anchor 14. Accessibility / atmosphere choice, not authority override.",
+    "quality": 0.8667,
+    "fingerprint": "979f51a886f5b02d",
+    "status": "approved_local",
+    "approved": true,
+    "approval": {
+      "schema": "shadow_garden.catalyst_spell_3_approval.v1",
+      "spell_id": "catalyst_spell_3",
+      "source_spell_id": "phase2-temperance-14-toggle",
+      "approved": true,
+      "approved_at": "2026-07-15T20:11:00Z",
+      "approved_by": "user_fred_via_grok_build",
+      "scope": "local_manifest_only",
+      "does_not_enable": [
+        "asana_mcp_write",
+        "discord",
+        "lan_rebind",
+        "auto_push",
+        "provider_calls"
+      ],
+      "note": "Human OK for accessibility_mode_toggle (MODE_SOLAR \u2194 MODE_LUNAR) catalyst checklist."
+    }
+  },
+  "phase2": {
+    "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
+    "carrier": "love_and_harmony_6",
+    "q24_canonical_id": "q24_eternal_dao_temperance_14_harmony_paradox_ignite_19_10_1",
+    "anchor": 14,
+    "reduce_anchor": false,
+    "sequence": [
+      19,
+      10,
+      1
+    ],
+    "moon_18_open": true
+  },
+  "packet": {
+    "schema": "shadow_garden.unified_packet.v1",
+    "packet_version": "1.0.0-gate10",
+    "generated_at": "2026-07-15T19:54:13Z",
+    "gate": 10,
+    "phase": 2,
+    "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
+    "carrier": "love_and_harmony_6",
+    "bridge_signature": "f2e596cd043d6819",
+    "lanes": {
+      "claude": "front_review_black_sun",
+      "grok": "back_lane_harmony_6",
+      "perplexity": "fable5_synthesis",
+      "fable5_game": "local_5619",
+      "comfyui": "local_8188_manifest_only",
+      "elevenlabs": "comfyui_native_proxy_manifest_only",
+      "spacetime_alchemy": "engine",
+      "eden": "bounded_local_metadata"
+    },
+    "self_test": {
+      "ok": true,
+      "passed": 15,
+      "total": 15,
+      "failed": 0
+    },
+    "local_ports_last_packet": {
+      "fable5": true,
+      "comfyui": true,
+      "eden": false,
+      "void_ignition": false,
+      "ollama": true
+    },
+    "credential_free": true,
+    "content_neutral": true,
+    "controls": {
+      "external_fetch": false,
+      "browser_automation": false,
+      "agent_broadcast": false,
+      "credentials_allowed": false,
+      "generated_code_execution": false,
+      "provider_calls": false,
+      "explicit_adult_rendering": false,
+      "content_neutral_base_build": true,
+      "gate10_symbolic_only": true,
+      "safe_abort": true
+    }
+  },
+  "phase2_batch": {
+    "schema": "shadow_garden.phase2_recursive_spell.v1",
+    "generated_at": "2026-07-15T19:49:47Z",
+    "cycles_ran": 1,
+    "improved": true,
+    "phase2_engine": {
+      "ok": true,
+      "passed": 9,
+      "total": 9,
+      "moon_18_open": true
+    },
+    "recursive_node": {
+      "ok": true,
+      "cycle_power": 0.09,
+      "status": "ready"
+    },
+    "spell_fuel": {
+      "ok": true,
+      "jing_power": 12.9125,
+      "authority": "grok_first",
+      "policy": "metadata_only_no_live_x_or_comet",
+      "path": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/spell_generator_latest.json"
+    },
+    "metric": {
+      "name": "mean_spell_quality",
+      "before": 0.8667,
+      "after": 0.8667,
+      "ready_count": 5,
+      "acceptance": "ready_count>=4 and phase2_ok"
+    },
+    "sibling_spell_ids": [
+      "phase2-moon-18-gate",
+      "phase2-ignition-19-10-1",
+      "phase2-temperance-14-toggle",
+      "phase2-black-sun-home",
+      "phase2-recursive-resonance"
+    ],
+    "controls": {
+      "external_fetch": false,
+      "provider_calls": false,
+      "credentials_allowed": false,
+      "generated_code_execution": false,
+      "explicit_adult_rendering": false,
+      "content_neutral_base_build": true,
+      "symbolic_only": true,
+      "bounded_cycles_max": 3,
+      "infinite_loop": false
+    }
+  },
+  "routing_order": [
+    {
+      "lane": "terra",
+      "step": "load packet + phase2 spell #3 hashes locally"
+    },
+    {
+      "lane": "lunar",
+      "step": "verify gate10 controls, moon_18_open, content_neutral"
+    },
+    {
+      "lane": "solar",
+      "step": "apply MODE_SOLAR \u2194 MODE_LUNAR toggle as accessibility choice only"
+    },
+    {
+      "lane": "chatgpt_5_6",
+      "step": "human-supervised planning label; no provider call"
+    }
+  ],
+  "connectors": {
+    "asana_mcp_merge": {
+      "url": "https://www.perplexity.ai/computer/connectors?connector=asana_mcp_merge",
+      "state": "pointer_only_not_activated",
+      "mutation_attempted": false,
+      "policy": "optional_human_task_mirror_requires_explicit_approval"
+    },
+    "discord": {
+      "state": "PAUSED",
+      "mutation_attempted": false
+    }
+  },
+  "launch_checklist": [
+    "bash ~/ShadowGarden/scripts/shadow_garden_local_unify.sh --status-only",
+    "Confirm ComfyUI http://127.0.0.1:8188 and Fable5 http://127.0.0.1:5619 when needed",
+    "Review catalyst_spell_3.json; set spell.approved=true only after human OK",
+    "Do not enable Asana connector write without explicit approval"
+  ],
+  "sources": [
+    {
+      "alias": "packet_bridge",
+      "path": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/shadow_garden_packet.json",
+      "content_hash": "sha256:f866a71fb8eaacec2d71154b86fcfb416e7bdf439c412a083a6907ace7618467",
+      "schema": "shadow_garden.unified_packet.v1",
+      "generated_at": "2026-07-15T19:54:13Z"
+    },
+    {
+      "alias": "packet_outbox",
+      "path": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/terminal_auto/outbox/shadow_garden_packet.json",
+      "content_hash": "sha256:f866a71fb8eaacec2d71154b86fcfb416e7bdf439c412a083a6907ace7618467",
+      "schema": "shadow_garden.unified_packet.v1",
+      "generated_at": "2026-07-15T19:54:13Z",
+      "identical_to_bridge": true
+    },
+    {
+      "alias": "phase2_recursive_spells",
+      "path": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/terminal_auto/outbox/phase2_recursive_spells.json",
+      "content_hash": "sha256:15c0bb9c21e60482de48f5786d8a473dc7d733ba9dd828ada52926e09feb71b3",
+      "schema": "shadow_garden.phase2_recursive_spell.v1",
+      "generated_at": "2026-07-15T19:49:47Z",
+      "spell_count": 5
+    }
+  ],
+  "summary": {
+    "unified_from": 3,
+    "primary_spell": "phase2-temperance-14-toggle",
+    "bridge_signature": "f2e596cd043d6819",
+    "packet_self_test_ok": true,
+    "moon_18_open": true,
+    "external_writes": 0,
+    "asana_write": false
+  },
+  "content_hash": "sha256:117dc448fdc454765e24d90b83370dfa62c62cff9131d2e21ef806afb9643d1f",
+  "perplexity_mesh": {
+    "generated_at": "2026-07-15T20:11:00Z",
+    "central_chat": {
+      "task_id": "2366bfee-b78c-4ddc-9f86-304c30c67c4d",
+      "url": "https://www.perplexity.ai/computer/tasks/2366bfee-b78c-4ddc-9f86-304c30c67c4d?view=thread",
+      "role": "CENTRAL_CHAT",
+      "view": "thread"
+    },
+    "assistant_chats": [
+      {
+        "task_id": "44b0a811-9c3b-4da8-8052-a6229dcfe1c7",
+        "url": "https://www.perplexity.ai/computer/tasks/44b0a811-9c3b-4da8-8052-a6229dcfe1c7?view=thread",
+        "role": "assistant_unification_pull",
+        "unified_into": "catalyst_spell_3"
+      },
+      {
+        "task_id": "c6b14a5b-abd7-426c-9992-7095c20b8964",
+        "url": "https://www.perplexity.ai/computer/tasks/c6b14a5b-abd7-426c-9992-7095c20b8964?view=thread",
+        "role": "assistant_unification_pull",
+        "unified_into": "catalyst_spell_3"
+      },
+      {
+        "task_id": "d1f4804c-e2da-4885-9aa1-485c10f2935f",
+        "url": "https://www.perplexity.ai/computer/tasks/d1f4804c-e2da-4885-9aa1-485c10f2935f?view=thread",
+        "role": "assistant_unification_pull",
+        "unified_into": "catalyst_spell_3"
+      }
+    ],
+    "prior_tasks": [
+      {
+        "task_id": "559f13f5-5add-496c-b157-3c9af3f358a6",
+        "url": "https://www.perplexity.ai/computer/tasks/559f13f5-5add-496c-b157-3c9af3f358a6?view=thread",
+        "role": "prior_fusion_task"
+      },
+      {
+        "task_id": "bc3f66ab-534b-4732-a2d7-0a8c21a5c6d9",
+        "url": "https://www.perplexity.ai/computer/tasks/bc3f66ab-534b-4732-a2d7-0a8c21a5c6d9?view=thread",
+        "role": "prior_assist_task"
+      }
+    ],
+    "policy": "pointer_only_no_scrape",
+    "approved_unchanged": true
+  }
+}
