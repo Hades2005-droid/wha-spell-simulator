@@ -45,6 +45,18 @@ DEFAULT_OUTBOX = (
 )
 Q24_SLIM = WHA / "shadow_garden_handoff" / "bridges" / "q24_fable5_master_ingest.slim.json"
 FABLE5_BEDROCK = WHA / "shadow_garden_handoff" / "bridges" / "fable5_bedrock.json"
+SCENE_MANIFEST = (
+    WHA
+    / "shadow_garden_handoff"
+    / "bridges"
+    / "shadow_garden_lainie_julia_scene_manifest.json"
+)
+CATALYST3_HANDOFF = (
+    WHA
+    / "shadow_garden_handoff"
+    / "bridges"
+    / "catalyst3_persona_telemetry_launch_finalization.json"
+)
 Q24_INSTALL = WHA / "q24"
 
 # ---------------------------------------------------------------------------
@@ -358,10 +370,10 @@ def check_recursive_bridge() -> dict[str, Any]:
 def check_local_ports() -> dict[str, Any]:
     ports = {
         "fable5": 5619,
-        "comfyui": 8188,
+        "comfyui": 8189,
         "eden": 8791,
-        "void_ignition": 8790,
-        "ollama": 11434,
+        "sillytavern": 8000,
+        "portal": 8760,
     }
     return {
         "ok": True,
@@ -458,6 +470,69 @@ def check_eden_metadata_ingest() -> dict[str, Any]:
     }
 
 
+def check_github_asuna_point0() -> dict[str, Any]:
+    path = WHA / "tools" / "github_asuna_point0_unify.py"
+    if not path.is_file():
+        return {"ok": False, "detail": "missing github_asuna_point0_unify.py"}
+    bridge = (
+        WHA / "shadow_garden_handoff" / "bridges" / "github_asuna_point0_unification.json"
+    )
+    proc = subprocess.run(
+        [sys.executable, str(path), "write"],
+        capture_output=True,
+        text=True,
+        timeout=60,
+        check=False,
+    )
+    ok = proc.returncode == 0 and bridge.is_file()
+    metrics: dict[str, Any] = {}
+    if bridge.is_file():
+        try:
+            doc = json.loads(bridge.read_text(encoding="utf-8"))
+            metrics = doc.get("metrics") or {}
+            ok = ok and bool(doc.get("ok"))
+        except json.JSONDecodeError:
+            ok = False
+    return {
+        "ok": ok,
+        "path": str(path),
+        "bridge": str(bridge),
+        "exit": proc.returncode,
+        "vector_count": metrics.get("vector_count"),
+        "local_path_count": metrics.get("local_path_count"),
+        "target": "perplexity_asuna_point_0",
+    }
+
+
+def check_catalyst3_scene_handoff() -> dict[str, Any]:
+    if not SCENE_MANIFEST.is_file() or not CATALYST3_HANDOFF.is_file():
+        return {"ok": False, "detail": "missing scene or Catalyst 3 handoff"}
+    scene = json.loads(SCENE_MANIFEST.read_text(encoding="utf-8"))
+    catalyst = json.loads(CATALYST3_HANDOFF.read_text(encoding="utf-8"))
+    gates = scene.get("approval_gates", {})
+    controls = catalyst.get("controls", {})
+    providers = catalyst.get("terminal_auto_backport_capabilities", [])
+    ok = (
+        scene.get("scene", {}).get("render_queued") is False
+        and gates.get("human_approval_before_render") is True
+        and gates.get("provider_calls") is False
+        and controls.get("provider_calls") is False
+        and controls.get("loopback_only") is True
+        and len(providers) == 5
+        and all(
+            item.get("enabled") is False and item.get("mode") == "pointer_only"
+            for item in providers
+        )
+    )
+    return {
+        "ok": ok,
+        "scene_manifest": str(SCENE_MANIFEST),
+        "catalyst3_handoff": str(CATALYST3_HANDOFF),
+        "provider_descriptor_count": len(providers),
+        "render_queued": scene.get("scene", {}).get("render_queued"),
+    }
+
+
 def check_fable5_bedrock() -> dict[str, Any]:
     if not FABLE5_BEDROCK.is_file():
         return {"ok": False, "detail": "missing fable5 bedrock manifest"}
@@ -500,6 +575,8 @@ def run_self_tests() -> dict[str, Any]:
         ("fable5_bedrock", check_fable5_bedrock),
         ("black_sun_phase2_engine", check_black_sun_phase2_engine),
         ("eden_metadata_ingest", check_eden_metadata_ingest),
+        ("github_asuna_point0", check_github_asuna_point0),
+        ("catalyst3_scene_handoff", check_catalyst3_scene_handoff),
     ]
     results = [_run_check(name, fn) for name, fn in checks]
     passed = sum(1 for r in results if r.get("ok"))
@@ -531,10 +608,11 @@ def build_packet(*, run_tests: bool = True) -> dict[str, Any]:
             "grok": "back_lane_harmony_6",
             "perplexity": "fable5_synthesis",
             "fable5_game": "local_5619",
-            "comfyui": "local_8188_manifest_only",
+            "comfyui": "local_8189_manifest_only",
             "elevenlabs": "comfyui_native_proxy_manifest_only",
             "spacetime_alchemy": "engine",
             "eden": "bounded_local_metadata",
+            "persona_telemetry": "local_manifest_only",
         },
         "aggregates": {
             "engine": [
@@ -543,6 +621,8 @@ def build_packet(*, run_tests: bool = True) -> dict[str, Any]:
                 "home_black_sun_registry",
                 "black_sun_phase2_engine",
                 "eden_metadata_ingest",
+                "github_asuna_point0_unify",
+                "catalyst3_persona_telemetry",
             ],
             "agent": [
                 "claude_shadowgarden",
@@ -586,6 +666,15 @@ def build_packet(*, run_tests: bool = True) -> dict[str, Any]:
             "phase2_engine": str(WHA / "tools" / "black_sun_phase2_engine.py"),
             "elevenlabs_bridge": str(WHA / "tools" / "elevenlabs_garden_bridge.py"),
             "eden_ingest": str(WHA / "tools" / "eden_ingest.py"),
+            "github_asuna_point0": str(
+                WHA / "tools" / "github_asuna_point0_unify.py"
+            ),
+            "github_asuna_bridge": str(
+                WHA
+                / "shadow_garden_handoff/bridges/github_asuna_point0_unification.json"
+            ),
+            "lainie_julia_scene": str(SCENE_MANIFEST),
+            "catalyst3_persona_telemetry": str(CATALYST3_HANDOFF),
             "phase2_gate": str(
                 WHA / "shadow_garden_handoff/gates/PHASE_2_BLACK_SUN_OPEN.md"
             ),
@@ -646,22 +735,12 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command in ("self-test", "write"):
         print(json.dumps(packet.get("self_test", packet), indent=2))
-        if args.command == "write" or args.command == "self-test":
-            outs = [DEFAULT_STATUS, DEFAULT_OUTBOX]
-            # force-merge destinations for Claude black sun
-            outs.extend(
-                [
-                    MON
-                    / "shaoshi_bridge"
-                    / "outbox"
-                    / "claude_black_sun_packet_bridge.json",
-                    SG
-                    / "live"
-                    / "spacetime_alchemy"
-                    / "shadow_garden_packet_latest.json",
-                    WHA / "shadow_garden_handoff" / "bridges" / "shadow_garden_packet.json",
-                ]
-            )
+        if args.command == "write":
+            outs = [
+                DEFAULT_STATUS,
+                DEFAULT_OUTBOX,
+                WHA / "shadow_garden_handoff" / "bridges" / "shadow_garden_packet.json",
+            ]
             if args.out:
                 outs.append(Path(args.out))
             written = write_packet(packet, *outs)

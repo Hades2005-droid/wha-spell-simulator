@@ -68,7 +68,10 @@
     "timeline_20": "shadow_garden_handoff/TIMELINE_20_AUTO_HANDOFF.md",
     "gate_10": "shadow_garden_handoff/gates/GATE_10_OPEN.md",
     "recursive_improvement": "shadow_garden_handoff/recursive_improvement/BRIDGE_9_RECURSIVE_IMPROVEMENT_2_OF_3.md",
-    "trifecta_release": "shadow_garden_handoff/releases/GATE_10_11_TRIFECTA_INTEGRATION_RELEASE.md"
+    "trifecta_release": "shadow_garden_handoff/releases/GATE_10_11_TRIFECTA_INTEGRATION_RELEASE.md",
+    "github_asuna_point0": "shadow_garden_handoff/bridges/github_asuna_point0_unification.json",
+    "lainie_julia_scene": "shadow_garden_handoff/bridges/shadow_garden_lainie_julia_scene_manifest.json",
+    "catalyst3_persona_telemetry": "shadow_garden_handoff/bridges/catalyst3_persona_telemetry_launch_finalization.json"
   },
   "src": {
     "bedrock_module": "src/bedrock/fable5Bedrock.js"
@@ -77,6 +80,7 @@
     "external_fetch": false,
     "provider_calls": false,
     "secrets_in_artifacts": false,
-    "adult_html": false
+    "excluded_sources_ingested": false,
+    "manifest_only": true
   }
 }

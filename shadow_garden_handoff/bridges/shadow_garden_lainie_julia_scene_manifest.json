@@ -1,0 +1,66 @@
+{
+  "schema": "shadow_garden.scene_manifest.v1",
+  "scene_id": "lainie_julia_garden_convergence",
+  "title": {
+    "en": "Lainie x Julia Cao Garden Convergence",
+    "zh-CN": "Lainie × Julia Cao 花园汇流"
+  },
+  "fictional_context": {
+    "fictional_adult_routing_personas_only": true,
+    "real_person_likeness": false,
+    "image_identity_inference": false,
+    "symbolic_metadata_is_factual_authority": false
+  },
+  "routing_personas": [
+    {
+      "token": "Lainie",
+      "capabilities": [
+        "speed",
+        "connectivity"
+      ]
+    },
+    {
+      "token": "Julia Cao",
+      "capabilities": [
+        "memory",
+        "verification"
+      ]
+    }
+  ],
+  "scene": {
+    "rating": "non_graphic_fictional_adult",
+    "mode": "manifest_only",
+    "render_queued": false,
+    "desire_energy_present": true,
+    "attention_mode": "passive_attention_mode",
+    "authority_from_user_state": false
+  },
+  "loopback_hosts": {
+    "fable5": "http://127.0.0.1:5619",
+    "eden": "http://127.0.0.1:8791",
+    "comfyui": "http://127.0.0.1:8189",
+    "sillytavern": "http://127.0.0.1:8000",
+    "portal": "http://127.0.0.1:8760"
+  },
+  "approval_gates": {
+    "human_approval_before_render": true,
+    "human_approval_before_external_write": true,
+    "consent_must_be_current_and_revocable": true,
+    "provider_calls": false,
+    "external_writes": false,
+    "closed_door_external_posture": true
+  },
+  "safety": {
+    "graphic_content": false,
+    "real_person_likeness": false,
+    "family_role_sexual_framing": false,
+    "minors": false,
+    "coercion": false,
+    "excluded_sources": "do_not_read_copy_hash_catalog_embed_download_render_or_fixture",
+    "consent_or_safety_bypass": false
+  },
+  "route": {
+    "github_asuna_point0": "github_asuna_point0_unification.json",
+    "catalyst3_launch": "catalyst3_persona_telemetry_launch_finalization.json"
+  }
+}
