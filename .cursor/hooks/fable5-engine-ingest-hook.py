@@ -129,6 +129,7 @@ def main() -> int:
             "packet": "python3 tools/shadow_garden_packet.py write",
             "phase2": "python3 tools/black_sun_phase2_engine.py self-test",
             "phase2_spells": "python3 tools/phase2_recursive_spell.py evolve --cycles 1",
+            "asuna_point0": "python3 tools/github_asuna_point0_unify.py write",
         },
         "stream_mode": "metadata_only",
         "scrapes_x": False,

@@ -1,6 +1,6 @@
 {
   "schema": "shadow_garden.phase2_recursive_spell.v1",
-  "generated_at": "2026-07-12T10:34:39Z",
+  "generated_at": "2026-07-15T19:49:47Z",
   "phase": 2,
   "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
   "carrier": "love_and_harmony_6",
@@ -24,18 +24,18 @@
   "spell_fuel": {
     "ok": true,
     "path": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/spell_generator_latest.json",
-    "jing_power": 13.61,
+    "jing_power": 12.9125,
     "authority": "grok_first",
     "policy": "metadata_only_no_live_x_or_comet",
-    "sampled_at": "2026-07-12T10:33:21Z"
+    "sampled_at": "2026-07-15T19:43:55Z"
   },
   "history": [
     {
       "cycle": 1,
-      "mean_quality": 0.8681,
+      "mean_quality": 0.8667,
       "ready_count": 5,
       "top_id": "phase2-moon-18-gate",
-      "top_quality": 0.9081
+      "top_quality": 0.9067
     }
   ],
   "spells": [
@@ -45,9 +45,9 @@
       "element": "water",
       "intent": "Deterministic moon_18 gate before land: charge catalysts 5+6+7 = 18, then complete landing. Party-game turn prompt only.",
       "mechanic": "turn_gate_checklist",
-      "quality": 0.9081,
+      "quality": 0.9067,
       "status": "ready_for_user_approval",
-      "fingerprint": "077612c12f8d7b97",
+      "fingerprint": "c86d82998b2a557c",
       "phase2": {
         "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
         "carrier": "love_and_harmony_6",
@@ -74,9 +74,9 @@
       "element": "fire",
       "intent": "Ordered ignition path Sun-19 \u2192 gap-10 \u2192 loop-1 for Black Sun home sim. Explainable state machine step, MAX_TURNS=24 hard cap.",
       "mechanic": "state_machine_arc",
-      "quality": 0.8881,
+      "quality": 0.8867,
       "status": "ready_for_user_approval",
-      "fingerprint": "f94a8aa3b3868f5a",
+      "fingerprint": "f276c3e00a702fa3",
       "phase2": {
         "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
         "carrier": "love_and_harmony_6",
@@ -103,9 +103,9 @@
       "element": "wind",
       "intent": "Dual render profile switch (MODE_SOLAR \u2194 MODE_LUNAR) keyed to Q24 anchor 14. Accessibility / atmosphere choice, not authority override.",
       "mechanic": "accessibility_mode_toggle",
-      "quality": 0.8681,
+      "quality": 0.8667,
       "status": "ready_for_user_approval",
-      "fingerprint": "73cd447a79fddbff",
+      "fingerprint": "979f51a886f5b02d",
       "phase2": {
         "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
         "carrier": "love_and_harmony_6",
@@ -132,9 +132,9 @@
       "element": "light",
       "intent": "Content-neutral home-simulation anchor: Temperance 14 unreduced, justice toggle solar/lunar, kitchen cabin Floor-22 protected node.",
       "mechanic": "scene_registry_gate",
-      "quality": 0.8481,
+      "quality": 0.8467,
       "status": "ready_for_user_approval",
-      "fingerprint": "99cbc1f96603cdb0",
+      "fingerprint": "db35c4abd16fadd5",
       "phase2": {
         "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
         "carrier": "love_and_harmony_6",
@@ -161,9 +161,9 @@
       "element": "earth",
       "intent": "One-cycle recursive node resonance feeding spell quality \u2014 gain\u22648, nodes\u22649, local-only metadata. Never infinite.",
       "mechanic": "bounded_recursive_improve",
-      "quality": 0.8281,
+      "quality": 0.8267,
       "status": "ready_for_user_approval",
-      "fingerprint": "c2bc67b28f4a2746",
+      "fingerprint": "00a6898e82041ac9",
       "phase2": {
         "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
         "carrier": "love_and_harmony_6",
@@ -187,8 +187,8 @@
   ],
   "metric": {
     "name": "mean_spell_quality",
-    "before": 0.8681,
-    "after": 0.8681,
+    "before": 0.8667,
+    "after": 0.8667,
     "ready_count": 5,
     "acceptance": "ready_count>=4 and phase2_ok"
   },

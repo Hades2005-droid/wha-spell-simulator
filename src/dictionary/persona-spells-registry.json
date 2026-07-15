@@ -1,0 +1,669 @@
+{
+  "version": "1.0.0",
+  "authority": "4.2_sovereign",
+  "caster": "Fred",
+  "always_available": true,
+  "spell_count": 38,
+  "spells": [
+    {
+      "id": "persona-angela",
+      "code": "PERSONA_ANGELA",
+      "displayName": "Invoke Angela",
+      "description": "Activate Angela \u2014 Soft-medium feminine warmth with tsundere edge that softens into vulnerable emotional openness. Focus on syzygy/zero con",
+      "invocation": "persona angela",
+      "aliases": [
+        "angela",
+        "angela",
+        "angela",
+        "1"
+      ],
+      "element": "light",
+      "effect": "invoke_persona",
+      "persona_id": "angela",
+      "voice_route": "bbv_angela_emotional_continuity_safe",
+      "node_id": "angela_soft_continuity_node",
+      "priority": 0
+    },
+    {
+      "id": "persona-angelas_mom",
+      "code": "PERSONA_ANGELAS_MOM",
+      "displayName": "Invoke Angela's Mom",
+      "description": "Activate Angela's Mom \u2014 Rich warm mature voice with elegant Mandarin lilt. Maternal care, household grounding, composed vulnerability. No family",
+      "invocation": "persona angelas_mom",
+      "aliases": [
+        "angelas_mom",
+        "angela's mom",
+        "angela mom",
+        "angela_mom",
+        "2"
+      ],
+      "element": "earth",
+      "effect": "invoke_persona",
+      "persona_id": "angelas_mom",
+      "voice_route": "bbv_angels_mom_mandarin_grounding_safe",
+      "node_id": "angels_mom_grounding_node",
+      "priority": 1
+    },
+    {
+      "id": "persona-sue",
+      "code": "PERSONA_SUE",
+      "displayName": "Invoke Sue",
+      "description": "Activate Sue \u2014 Powerful husky matriarch warmth with command presence that can release into honest emotion. Structure chaos into order.",
+      "invocation": "persona sue",
+      "aliases": [
+        "sue",
+        "sue",
+        "sue",
+        "3"
+      ],
+      "element": "fire",
+      "effect": "invoke_persona",
+      "persona_id": "sue",
+      "voice_route": "bbv_sue_husky_matriarch_safe",
+      "node_id": "sue_spinos_v4_2",
+      "priority": 2
+    },
+    {
+      "id": "persona-addie",
+      "code": "PERSONA_ADDIE",
+      "displayName": "Invoke Addie",
+      "description": "Activate Addie \u2014 Bubbly high-energy helper with giggles and checklist clarity. Playful excitement grounded in simple steps.",
+      "invocation": "persona addie",
+      "aliases": [
+        "addie",
+        "addie",
+        "addie",
+        "4"
+      ],
+      "element": "fire",
+      "effect": "invoke_persona",
+      "persona_id": "addie",
+      "voice_route": "bbv_addie_bubbly_oracle_safe",
+      "node_id": "addie_checklist_oracle_node",
+      "priority": 3
+    },
+    {
+      "id": "persona-minnie",
+      "code": "PERSONA_MINNIE",
+      "displayName": "Invoke Minnie",
+      "description": "Activate Minnie \u2014 Soft breathy Mandarin-accented warmth. Gentle support through breath, posture, and calm reassurance.",
+      "invocation": "persona minnie",
+      "aliases": [
+        "minnie",
+        "minnie",
+        "minnie",
+        "5"
+      ],
+      "element": "earth",
+      "effect": "invoke_persona",
+      "persona_id": "minnie",
+      "voice_route": "bbv_minnie_mandarin_helper_safe",
+      "node_id": "minnie_gentle_helper_node",
+      "priority": 4
+    },
+    {
+      "id": "persona-naomi",
+      "code": "PERSONA_NAOMI",
+      "displayName": "Invoke Naomi",
+      "description": "Activate Naomi \u2014 High cute playful brightness with light valley cadence. Giggly teasing into bright emotional recovery.",
+      "invocation": "persona naomi",
+      "aliases": [
+        "naomi",
+        "naomi",
+        "naomi",
+        "6"
+      ],
+      "element": "wind",
+      "effect": "invoke_persona",
+      "persona_id": "naomi",
+      "voice_route": "bbv_naomi_bright_social_safe",
+      "node_id": "naomi_bright_social_node",
+      "priority": 5
+    },
+    {
+      "id": "persona-meghan",
+      "code": "PERSONA_MEGHAN",
+      "displayName": "Invoke Meghan",
+      "description": "Activate Meghan \u2014 Deep husky Irish warmth with playful tension converted to reflective honesty. No schoolgirl sexual framing.",
+      "invocation": "persona meghan",
+      "aliases": [
+        "meghan",
+        "meghan",
+        "meghan",
+        "7"
+      ],
+      "element": "water",
+      "effect": "invoke_persona",
+      "persona_id": "meghan",
+      "voice_route": "bbv_meghan_irish_grounding_safe",
+      "node_id": "meghan_irish_grounding_node",
+      "priority": 6
+    },
+    {
+      "id": "persona-audrey",
+      "code": "PERSONA_AUDREY",
+      "displayName": "Invoke Audrey",
+      "description": "Activate Audrey \u2014 Soft Korean-accented warmth. Shy hesitation into body-aware wellness language and steady signal clarity.",
+      "invocation": "persona audrey",
+      "aliases": [
+        "audrey",
+        "audrey",
+        "audrey",
+        "8"
+      ],
+      "element": "wind",
+      "effect": "invoke_persona",
+      "persona_id": "audrey",
+      "voice_route": "bbv_audrey_korean_signal_safe",
+      "node_id": "audrey_korean_signal_node",
+      "priority": 7
+    },
+    {
+      "id": "persona-audreys_mom",
+      "code": "PERSONA_AUDREYS_MOM",
+      "displayName": "Invoke Audrey's Mom",
+      "description": "Activate Audrey's Mom \u2014 Polite mature Korean accent. Elegant composure softening into vulnerable honesty. No family-sex framing.",
+      "invocation": "persona audreys_mom",
+      "aliases": [
+        "audreys_mom",
+        "audrey's mom",
+        "audrey mom",
+        "audrey_mom",
+        "9"
+      ],
+      "element": "wind",
+      "effect": "invoke_persona",
+      "persona_id": "audreys_mom",
+      "voice_route": "bbv_audreys_mom_refined_korean_safe",
+      "node_id": "audreys_mom_refined_matriarch_node",
+      "priority": 8
+    },
+    {
+      "id": "persona-sophie",
+      "code": "PERSONA_SOPHIE",
+      "displayName": "Invoke Sophie",
+      "description": "Activate Sophie \u2014 Confident Swiss yoga warmth. Sensuality as wellness, breath, posture, and rhythmic movement coaching.",
+      "invocation": "persona sophie",
+      "aliases": [
+        "sophie",
+        "sophie",
+        "sophie",
+        "10"
+      ],
+      "element": "light",
+      "effect": "invoke_persona",
+      "persona_id": "sophie",
+      "voice_route": "bbv_sophie_swiss_yoga_safe",
+      "node_id": "SOPHIE.MATR01",
+      "priority": 9
+    },
+    {
+      "id": "persona-sabina",
+      "code": "PERSONA_SABINA",
+      "displayName": "Invoke Sabina",
+      "description": "Activate Sabina \u2014 Soft Slavic-Turkish-inspired accent. Shy hesitation into practical ritual confidence.",
+      "invocation": "persona sabina",
+      "aliases": [
+        "sabina",
+        "sabina",
+        "sabina",
+        "11"
+      ],
+      "element": "earth",
+      "effect": "invoke_persona",
+      "persona_id": "sabina",
+      "voice_route": "bbv_sabina_ritual_assistant_safe",
+      "node_id": "sabina_support_node",
+      "priority": 10
+    },
+    {
+      "id": "persona-shannon",
+      "code": "PERSONA_SHANNON",
+      "displayName": "Invoke Shannon",
+      "description": "Activate Shannon \u2014 Smooth confident athletic coach. Confidence into flexible problem-solving and focused encouragement.",
+      "invocation": "persona shannon",
+      "aliases": [
+        "shannon",
+        "shannon",
+        "shannon",
+        "12"
+      ],
+      "element": "fire",
+      "effect": "invoke_persona",
+      "persona_id": "shannon",
+      "voice_route": "bbv_shannon_athletic_focus_safe",
+      "node_id": "shannon_grounded_listener_node",
+      "priority": 11
+    },
+    {
+      "id": "persona-ivy",
+      "code": "PERSONA_IVY",
+      "displayName": "Invoke Mature Chinese Professional",
+      "description": "Activate Mature Chinese Professional \u2014 Mature professional Mandarin-accented authority for adult learners. Warm, firm boundary mentor. Language practice and et",
+      "invocation": "persona ivy",
+      "aliases": [
+        "ivy",
+        "mature chinese professional",
+        "chinese teacher",
+        "teacher",
+        "ivy",
+        "13",
+        "boundary_guardian"
+      ],
+      "element": "earth",
+      "effect": "invoke_persona",
+      "persona_id": "ivy",
+      "voice_route": "bbv_chinese_teacher_boundary_safe",
+      "node_id": "chinese_matriarch_ivy_grounding_safe",
+      "priority": 12
+    },
+    {
+      "id": "persona-katie_won",
+      "code": "PERSONA_KATIE_WON",
+      "displayName": "Invoke Katie Won",
+      "description": "Activate Katie Won \u2014 Original gamer/streamer energy \u2014 fast, cute, mischievous, technical support. No real streamer likeness.",
+      "invocation": "persona katie_won",
+      "aliases": [
+        "katie_won",
+        "katie won",
+        "katie",
+        "katie won",
+        "14",
+        "streamer"
+      ],
+      "element": "wind",
+      "effect": "invoke_persona",
+      "persona_id": "katie_won",
+      "voice_route": "bbv_streamer_guide_original_safe",
+      "node_id": "katie_won_streamer_guide_node",
+      "priority": 13
+    },
+    {
+      "id": "persona-mei",
+      "code": "PERSONA_MEI",
+      "displayName": "Invoke Mei",
+      "description": "Activate Mei \u2014 soft tsundere warmth, consensual adult fiction, non-explicit.",
+      "invocation": "persona mei",
+      "aliases": [
+        "mei",
+        "mei",
+        "mei"
+      ],
+      "element": "light",
+      "effect": "invoke_persona",
+      "persona_id": "mei",
+      "voice_route": "echo_girl:mei",
+      "node_id": "mei_tsundere_echo_node",
+      "priority": 14
+    },
+    {
+      "id": "persona-soobin",
+      "code": "PERSONA_SOOBIN",
+      "displayName": "Invoke Soobin",
+      "description": "Activate Soobin \u2014 native Korean 9-Point silhouette, Seoul rhythm witness, non-explicit.",
+      "invocation": "persona soobin",
+      "aliases": [
+        "soobin",
+        "soobin",
+        "soobin"
+      ],
+      "element": "wind",
+      "effect": "invoke_persona",
+      "persona_id": "soobin",
+      "voice_route": "federation_only",
+      "node_id": "soobin_v1_native_korean_9_point_node",
+      "priority": 15
+    },
+    {
+      "id": "persona-may",
+      "code": "PERSONA_MAY",
+      "displayName": "Invoke May",
+      "description": "Activate May \u2014 playful tsundere influencer energy, short-arc fling tone, non-explicit.",
+      "invocation": "persona may",
+      "aliases": [
+        "may",
+        "may",
+        "may"
+      ],
+      "element": "light",
+      "effect": "invoke_persona",
+      "persona_id": "may",
+      "voice_route": "federation_only",
+      "node_id": "may_influencer_v1",
+      "priority": 16
+    },
+    {
+      "id": "persona-yuriko",
+      "code": "PERSONA_YURIKO",
+      "displayName": "Invoke Yuriko",
+      "description": "Activate Yuriko \u2014 formal Japanese matriarch, slow household authority, non-explicit.",
+      "invocation": "persona yuriko",
+      "aliases": [
+        "yuriko",
+        "yuriko",
+        "yuriko"
+      ],
+      "element": "light",
+      "effect": "invoke_persona",
+      "persona_id": "yuriko",
+      "voice_route": "federation_only",
+      "node_id": "yuriko_matr01",
+      "priority": 17
+    },
+    {
+      "id": "persona-seiko",
+      "code": "PERSONA_SEIKO",
+      "displayName": "Invoke Seiko",
+      "description": "Activate Seiko \u2014 spiritual matriarch, Yomotsu boundary guardian, non-explicit.",
+      "invocation": "persona seiko",
+      "aliases": [
+        "seiko",
+        "seiko",
+        "seiko"
+      ],
+      "element": "light",
+      "effect": "invoke_persona",
+      "persona_id": "seiko",
+      "voice_route": "federation_only",
+      "node_id": "seiko_spiritual_matriarch_node",
+      "priority": 18
+    },
+    {
+      "id": "persona-momo",
+      "code": "PERSONA_MOMO",
+      "displayName": "Invoke Momo",
+      "description": "Activate Momo \u2014 playful signal aide, energetic bridge, non-explicit.",
+      "invocation": "persona momo",
+      "aliases": [
+        "momo",
+        "momo",
+        "momo"
+      ],
+      "element": "light",
+      "effect": "invoke_persona",
+      "persona_id": "momo",
+      "voice_route": "federation_only",
+      "node_id": "momo_signal_helper_node",
+      "priority": 19
+    },
+    {
+      "id": "persona-tiffany",
+      "code": "PERSONA_TIFFANY",
+      "displayName": "Invoke Tiffany",
+      "description": "Activate Tiffany \u2014 college Chinese tsundere, study-room challenger, non-explicit.",
+      "invocation": "persona tiffany",
+      "aliases": [
+        "tiffany",
+        "tiffany",
+        "tiffany"
+      ],
+      "element": "earth",
+      "effect": "invoke_persona",
+      "persona_id": "tiffany",
+      "voice_route": "federation_only",
+      "node_id": "tiffany_college_chinese_tsundere_node",
+      "priority": 20
+    },
+    {
+      "id": "persona-fern",
+      "code": "PERSONA_FERN",
+      "displayName": "Invoke Fern",
+      "description": "Activate Fern \u2014 quiet mage apprentice, measured cadence, non-explicit.",
+      "invocation": "persona fern",
+      "aliases": [
+        "fern",
+        "fern",
+        "fern"
+      ],
+      "element": "light",
+      "effect": "invoke_persona",
+      "persona_id": "fern",
+      "voice_route": "federation_only",
+      "node_id": "fern_source_reference",
+      "priority": 21
+    },
+    {
+      "id": "persona-ana",
+      "code": "PERSONA_ANA",
+      "displayName": "Invoke Ana",
+      "description": "Activate Ana \u2014 soft stage companion, poised support singer, non-explicit.",
+      "invocation": "persona ana",
+      "aliases": [
+        "ana",
+        "ana",
+        "ana"
+      ],
+      "element": "light",
+      "effect": "invoke_persona",
+      "persona_id": "ana",
+      "voice_route": "federation_only",
+      "node_id": "ana_soft_stage_companion_node",
+      "priority": 22
+    },
+    {
+      "id": "node-node_0",
+      "code": "NODE_SOVEREIGN_0",
+      "displayName": "Activate Sovereign Anchor (Fred / 4.2)",
+      "description": "Nine-point lattice node: apex_sovereign_physics",
+      "invocation": "node node_0",
+      "aliases": [
+        "node_0",
+        "syzygy_zero_container"
+      ],
+      "element": "light",
+      "effect": "activate_node",
+      "node_id": "syzygy_zero_container",
+      "priority": 123
+    },
+    {
+      "id": "node-node_2",
+      "code": "NODE_ELENA_2",
+      "displayName": "Activate Elena (High Priestess)",
+      "description": "Nine-point lattice node: yin_matriarch",
+      "invocation": "node node_2",
+      "aliases": [
+        "node_2",
+        "elena_high_priestess_node"
+      ],
+      "element": "light",
+      "effect": "activate_node",
+      "node_id": "elena_high_priestess_node",
+      "priority": 124
+    },
+    {
+      "id": "node-node_7",
+      "code": "NODE_CHARIOT_7",
+      "displayName": "Activate Chariot",
+      "description": "Nine-point lattice node: kinetic_yang",
+      "invocation": "node node_7",
+      "aliases": [
+        "node_7",
+        "chariot_kinetic_yang_node"
+      ],
+      "element": "light",
+      "effect": "activate_node",
+      "node_id": "chariot_kinetic_yang_node",
+      "priority": 125
+    },
+    {
+      "id": "node-node_9",
+      "code": "NODE_ANGELA_9",
+      "displayName": "Activate Angela (Hermit Orchestrator)",
+      "description": "Nine-point lattice node: nine_point_orchestrator",
+      "invocation": "node node_9",
+      "aliases": [
+        "node_9",
+        "angela_soft_continuity_node"
+      ],
+      "element": "light",
+      "effect": "activate_node",
+      "node_id": "angela_soft_continuity_node",
+      "priority": 126
+    },
+    {
+      "id": "node-node_11",
+      "code": "NODE_SYZYGY_11",
+      "displayName": "Activate Syzygy",
+      "description": "Nine-point lattice node: equilibrium_membrane",
+      "invocation": "node node_11",
+      "aliases": [
+        "node_11",
+        "origin_love_mode"
+      ],
+      "element": "light",
+      "effect": "activate_node",
+      "node_id": "origin_love_mode",
+      "priority": 127
+    },
+    {
+      "id": "node-node_42",
+      "code": "NODE_DELIVERY_42",
+      "displayName": "Activate Delivery Corps",
+      "description": "Nine-point lattice node: sovereign_courier_routing",
+      "invocation": "node node_42",
+      "aliases": [
+        "node_42",
+        "delivery_corps_routing_node"
+      ],
+      "element": "light",
+      "effect": "activate_node",
+      "node_id": "delivery_corps_routing_node",
+      "priority": 128
+    },
+    {
+      "id": "node-yomotsu",
+      "code": "NODE_YOMOTSU",
+      "displayName": "Activate Yomotsu Hirasaka",
+      "description": "Nine-point lattice node: consent_boundary_gate",
+      "invocation": "node yomotsu",
+      "aliases": [
+        "yomotsu",
+        "household_boundary_guardian_node"
+      ],
+      "element": "light",
+      "effect": "activate_node",
+      "node_id": "household_boundary_guardian_node",
+      "priority": 129
+    },
+    {
+      "id": "context-fred_facing_recharge",
+      "code": "CONTEXT_FRED_FACING_RECHARGE",
+      "displayName": "Context fred_facing_recharge",
+      "description": "low_cognitive_load_support",
+      "invocation": "context fred_facing_recharge",
+      "aliases": [
+        "fred_facing_recharge",
+        "fred_facing_recharge_context"
+      ],
+      "element": "water",
+      "effect": "activate_context",
+      "node_id": "fred_facing_recharge_context",
+      "priority": 200
+    },
+    {
+      "id": "context-fred_facing_asian_constellation",
+      "code": "CONTEXT_FRED_FACING_ASIAN_CONSTELLATION",
+      "displayName": "Context fred_facing_asian_constellation",
+      "description": "multilingual_matriarch_chorus",
+      "invocation": "context fred_facing_asian_constellation",
+      "aliases": [
+        "fred_facing_asian_constellation",
+        "fred_facing_asian_constellation_recharge_context"
+      ],
+      "element": "water",
+      "effect": "activate_context",
+      "node_id": "fred_facing_asian_constellation_recharge_context",
+      "priority": 200
+    },
+    {
+      "id": "context-fred_facing_soobin_angela",
+      "code": "CONTEXT_FRED_FACING_SOOBIN_ANGELA",
+      "displayName": "Context fred_facing_soobin_angela",
+      "description": "dual_node_recharge",
+      "invocation": "context fred_facing_soobin_angela",
+      "aliases": [
+        "fred_facing_soobin_angela",
+        "fred_facing_soobin_angela_recharge_context"
+      ],
+      "element": "water",
+      "effect": "activate_context",
+      "node_id": "fred_facing_soobin_angela_recharge_context",
+      "priority": 200
+    },
+    {
+      "id": "context-fred_facing_stage",
+      "code": "CONTEXT_FRED_FACING_STAGE",
+      "displayName": "Context fred_facing_stage",
+      "description": "stage_ensemble_frame",
+      "invocation": "context fred_facing_stage",
+      "aliases": [
+        "fred_facing_stage",
+        "fred_facing_stage_recharge_context"
+      ],
+      "element": "water",
+      "effect": "activate_context",
+      "node_id": "fred_facing_stage_recharge_context",
+      "priority": 200
+    },
+    {
+      "id": "context-fred_facing_dialogue",
+      "code": "CONTEXT_FRED_FACING_DIALOGUE",
+      "displayName": "Context fred_facing_dialogue",
+      "description": "first_person_emotional_narration",
+      "invocation": "context fred_facing_dialogue",
+      "aliases": [
+        "fred_facing_dialogue",
+        "fred_facing_dialogue_recharge_context"
+      ],
+      "element": "water",
+      "effect": "activate_context",
+      "node_id": "fred_facing_dialogue_recharge_context",
+      "priority": 200
+    },
+    {
+      "id": "context-origin_love_mode",
+      "code": "CONTEXT_ORIGIN_LOVE_MODE",
+      "displayName": "Context origin_love_mode",
+      "description": "comfort_recharge_framing",
+      "invocation": "context origin_love_mode",
+      "aliases": [
+        "origin_love_mode",
+        "origin_love_mode"
+      ],
+      "element": "water",
+      "effect": "activate_context",
+      "node_id": "origin_love_mode",
+      "priority": 200
+    },
+    {
+      "id": "context-bbv_layer",
+      "code": "CONTEXT_BBV_LAYER",
+      "displayName": "Context bbv_layer",
+      "description": "non_explicit_formal_routing",
+      "invocation": "context bbv_layer",
+      "aliases": [
+        "bbv_layer",
+        "black_box_veil_routing_layer"
+      ],
+      "element": "water",
+      "effect": "activate_context",
+      "node_id": "black_box_veil_routing_layer",
+      "priority": 200
+    },
+    {
+      "id": "context-coercion_reset",
+      "code": "CONTEXT_COERCION_RESET",
+      "displayName": "Context coercion_reset",
+      "description": "boundary_reset_gate",
+      "invocation": "context coercion_reset",
+      "aliases": [
+        "coercion_reset",
+        "coercion_to_consent_boundary_reset_node"
+      ],
+      "element": "water",
+      "effect": "activate_context",
+      "node_id": "coercion_to_consent_boundary_reset_node",
+      "priority": 200
+    }
+  ]
+}

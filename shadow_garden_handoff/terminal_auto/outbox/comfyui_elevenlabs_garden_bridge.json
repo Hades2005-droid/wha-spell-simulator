@@ -1,0 +1,106 @@
+{
+  "schema": "shadow_garden.comfyui_elevenlabs_bridge.v1",
+  "generated_at": "2026-07-12T11:30:45Z",
+  "provider": "ElevenLabs",
+  "interpretation": "Elvenio request mapped to the local ComfyUI ElevenLabs API nodes",
+  "mode": "manifest_only",
+  "comfyui": {
+    "root": "/Users/fredwashere/ComfyUI",
+    "url": "http://127.0.0.1:8188",
+    "native_extension": {
+      "path": "/Users/fredwashere/ComfyUI/comfy_api_nodes/nodes_elevenlabs.py",
+      "exists": true,
+      "node_ids": [
+        "ElevenLabsSpeechToText",
+        "ElevenLabsVoiceSelector",
+        "ElevenLabsTextToSpeech",
+        "ElevenLabsAudioIsolation",
+        "ElevenLabsTextToSoundEffects",
+        "ElevenLabsInstantVoiceClone",
+        "ElevenLabsSpeechToSpeech",
+        "ElevenLabsTextToDialogue"
+      ]
+    },
+    "api_contract": {
+      "path": "/Users/fredwashere/ComfyUI/comfy_api_nodes/apis/elevenlabs.py",
+      "exists": true,
+      "endpoints": [
+        {
+          "method": "POST",
+          "path": "/proxy/elevenlabs/v1/speech-to-text"
+        },
+        {
+          "method": "POST",
+          "path": "/proxy/elevenlabs/v1/text-to-speech/{voice}"
+        },
+        {
+          "method": "POST",
+          "path": "/proxy/elevenlabs/v1/audio-isolation"
+        },
+        {
+          "method": "POST",
+          "path": "/proxy/elevenlabs/v1/sound-generation"
+        },
+        {
+          "method": "POST",
+          "path": "/proxy/elevenlabs/v1/voices/add"
+        },
+        {
+          "method": "POST",
+          "path": "/proxy/elevenlabs/v1/speech-to-speech/{voice}"
+        },
+        {
+          "method": "POST",
+          "path": "/proxy/elevenlabs/v1/text-to-dialogue"
+        }
+      ]
+    },
+    "probe": {
+      "enabled": false,
+      "host": "127.0.0.1",
+      "port": 8188,
+      "local_only": true,
+      "port_open": null
+    }
+  },
+  "garden": {
+    "root": "/Users/fredwashere/ShadowGarden",
+    "fable5_compact": {
+      "path": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/fable5-compact.json",
+      "exists": true
+    },
+    "bedrock": {
+      "path": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/PERPLEXITY_CONTEXT_BEDROCK.md",
+      "exists": true
+    }
+  },
+  "workflow": {
+    "path": "/Users/fredwashere/ComfyUI/workflows/shadow_garden_persona_prompt_pack_v15_1_safe.json",
+    "exists": true,
+    "payloads_stored": false,
+    "bytes": 10437,
+    "sha256": "d3e57897be7fbe1f7dd97692bfccbeb1ab4b4dd267f06aa441018ac30700dab4",
+    "parse_ok": true,
+    "node_count": 1,
+    "node_counts": {
+      "shadow_garden_comfyui_prompt_pack": 1
+    },
+    "elevenlabs_nodes": [],
+    "node_scan_truncated": false
+  },
+  "credentials": {
+    "env_name": "ELEVENLABS_API_KEY",
+    "present": false,
+    "value_emitted": false
+  },
+  "controls": {
+    "local_only": true,
+    "external_fetch": false,
+    "provider_calls": false,
+    "comfy_prompt_submission": false,
+    "browser_automation": false,
+    "credentials_allowed": false,
+    "payloads_stored": false,
+    "approval_required_for_live_audio": true
+  }
+}
