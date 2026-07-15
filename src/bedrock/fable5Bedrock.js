@@ -41,6 +41,25 @@ export const FABLE5_BEDROCK = {
     remoteFetch: false,
     lunarMoonTarget: 18,
   },
+  elevenLabs: {
+    schema: 'shadow_garden.comfyui_elevenlabs_bridge.v1',
+    bridge: 'tools/elevenlabs_garden_bridge.py',
+    comfyuiModule: 'comfy_api_nodes/nodes_elevenlabs.py',
+    envName: 'ELEVENLABS_API_KEY',
+    proxyPaths: [
+      '/proxy/elevenlabs/v1/speech-to-text',
+      '/proxy/elevenlabs/v1/text-to-speech/{voice}',
+      '/proxy/elevenlabs/v1/audio-isolation',
+      '/proxy/elevenlabs/v1/sound-generation',
+      '/proxy/elevenlabs/v1/voices/add',
+      '/proxy/elevenlabs/v1/speech-to-speech/{voice}',
+      '/proxy/elevenlabs/v1/text-to-dialogue',
+    ],
+    manifestOnly: true,
+    providerCalls: false,
+    promptSubmission: false,
+    approvalRequiredForLiveAudio: true,
+  },
 };
 
 export function isFable5BedrockArtifact(relPath) {

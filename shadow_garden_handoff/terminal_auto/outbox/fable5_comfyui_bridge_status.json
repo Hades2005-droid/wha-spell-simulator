@@ -1,12 +1,13 @@
 {
   "schema": "shadow_garden.integration_repo_roots.v1",
   "format_version": "1.0",
-  "generated_at": "2026-07-12T10:05:34Z",
+  "generated_at": "2026-07-12T17:03:09Z",
   "secrets_policy": "env_only",
   "lanes": {
     "perplexity": "fable5_synthesis",
     "fable5_game": "local_5619",
     "comfyui": "local_8188",
+    "elevenlabs": "comfyui_native_proxy_manifest_only",
     "claude": "front_review_opt_in",
     "grok_xai": "back_lane_env",
     "spacetime_alchemy": "catalyst_export",
@@ -76,15 +77,15 @@
       "id": "eden_burst_alpha",
       "url": "http://127.0.0.1:8791/",
       "port": 8791,
-      "port_open": true,
-      "http_code": 200
+      "port_open": false,
+      "http_code": 0
     },
     {
       "id": "void_ignition",
       "url": "http://127.0.0.1:8790/api/health",
       "port": 8790,
-      "port_open": true,
-      "http_code": 200
+      "port_open": false,
+      "http_code": 0
     },
     {
       "id": "ollama",
@@ -165,15 +166,122 @@
     "HARPA_API_KEY": false
   },
   "jing_power_summary": {
-    "jing_power": 13.61,
+    "jing_power": 9.9225,
     "grok_ok": null,
     "comfyui_ok": null,
-    "sampled_at": "2026-07-12T10:03:18Z"
+    "sampled_at": "2026-07-12T17:02:12Z"
+  },
+  "elevenlabs_bridge": {
+    "schema": "shadow_garden.comfyui_elevenlabs_bridge.v1",
+    "generated_at": "2026-07-12T17:03:09Z",
+    "provider": "ElevenLabs",
+    "interpretation": "Elvenio request mapped to the local ComfyUI ElevenLabs API nodes",
+    "mode": "manifest_only",
+    "comfyui": {
+      "root": "/Users/fredwashere/ComfyUI",
+      "url": "http://127.0.0.1:8189",
+      "native_extension": {
+        "path": "/Users/fredwashere/ComfyUI/comfy_api_nodes/nodes_elevenlabs.py",
+        "exists": true,
+        "node_ids": [
+          "ElevenLabsSpeechToText",
+          "ElevenLabsVoiceSelector",
+          "ElevenLabsTextToSpeech",
+          "ElevenLabsAudioIsolation",
+          "ElevenLabsTextToSoundEffects",
+          "ElevenLabsInstantVoiceClone",
+          "ElevenLabsSpeechToSpeech",
+          "ElevenLabsTextToDialogue"
+        ]
+      },
+      "api_contract": {
+        "path": "/Users/fredwashere/ComfyUI/comfy_api_nodes/apis/elevenlabs.py",
+        "exists": true,
+        "endpoints": [
+          {
+            "method": "POST",
+            "path": "/proxy/elevenlabs/v1/speech-to-text"
+          },
+          {
+            "method": "POST",
+            "path": "/proxy/elevenlabs/v1/text-to-speech/{voice}"
+          },
+          {
+            "method": "POST",
+            "path": "/proxy/elevenlabs/v1/audio-isolation"
+          },
+          {
+            "method": "POST",
+            "path": "/proxy/elevenlabs/v1/sound-generation"
+          },
+          {
+            "method": "POST",
+            "path": "/proxy/elevenlabs/v1/voices/add"
+          },
+          {
+            "method": "POST",
+            "path": "/proxy/elevenlabs/v1/speech-to-speech/{voice}"
+          },
+          {
+            "method": "POST",
+            "path": "/proxy/elevenlabs/v1/text-to-dialogue"
+          }
+        ]
+      },
+      "probe": {
+        "enabled": false,
+        "host": "127.0.0.1",
+        "port": 8189,
+        "local_only": true,
+        "port_open": null
+      }
+    },
+    "garden": {
+      "root": "/Users/fredwashere/ShadowGarden",
+      "fable5_compact": {
+        "path": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/fable5-compact.json",
+        "exists": true
+      },
+      "bedrock": {
+        "path": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/PERPLEXITY_CONTEXT_BEDROCK.md",
+        "exists": true
+      }
+    },
+    "workflow": {
+      "path": "/Users/fredwashere/ComfyUI/workflows/shadow_garden_persona_prompt_pack_v15_1_safe.json",
+      "exists": true,
+      "payloads_stored": false,
+      "bytes": 10437,
+      "sha256": "15c8fb8fec0bcddeb17b0b99fe2c66ac1938c9edea4c557266b5212d4860b186",
+      "parse_ok": true,
+      "node_count": 1,
+      "node_counts": {
+        "shadow_garden_comfyui_prompt_pack": 1
+      },
+      "elevenlabs_nodes": [],
+      "node_scan_truncated": false
+    },
+    "credentials": {
+      "env_name": "ELEVENLABS_API_KEY",
+      "present": true,
+      "value_emitted": false
+    },
+    "controls": {
+      "local_only": true,
+      "external_fetch": false,
+      "provider_calls": false,
+      "comfy_prompt_submission": false,
+      "browser_automation": false,
+      "credentials_allowed": false,
+      "payloads_stored": false,
+      "approval_required_for_live_audio": true
+    }
   },
   "guardrails": [
     "no_secret_values_in_status",
     "no_home_wide_crawl",
     "no_comfy_prompt_without_approval",
+    "no_elevenlabs_provider_calls_in_manifest",
     "no_perplexity_scrape",
     "symbolic_chronology_only"
   ]
