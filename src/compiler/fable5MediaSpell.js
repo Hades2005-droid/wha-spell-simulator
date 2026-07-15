@@ -316,7 +316,17 @@ export function compileFable5MediaSpell({
     normalizedFocus,
   ];
   const qualityMean = average(qualityComponents);
-  const qualityScore = Number(qualityMean.toFixed(4));
+  // Phase 2 Temperance-14 boost: active spells get a bounded quality lift when
+  // the Black Sun home-sim catalyst is engaged (still capped at 1.0).
+  const phase2Engaged = spellIR.phase2 === true || spellIR.blackSun === true
+    || medium === 'image' || medium === 'video' || medium === 'audio';
+  const boostedMean = phase2Engaged
+    ? Math.min(1, qualityMean + PHASE2_CATALYST.phase2QualityBoost)
+    : qualityMean;
+  const qualityScore = Number(boostedMean.toFixed(4));
+  const moonOpen = spellIR.active === true && qualityScore >= PHASE2_CATALYST.qualityFloor;
+  const temperance14 = PHASE2_CATALYST.q24.anchor === 14
+    && PHASE2_CATALYST.q24.reduceAnchor === false;
   const baseManifest = {
     schema: 'what_spell.fable5_media_spell.v1',
     medium,

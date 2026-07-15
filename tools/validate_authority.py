@@ -8,10 +8,14 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-MON = ROOT
+# Authority payloads live under Shadow Garden (and optional Movies bundles),
+# not under the spell-simulator checkout.
+SG = Path(
+    __import__("os").environ.get("SHADOW_GARDEN_ROOT", Path.home() / "ShadowGarden")
+).expanduser()
+MON = SG
 FED = MON / "live" / "ai_memory_federation"
 GV = Path("/Users/fredwashere/Movies/Grok-Videos")
-SG = Path("/Users/fredwashere/ShadowGarden")
 
 TEXT_SUFFIXES = {".md", ".txt", ".json", ".py", ".sh", ".mjs", ".js", ".yaml", ".yml"}
 
