@@ -23,7 +23,7 @@
         "failClosed": false
       },
       {
-        "command": "python3 .cursor/hooks/grok_xai_asuna_zero_unify_hook.py",
+        "command": "python3 .cursor/hooks/grok-xai-asuna-zero-unify-hook.py",
         "timeout": 12,
         "failClosed": false
       },
@@ -87,7 +87,7 @@
         "failClosed": false
       },
       {
-        "command": "python3 .cursor/hooks/grok_xai_asuna_zero_unify_hook.py",
+        "command": "python3 .cursor/hooks/grok-xai-asuna-zero-unify-hook.py",
         "timeout": 15,
         "failClosed": false
       }
