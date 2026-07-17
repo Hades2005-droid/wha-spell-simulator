@@ -99,11 +99,35 @@
       "id": "discord",
       "domain": "status_notify",
       "transport": "webhook_or_bot_api",
-      "env_vars": ["ENABLE_DISCORD", "DISCORD_WEBHOOK_URL", "DISCORD_BOT_TOKEN", "DISCORD_CHANNEL_ID", "DISCORD_GUILD_ID"],
-      "capabilities": ["notify_status", "ping"],
+      "env_vars": [
+        "ENABLE_DISCORD",
+        "DISCORD_WEBHOOK_URL",
+        "DISCORD_BOT_TOKEN",
+        "DISCORD_TOKEN",
+        "DISCORD_CHANNEL_ID",
+        "DISCORD_GUILD_ID",
+        "DISCORD_LIVE_OK"
+      ],
+      "capabilities": [
+        "notify_status",
+        "ping",
+        "metadata_catalog_unify",
+        "dry_run_local_notify"
+      ],
       "allowed_lanes": ["read_only", "draft_write", "confirmed_write"],
       "default_lane": "read_only",
-      "forbidden": ["secret_logging", "allowed_mentions", "scrape_channel_history", "broadcast_credentials"]
+      "paused_by_default": true,
+      "catalog": "shadow_garden_handoff/bridges/discord_asuna_point0_unification.json",
+      "unify_cli": "tools/discord_asuna_point0_unify.py",
+      "local_notify_cli": "tools/discord_local/notify.py",
+      "central_control_cli": "tools/perplexity_asuna_central_control.py",
+      "forbidden": [
+        "secret_logging",
+        "allowed_mentions",
+        "scrape_channel_history",
+        "broadcast_credentials",
+        "webhook_post_without_ENABLE_DISCORD_and_DISCORD_LIVE_OK"
+      ]
     },
     {
       "id": "harpa",
@@ -170,7 +194,9 @@
       "remote_api_opt_in": true,
       "catalog": "shadow_garden_handoff/bridges/deepseek_asuna_point0_unification.json",
       "unify_cli": "tools/deepseek_asuna_point0_unify.py",
+      "alias_cli": "tools/deepseek_asuna_zero_unify.py",
       "corner": "eastern_white_moon",
+      "central_control_cli": "tools/perplexity_asuna_central_control.py",
       "forbidden": [
         "log_or_echo_api_keys",
         "bulk_private_chat_upload",
@@ -206,12 +232,52 @@
       "unify_cli": "tools/grok_xai_asuna_point0_unify.py",
       "corner": "eastern_white_moon",
       "corner_weave_cli": "tools/white_moon_eastern_corner_unify.py",
+      "central_control_cli": "tools/perplexity_asuna_central_control.py",
       "forbidden": [
         "log_or_echo_api_keys",
         "bulk_private_chat_upload",
         "bulk_upload_perplexity_without_approval",
         "remote_api_without_env_opt_in",
         "credential_exfil"
+      ]
+    },
+    {
+      "id": "kimi3",
+      "domain": "local_open_weights_transition",
+      "transport": "local_ollama_or_opt_in_http",
+      "env_vars": [
+        "KIMI_API_KEY",
+        "MOONSHOT_API_KEY",
+        "KIMI_BASE_URL",
+        "MOONSHOT_BASE_URL",
+        "KIMI_MODEL",
+        "KIMI_LOCAL_ENABLED",
+        "KIMI3_TRANSITION_ARMED",
+        "OLLAMA_HOST",
+        "OLLAMA_MODELS"
+      ],
+      "capabilities": [
+        "metadata_catalog_unify",
+        "completion_bridge",
+        "local_open_weights_transition_plan",
+        "list_local_ollama_kimi_tags"
+      ],
+      "allowed_lanes": ["read_only", "draft_write"],
+      "default_lane": "read_only",
+      "leverage_ordinal": 3,
+      "preferred_endpoint": "http://127.0.0.1:11434",
+      "remote_api_opt_in": true,
+      "catalog": "shadow_garden_handoff/bridges/kimi3_asuna_point0_unification.json",
+      "transition_catalog": "shadow_garden_handoff/bridges/kimi3_local_open_weights_transition.json",
+      "unify_cli": "tools/kimi3_asuna_point0_unify.py",
+      "central_control_cli": "tools/perplexity_asuna_central_control.py",
+      "forbidden": [
+        "log_or_echo_api_keys",
+        "bulk_private_chat_upload",
+        "bulk_upload_perplexity_without_approval",
+        "remote_api_without_env_opt_in",
+        "credential_exfil",
+        "transition_without_KIMI3_TRANSITION_ARMED"
       ]
     }
   ]

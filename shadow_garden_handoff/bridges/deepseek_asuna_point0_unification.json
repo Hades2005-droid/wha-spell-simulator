@@ -305,6 +305,11 @@
     "compact_exists": true,
     "lane": "perplexity_fable5_synthesis",
     "role": "asuna_point0_deepseek_unification_consumer",
+    "eastern_white_moon_corner": true,
+    "central_control": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/perplexity_asuna_central_control.json",
+    "central_control_exists": true,
+    "white_moon_corner": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/white_moon_eastern_corner.json",
+    "white_moon_corner_exists": true,
     "bulk_upload_requires_explicit_approval": true
   },
   "vectors": [

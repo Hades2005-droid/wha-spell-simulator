@@ -173,6 +173,12 @@ def asuna_point0() -> dict[str, Any]:
 def perplexity_bedrock_pointer() -> dict[str, Any]:
     bedrock = SG / "live" / "spacetime_alchemy" / "PERPLEXITY_CONTEXT_BEDROCK.md"
     compact = SG / "live" / "spacetime_alchemy" / "fable5-compact.json"
+    central = (
+        WHA / "shadow_garden_handoff" / "bridges" / "perplexity_asuna_central_control.json"
+    )
+    corner = (
+        WHA / "shadow_garden_handoff" / "bridges" / "white_moon_eastern_corner.json"
+    )
     return {
         "bedrock": str(bedrock),
         "bedrock_exists": bedrock.is_file(),
@@ -180,6 +186,11 @@ def perplexity_bedrock_pointer() -> dict[str, Any]:
         "compact_exists": compact.is_file(),
         "lane": "perplexity_fable5_synthesis",
         "role": "asuna_point0_deepseek_unification_consumer",
+        "eastern_white_moon_corner": True,
+        "central_control": str(central),
+        "central_control_exists": central.is_file(),
+        "white_moon_corner": str(corner),
+        "white_moon_corner_exists": corner.is_file(),
         "bulk_upload_requires_explicit_approval": True,
     }
 

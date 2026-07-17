@@ -1,0 +1,158 @@
+{
+  "schema": "shadow_garden.perplexity_asuna_central_control.v1",
+  "generated_at": "2026-07-17T20:32:54Z",
+  "carrier": "love_and_harmony_6",
+  "bridge_signature": "f2e596cd043d6819",
+  "central_control": {
+    "name": "perplexity_asuna_point_0",
+    "point_0": "HOME",
+    "archetype": "angela_asuna_home",
+    "scene_id": "kitchen_log_cabin_floor_22",
+    "lane": "perplexity_fable5_synthesis",
+    "role": "unification_lever",
+    "completion_bridge": "kimi3_third_leverage",
+    "transition_target": "local_open_weights_mesh"
+  },
+  "perplexity": {
+    "bedrock": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/PERPLEXITY_CONTEXT_BEDROCK.md",
+    "bedrock_exists": true,
+    "compact": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/fable5-compact.json",
+    "compact_exists": true,
+    "bulk_upload_requires_explicit_approval": true
+  },
+  "surfaces": [
+    {
+      "id": "github",
+      "role": "profile_index",
+      "ok": false,
+      "schema": "shadow_garden.github_asuna_point0_unification.v1",
+      "vector_count": 0,
+      "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/github_asuna_point0_unification.json",
+      "cli": "python3 tools/github_asuna_point0_unify.py write"
+    },
+    {
+      "id": "deepseek",
+      "role": "eastern_local_open_weights",
+      "ok": true,
+      "schema": "shadow_garden.deepseek_asuna_point0_unification.v1",
+      "vector_count": 18,
+      "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/deepseek_asuna_point0_unification.json",
+      "cli": "python3 tools/deepseek_asuna_point0_unify.py write"
+    },
+    {
+      "id": "grok_xai",
+      "role": "eastern_white_moon_harmony_6",
+      "ok": true,
+      "schema": "shadow_garden.grok_xai_asuna_point0_unification.v1",
+      "vector_count": 11,
+      "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/grok_xai_asuna_point0_unification.json",
+      "cli": "python3 tools/grok_xai_asuna_point0_unify.py write"
+    },
+    {
+      "id": "white_moon",
+      "role": "eastern_corner_weave",
+      "ok": true,
+      "schema": "shadow_garden.white_moon_eastern_corner.v1",
+      "vector_count": 29,
+      "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/white_moon_eastern_corner.json",
+      "cli": "python3 tools/white_moon_eastern_corner_unify.py write"
+    },
+    {
+      "id": "discord",
+      "role": "status_notify_paused",
+      "ok": true,
+      "schema": "shadow_garden.discord_asuna_point0_unification.v1",
+      "vector_count": 8,
+      "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/discord_asuna_point0_unification.json",
+      "cli": "python3 tools/discord_asuna_point0_unify.py write"
+    },
+    {
+      "id": "kimi3",
+      "role": "third_leverage_local_open_weights_transition",
+      "ok": true,
+      "schema": "shadow_garden.kimi3_asuna_point0_unification.v1",
+      "vector_count": 11,
+      "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/kimi3_asuna_point0_unification.json",
+      "cli": "python3 tools/kimi3_asuna_point0_unify.py write"
+    },
+    {
+      "id": "stripe",
+      "role": "payments_dry_run_scaffold",
+      "ok": true,
+      "server": "/Users/fredwashere/wha-spell-simulator/tools/stripe_local/server.mjs",
+      "config": "/Users/fredwashere/wha-spell-simulator/src/adapters/stripeConfig.js",
+      "live_default": false,
+      "bind": "127.0.0.1:4242"
+    }
+  ],
+  "leverage_stack": {
+    "1": "deepseek_local_open_weights",
+    "2": "grok_xai_harmony_6_white_moon",
+    "3": "kimi3_completion_to_local_open_weights"
+  },
+  "emphasis": {
+    "deepseek": {
+      "id": "deepseek",
+      "role": "eastern_local_open_weights",
+      "ok": true,
+      "schema": "shadow_garden.deepseek_asuna_point0_unification.v1",
+      "vector_count": 18,
+      "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/deepseek_asuna_point0_unification.json",
+      "cli": "python3 tools/deepseek_asuna_point0_unify.py write"
+    },
+    "discord": {
+      "id": "discord",
+      "role": "status_notify_paused",
+      "ok": true,
+      "schema": "shadow_garden.discord_asuna_point0_unification.v1",
+      "vector_count": 8,
+      "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/discord_asuna_point0_unification.json",
+      "cli": "python3 tools/discord_asuna_point0_unify.py write"
+    },
+    "eastern_white_moon": {
+      "id": "white_moon",
+      "role": "eastern_corner_weave",
+      "ok": true,
+      "schema": "shadow_garden.white_moon_eastern_corner.v1",
+      "vector_count": 29,
+      "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/white_moon_eastern_corner.json",
+      "cli": "python3 tools/white_moon_eastern_corner_unify.py write"
+    },
+    "kimi3": {
+      "id": "kimi3",
+      "role": "third_leverage_local_open_weights_transition",
+      "ok": true,
+      "schema": "shadow_garden.kimi3_asuna_point0_unification.v1",
+      "vector_count": 11,
+      "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/kimi3_asuna_point0_unification.json",
+      "cli": "python3 tools/kimi3_asuna_point0_unify.py write"
+    }
+  },
+  "metrics": {
+    "surface_count": 7,
+    "surfaces_ok": 6,
+    "vector_sum": 77,
+    "deepseek_ok": true,
+    "discord_ok": true,
+    "white_moon_ok": true,
+    "kimi3_ok": true,
+    "all_core_ok": true
+  },
+  "controls": {
+    "provider_calls": false,
+    "credential_logging": false,
+    "content_neutral": true,
+    "symbolic_only": true,
+    "discord_webhook_post": false,
+    "bulk_upload_perplexity": false,
+    "local_open_weights_preferred": true
+  },
+  "cli": {
+    "central": "python3 tools/perplexity_asuna_central_control.py write",
+    "deepseek": "python3 tools/deepseek_asuna_point0_unify.py write",
+    "discord": "python3 tools/discord_asuna_point0_unify.py write",
+    "kimi3": "python3 tools/kimi3_asuna_point0_unify.py write",
+    "packet": "python3 tools/shadow_garden_packet.py write"
+  },
+  "ok": true
+}

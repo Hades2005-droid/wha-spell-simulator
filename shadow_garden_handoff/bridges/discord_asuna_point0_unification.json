@@ -1,0 +1,271 @@
+{
+  "schema": "shadow_garden.discord_asuna_point0_unification.v1",
+  "generated_at": "2026-07-17T20:33:15Z",
+  "phase": 2,
+  "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
+  "carrier": "love_and_harmony_6",
+  "bridge_signature": "f2e596cd043d6819",
+  "q24_canonical_id": "q24_eternal_dao_temperance_14_harmony_paradox_ignite_19_10_1",
+  "lane": {
+    "id": "discord_status_notify",
+    "domain": "status_notify",
+    "transport": "webhook_or_bot_api",
+    "default_state": "PAUSED",
+    "leveraged_by": "perplexity_asuna_point_0"
+  },
+  "connector": {
+    "path": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/terminal_auto/outbox/catalyst_spell_3.json",
+    "exists": true,
+    "state": "PAUSED",
+    "source": "catalyst_spell_3.json",
+    "mutation_attempted": false,
+    "effective_state": "PAUSED"
+  },
+  "unification_target": {
+    "name": "perplexity_asuna_point_0",
+    "point_0": "HOME",
+    "archetype": "angela_asuna_home",
+    "lane": "perplexity_fable5_synthesis",
+    "role": "status_notify_surface",
+    "meaning": "Index Discord status_notify (paused by default) into Asuna Point-0 for Perplexity central control \u2014 metadata only."
+  },
+  "asuna_point0": {
+    "point_0": "HOME",
+    "label": "perplexity_asuna_point_0",
+    "resident_archetype": "angela_asuna_home",
+    "protector_label": "KIRITO_FRED",
+    "scene_id": "kitchen_log_cabin_floor_22",
+    "symbolic_only": true,
+    "not_claim_about_real_people": true,
+    "registry_path": "/Users/fredwashere/shadow_garden_may30_monitoring/shaoshi_bridge/south_star/home_black_sun_registry.py",
+    "registry_exists": true,
+    "status_notify_lane": true,
+    "home_protected": {
+      "point_0": "HOME",
+      "point_1_protector": "KIRITO_FRED",
+      "resident_archetype": "angela_asuna_home",
+      "scene_id": "kitchen_log_cabin_floor_22",
+      "protection_vow": "protect_home_forever",
+      "testament_manifest": "/Users/fredwashere/shadow_garden_may30_monitoring/bundles/home_black_sun/manifests/love_testament_manifest.json",
+      "testament_exists": true,
+      "reference_count": 2,
+      "web_entry": "/Users/fredwashere/shadow_garden_may30_monitoring/bundles/home_black_sun/web/index.html"
+    },
+    "q24_canonical_id": "q24_eternal_dao_temperance_14_harmony_paradox_ignite_19_10_1",
+    "anchor": 14,
+    "phase": 2,
+    "manifest_ok": true
+  },
+  "api_surface": {
+    "mode": "env_names_only",
+    "transport": "webhook_or_bot_api",
+    "public_docs": "https://discord.com/developers/docs",
+    "env_names": [
+      "ENABLE_DISCORD",
+      "DISCORD_WEBHOOK_URL",
+      "DISCORD_BOT_TOKEN",
+      "DISCORD_TOKEN",
+      "DISCORD_CHANNEL_ID",
+      "DISCORD_GUILD_ID"
+    ],
+    "env_present": {
+      "ENABLE_DISCORD": false,
+      "DISCORD_WEBHOOK_URL": false,
+      "DISCORD_BOT_TOKEN": false,
+      "DISCORD_TOKEN": false,
+      "DISCORD_CHANNEL_ID": false,
+      "DISCORD_GUILD_ID": false
+    },
+    "enable_discord_armed": false,
+    "notes": [
+      "Never print or catalog token/webhook values.",
+      "Default PAUSED; ENABLE_DISCORD only arms status_notify after approval.",
+      "No channel history scrape; no mass broadcast."
+    ]
+  },
+  "mesh_pointers": [
+    {
+      "role": "mcp_discord_registry",
+      "kind": "config",
+      "path": "/Users/fredwashere/wha-spell-simulator/tools/mcp_router_registry.json",
+      "exists": true,
+      "is_file": true,
+      "is_dir": false,
+      "content_inlined": false,
+      "size_bytes": 10431,
+      "sha256_16": "a09cbb2a87c70ca5"
+    },
+    {
+      "role": "bridge_env_names_surface",
+      "kind": "code",
+      "path": "/Users/fredwashere/wha-spell-simulator/tools/fable5_comfyui_command_bridge.py",
+      "exists": true,
+      "is_file": true,
+      "is_dir": false,
+      "content_inlined": false,
+      "size_bytes": 9069,
+      "sha256_16": "0e36bc4d1bb1e97a"
+    },
+    {
+      "role": "mcp_policy_doc",
+      "kind": "doc",
+      "path": "/Users/fredwashere/wha-spell-simulator/docs/mcp-router-policy.md",
+      "exists": true,
+      "is_file": true,
+      "is_dir": false,
+      "content_inlined": false,
+      "size_bytes": 2310,
+      "sha256_16": "81af1b5eafc095f2"
+    },
+    {
+      "role": "catalyst_discord_paused",
+      "kind": "handoff",
+      "path": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/terminal_auto/outbox/catalyst_spell_3.json",
+      "exists": true,
+      "is_file": true,
+      "is_dir": false,
+      "content_inlined": false,
+      "size_bytes": 9481,
+      "sha256_16": "6dca123b7e22fa6f"
+    },
+    {
+      "role": "discord_local_dry_run",
+      "kind": "tool",
+      "path": "/Users/fredwashere/wha-spell-simulator/tools/discord_local/notify.py",
+      "exists": true,
+      "is_file": true,
+      "is_dir": false,
+      "content_inlined": false,
+      "size_bytes": 4538,
+      "sha256_16": "69a3ebb3232f1b7f"
+    }
+  ],
+  "perplexity": {
+    "bedrock": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/PERPLEXITY_CONTEXT_BEDROCK.md",
+    "bedrock_exists": true,
+    "compact": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/fable5-compact.json",
+    "compact_exists": true,
+    "bulk_upload_requires_explicit_approval": true
+  },
+  "vectors": [
+    {
+      "id": "discord_env_surface",
+      "kind": "env_surface",
+      "lane": "discord_status_notify",
+      "env_name_count": 6,
+      "enable_armed": false,
+      "record_id": "discord:env_surface",
+      "content_hash": "797b7f5a5bd03e5c",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "env_names_only"
+    },
+    {
+      "id": "discord_connector",
+      "kind": "connector_pause",
+      "lane": "discord_status_notify",
+      "state": "PAUSED",
+      "record_id": "discord:connector",
+      "content_hash": "0508dc03abfbcb64",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "local_metadata"
+    },
+    {
+      "id": "discord_mcp_domain",
+      "kind": "mcp_registry",
+      "lane": "discord_status_notify",
+      "domain": "status_notify",
+      "record_id": "discord:mcp",
+      "content_hash": "9db93cbb9d9baad1",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "public_metadata"
+    },
+    {
+      "id": "mcp_router_registry.json",
+      "kind": "path_pointer",
+      "role": "mcp_discord_registry",
+      "path": "/Users/fredwashere/wha-spell-simulator/tools/mcp_router_registry.json",
+      "lane": "discord_status_notify",
+      "sha256_16": "a09cbb2a87c70ca5",
+      "record_id": "discord:ptr:mcp_router_registry.json",
+      "content_hash": "a09cbb2a87c70ca5",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "local_path_only"
+    },
+    {
+      "id": "fable5_comfyui_command_bridge.py",
+      "kind": "path_pointer",
+      "role": "bridge_env_names_surface",
+      "path": "/Users/fredwashere/wha-spell-simulator/tools/fable5_comfyui_command_bridge.py",
+      "lane": "discord_status_notify",
+      "sha256_16": "0e36bc4d1bb1e97a",
+      "record_id": "discord:ptr:fable5_comfyui_command_bridge.py",
+      "content_hash": "0e36bc4d1bb1e97a",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "local_path_only"
+    },
+    {
+      "id": "mcp-router-policy.md",
+      "kind": "path_pointer",
+      "role": "mcp_policy_doc",
+      "path": "/Users/fredwashere/wha-spell-simulator/docs/mcp-router-policy.md",
+      "lane": "discord_status_notify",
+      "sha256_16": "81af1b5eafc095f2",
+      "record_id": "discord:ptr:mcp-router-policy.md",
+      "content_hash": "81af1b5eafc095f2",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "local_path_only"
+    },
+    {
+      "id": "catalyst_spell_3.json",
+      "kind": "path_pointer",
+      "role": "catalyst_discord_paused",
+      "path": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/terminal_auto/outbox/catalyst_spell_3.json",
+      "lane": "discord_status_notify",
+      "sha256_16": "6dca123b7e22fa6f",
+      "record_id": "discord:ptr:catalyst_spell_3.json",
+      "content_hash": "6dca123b7e22fa6f",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "local_path_only"
+    },
+    {
+      "id": "notify.py",
+      "kind": "path_pointer",
+      "role": "discord_local_dry_run",
+      "path": "/Users/fredwashere/wha-spell-simulator/tools/discord_local/notify.py",
+      "lane": "discord_status_notify",
+      "sha256_16": "69a3ebb3232f1b7f",
+      "record_id": "discord:ptr:notify.py",
+      "content_hash": "69a3ebb3232f1b7f",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "local_path_only"
+    }
+  ],
+  "metrics": {
+    "vector_count": 8,
+    "env_present_count": 0,
+    "enable_discord_armed": false,
+    "connector_state": "PAUSED",
+    "effective_state": "PAUSED",
+    "webhook_posts": 0,
+    "provider_calls": 0,
+    "point0_manifest_ok": true
+  },
+  "controls": {
+    "webhook_post": false,
+    "bot_api_calls": false,
+    "scrape_channel_history": false,
+    "credential_access": false,
+    "credential_logging": false,
+    "secrets_in_artifacts": false,
+    "allowed_mentions": false,
+    "broadcast_credentials": false,
+    "bulk_upload_perplexity": false,
+    "content_neutral": true,
+    "symbolic_only": true,
+    "source_pointers_only": true,
+    "default_lane": "read_only",
+    "paused_by_default": true
+  },
+  "unification_digest": "a60385b9e72d41ffa717ad142fe819f7c151ebec41aca86437b6932ec274a2e0",
+  "ok": true
+}

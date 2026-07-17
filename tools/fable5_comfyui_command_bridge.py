@@ -137,6 +137,29 @@ ENV_NAMES_ONLY = [
     "SLACK_APP_TOKEN",
     "HARPA_API_URL",
     "HARPA_API_KEY",
+    # Discord status_notify (paused by default; env names only)
+    "ENABLE_DISCORD",
+    "DISCORD_WEBHOOK_URL",
+    "DISCORD_BOT_TOKEN",
+    "DISCORD_TOKEN",
+    "DISCORD_CHANNEL_ID",
+    "DISCORD_GUILD_ID",
+    "DISCORD_LIVE_OK",
+    # DeepSeek / Ollama (local-open-weights preferred)
+    "DEEPSEEK_API_KEY",
+    "DEEPSEEK_BASE_URL",
+    "DEEPSEEK_MODEL",
+    "DEEPSEEK_LOCAL_ENABLED",
+    "OLLAMA_HOST",
+    "OLLAMA_MODELS",
+    # Kimi 3 — 3rd leverage / local open-weights transition
+    "KIMI_API_KEY",
+    "MOONSHOT_API_KEY",
+    "KIMI_BASE_URL",
+    "MOONSHOT_BASE_URL",
+    "KIMI_MODEL",
+    "KIMI_LOCAL_ENABLED",
+    "KIMI3_TRANSITION_ARMED",
 ]
 
 

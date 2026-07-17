@@ -1,0 +1,41 @@
+{
+  "schema": "shadow_garden.kimi3_local_open_weights_transition.v1",
+  "generated_at": "2026-07-17T20:33:15Z",
+  "bridge": "kimi3_third_leverage",
+  "ordinal": 3,
+  "armed": false,
+  "status": "indexed_awaiting_KIMI3_TRANSITION_ARMED",
+  "from": "perplexity_asuna_point_0_cloud_hybrid_mesh",
+  "to": "local_open_weights_mesh",
+  "preferred_runtime": {
+    "bind": "127.0.0.1",
+    "ollama": "http://127.0.0.1:11434",
+    "kimi_local_route": "kimi-local",
+    "deepseek_local_route": "deepseek-local"
+  },
+  "ollama_up": true,
+  "local_kimi_tags": [],
+  "surfaces_to_localize": [
+    "github_asuna_point0",
+    "deepseek_asuna_point0",
+    "grok_xai_asuna_point0",
+    "white_moon_eastern_corner",
+    "discord_asuna_point0",
+    "stripe_local_scaffold",
+    "shadow_garden_packet"
+  ],
+  "steps": [
+    "Refresh Asuna Point-0 catalogs (github/deepseek/grok/discord/central).",
+    "Confirm Ollama up and optional kimi/moonshot local tags present.",
+    "Set KIMI3_TRANSITION_ARMED=1 after operator approval.",
+    "Prefer 127.0.0.1 routes; leave remote Moonshot/DeepSeek/xAI unset.",
+    "Rewrite packet lanes to local_open_weights_mesh; keep Discord PAUSED unless armed.",
+    "One bounded cycle \u2014 no infinite recursive loops."
+  ],
+  "controls": {
+    "provider_calls": false,
+    "remote_default": false,
+    "content_neutral": true,
+    "secrets_in_artifacts": false
+  }
+}

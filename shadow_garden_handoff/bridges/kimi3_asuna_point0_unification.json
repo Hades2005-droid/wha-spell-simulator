@@ -1,0 +1,420 @@
+{
+  "schema": "shadow_garden.kimi3_asuna_point0_unification.v1",
+  "generated_at": "2026-07-17T20:33:15Z",
+  "phase": 2,
+  "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
+  "carrier": "love_and_harmony_6",
+  "bridge_signature": "f2e596cd043d6819",
+  "q24_canonical_id": "q24_eternal_dao_temperance_14_harmony_paradox_ignite_19_10_1",
+  "leverage": {
+    "id": "kimi3_third_leverage",
+    "ordinal": 3,
+    "label": "Kimi 3 completion bridge",
+    "role": "asuna_point0_completion_to_local_open_weights",
+    "partners": [
+      "deepseek_local_open_weights",
+      "grok_xai_harmony_6"
+    ],
+    "leveraged_by": "perplexity_asuna_point_0",
+    "transition_target": "local_open_weights_mesh"
+  },
+  "unification_target": {
+    "name": "perplexity_asuna_point_0",
+    "point_0": "HOME",
+    "archetype": "angela_asuna_home",
+    "lane": "perplexity_fable5_synthesis",
+    "third_leverage": true,
+    "completion_bridge": true,
+    "meaning": "Kimi 3 is the 3rd leverage at Asuna Point-0 completion \u2014 bridge the full mesh into local open-weights operation."
+  },
+  "asuna_point0": {
+    "point_0": "HOME",
+    "label": "perplexity_asuna_point_0",
+    "resident_archetype": "angela_asuna_home",
+    "protector_label": "KIRITO_FRED",
+    "scene_id": "kitchen_log_cabin_floor_22",
+    "symbolic_only": true,
+    "not_claim_about_real_people": true,
+    "registry_path": "/Users/fredwashere/shadow_garden_may30_monitoring/shaoshi_bridge/south_star/home_black_sun_registry.py",
+    "registry_exists": true,
+    "completion_bridge": "kimi3_third_leverage",
+    "transition_to": "local_open_weights_mesh",
+    "home_protected": {
+      "point_0": "HOME",
+      "point_1_protector": "KIRITO_FRED",
+      "resident_archetype": "angela_asuna_home",
+      "scene_id": "kitchen_log_cabin_floor_22",
+      "protection_vow": "protect_home_forever",
+      "testament_manifest": "/Users/fredwashere/shadow_garden_may30_monitoring/bundles/home_black_sun/manifests/love_testament_manifest.json",
+      "testament_exists": true,
+      "reference_count": 2,
+      "web_entry": "/Users/fredwashere/shadow_garden_may30_monitoring/bundles/home_black_sun/web/index.html"
+    },
+    "q24_canonical_id": "q24_eternal_dao_temperance_14_harmony_paradox_ignite_19_10_1",
+    "anchor": 14,
+    "phase": 2,
+    "manifest_ok": true
+  },
+  "api_surface": {
+    "mode": "env_names_only",
+    "remote_default": "opt_in_via_env",
+    "preferred_bind": "127.0.0.1",
+    "public_api_docs": "https://platform.moonshot.cn/docs",
+    "env_names": [
+      "KIMI_API_KEY",
+      "MOONSHOT_API_KEY",
+      "KIMI_BASE_URL",
+      "MOONSHOT_BASE_URL",
+      "KIMI_MODEL",
+      "KIMI_LOCAL_ENABLED",
+      "KIMI3_TRANSITION_ARMED",
+      "OLLAMA_HOST",
+      "OLLAMA_MODELS"
+    ],
+    "env_present": {
+      "KIMI_API_KEY": false,
+      "MOONSHOT_API_KEY": false,
+      "KIMI_BASE_URL": false,
+      "MOONSHOT_BASE_URL": false,
+      "KIMI_MODEL": false,
+      "KIMI_LOCAL_ENABLED": false,
+      "KIMI3_TRANSITION_ARMED": false,
+      "OLLAMA_HOST": false,
+      "OLLAMA_MODELS": false
+    },
+    "transition_armed": false,
+    "notes": [
+      "Never print or catalog secret values.",
+      "Prefer Ollama / kimi-local over remote Moonshot API.",
+      "KIMI3_TRANSITION_ARMED marks Asuna Point-0 completion \u2192 local open-weights mesh."
+    ]
+  },
+  "models": {
+    "public_docs": [
+      {
+        "id": "kimi-k2",
+        "family": "kimi",
+        "source": "moonshot_public_docs",
+        "remote_opt_in": true
+      },
+      {
+        "id": "kimi-k2.5",
+        "family": "kimi",
+        "source": "moonshot_public_docs",
+        "remote_opt_in": true
+      },
+      {
+        "id": "moonshot-v1-auto",
+        "family": "moonshot",
+        "source": "moonshot_public_docs",
+        "remote_opt_in": true
+      },
+      {
+        "id": "kimi-local",
+        "family": "kimi-local-open-weights",
+        "source": "ollama_or_local_gguf",
+        "remote_opt_in": false
+      }
+    ],
+    "ollama": {
+      "url": "http://127.0.0.1:11434/api/tags",
+      "bind": "127.0.0.1",
+      "up": true,
+      "kimi_models": [],
+      "all_model_count": 4
+    }
+  },
+  "mesh_pointers": [
+    {
+      "role": "leverage_1_deepseek",
+      "kind": "tool",
+      "path": "/Users/fredwashere/wha-spell-simulator/tools/deepseek_asuna_point0_unify.py",
+      "exists": true,
+      "is_file": true,
+      "is_dir": false,
+      "content_inlined": false,
+      "size_bytes": 22051,
+      "sha256_16": "46e8d61316af9370"
+    },
+    {
+      "role": "leverage_2_grok_xai",
+      "kind": "tool",
+      "path": "/Users/fredwashere/wha-spell-simulator/tools/grok_xai_asuna_point0_unify.py",
+      "exists": true,
+      "is_file": true,
+      "is_dir": false,
+      "content_inlined": false,
+      "size_bytes": 13242,
+      "sha256_16": "8065f3d26dc6b29a"
+    },
+    {
+      "role": "eastern_corner_weave",
+      "kind": "tool",
+      "path": "/Users/fredwashere/wha-spell-simulator/tools/white_moon_eastern_corner_unify.py",
+      "exists": true,
+      "is_file": true,
+      "is_dir": false,
+      "content_inlined": false,
+      "size_bytes": 6161,
+      "sha256_16": "49e52d145981cb09"
+    },
+    {
+      "role": "central_control_ledger",
+      "kind": "tool",
+      "path": "/Users/fredwashere/wha-spell-simulator/tools/perplexity_asuna_central_control.py",
+      "exists": true,
+      "is_file": true,
+      "is_dir": false,
+      "content_inlined": false,
+      "size_bytes": 9002,
+      "sha256_16": "bd494538cd629c4f"
+    },
+    {
+      "role": "local_open_weights_route_metadata",
+      "kind": "tool",
+      "path": "/Users/fredwashere/wha-spell-simulator/tools/recursive_node_bridge.py",
+      "exists": true,
+      "is_file": true,
+      "is_dir": false,
+      "content_inlined": false,
+      "size_bytes": 10096,
+      "sha256_16": "8f4154e0b9e32f1b"
+    },
+    {
+      "role": "ollama_models_root",
+      "kind": "weights_dir",
+      "path": "/Users/fredwashere/.ollama/models",
+      "exists": true,
+      "is_file": false,
+      "is_dir": true,
+      "content_inlined": false,
+      "child_count": 2,
+      "blob_contents_read": false
+    }
+  ],
+  "transition": {
+    "schema": "shadow_garden.kimi3_local_open_weights_transition.v1",
+    "generated_at": "2026-07-17T20:33:15Z",
+    "bridge": "kimi3_third_leverage",
+    "ordinal": 3,
+    "armed": false,
+    "status": "indexed_awaiting_KIMI3_TRANSITION_ARMED",
+    "from": "perplexity_asuna_point_0_cloud_hybrid_mesh",
+    "to": "local_open_weights_mesh",
+    "preferred_runtime": {
+      "bind": "127.0.0.1",
+      "ollama": "http://127.0.0.1:11434",
+      "kimi_local_route": "kimi-local",
+      "deepseek_local_route": "deepseek-local"
+    },
+    "ollama_up": true,
+    "local_kimi_tags": [],
+    "surfaces_to_localize": [
+      "github_asuna_point0",
+      "deepseek_asuna_point0",
+      "grok_xai_asuna_point0",
+      "white_moon_eastern_corner",
+      "discord_asuna_point0",
+      "stripe_local_scaffold",
+      "shadow_garden_packet"
+    ],
+    "steps": [
+      "Refresh Asuna Point-0 catalogs (github/deepseek/grok/discord/central).",
+      "Confirm Ollama up and optional kimi/moonshot local tags present.",
+      "Set KIMI3_TRANSITION_ARMED=1 after operator approval.",
+      "Prefer 127.0.0.1 routes; leave remote Moonshot/DeepSeek/xAI unset.",
+      "Rewrite packet lanes to local_open_weights_mesh; keep Discord PAUSED unless armed.",
+      "One bounded cycle \u2014 no infinite recursive loops."
+    ],
+    "controls": {
+      "provider_calls": false,
+      "remote_default": false,
+      "content_neutral": true,
+      "secrets_in_artifacts": false
+    }
+  },
+  "perplexity": {
+    "bedrock": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/PERPLEXITY_CONTEXT_BEDROCK.md",
+    "bedrock_exists": true,
+    "compact": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/fable5-compact.json",
+    "compact_exists": true,
+    "central_control": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/perplexity_asuna_central_control.json",
+    "central_control_exists": true,
+    "bulk_upload_requires_explicit_approval": true
+  },
+  "vectors": [
+    {
+      "id": "kimi-k2",
+      "kind": "model",
+      "family": "kimi",
+      "leverage": "kimi3_third_leverage",
+      "remote_opt_in": true,
+      "sources": [
+        "moonshot_public_docs"
+      ],
+      "record_id": "kimi3:kimi-k2",
+      "content_hash": "448fc733cd44feb9",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "transition_route": "local_open_weights_mesh",
+      "sensitivity": "public_metadata"
+    },
+    {
+      "id": "kimi-k2.5",
+      "kind": "model",
+      "family": "kimi",
+      "leverage": "kimi3_third_leverage",
+      "remote_opt_in": true,
+      "sources": [
+        "moonshot_public_docs"
+      ],
+      "record_id": "kimi3:kimi-k2.5",
+      "content_hash": "d57047cc97f9d787",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "transition_route": "local_open_weights_mesh",
+      "sensitivity": "public_metadata"
+    },
+    {
+      "id": "moonshot-v1-auto",
+      "kind": "model",
+      "family": "moonshot",
+      "leverage": "kimi3_third_leverage",
+      "remote_opt_in": true,
+      "sources": [
+        "moonshot_public_docs"
+      ],
+      "record_id": "kimi3:moonshot-v1-auto",
+      "content_hash": "b48a379210bc5688",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "transition_route": "local_open_weights_mesh",
+      "sensitivity": "public_metadata"
+    },
+    {
+      "id": "kimi-local",
+      "kind": "model",
+      "family": "kimi-local-open-weights",
+      "leverage": "kimi3_third_leverage",
+      "remote_opt_in": false,
+      "sources": [
+        "ollama_or_local_gguf"
+      ],
+      "record_id": "kimi3:kimi-local",
+      "content_hash": "40b3c544b01c87f2",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "transition_route": "local_open_weights_mesh",
+      "sensitivity": "public_metadata"
+    },
+    {
+      "id": "deepseek_asuna_point0_unify.py",
+      "kind": "path_pointer",
+      "role": "leverage_1_deepseek",
+      "path": "/Users/fredwashere/wha-spell-simulator/tools/deepseek_asuna_point0_unify.py",
+      "leverage": "kimi3_third_leverage",
+      "sha256_16": "46e8d61316af9370",
+      "record_id": "kimi3:ptr:deepseek_asuna_point0_unify.py",
+      "content_hash": "46e8d61316af9370",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "transition_route": "local_open_weights_mesh",
+      "sensitivity": "local_path_only"
+    },
+    {
+      "id": "grok_xai_asuna_point0_unify.py",
+      "kind": "path_pointer",
+      "role": "leverage_2_grok_xai",
+      "path": "/Users/fredwashere/wha-spell-simulator/tools/grok_xai_asuna_point0_unify.py",
+      "leverage": "kimi3_third_leverage",
+      "sha256_16": "8065f3d26dc6b29a",
+      "record_id": "kimi3:ptr:grok_xai_asuna_point0_unify.py",
+      "content_hash": "8065f3d26dc6b29a",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "transition_route": "local_open_weights_mesh",
+      "sensitivity": "local_path_only"
+    },
+    {
+      "id": "white_moon_eastern_corner_unify.py",
+      "kind": "path_pointer",
+      "role": "eastern_corner_weave",
+      "path": "/Users/fredwashere/wha-spell-simulator/tools/white_moon_eastern_corner_unify.py",
+      "leverage": "kimi3_third_leverage",
+      "sha256_16": "49e52d145981cb09",
+      "record_id": "kimi3:ptr:white_moon_eastern_corner_unify.py",
+      "content_hash": "49e52d145981cb09",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "transition_route": "local_open_weights_mesh",
+      "sensitivity": "local_path_only"
+    },
+    {
+      "id": "perplexity_asuna_central_control.py",
+      "kind": "path_pointer",
+      "role": "central_control_ledger",
+      "path": "/Users/fredwashere/wha-spell-simulator/tools/perplexity_asuna_central_control.py",
+      "leverage": "kimi3_third_leverage",
+      "sha256_16": "bd494538cd629c4f",
+      "record_id": "kimi3:ptr:perplexity_asuna_central_control.py",
+      "content_hash": "bd494538cd629c4f",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "transition_route": "local_open_weights_mesh",
+      "sensitivity": "local_path_only"
+    },
+    {
+      "id": "recursive_node_bridge.py",
+      "kind": "path_pointer",
+      "role": "local_open_weights_route_metadata",
+      "path": "/Users/fredwashere/wha-spell-simulator/tools/recursive_node_bridge.py",
+      "leverage": "kimi3_third_leverage",
+      "sha256_16": "8f4154e0b9e32f1b",
+      "record_id": "kimi3:ptr:recursive_node_bridge.py",
+      "content_hash": "8f4154e0b9e32f1b",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "transition_route": "local_open_weights_mesh",
+      "sensitivity": "local_path_only"
+    },
+    {
+      "id": "models",
+      "kind": "path_pointer",
+      "role": "ollama_models_root",
+      "path": "/Users/fredwashere/.ollama/models",
+      "leverage": "kimi3_third_leverage",
+      "sha256_16": null,
+      "record_id": "kimi3:ptr:models",
+      "content_hash": "67beae6526ff3bff",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "transition_route": "local_open_weights_mesh",
+      "sensitivity": "local_path_only"
+    },
+    {
+      "id": "completion_bridge",
+      "kind": "transition_bridge",
+      "leverage": "kimi3_third_leverage",
+      "ordinal": 3,
+      "record_id": "kimi3:completion_bridge",
+      "content_hash": "dfc6001b772ad24d",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "transition_route": "local_open_weights_mesh",
+      "sensitivity": "public_metadata"
+    }
+  ],
+  "metrics": {
+    "vector_count": 11,
+    "model_count": 4,
+    "ollama_up": true,
+    "local_kimi_tag_count": 0,
+    "transition_armed": false,
+    "provider_calls": 0,
+    "point0_manifest_ok": true
+  },
+  "controls": {
+    "remote_moonshot_api": false,
+    "provider_calls": false,
+    "credential_access": false,
+    "credential_logging": false,
+    "secrets_in_artifacts": false,
+    "bulk_upload_perplexity": false,
+    "content_neutral": true,
+    "symbolic_only": true,
+    "source_pointers_only": true,
+    "local_open_weights_preferred": true,
+    "transition_requires_KIMI3_TRANSITION_ARMED": true
+  },
+  "unification_digest": "742e631d7a76038e4f2dadfb5bb0c175a3d8fd25d1a1f2effa97e6aad38dd86a",
+  "ok": true
+}

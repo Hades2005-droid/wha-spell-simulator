@@ -71,6 +71,12 @@
     "trifecta_release": "shadow_garden_handoff/releases/GATE_10_11_TRIFECTA_INTEGRATION_RELEASE.md",
     "github_asuna_point0": "shadow_garden_handoff/bridges/github_asuna_point0_unification.json",
     "deepseek_asuna_point0": "shadow_garden_handoff/bridges/deepseek_asuna_point0_unification.json",
+    "grok_xai_asuna_point0": "shadow_garden_handoff/bridges/grok_xai_asuna_point0_unification.json",
+    "white_moon_eastern_corner": "shadow_garden_handoff/bridges/white_moon_eastern_corner.json",
+    "discord_asuna_point0": "shadow_garden_handoff/bridges/discord_asuna_point0_unification.json",
+    "kimi3_asuna_point0": "shadow_garden_handoff/bridges/kimi3_asuna_point0_unification.json",
+    "kimi3_local_open_weights_transition": "shadow_garden_handoff/bridges/kimi3_local_open_weights_transition.json",
+    "perplexity_asuna_central_control": "shadow_garden_handoff/bridges/perplexity_asuna_central_control.json",
     "lainie_julia_scene": "shadow_garden_handoff/bridges/shadow_garden_lainie_julia_scene_manifest.json",
     "catalyst3_persona_telemetry": "shadow_garden_handoff/bridges/catalyst3_persona_telemetry_launch_finalization.json"
   },
