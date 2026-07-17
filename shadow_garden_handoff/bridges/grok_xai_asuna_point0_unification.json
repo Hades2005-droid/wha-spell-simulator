@@ -1,0 +1,350 @@
+{
+  "schema": "shadow_garden.grok_xai_asuna_point0_unification.v1",
+  "generated_at": "2026-07-17T19:48:04Z",
+  "phase": 2,
+  "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
+  "carrier": "love_and_harmony_6",
+  "bridge_signature": "f2e596cd043d6819",
+  "q24_canonical_id": "q24_eternal_dao_temperance_14_harmony_paradox_ignite_19_10_1",
+  "corner": {
+    "id": "eastern_white_moon",
+    "tarot": "Moon_18",
+    "role": "eastern_core_corner",
+    "partners": [
+      "deepseek_local_open_weights",
+      "grok_xai"
+    ],
+    "leveraged_by": "perplexity_asuna_point_0"
+  },
+  "unification_target": {
+    "name": "perplexity_asuna_point_0",
+    "point_0": "HOME",
+    "archetype": "angela_asuna_home",
+    "lane": "perplexity_fable5_synthesis",
+    "eastern_white_moon": true,
+    "meaning": "Index Grok/xAI (Harmony-6) with DeepSeek local-open-weights as the eastern white-moon corner leveraged by Asuna Point-0."
+  },
+  "asuna_point0": {
+    "point_0": "HOME",
+    "label": "perplexity_asuna_point_0",
+    "resident_archetype": "angela_asuna_home",
+    "protector_label": "KIRITO_FRED",
+    "scene_id": "kitchen_log_cabin_floor_22",
+    "symbolic_only": true,
+    "not_claim_about_real_people": true,
+    "registry_path": "/Users/fredwashere/shadow_garden_may30_monitoring/shaoshi_bridge/south_star/home_black_sun_registry.py",
+    "registry_exists": true,
+    "eastern_white_moon_corner": true,
+    "home_protected": {
+      "point_0": "HOME",
+      "point_1_protector": "KIRITO_FRED",
+      "resident_archetype": "angela_asuna_home",
+      "scene_id": "kitchen_log_cabin_floor_22",
+      "protection_vow": "protect_home_forever",
+      "testament_manifest": "/Users/fredwashere/shadow_garden_may30_monitoring/bundles/home_black_sun/manifests/love_testament_manifest.json",
+      "testament_exists": true,
+      "reference_count": 2,
+      "web_entry": "/Users/fredwashere/shadow_garden_may30_monitoring/bundles/home_black_sun/web/index.html"
+    },
+    "q24_canonical_id": "q24_eternal_dao_temperance_14_harmony_paradox_ignite_19_10_1",
+    "anchor": 14,
+    "phase": 2,
+    "manifest_ok": true
+  },
+  "api_surface": {
+    "mode": "env_names_only",
+    "remote_default": "opt_in_via_env",
+    "public_docs": "https://docs.x.ai/",
+    "env_names": [
+      "XAI_API_KEY",
+      "XAI_BASE_URL",
+      "GROK_TEXT_MODEL",
+      "GROK_VOICE_MODEL",
+      "GROK_IMAGE_MODEL",
+      "GROK_VIDEO_MODEL",
+      "GROK_AUDIO_MODEL",
+      "GROK_QWEN_MODEL",
+      "GROK_QWEN2_MODEL",
+      "GROK_QWEN3_MODEL"
+    ],
+    "env_present": {
+      "XAI_API_KEY": true,
+      "XAI_BASE_URL": false,
+      "GROK_TEXT_MODEL": false,
+      "GROK_VOICE_MODEL": true,
+      "GROK_IMAGE_MODEL": false,
+      "GROK_VIDEO_MODEL": false,
+      "GROK_AUDIO_MODEL": false,
+      "GROK_QWEN_MODEL": false,
+      "GROK_QWEN2_MODEL": false,
+      "GROK_QWEN3_MODEL": false
+    },
+    "notes": [
+      "Never print or catalog secret values.",
+      "Grok/xAI is Harmony-6 back lane; DeepSeek is local-open-weights east."
+    ]
+  },
+  "models": {
+    "public_docs": [
+      {
+        "id": "grok-3",
+        "family": "grok-text",
+        "source": "xai_public_docs",
+        "remote_opt_in": true
+      },
+      {
+        "id": "grok-4",
+        "family": "grok-text",
+        "source": "xai_public_docs",
+        "remote_opt_in": true
+      },
+      {
+        "id": "grok-voice-latest",
+        "family": "grok-voice",
+        "source": "env_default",
+        "remote_opt_in": true
+      },
+      {
+        "id": "grok-image-latest",
+        "family": "grok-image",
+        "source": "env_default",
+        "remote_opt_in": true
+      },
+      {
+        "id": "grok-video-latest",
+        "family": "grok-video",
+        "source": "env_default",
+        "remote_opt_in": true
+      },
+      {
+        "id": "grok-audio-latest",
+        "family": "grok-audio",
+        "source": "env_default",
+        "remote_opt_in": true
+      }
+    ]
+  },
+  "grok_cli": {
+    "on_path": true,
+    "path": "/Users/fredwashere/.grok/bin/grok",
+    "version_preview": "grok 0.2.101 (5bc4b5dfadcf) [stable]",
+    "ok": true
+  },
+  "mesh_pointers": [
+    {
+      "role": "grok_model_env_bridge",
+      "kind": "code",
+      "path": "/Users/fredwashere/wha-spell-simulator/tools/shadow_garden_bridge.py",
+      "exists": true,
+      "is_file": true,
+      "is_dir": false,
+      "content_inlined": false,
+      "size_bytes": 14065,
+      "sha256_16": "5fbff9cfa0d10e12"
+    },
+    {
+      "role": "harmony_6_lane_map",
+      "kind": "handoff",
+      "path": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/shaoshi_bridge/outbox/grok_45_harmony_6_shadow_lane.json",
+      "exists": true,
+      "is_file": true,
+      "is_dir": false,
+      "content_inlined": false,
+      "size_bytes": 1605,
+      "sha256_16": "d12051555f887e06"
+    },
+    {
+      "role": "jing_power_fuel",
+      "kind": "telemetry",
+      "path": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/jing_power_latest.json",
+      "exists": true,
+      "is_file": true,
+      "is_dir": false,
+      "content_inlined": false,
+      "size_bytes": 9053,
+      "sha256_16": "a0432879814c975c"
+    },
+    {
+      "role": "grok_cli_home",
+      "kind": "dir_pointer",
+      "path": "/Users/fredwashere/.grok",
+      "exists": true,
+      "is_file": false,
+      "is_dir": true,
+      "content_inlined": false
+    }
+  ],
+  "perplexity": {
+    "bedrock": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/PERPLEXITY_CONTEXT_BEDROCK.md",
+    "bedrock_exists": true,
+    "compact": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/fable5-compact.json",
+    "compact_exists": true,
+    "bulk_upload_requires_explicit_approval": true
+  },
+  "vectors": [
+    {
+      "id": "grok-3",
+      "kind": "model",
+      "family": "grok-text",
+      "corner": "eastern_white_moon",
+      "remote_opt_in": true,
+      "sources": [
+        "xai_public_docs"
+      ],
+      "record_id": "xai:grok-3",
+      "content_hash": "385d21fba30b45e9",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "public_metadata"
+    },
+    {
+      "id": "grok-4",
+      "kind": "model",
+      "family": "grok-text",
+      "corner": "eastern_white_moon",
+      "remote_opt_in": true,
+      "sources": [
+        "xai_public_docs"
+      ],
+      "record_id": "xai:grok-4",
+      "content_hash": "c8f2c76ce861c801",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "public_metadata"
+    },
+    {
+      "id": "grok-voice-latest",
+      "kind": "model",
+      "family": "grok-voice",
+      "corner": "eastern_white_moon",
+      "remote_opt_in": true,
+      "sources": [
+        "env_default"
+      ],
+      "record_id": "xai:grok-voice-latest",
+      "content_hash": "aa5e5aaf84482e9a",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "public_metadata"
+    },
+    {
+      "id": "grok-image-latest",
+      "kind": "model",
+      "family": "grok-image",
+      "corner": "eastern_white_moon",
+      "remote_opt_in": true,
+      "sources": [
+        "env_default"
+      ],
+      "record_id": "xai:grok-image-latest",
+      "content_hash": "cdbe6e5793b25d10",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "public_metadata"
+    },
+    {
+      "id": "grok-video-latest",
+      "kind": "model",
+      "family": "grok-video",
+      "corner": "eastern_white_moon",
+      "remote_opt_in": true,
+      "sources": [
+        "env_default"
+      ],
+      "record_id": "xai:grok-video-latest",
+      "content_hash": "2f2c2985207930b5",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "public_metadata"
+    },
+    {
+      "id": "grok-audio-latest",
+      "kind": "model",
+      "family": "grok-audio",
+      "corner": "eastern_white_moon",
+      "remote_opt_in": true,
+      "sources": [
+        "env_default"
+      ],
+      "record_id": "xai:grok-audio-latest",
+      "content_hash": "d2174e348c10470d",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "public_metadata"
+    },
+    {
+      "id": "shadow_garden_bridge.py",
+      "kind": "path_pointer",
+      "role": "grok_model_env_bridge",
+      "path": "/Users/fredwashere/wha-spell-simulator/tools/shadow_garden_bridge.py",
+      "corner": "eastern_white_moon",
+      "sha256_16": "5fbff9cfa0d10e12",
+      "record_id": "xai:ptr:shadow_garden_bridge.py",
+      "content_hash": "5fbff9cfa0d10e12",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "local_path_only"
+    },
+    {
+      "id": "grok_45_harmony_6_shadow_lane.json",
+      "kind": "path_pointer",
+      "role": "harmony_6_lane_map",
+      "path": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/shaoshi_bridge/outbox/grok_45_harmony_6_shadow_lane.json",
+      "corner": "eastern_white_moon",
+      "sha256_16": "d12051555f887e06",
+      "record_id": "xai:ptr:grok_45_harmony_6_shadow_lane.json",
+      "content_hash": "d12051555f887e06",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "local_path_only"
+    },
+    {
+      "id": "jing_power_latest.json",
+      "kind": "path_pointer",
+      "role": "jing_power_fuel",
+      "path": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/jing_power_latest.json",
+      "corner": "eastern_white_moon",
+      "sha256_16": "a0432879814c975c",
+      "record_id": "xai:ptr:jing_power_latest.json",
+      "content_hash": "a0432879814c975c",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "local_path_only"
+    },
+    {
+      "id": ".grok",
+      "kind": "path_pointer",
+      "role": "grok_cli_home",
+      "path": "/Users/fredwashere/.grok",
+      "corner": "eastern_white_moon",
+      "sha256_16": null,
+      "record_id": "xai:ptr:.grok",
+      "content_hash": "0e32715987d6391a",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "local_path_only"
+    },
+    {
+      "id": "grok_cli",
+      "kind": "cli_presence",
+      "on_path": true,
+      "corner": "eastern_white_moon",
+      "record_id": "xai:cli:grok",
+      "content_hash": "fda4cee44d8684f0",
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "local_tooling"
+    }
+  ],
+  "metrics": {
+    "vector_count": 11,
+    "model_count": 6,
+    "pointer_exists": 4,
+    "xai_key_present": true,
+    "grok_cli_on_path": true,
+    "point0_manifest_ok": true
+  },
+  "controls": {
+    "remote_xai_api": false,
+    "provider_calls": false,
+    "credential_access": false,
+    "credential_logging": false,
+    "secrets_in_artifacts": false,
+    "bulk_upload_perplexity": false,
+    "content_neutral": true,
+    "symbolic_only": true,
+    "source_pointers_only": true,
+    "local_mesh_preferred": true
+  },
+  "unification_digest": "f150c7a26188c3c327bbbd9fcf3044794822e57f7150ff885fec108fb509d73d",
+  "ok": true
+}

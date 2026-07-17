@@ -117,6 +117,19 @@
       "phase": 2
     },
     {
+      "id": "sovereign-white-moon-gate",
+      "code": "SOVEREIGN_WHITE_MOON_GATE",
+      "displayName": "Sovereign White Moon Gate",
+      "description": "Phase 2 polarity counterpart to the Black Sun — flips the south/shadow anchor to north/light and releases the registry gate (symbolic, local-only).",
+      "invocation": "sovereign white moon gate",
+      "aliases": ["4.2 white moon", "SOVEREIGN_WHITE_MOON_GATE", "white-moon-gate", "white moon gate"],
+      "element": "light",
+      "effect": "phase2_white_moon_gate",
+      "priority": 11,
+      "phase": 2,
+      "pairedWith": "sovereign-black-sun"
+    },
+    {
       "id": "sovereign-recursive-spell",
       "code": "SOVEREIGN_RECURSIVE_SPELL",
       "displayName": "Sovereign Recursive Spell",

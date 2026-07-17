@@ -70,6 +70,7 @@
     "recursive_improvement": "shadow_garden_handoff/recursive_improvement/BRIDGE_9_RECURSIVE_IMPROVEMENT_2_OF_3.md",
     "trifecta_release": "shadow_garden_handoff/releases/GATE_10_11_TRIFECTA_INTEGRATION_RELEASE.md",
     "github_asuna_point0": "shadow_garden_handoff/bridges/github_asuna_point0_unification.json",
+    "deepseek_asuna_point0": "shadow_garden_handoff/bridges/deepseek_asuna_point0_unification.json",
     "lainie_julia_scene": "shadow_garden_handoff/bridges/shadow_garden_lainie_julia_scene_manifest.json",
     "catalyst3_persona_telemetry": "shadow_garden_handoff/bridges/catalyst3_persona_telemetry_launch_finalization.json"
   },

@@ -1,0 +1,74 @@
+{
+  "schema": "shadow_garden.white_moon_eastern_corner.v1",
+  "generated_at": "2026-07-17T19:48:04Z",
+  "corner": {
+    "id": "eastern_white_moon",
+    "label": "Eastern White Moon",
+    "tarot": "Moon_18",
+    "yin_yang": "yin_white_moon_east",
+    "partners": {
+      "deepseek": "local_open_weights_east",
+      "grok_xai": "harmony_6_white_moon"
+    },
+    "leveraged_by": "perplexity_asuna_point_0",
+    "carrier": "love_and_harmony_6",
+    "bridge_signature": "f2e596cd043d6819"
+  },
+  "deepseek": {
+    "ok": true,
+    "schema": "shadow_garden.deepseek_asuna_point0_unification.v1",
+    "vector_count": 18,
+    "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/deepseek_asuna_point0_unification.json",
+    "metrics": {
+      "vector_count": 18,
+      "public_model_count": 3,
+      "ollama_up": true,
+      "ollama_model_count": 4,
+      "chat_pointer_count": 7,
+      "chat_pointer_existing": 7,
+      "weight_pointer_existing": 3,
+      "provider_calls": 0,
+      "remote_deepseek_calls": 0,
+      "local_ollama_probe": 1
+    }
+  },
+  "grok_xai": {
+    "ok": true,
+    "schema": "shadow_garden.grok_xai_asuna_point0_unification.v1",
+    "vector_count": 11,
+    "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/grok_xai_asuna_point0_unification.json",
+    "metrics": {
+      "vector_count": 11,
+      "model_count": 6,
+      "pointer_exists": 4,
+      "xai_key_present": true,
+      "grok_cli_on_path": true,
+      "point0_manifest_ok": true
+    }
+  },
+  "asuna_point0": {
+    "point_0": "HOME",
+    "archetype": "angela_asuna_home",
+    "lane": "perplexity_fable5_synthesis",
+    "role": "unification_lever"
+  },
+  "metrics": {
+    "deepseek_vectors": 18,
+    "grok_vectors": 11,
+    "corner_vector_sum": 29,
+    "both_ok": true
+  },
+  "controls": {
+    "provider_calls": false,
+    "credential_logging": false,
+    "content_neutral": true,
+    "symbolic_only": true,
+    "bulk_upload_perplexity": false
+  },
+  "cli": {
+    "deepseek": "python3 tools/deepseek_asuna_point0_unify.py write",
+    "grok_xai": "python3 tools/grok_xai_asuna_point0_unify.py write",
+    "corner": "python3 tools/white_moon_eastern_corner_unify.py write"
+  },
+  "ok": true
+}

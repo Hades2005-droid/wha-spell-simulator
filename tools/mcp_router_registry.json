@@ -1,0 +1,218 @@
+{
+  "schema": "shadow_garden.mcp_router_registry.v1",
+  "version": "1.0",
+  "generated_at": "2026-07-16T07:00:00Z",
+  "secrets_policy": "env_only",
+  "description": "Declarative registry + policy table for a hierarchical MCP router. The model proposes; this table decides what is allowed and in what order. Local-only artifact: no live calls are made from this file.",
+  "policy": {
+    "lanes": {
+      "read_only": {
+        "requires_approval": false,
+        "description": "Discovery, search, list, and read operations. Default lane."
+      },
+      "draft_write": {
+        "requires_approval": true,
+        "description": "Prepares a mutation as a local draft or preview. Human approves before send."
+      },
+      "confirmed_write": {
+        "requires_approval": true,
+        "approval_scope": "exact",
+        "description": "Executes a mutation. Approval must name the exact server, tool, and target."
+      }
+    },
+    "hard_blocks": [
+      "no_write_lane_without_explicit_approval",
+      "no_qdrant_upsert_or_delete_without_exact_collection_approval",
+      "no_multi_hop_plan_when_single_read_only_server_answers",
+      "no_credential_values_in_registry_or_ledger",
+      "respect_per_server_forbidden_list"
+    ],
+    "route_ledger": "shadow_garden_handoff/terminal_auto/logs/mcp_route_ledger.jsonl",
+    "ledger_required_fields": [
+      "timestamp", "intent", "domain", "lane", "targets",
+      "requires_approval", "approved", "allowed", "reason"
+    ]
+  },
+  "servers": [
+    {
+      "id": "github",
+      "domain": "source_control",
+      "transport": "mcp_external",
+      "env_vars": ["GITHUB_TOKEN", "GH_TOKEN", "GITHUB_OWNER", "GITHUB_REPO"],
+      "capabilities": ["list_prs", "read_repo_metadata", "create_issue", "workflow_status"],
+      "allowed_lanes": ["read_only", "draft_write", "confirmed_write"],
+      "default_lane": "read_only",
+      "forbidden": ["force_push_main", "exfil_secrets_from_actions", "download_untrusted_release_binaries_blind"]
+    },
+    {
+      "id": "slack",
+      "domain": "messaging",
+      "transport": "mcp_external",
+      "env_vars": ["SLACK_BOT_TOKEN", "SLACK_APP_TOKEN"],
+      "capabilities": ["read_channel", "search", "post_message", "react"],
+      "allowed_lanes": ["read_only", "draft_write", "confirmed_write"],
+      "default_lane": "read_only",
+      "forbidden": ["scrape_private_dms", "broadcast_credentials"]
+    },
+    {
+      "id": "atlassian",
+      "domain": "project_ops",
+      "transport": "mcp_external",
+      "env_vars": ["ATLASSIAN_API_TOKEN", "ATLASSIAN_EMAIL", "ATLASSIAN_DOMAIN", "JIRA_BASE_URL", "JIRA_PROJECT_KEY", "CONFLUENCE_BASE_URL", "CONFLUENCE_SPACE_KEY"],
+      "capabilities": ["jira_list_issues", "confluence_read_page", "confluence_search", "jira_create_issue"],
+      "allowed_lanes": ["read_only", "draft_write", "confirmed_write"],
+      "default_lane": "read_only",
+      "forbidden": ["bulk_delete", "permission_scheme_mutation"]
+    },
+    {
+      "id": "qdrant",
+      "domain": "vector_memory",
+      "transport": "mcp_external",
+      "env_vars": ["QDRANT_URL", "QDRANT_API_KEY", "QDRANT_COLLECTION"],
+      "capabilities": ["list_collections", "similarity_search", "upsert", "delete"],
+      "allowed_lanes": ["read_only", "confirmed_write"],
+      "default_lane": "read_only",
+      "write_approval_scope": "exact_collection",
+      "forbidden": ["upsert_without_approval", "delete_without_approval", "credential_exfil"]
+    },
+    {
+      "id": "linear",
+      "domain": "issue_tracking",
+      "transport": "mcp_external",
+      "env_vars": ["LINEAR_API_KEY"],
+      "capabilities": ["list_issues", "create_issue", "update_status", "comment"],
+      "allowed_lanes": ["read_only", "draft_write", "confirmed_write"],
+      "default_lane": "read_only",
+      "forbidden": []
+    },
+    {
+      "id": "x",
+      "domain": "social_publish",
+      "transport": "mcp_external",
+      "env_vars": ["X_API_KEY", "X_API_SECRET", "X_ACCESS_TOKEN", "X_ACCESS_SECRET", "X_BEARER_TOKEN"],
+      "capabilities": ["publish_post", "delete_post"],
+      "allowed_lanes": ["draft_write", "confirmed_write"],
+      "default_lane": "draft_write",
+      "forbidden": ["scrape_timeline", "scrape_comet", "harvest_followers", "credential_exfil"]
+    },
+    {
+      "id": "discord",
+      "domain": "status_notify",
+      "transport": "webhook_or_bot_api",
+      "env_vars": ["ENABLE_DISCORD", "DISCORD_WEBHOOK_URL", "DISCORD_BOT_TOKEN", "DISCORD_CHANNEL_ID", "DISCORD_GUILD_ID"],
+      "capabilities": ["notify_status", "ping"],
+      "allowed_lanes": ["read_only", "draft_write", "confirmed_write"],
+      "default_lane": "read_only",
+      "forbidden": ["secret_logging", "allowed_mentions", "scrape_channel_history", "broadcast_credentials"]
+    },
+    {
+      "id": "harpa",
+      "domain": "browser_assistant",
+      "transport": "mcp_external",
+      "env_vars": ["HARPA_API_URL", "HARPA_API_KEY"],
+      "capabilities": ["prompt_review", "local_status_review"],
+      "allowed_lanes": ["read_only"],
+      "default_lane": "read_only",
+      "forbidden": ["browser_automation", "scrape_third_party_pages", "credential_capture", "execute_unreviewed_actions"]
+    },
+    {
+      "id": "stripe",
+      "domain": "payments",
+      "transport": "mcp_external_or_local_webhook",
+      "env_vars": [
+        "STRIPE_PUBLISHABLE_KEY",
+        "STRIPE_SECRET_KEY",
+        "STRIPE_WEBHOOK_SECRET",
+        "STRIPE_API_VERSION",
+        "STRIPE_CONNECT_RETURN_URL",
+        "STRIPE_CONNECT_REFRESH_URL",
+        "STRIPE_TAX_ENABLED"
+      ],
+      "capabilities": [
+        "checkout_session_create",
+        "billing_subscription",
+        "connect_accounts_v2",
+        "invoice_create",
+        "tax_automatic",
+        "webhook_verify"
+      ],
+      "allowed_lanes": ["read_only", "draft_write", "confirmed_write"],
+      "default_lane": "read_only",
+      "forbidden": [
+        "log_or_echo_api_keys",
+        "commit_secrets",
+        "client_bundle_secret_key",
+        "adult_scrape",
+        "live_charge_without_approval"
+      ]
+    },
+    {
+      "id": "deepseek",
+      "domain": "local_open_weights",
+      "transport": "local_ollama_or_opt_in_http",
+      "env_vars": [
+        "DEEPSEEK_API_KEY",
+        "DEEPSEEK_BASE_URL",
+        "DEEPSEEK_MODEL",
+        "DEEPSEEK_LOCAL_ENABLED",
+        "OLLAMA_HOST",
+        "OLLAMA_MODELS"
+      ],
+      "capabilities": [
+        "list_local_ollama_tags",
+        "metadata_catalog_unify",
+        "chat_completions_opt_in",
+        "path_pointer_index"
+      ],
+      "allowed_lanes": ["read_only", "draft_write"],
+      "default_lane": "read_only",
+      "preferred_endpoint": "http://127.0.0.1:11434",
+      "remote_api_opt_in": true,
+      "catalog": "shadow_garden_handoff/bridges/deepseek_asuna_point0_unification.json",
+      "unify_cli": "tools/deepseek_asuna_point0_unify.py",
+      "corner": "eastern_white_moon",
+      "forbidden": [
+        "log_or_echo_api_keys",
+        "bulk_private_chat_upload",
+        "bulk_upload_perplexity_without_approval",
+        "remote_api_without_env_opt_in",
+        "credential_exfil",
+        "read_weight_blob_contents_into_catalog"
+      ]
+    },
+    {
+      "id": "grok_xai",
+      "domain": "harmony_6_white_moon",
+      "transport": "env_opt_in_http_or_cli",
+      "env_vars": [
+        "XAI_API_KEY",
+        "XAI_BASE_URL",
+        "GROK_TEXT_MODEL",
+        "GROK_VOICE_MODEL",
+        "GROK_IMAGE_MODEL",
+        "GROK_VIDEO_MODEL",
+        "GROK_AUDIO_MODEL"
+      ],
+      "capabilities": [
+        "metadata_catalog_unify",
+        "cli_presence_probe",
+        "harmony_6_lane_map",
+        "path_pointer_index"
+      ],
+      "allowed_lanes": ["read_only", "draft_write"],
+      "default_lane": "read_only",
+      "remote_api_opt_in": true,
+      "catalog": "shadow_garden_handoff/bridges/grok_xai_asuna_point0_unification.json",
+      "unify_cli": "tools/grok_xai_asuna_point0_unify.py",
+      "corner": "eastern_white_moon",
+      "corner_weave_cli": "tools/white_moon_eastern_corner_unify.py",
+      "forbidden": [
+        "log_or_echo_api_keys",
+        "bulk_private_chat_upload",
+        "bulk_upload_perplexity_without_approval",
+        "remote_api_without_env_opt_in",
+        "credential_exfil"
+      ]
+    }
+  ]
+}

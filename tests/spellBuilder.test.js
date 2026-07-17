@@ -398,3 +398,29 @@ test('rejects unsupported multiple sigils', () => {
   assert.equal(spellIR.status, 'Multiple sigils detected');
   assert.ok(spellIR.warnings.includes(GLYPH_WARNINGS.unsupportedMultipleSigils));
 });
+
+test('compiles a prepared sovereign white moon gate spell', () => {
+  const base = glyphAST({ element: 'light' });
+  const spellIR = compileSpell({
+    glyphAST: {
+      ...base,
+      primarySigil: {
+        ...base.primarySigil,
+        id: 'sovereign-white-moon-gate',
+        element: 'light',
+        effect: 'phase2_white_moon_gate',
+        displayName: 'Sovereign White Moon Gate',
+      },
+    },
+    config: CONFIG,
+  });
+
+  assert.equal(spellIR.type, 'SovereignSpellIR');
+  assert.equal(spellIR.valid, true);
+  assert.equal(spellIR.prepared, true);
+  assert.equal(spellIR.active, false);
+  assert.equal(spellIR.element, 'light');
+  assert.equal(spellIR.sovereign.id, 'sovereign-white-moon-gate');
+  assert.equal(spellIR.sovereign.effect, 'phase2_white_moon_gate');
+  assert.ok(spellIR.signature.startsWith('sovereign:sovereign-white-moon-gate:phase2_white_moon_gate:prepared'));
+});

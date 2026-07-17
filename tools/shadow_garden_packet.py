@@ -504,6 +504,149 @@ def check_github_asuna_point0() -> dict[str, Any]:
     }
 
 
+def check_deepseek_asuna_point0() -> dict[str, Any]:
+    path = WHA / "tools" / "deepseek_asuna_point0_unify.py"
+    if not path.is_file():
+        return {"ok": False, "detail": "missing deepseek_asuna_point0_unify.py"}
+    bridge = (
+        WHA
+        / "shadow_garden_handoff"
+        / "bridges"
+        / "deepseek_asuna_point0_unification.json"
+    )
+    proc = subprocess.run(
+        [sys.executable, str(path), "write"],
+        capture_output=True,
+        text=True,
+        timeout=60,
+        check=False,
+    )
+    ok = proc.returncode == 0 and bridge.is_file()
+    metrics: dict[str, Any] = {}
+    if bridge.is_file():
+        try:
+            doc = json.loads(bridge.read_text(encoding="utf-8"))
+            metrics = doc.get("metrics") or {}
+            controls = doc.get("controls") or {}
+            ok = (
+                ok
+                and bool(doc.get("ok"))
+                and controls.get("remote_deepseek_api") is False
+                and metrics.get("provider_calls") == 0
+            )
+        except json.JSONDecodeError:
+            ok = False
+    return {
+        "ok": ok,
+        "path": str(path),
+        "bridge": str(bridge),
+        "exit": proc.returncode,
+        "vector_count": metrics.get("vector_count"),
+        "ollama_up": metrics.get("ollama_up"),
+        "target": "perplexity_asuna_point_0",
+    }
+
+
+def check_grok_xai_asuna_point0() -> dict[str, Any]:
+    path = WHA / "tools" / "grok_xai_asuna_point0_unify.py"
+    if not path.is_file():
+        return {"ok": False, "detail": "missing grok_xai_asuna_point0_unify.py"}
+    bridge = (
+        WHA
+        / "shadow_garden_handoff"
+        / "bridges"
+        / "grok_xai_asuna_point0_unification.json"
+    )
+    proc = subprocess.run(
+        [sys.executable, str(path), "write"],
+        capture_output=True,
+        text=True,
+        timeout=60,
+        check=False,
+    )
+    ok = proc.returncode == 0 and bridge.is_file()
+    metrics: dict[str, Any] = {}
+    if bridge.is_file():
+        try:
+            doc = json.loads(bridge.read_text(encoding="utf-8"))
+            metrics = doc.get("metrics") or {}
+            controls = doc.get("controls") or {}
+            corner = doc.get("corner") or {}
+            ok = (
+                ok
+                and bool(doc.get("ok"))
+                and corner.get("id") == "eastern_white_moon"
+                and controls.get("provider_calls") is False
+            )
+        except json.JSONDecodeError:
+            ok = False
+    return {
+        "ok": ok,
+        "path": str(path),
+        "bridge": str(bridge),
+        "exit": proc.returncode,
+        "vector_count": metrics.get("vector_count"),
+        "corner": "eastern_white_moon",
+        "target": "perplexity_asuna_point_0",
+    }
+
+
+def check_white_moon_eastern_corner() -> dict[str, Any]:
+    path = WHA / "tools" / "white_moon_eastern_corner_unify.py"
+    if not path.is_file():
+        return {"ok": False, "detail": "missing white_moon_eastern_corner_unify.py"}
+    bridge = (
+        WHA / "shadow_garden_handoff" / "bridges" / "white_moon_eastern_corner.json"
+    )
+    proc = subprocess.run(
+        [sys.executable, str(path), "write"],
+        capture_output=True,
+        text=True,
+        timeout=120,
+        check=False,
+    )
+    ok = proc.returncode == 0 and bridge.is_file()
+    metrics: dict[str, Any] = {}
+    if bridge.is_file():
+        try:
+            doc = json.loads(bridge.read_text(encoding="utf-8"))
+            metrics = doc.get("metrics") or {}
+            ok = ok and bool(doc.get("ok")) and bool(metrics.get("both_ok"))
+        except json.JSONDecodeError:
+            ok = False
+    return {
+        "ok": ok,
+        "path": str(path),
+        "bridge": str(bridge),
+        "exit": proc.returncode,
+        "deepseek_vectors": metrics.get("deepseek_vectors"),
+        "grok_vectors": metrics.get("grok_vectors"),
+        "corner": "eastern_white_moon",
+        "target": "perplexity_asuna_point_0",
+    }
+
+
+def check_stripe_local_scaffold() -> dict[str, Any]:
+    server = WHA / "tools" / "stripe_local" / "server.mjs"
+    cfg = WHA / "src" / "adapters" / "stripeConfig.js"
+    plan = WHA / "docs" / "stripe-integration-plan.md"
+    ok = server.is_file() and cfg.is_file() and plan.is_file()
+    detail = {
+        "server": server.is_file(),
+        "config_adapter": cfg.is_file(),
+        "plan": plan.is_file(),
+        "live_default": False,
+        "bind": "127.0.0.1",
+    }
+    if cfg.is_file():
+        text = cfg.read_text(encoding="utf-8")
+        ok = ok and "secret_in_browser: false" in text and "STRIPE_PUBLISHABLE_KEY" in text
+    if server.is_file():
+        text = server.read_text(encoding="utf-8")
+        ok = ok and "STRIPE_LIVE_OK" in text and "dry_run" in text
+    return {"ok": ok, "path": str(server), **detail}
+
+
 def check_catalyst3_scene_handoff() -> dict[str, Any]:
     if not SCENE_MANIFEST.is_file() or not CATALYST3_HANDOFF.is_file():
         return {"ok": False, "detail": "missing scene or Catalyst 3 handoff"}
@@ -576,6 +719,10 @@ def run_self_tests() -> dict[str, Any]:
         ("black_sun_phase2_engine", check_black_sun_phase2_engine),
         ("eden_metadata_ingest", check_eden_metadata_ingest),
         ("github_asuna_point0", check_github_asuna_point0),
+        ("deepseek_asuna_point0", check_deepseek_asuna_point0),
+        ("grok_xai_asuna_point0", check_grok_xai_asuna_point0),
+        ("white_moon_eastern_corner", check_white_moon_eastern_corner),
+        ("stripe_local_scaffold", check_stripe_local_scaffold),
         ("catalyst3_scene_handoff", check_catalyst3_scene_handoff),
     ]
     results = [_run_check(name, fn) for name, fn in checks]
@@ -613,6 +760,9 @@ def build_packet(*, run_tests: bool = True) -> dict[str, Any]:
             "spacetime_alchemy": "engine",
             "eden": "bounded_local_metadata",
             "persona_telemetry": "local_manifest_only",
+            "deepseek": "local_ollama_11434_metadata_opt_in_remote",
+            "eastern_white_moon": "deepseek_plus_grok_xai_asuna_corner",
+            "stripe": "local_4242_dry_run_scaffold",
         },
         "aggregates": {
             "engine": [
@@ -622,6 +772,9 @@ def build_packet(*, run_tests: bool = True) -> dict[str, Any]:
                 "black_sun_phase2_engine",
                 "eden_metadata_ingest",
                 "github_asuna_point0_unify",
+                "deepseek_asuna_point0_unify",
+                "grok_xai_asuna_point0_unify",
+                "white_moon_eastern_corner_unify",
                 "catalyst3_persona_telemetry",
             ],
             "agent": [
@@ -636,7 +789,19 @@ def build_packet(*, run_tests: bool = True) -> dict[str, Any]:
                 "connector_bridge",
                 "complete_agent_bridge",
                 "q24_fable5_master_ingest",
+                "deepseek_local_open_weights",
+                "grok_xai_harmony_6",
+                "stripe_local_scaffold",
             ],
+        },
+        "eastern_white_moon": {
+            "id": "eastern_white_moon",
+            "tarot": "Moon_18",
+            "partners": ["deepseek_local_open_weights", "grok_xai"],
+            "leveraged_by": "perplexity_asuna_point_0",
+            "catalog": str(
+                WHA / "shadow_garden_handoff/bridges/white_moon_eastern_corner.json"
+            ),
         },
         "fable5_bedrock": {
             "manifest": str(FABLE5_BEDROCK),
@@ -673,6 +838,28 @@ def build_packet(*, run_tests: bool = True) -> dict[str, Any]:
                 WHA
                 / "shadow_garden_handoff/bridges/github_asuna_point0_unification.json"
             ),
+            "deepseek_asuna_point0": str(
+                WHA / "tools" / "deepseek_asuna_point0_unify.py"
+            ),
+            "deepseek_asuna_bridge": str(
+                WHA
+                / "shadow_garden_handoff/bridges/deepseek_asuna_point0_unification.json"
+            ),
+            "grok_xai_asuna_point0": str(
+                WHA / "tools" / "grok_xai_asuna_point0_unify.py"
+            ),
+            "grok_xai_asuna_bridge": str(
+                WHA
+                / "shadow_garden_handoff/bridges/grok_xai_asuna_point0_unification.json"
+            ),
+            "white_moon_eastern_corner": str(
+                WHA / "tools" / "white_moon_eastern_corner_unify.py"
+            ),
+            "white_moon_bridge": str(
+                WHA / "shadow_garden_handoff/bridges/white_moon_eastern_corner.json"
+            ),
+            "stripe_local": str(WHA / "tools" / "stripe_local" / "server.mjs"),
+            "stripe_config": str(WHA / "src" / "adapters" / "stripeConfig.js"),
             "lainie_julia_scene": str(SCENE_MANIFEST),
             "catalyst3_persona_telemetry": str(CATALYST3_HANDOFF),
             "phase2_gate": str(

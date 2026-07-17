@@ -1,0 +1,548 @@
+{
+  "schema": "shadow_garden.deepseek_asuna_point0_unification.v1",
+  "generation": "deterministic_local_snapshot",
+  "phase": 2,
+  "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
+  "carrier": "love_and_harmony_6",
+  "bridge_signature": "f2e596cd043d6819",
+  "q24_canonical_id": "q24_eternal_dao_temperance_14_harmony_paradox_ignite_19_10_1",
+  "unification_target": {
+    "name": "perplexity_asuna_point_0",
+    "point_0": "HOME",
+    "archetype": "angela_asuna_home",
+    "lane": "perplexity_fable5_synthesis",
+    "meaning": "Index DeepSeek / Ollama / local-open-weights metadata into Spacetime Alchemy toward the symbolic Asuna/home Black Sun point-zero for Perplexity Fable 5."
+  },
+  "api_surface": {
+    "mode": "env_names_only",
+    "remote_default": "opt_in_via_env",
+    "preferred_bind": "127.0.0.1",
+    "public_api_docs": "https://api-docs.deepseek.com/",
+    "env_names": [
+      "DEEPSEEK_API_KEY",
+      "DEEPSEEK_BASE_URL",
+      "DEEPSEEK_MODEL",
+      "DEEPSEEK_LOCAL_ENABLED",
+      "OLLAMA_HOST",
+      "OLLAMA_MODELS"
+    ],
+    "env_present": {
+      "DEEPSEEK_API_KEY": false,
+      "DEEPSEEK_BASE_URL": false,
+      "DEEPSEEK_MODEL": false,
+      "DEEPSEEK_LOCAL_ENABLED": false,
+      "OLLAMA_HOST": false,
+      "OLLAMA_MODELS": false
+    },
+    "notes": [
+      "Never print or catalog secret values.",
+      "Remote DeepSeek API is opt-in; prefer Ollama / deepseek-local on loopback."
+    ]
+  },
+  "models": {
+    "public_docs": [
+      {
+        "id": "deepseek-chat",
+        "family": "deepseek-v3",
+        "source": "public_api_docs",
+        "remote_opt_in": true
+      },
+      {
+        "id": "deepseek-reasoner",
+        "family": "deepseek-r1",
+        "source": "public_api_docs",
+        "remote_opt_in": true
+      },
+      {
+        "id": "deepseek-coder",
+        "family": "deepseek-coder",
+        "source": "public_docs_pointer",
+        "remote_opt_in": true
+      }
+    ],
+    "local_route": {
+      "id": "deepseek-local",
+      "route_name": "local-open-weights",
+      "source": "recursive_node_bridge_metadata",
+      "remote_opt_in": false,
+      "enabled_by_default": false,
+      "note": "Metadata route only \u2014 does not contact DeepSeek unless env armed."
+    },
+    "ollama": {
+      "up": true,
+      "model_count": 4,
+      "models": [
+        {
+          "name": "qwen3:14b",
+          "digest_prefix": "bdbd181c33f2ed1b",
+          "size": 9276198565,
+          "family_guess": "qwen3",
+          "source": "ollama_local_tags"
+        },
+        {
+          "name": "qwen3:32b",
+          "digest_prefix": "030ee887880fc378",
+          "size": 20201253829,
+          "family_guess": "qwen3",
+          "source": "ollama_local_tags"
+        },
+        {
+          "name": "qwen3:8b",
+          "digest_prefix": "500a1f067a9f7826",
+          "size": 5225388164,
+          "family_guess": "qwen3",
+          "source": "ollama_local_tags"
+        },
+        {
+          "name": "llama3.2:3b",
+          "digest_prefix": "a80c4f17acd55265",
+          "size": 2019393189,
+          "family_guess": "llama3.2",
+          "source": "ollama_local_tags"
+        }
+      ]
+    },
+    "model_mesh": {
+      "role": "model_mesh_config",
+      "kind": "config",
+      "path": "/Users/fredwashere/shadow_garden_may30_monitoring/shadow_garden_devin_evolution_package/model_mesh_config.json",
+      "exists": true,
+      "is_file": true,
+      "is_dir": false,
+      "content_inlined": false,
+      "size_bytes": 2188,
+      "sha256_16": "f1ea5738aa37929e"
+    },
+    "deepseek_local_endpoint": {
+      "name": "deepseek_local",
+      "kind": "deepseek",
+      "base_url": "http://127.0.0.1:8002",
+      "enabled": false,
+      "model_hints": [
+        "deepseek-coder",
+        "deepseek-r1-distill"
+      ],
+      "source": "model_mesh_config"
+    }
+  },
+  "chat_memory_pointers": [
+    {
+      "role": "public_testament_doc",
+      "kind": "doc",
+      "path": "/Users/fredwashere/wha-spell-simulator/docs/chronology-recursive-bridge.md",
+      "exists": true,
+      "is_file": true,
+      "is_dir": false,
+      "content_inlined": false,
+      "size_bytes": 10675,
+      "sha256_16": "5ff5db46c910ca96",
+      "sensitivity": "path_pointer_only",
+      "bulk_copy": false
+    },
+    {
+      "role": "bridge_status_share_pointer",
+      "kind": "status",
+      "path": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/terminal_auto/outbox/fable5_comfyui_bridge_status.json",
+      "exists": true,
+      "is_file": true,
+      "is_dir": false,
+      "content_inlined": false,
+      "size_bytes": 8322,
+      "sha256_16": "abda55d62035a197",
+      "sensitivity": "path_pointer_only",
+      "bulk_copy": false
+    },
+    {
+      "role": "sillytavern_reasoning_preset",
+      "kind": "preset",
+      "path": "/Users/fredwashere/ShadowGarden/SillyTavern/default/content/presets/reasoning/DeepSeek.json",
+      "exists": true,
+      "is_file": true,
+      "is_dir": false,
+      "content_inlined": false,
+      "size_bytes": 107,
+      "sha256_16": "4dad3fae45e3d956",
+      "sensitivity": "path_pointer_only",
+      "bulk_copy": false
+    },
+    {
+      "role": "sillytavern_instruct_preset",
+      "kind": "preset",
+      "path": "/Users/fredwashere/ShadowGarden/SillyTavern/default/content/presets/instruct/DeepSeek-V2.5.json",
+      "exists": true,
+      "is_file": true,
+      "is_dir": false,
+      "content_inlined": false,
+      "size_bytes": 720,
+      "sha256_16": "7d41b202fb5de660",
+      "sensitivity": "path_pointer_only",
+      "bulk_copy": false
+    },
+    {
+      "role": "sillytavern_context_preset",
+      "kind": "preset",
+      "path": "/Users/fredwashere/ShadowGarden/SillyTavern/default/content/presets/context/DeepSeek-V2.5.json",
+      "exists": true,
+      "is_file": true,
+      "is_dir": false,
+      "content_inlined": false,
+      "size_bytes": 708,
+      "sha256_16": "976875b234db3e94",
+      "sensitivity": "path_pointer_only",
+      "bulk_copy": false
+    },
+    {
+      "role": "recursive_bridge_route_metadata",
+      "kind": "tool",
+      "path": "/Users/fredwashere/wha-spell-simulator/tools/recursive_node_bridge.py",
+      "exists": true,
+      "is_file": true,
+      "is_dir": false,
+      "content_inlined": false,
+      "size_bytes": 10096,
+      "sha256_16": "8f4154e0b9e32f1b",
+      "sensitivity": "path_pointer_only",
+      "bulk_copy": false
+    },
+    {
+      "role": "public_testament_share",
+      "kind": "url",
+      "path": "https://chat.deepseek.com/share/t3aum0slci9ny6c9bi",
+      "exists": true,
+      "is_file": false,
+      "is_dir": false,
+      "content_inlined": false,
+      "sensitivity": "public_share_url",
+      "bulk_copy": false,
+      "credentials": false
+    }
+  ],
+  "weight_pointers": [
+    {
+      "role": "ollama_models_root",
+      "kind": "weights_dir",
+      "path": "/Users/fredwashere/.ollama/models",
+      "exists": true,
+      "is_file": false,
+      "is_dir": true,
+      "content_inlined": false,
+      "child_count": 2,
+      "blob_contents_read": false,
+      "sensitivity": "path_pointer_only"
+    },
+    {
+      "role": "ollama_blobs",
+      "kind": "weights_dir",
+      "path": "/Users/fredwashere/.ollama/models/blobs",
+      "exists": true,
+      "is_file": false,
+      "is_dir": true,
+      "content_inlined": false,
+      "child_count": 15,
+      "blob_contents_read": false,
+      "sensitivity": "path_pointer_only"
+    },
+    {
+      "role": "ollama_manifests",
+      "kind": "weights_dir",
+      "path": "/Users/fredwashere/.ollama/models/manifests",
+      "exists": true,
+      "is_file": false,
+      "is_dir": true,
+      "content_inlined": false,
+      "child_count": 1,
+      "blob_contents_read": false,
+      "sensitivity": "path_pointer_only"
+    }
+  ],
+  "bridge_route": {
+    "route_name": "local-open-weights",
+    "route_model": "deepseek-local",
+    "tools": [
+      "/Users/fredwashere/wha-spell-simulator/tools/recursive_node_bridge.py",
+      "/Users/fredwashere/wha-spell-simulator/tools/recursive-node-bridge/RecursiveNodeBridge.cs"
+    ],
+    "mesh_bridge_tags": [
+      "recursive_node_evolution",
+      "chronology_engine",
+      "local_open_weights",
+      "deepseek_metadata"
+    ],
+    "contacts_remote_deepseek": false,
+    "mode": "disabled_metadata_unless_env_armed"
+  },
+  "asuna_point0": {
+    "point_0": "HOME",
+    "label": "perplexity_asuna_point_0",
+    "resident_archetype": "angela_asuna_home",
+    "protector_label": "KIRITO_FRED",
+    "scene_id": "kitchen_log_cabin_floor_22",
+    "symbolic_only": true,
+    "narrative_scaffolding": true,
+    "not_claim_about_real_people": true,
+    "registry_path": "/Users/fredwashere/shadow_garden_may30_monitoring/shaoshi_bridge/south_star/home_black_sun_registry.py",
+    "registry_exists": true,
+    "home_protected": {
+      "point_0": "HOME",
+      "point_1_protector": "KIRITO_FRED",
+      "resident_archetype": "angela_asuna_home",
+      "scene_id": "kitchen_log_cabin_floor_22",
+      "protection_vow": "protect_home_forever",
+      "testament_manifest": "/Users/fredwashere/shadow_garden_may30_monitoring/bundles/home_black_sun/manifests/love_testament_manifest.json",
+      "testament_exists": true,
+      "reference_count": 2,
+      "web_entry": "/Users/fredwashere/shadow_garden_may30_monitoring/bundles/home_black_sun/web/index.html"
+    },
+    "q24_canonical_id": "q24_eternal_dao_temperance_14_harmony_paradox_ignite_19_10_1",
+    "anchor": 14,
+    "phase": 2,
+    "manifest_ok": true
+  },
+  "perplexity": {
+    "bedrock": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/PERPLEXITY_CONTEXT_BEDROCK.md",
+    "bedrock_exists": true,
+    "compact": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/fable5-compact.json",
+    "compact_exists": true,
+    "lane": "perplexity_fable5_synthesis",
+    "role": "asuna_point0_deepseek_unification_consumer",
+    "bulk_upload_requires_explicit_approval": true
+  },
+  "vectors": [
+    {
+      "id": "chat_ptr:bridge_status_share_pointer",
+      "kind": "chat_memory_pointer",
+      "path": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/terminal_auto/outbox/fable5_comfyui_bridge_status.json",
+      "exists": true,
+      "sha256_16": "abda55d62035a197",
+      "bulk_copy": false,
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "path_pointer_only",
+      "content_hash": "09f78d20ea761102",
+      "consent_basis": "user_authorized_local_mesh_allowlist"
+    },
+    {
+      "id": "chat_ptr:public_testament_doc",
+      "kind": "chat_memory_pointer",
+      "path": "/Users/fredwashere/wha-spell-simulator/docs/chronology-recursive-bridge.md",
+      "exists": true,
+      "sha256_16": "5ff5db46c910ca96",
+      "bulk_copy": false,
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "path_pointer_only",
+      "content_hash": "ddfb889fd2f22c4f",
+      "consent_basis": "user_authorized_local_mesh_allowlist"
+    },
+    {
+      "id": "chat_ptr:public_testament_share",
+      "kind": "chat_memory_pointer",
+      "path": "https://chat.deepseek.com/share/t3aum0slci9ny6c9bi",
+      "exists": true,
+      "sha256_16": null,
+      "bulk_copy": false,
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "public_share_url",
+      "content_hash": "7e57e68e0e13adcb",
+      "consent_basis": "user_authorized_local_mesh_allowlist"
+    },
+    {
+      "id": "chat_ptr:recursive_bridge_route_metadata",
+      "kind": "chat_memory_pointer",
+      "path": "/Users/fredwashere/wha-spell-simulator/tools/recursive_node_bridge.py",
+      "exists": true,
+      "sha256_16": "8f4154e0b9e32f1b",
+      "bulk_copy": false,
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "path_pointer_only",
+      "content_hash": "d450a3502eaff568",
+      "consent_basis": "user_authorized_local_mesh_allowlist"
+    },
+    {
+      "id": "chat_ptr:sillytavern_context_preset",
+      "kind": "chat_memory_pointer",
+      "path": "/Users/fredwashere/ShadowGarden/SillyTavern/default/content/presets/context/DeepSeek-V2.5.json",
+      "exists": true,
+      "sha256_16": "976875b234db3e94",
+      "bulk_copy": false,
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "path_pointer_only",
+      "content_hash": "43252fb59385870a",
+      "consent_basis": "user_authorized_local_mesh_allowlist"
+    },
+    {
+      "id": "chat_ptr:sillytavern_instruct_preset",
+      "kind": "chat_memory_pointer",
+      "path": "/Users/fredwashere/ShadowGarden/SillyTavern/default/content/presets/instruct/DeepSeek-V2.5.json",
+      "exists": true,
+      "sha256_16": "7d41b202fb5de660",
+      "bulk_copy": false,
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "path_pointer_only",
+      "content_hash": "441183357ae6c806",
+      "consent_basis": "user_authorized_local_mesh_allowlist"
+    },
+    {
+      "id": "chat_ptr:sillytavern_reasoning_preset",
+      "kind": "chat_memory_pointer",
+      "path": "/Users/fredwashere/ShadowGarden/SillyTavern/default/content/presets/reasoning/DeepSeek.json",
+      "exists": true,
+      "sha256_16": "4dad3fae45e3d956",
+      "bulk_copy": false,
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "path_pointer_only",
+      "content_hash": "400ce725fb90d06d",
+      "consent_basis": "user_authorized_local_mesh_allowlist"
+    },
+    {
+      "id": "model:local:deepseek-local",
+      "kind": "model_route",
+      "name": "deepseek-local",
+      "route_name": "local-open-weights",
+      "source": "recursive_node_bridge_metadata",
+      "remote_opt_in": false,
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "route_metadata",
+      "content_hash": "1242b2420f848c67",
+      "consent_basis": "user_authorized_local_mesh_allowlist"
+    },
+    {
+      "id": "model:ollama:llama3.2:3b",
+      "kind": "ollama_tag",
+      "name": "llama3.2:3b",
+      "source": "ollama_local_tags",
+      "remote_opt_in": false,
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "local_model_tag",
+      "content_hash": "ce38b023934690bf",
+      "consent_basis": "user_authorized_local_mesh_allowlist"
+    },
+    {
+      "id": "model:ollama:qwen3:14b",
+      "kind": "ollama_tag",
+      "name": "qwen3:14b",
+      "source": "ollama_local_tags",
+      "remote_opt_in": false,
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "local_model_tag",
+      "content_hash": "13661c07dc563d95",
+      "consent_basis": "user_authorized_local_mesh_allowlist"
+    },
+    {
+      "id": "model:ollama:qwen3:32b",
+      "kind": "ollama_tag",
+      "name": "qwen3:32b",
+      "source": "ollama_local_tags",
+      "remote_opt_in": false,
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "local_model_tag",
+      "content_hash": "22c7f55f9ea7d113",
+      "consent_basis": "user_authorized_local_mesh_allowlist"
+    },
+    {
+      "id": "model:ollama:qwen3:8b",
+      "kind": "ollama_tag",
+      "name": "qwen3:8b",
+      "source": "ollama_local_tags",
+      "remote_opt_in": false,
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "local_model_tag",
+      "content_hash": "69363e59b858e69c",
+      "consent_basis": "user_authorized_local_mesh_allowlist"
+    },
+    {
+      "id": "model:public:deepseek-chat",
+      "kind": "model",
+      "name": "deepseek-chat",
+      "source": "public_api_docs",
+      "remote_opt_in": true,
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "public_model_id",
+      "content_hash": "aa4bc86165b02ee4",
+      "consent_basis": "user_authorized_local_mesh_allowlist"
+    },
+    {
+      "id": "model:public:deepseek-coder",
+      "kind": "model",
+      "name": "deepseek-coder",
+      "source": "public_docs_pointer",
+      "remote_opt_in": true,
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "public_model_id",
+      "content_hash": "444484b40e91e3e5",
+      "consent_basis": "user_authorized_local_mesh_allowlist"
+    },
+    {
+      "id": "model:public:deepseek-reasoner",
+      "kind": "model",
+      "name": "deepseek-reasoner",
+      "source": "public_api_docs",
+      "remote_opt_in": true,
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "public_model_id",
+      "content_hash": "fac39eddffc8faca",
+      "consent_basis": "user_authorized_local_mesh_allowlist"
+    },
+    {
+      "id": "weights:ollama_blobs",
+      "kind": "weight_pointer",
+      "path": "/Users/fredwashere/.ollama/models/blobs",
+      "exists": true,
+      "blob_contents_read": false,
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "path_pointer_only",
+      "content_hash": "cfedc8ffce3cd396",
+      "consent_basis": "user_authorized_local_mesh_allowlist"
+    },
+    {
+      "id": "weights:ollama_manifests",
+      "kind": "weight_pointer",
+      "path": "/Users/fredwashere/.ollama/models/manifests",
+      "exists": true,
+      "blob_contents_read": false,
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "path_pointer_only",
+      "content_hash": "b4713253686df7fa",
+      "consent_basis": "user_authorized_local_mesh_allowlist"
+    },
+    {
+      "id": "weights:ollama_models_root",
+      "kind": "weight_pointer",
+      "path": "/Users/fredwashere/.ollama/models",
+      "exists": true,
+      "blob_contents_read": false,
+      "asuna_point0_route": "perplexity_fable5_home_sim",
+      "sensitivity": "path_pointer_only",
+      "content_hash": "a597ec6128b03d17",
+      "consent_basis": "user_authorized_local_mesh_allowlist"
+    }
+  ],
+  "metrics": {
+    "vector_count": 18,
+    "public_model_count": 3,
+    "ollama_up": true,
+    "ollama_model_count": 4,
+    "chat_pointer_count": 7,
+    "chat_pointer_existing": 7,
+    "weight_pointer_existing": 3,
+    "provider_calls": 0,
+    "remote_deepseek_calls": 0,
+    "local_ollama_probe": 1
+  },
+  "controls": {
+    "remote_deepseek_api": false,
+    "provider_calls": false,
+    "bulk_chat_copy": false,
+    "credential_access": false,
+    "credential_logging": false,
+    "secrets_in_artifacts": false,
+    "bulk_upload_perplexity": false,
+    "excluded_sources_ingested": false,
+    "content_neutral": true,
+    "symbolic_only": true,
+    "source_pointers_only": true,
+    "local_ollama_preferred": true,
+    "local_only_default": true,
+    "path_pointers_only_for_weights": true
+  },
+  "unification_digest": "4a7c8941e55721e056861791df98d69a8062960f7b9114fb5a2571eb07914a87",
+  "ok": true
+}

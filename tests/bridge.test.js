@@ -279,6 +279,44 @@ describe('Sovereign Executor', () => {
       assert.ok(result.error.includes('Unknown'));
     });
   });
+
+  describe('Phase 2 polarity pair — black sun / white moon gate', () => {
+    it('should identify the white moon gate as a sovereign spell', () => {
+      assert.strictEqual(isSovereignSpell('sovereign-white-moon-gate'), true);
+    });
+
+    it('should expose phase2 effects including the white moon gate', () => {
+      ['phase2_black_sun', 'phase2_moon_gate', 'phase2_recursive_spell', 'phase2_white_moon_gate']
+        .forEach((effect) => {
+          assert.strictEqual(typeof SOVEREIGN_EFFECTS[effect], 'function', `${effect} should be a function`);
+        });
+    });
+
+    it('should execute the white moon gate as a polarity reversal of the black sun', async () => {
+      const result = await executeSovereignEffect('phase2_white_moon_gate', {});
+      assert.strictEqual(result.success, true);
+      assert.strictEqual(result.result.pairedWith, 'sovereign-black-sun');
+      assert.deepStrictEqual(result.result.polarity, {
+        from: 'south_shadow',
+        to: 'north_light',
+        flip: 'reversal',
+      });
+      assert.strictEqual(result.result.contentNeutral, true);
+      assert.strictEqual(result.result.executionMode, 'manifest_only');
+    });
+
+    it('should mirror the black sun ignite sequence in reverse', async () => {
+      const blackSun = await executeSovereignEffect('phase2_black_sun', {});
+      const whiteMoon = await executeSovereignEffect('phase2_white_moon_gate', {});
+      assert.deepStrictEqual(
+        [...blackSun.result.sequence].reverse(),
+        whiteMoon.result.sequence,
+      );
+      assert.strictEqual(blackSun.result.carrier, whiteMoon.result.carrier);
+      assert.strictEqual(blackSun.result.bridgeSignature, whiteMoon.result.bridgeSignature);
+      assert.strictEqual(blackSun.result.q24Anchor, whiteMoon.result.q24Anchor);
+    });
+  });
 });
 
 describe('Mesh Integration', () => {

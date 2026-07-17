@@ -18,6 +18,7 @@ const SOVEREIGN_EFFECTS = {
   phase2_black_sun: executePhase2BlackSun,
   phase2_moon_gate: executePhase2MoonGate,
   phase2_recursive_spell: executePhase2RecursiveSpell,
+  phase2_white_moon_gate: executePhase2WhiteMoonGate,
 };
 
 /**
@@ -260,6 +261,30 @@ async function executePhase2MoonGate(_context) {
     cli: 'python3 tools/black_sun_phase2_engine.py replay --actions launch,fable,harmony,chariot,land',
     timestamp: new Date().toISOString(),
     message: 'Moon-18 gate checklist ready for party turn',
+  };
+}
+
+/**
+ * Phase 2 — White Moon Gate: polarity counterpart to the Black Sun anchor.
+ * Flips the shadow/south anchor back to light/north and releases the
+ * scene-registry gate. Symbolic, deterministic, local-only.
+ */
+async function executePhase2WhiteMoonGate(_context) {
+  return {
+    phase: 2,
+    packageId: 'shadow-garden-phase2-fable5-white-moon-gate',
+    pairedWith: 'sovereign-black-sun',
+    polarity: { from: 'south_shadow', to: 'north_light', flip: 'reversal' },
+    q24Anchor: 14,
+    reduceAnchor: false,
+    sequence: [1, 10, 19],
+    carrier: 'love_and_harmony_6',
+    bridgeSignature: 'f2e596cd043d6819',
+    mechanic: 'scene_registry_release',
+    executionMode: 'manifest_only',
+    contentNeutral: true,
+    timestamp: new Date().toISOString(),
+    message: 'White Moon Gate polarity reversal armed (symbolic / local-only) — Black Sun anchor released',
   };
 }
 
