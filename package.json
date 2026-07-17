@@ -11,7 +11,12 @@
     "lint": "eslint src/ tests/ tools/",
     "lint:fix": "eslint src/ tests/ tools/ --fix",
     "format": "prettier --write 'src/**/*.js' 'tests/**/*.js' 'tools/**/*.js'",
-    "format:check": "prettier --check 'src/**/*.js' 'tests/**/*.js' 'tools/**/*.js'"
+    "format:check": "prettier --check 'src/**/*.js' 'tests/**/*.js' 'tools/**/*.js'",
+    "stripe:local": "node tools/stripe_local/server.mjs",
+    "stripe:sandbox": "npx --yes @stripe/cli sandbox create"
+  },
+  "dependencies": {
+    "stripe": "^22.3.2"
   },
   "devDependencies": {
     "eslint": "^8.57.1",

@@ -1,32 +1,46 @@
 # Shadow Garden — local Stripe scaffold
 
-Bind: `127.0.0.1` only. Secrets: env names in `.env` / `~/ShadowGarden/.env` (`chmod 600`).
+Bind: `127.0.0.1` only. Secrets: env names in local env files (`chmod 600`). Never commit values.
 
 ## Run (dry-run default)
 
 ```bash
-cd ~/wha-spell-simulator
-node tools/stripe_local/server.mjs
+npm run stripe:local
 # GET http://127.0.0.1:4242/health
 # GET http://127.0.0.1:4242/v1/manifest
+# POST http://127.0.0.1:4242/v1/checkout/session  {"amount_cents":500}
 ```
 
-Arm live keys only after approval:
+## Arm live / sandbox Checkout Sessions
+
+1. Create sandbox keys (no Dashboard account required for trial):
+
+```bash
+npm run stripe:sandbox
+# copy the printed publishable + restricted/secret names into your shell env
+```
+
+2. Or paste restricted keys from Dashboard into shell env (prefer `rk_test_…`).
+
+3. Start armed:
 
 ```bash
 export STRIPE_LIVE_OK=1
-# STRIPE_SECRET_KEY / STRIPE_PUBLISHABLE_KEY / STRIPE_WEBHOOK_SECRET already in env
-node tools/stripe_local/server.mjs
+# also set publishable, secret, and webhook signing names in the environment
+npm run stripe:local
+curl -s -X POST http://127.0.0.1:4242/v1/checkout/session \
+  -H 'content-type: application/json' \
+  -d '{"amount_cents":500,"product_name":"Shadow Garden session"}'
 ```
 
 Forward webhooks:
 
 ```bash
-stripe listen --forward-to localhost:4242/webhooks/stripe
+npx --yes @stripe/cli listen --forward-to localhost:4242/webhooks/stripe
 ```
 
-## Products covered (scaffolded)
+## Products covered
 
-Payments, Billing, Connect (Accounts v2 notes), Invoicing, Tax — see `docs/stripe-integration-plan.md`.
+Payments (Checkout Sessions), Billing, Connect (Accounts v2 notes), Invoicing, Tax — see `docs/stripe-integration-plan.md`.
 
-Checkout create stays dry-run until Stripe SDK + MCP planner (`/add-plugin stripe`) complete the live path.
+Rules enforced in scaffold: omit `payment_method_types`; `integration_identifier` on create; Tax off until registrations exist.

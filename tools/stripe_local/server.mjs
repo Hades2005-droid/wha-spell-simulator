@@ -2,13 +2,17 @@
 /**
  * Shadow Garden local Stripe scaffold (Payments / Billing / webhooks).
  *
- * Default: dry-run / status only — no live Stripe SDK calls unless
- * STRIPE_LIVE_OK=1 and STRIPE_SECRET_KEY are set.
+ * Default: dry-run / status only.
+ * Live Checkout Sessions require BOTH:
+ *   - process env arm flag set to "1"
+ *   - restricted/secret key present in process env
  *
- * Env names only in logs. Never print key values.
+ * Never logs key values. Bind 127.0.0.1 only.
+ * Checkout: omit payment_method_types (dynamic methods).
+ * API version: 2026-06-24.dahlia
  */
 import http from 'node:http';
-import { createHmac, timingSafeEqual } from 'node:crypto';
+import { createHmac, timingSafeEqual, randomBytes } from 'node:crypto';
 
 const PORT = Number(process.env.STRIPE_LOCAL_PORT || 4242);
 const LIVE = process.env.STRIPE_LIVE_OK === '1';
@@ -16,6 +20,11 @@ const SECRET = process.env.STRIPE_SECRET_KEY || '';
 const WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET || '';
 const PUBLISHABLE = process.env.STRIPE_PUBLISHABLE_KEY || '';
 const API_VERSION = process.env.STRIPE_API_VERSION || '2026-06-24.dahlia';
+const TAX = String(process.env.STRIPE_TAX_ENABLED || 'false').toLowerCase() === 'true';
+const SUCCESS_URL =
+  process.env.STRIPE_SUCCESS_URL || 'http://127.0.0.1:5173/billing/success?session_id={CHECKOUT_SESSION_ID}';
+const CANCEL_URL =
+  process.env.STRIPE_CANCEL_URL || 'http://127.0.0.1:5173/billing/cancel';
 
 function presence() {
   return {
@@ -37,7 +46,6 @@ function json(res, status, body) {
 
 function verifyStripeSignature(rawBody, header, secret) {
   if (!header || !secret) return false;
-  // Stripe-Signature: t=timestamp,v1=sig
   const parts = Object.fromEntries(
     header.split(',').map((p) => {
       const [k, v] = p.trim().split('=');
@@ -64,6 +72,16 @@ async function readRaw(req) {
   return Buffer.concat(chunks).toString('utf8');
 }
 
+function integrationId() {
+  return `shadowgarden_checkout_${randomBytes(4).toString('hex')}`;
+}
+
+async function getStripeClient() {
+  if (!LIVE || !SECRET) return null;
+  const { default: Stripe } = await import('stripe');
+  return new Stripe(SECRET, { apiVersion: API_VERSION });
+}
+
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url || '/', `http://127.0.0.1:${PORT}`);
 
@@ -78,10 +96,12 @@ const server = http.createServer(async (req, res) => {
       api_version: API_VERSION,
       products: ['Payments', 'Billing', 'Connect', 'Invoicing', 'Tax'],
       mode: LIVE && SECRET ? 'armed_live_keys_present' : 'dry_run',
+      sdk: 'stripe_node',
       controls: {
         secret_logged: false,
         content_neutral: true,
         live_requires_STRIPE_LIVE_OK: true,
+        omit_payment_method_types: true,
       },
     });
   }
@@ -102,7 +122,7 @@ const server = http.createServer(async (req, res) => {
         note: 'No v1 type=express; use /v2/core/accounts',
       },
       tax: {
-        automatic_tax: process.env.STRIPE_TAX_ENABLED === 'true',
+        automatic_tax: TAX,
         requires_registrations: true,
       },
       webhook_path: '/webhooks/stripe',
@@ -112,24 +132,85 @@ const server = http.createServer(async (req, res) => {
   }
 
   if (req.method === 'POST' && url.pathname === '/v1/checkout/session') {
+    let body = {};
+    try {
+      const raw = await readRaw(req);
+      body = raw ? JSON.parse(raw) : {};
+    } catch {
+      return json(res, 400, { ok: false, error: 'invalid_json' });
+    }
+
+    const mode = body.mode === 'subscription' ? 'subscription' : 'payment';
+    const amount = Number(body.amount_cents || 500);
+    const currency = String(body.currency || 'usd');
+    const productName = String(body.product_name || 'Shadow Garden session');
+
     if (!LIVE || !SECRET) {
       return json(res, 200, {
         ok: true,
         dry_run: true,
         message:
-          'Checkout Session not created (dry-run). Set STRIPE_LIVE_OK=1 and STRIPE_SECRET_KEY to arm.',
+          'Checkout Session not created (dry-run). Export keys and set STRIPE_LIVE_OK=1 to arm.',
         would_create: {
-          mode: 'payment_or_subscription',
-          success_url: 'http://127.0.0.1:5173/billing/success',
-          cancel_url: 'http://127.0.0.1:5173/billing/cancel',
+          mode,
+          amount_cents: amount,
+          currency,
+          success_url: SUCCESS_URL,
+          cancel_url: CANCEL_URL,
+          automatic_tax: TAX,
         },
       });
     }
-    return json(res, 501, {
-      ok: false,
-      error: 'live_checkout_not_wired_install_stripe_sdk',
-      hint: 'npm i stripe && wire createCheckoutSession — MCP planner preferred after /add-plugin stripe',
-    });
+
+    try {
+      const stripe = await getStripeClient();
+      const params = {
+        mode,
+        success_url: SUCCESS_URL,
+        cancel_url: CANCEL_URL,
+        integration_identifier: integrationId(),
+        line_items:
+          mode === 'payment'
+            ? [
+                {
+                  quantity: 1,
+                  price_data: {
+                    currency,
+                    unit_amount: amount,
+                    product_data: { name: productName },
+                  },
+                },
+              ]
+            : body.price_id
+              ? [{ price: String(body.price_id), quantity: 1 }]
+              : undefined,
+      };
+      if (TAX) {
+        params.automatic_tax = { enabled: true };
+      }
+      if (mode === 'subscription' && !body.price_id) {
+        return json(res, 400, {
+          ok: false,
+          error: 'subscription_requires_price_id',
+        });
+      }
+      const session = await stripe.checkout.sessions.create(params);
+      return json(res, 200, {
+        ok: true,
+        dry_run: false,
+        id: session.id,
+        url: session.url,
+        mode: session.mode,
+        // never include secret material
+      });
+    } catch (err) {
+      return json(res, 502, {
+        ok: false,
+        error: 'checkout_create_failed',
+        type: err?.type || err?.name || 'Error',
+        message: String(err?.message || err).slice(0, 200),
+      });
+    }
   }
 
   if (req.method === 'POST' && url.pathname === '/webhooks/stripe') {
@@ -153,7 +234,7 @@ const server = http.createServer(async (req, res) => {
       verified: Boolean(WEBHOOK_SECRET) && verified,
       dry_run: !LIVE,
       event_type: eventType,
-      note: 'Handler acknowledges only — no business mutation in scaffold',
+      note: 'Handler acknowledges only — extend for fulfillment after Dashboard wiring',
     });
   }
 
