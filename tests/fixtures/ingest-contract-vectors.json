@@ -1,0 +1,26 @@
+{
+  "description": "Shared, language-neutral test vectors for the Eden ingest contract. Both the JS AssetIngestCatalog (src/compiler/assetIngestContract.js) and the C++ eden::MetadataCatalog (cpp/include/eden/ingest_policy.hpp) MUST replay this sequence through one fresh catalog and produce the same decision, in order. Provenance is keyed on sha256. When you change the contract, change this file and both suites in lockstep.",
+  "policy": { "maxDepth": 2, "maxEntries": 3, "maxBytes": 70, "maxRecordBytes": 40 },
+  "digests": {
+    "d1": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "d2": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "d3": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "d4": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+  },
+  "sequence": [
+    { "note": "empty source rejected first", "record": { "source": "", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "bytes": 10, "depth": 0 }, "expect": "empty_source" },
+    { "note": "remote authority rejected", "record": { "source": "s3://bucket/a.png", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "bytes": 10, "depth": 0 }, "expect": "remote_source_rejected" },
+    { "note": "secret-named path rejected", "record": { "source": "/home/u/api_key.txt", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "bytes": 10, "depth": 0 }, "expect": "secret_named_path_rejected" },
+    { "note": "missing digest rejected", "record": { "source": "/home/u/a.png", "sha256": "", "bytes": 10, "depth": 0 }, "expect": "missing_digest" },
+    { "note": "depth over maxDepth rejected", "record": { "source": "/home/u/deep.png", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "bytes": 10, "depth": 3 }, "expect": "depth_limit_exceeded" },
+    { "note": "record over maxRecordBytes rejected", "record": { "source": "/home/u/big.png", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "bytes": 50, "depth": 0 }, "expect": "record_byte_limit_exceeded" },
+    { "note": "first accept (astro-node: 'moon')", "record": { "source": "/home/u/moon.png", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "bytes": 30, "depth": 0 }, "expect": "accepted" },
+    { "note": "duplicate path beats capacity", "record": { "source": "/home/u/moon.png", "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "bytes": 5, "depth": 0 }, "expect": "duplicate_path" },
+    { "note": "duplicate content by sha256", "record": { "source": "/home/u/copy.png", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "bytes": 5, "depth": 0 }, "expect": "duplicate_content" },
+    { "note": "second accept (land: 'world')", "record": { "source": "/home/u/world.png", "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "bytes": 30, "depth": 0 }, "expect": "accepted" },
+    { "note": "cumulative byte cap (checked after entry cap; entries still under 3)", "record": { "source": "/home/u/region.png", "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "bytes": 20, "depth": 0 }, "expect": "total_byte_limit_exceeded" },
+    { "note": "third accept fits remaining budget (astro-node: 'node')", "record": { "source": "/home/u/node-a.png", "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "bytes": 5, "depth": 0 }, "expect": "accepted" },
+    { "note": "entry limit reached (3/3), beats byte cap", "record": { "source": "/home/u/extra.png", "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd", "bytes": 1, "depth": 0 }, "expect": "entry_limit_exceeded" }
+  ],
+  "expectedFinal": { "accepted": 3, "totalBytes": 65 }
+}
