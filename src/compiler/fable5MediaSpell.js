@@ -52,7 +52,9 @@ export function compileFable5MediaSpell({ spellIR, medium = "image", intent = ""
   if (!["image", "video", "audio"].includes(medium)) {
     throw new Error(`unsupported medium: ${medium}`);
   }
-  const digests = Array.isArray(assetDigests) ? assetDigests.slice() : [];
+  // Sort so the manifest + fingerprint are deterministic for the same set of
+  // assets regardless of the order the caller passed them in.
+  const digests = (Array.isArray(assetDigests) ? assetDigests.slice() : []).map(String).sort();
   const canonical = [
     spellIR.element,
     spellIR.primaryManifestation,

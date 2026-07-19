@@ -51,9 +51,15 @@ def extract_pdf(path: Path) -> str:
         except Exception as exc:  # pragma: no cover - malformed pdf
             die(f"{mod_name} could not read the PDF: {exc}")
     if shutil.which("pdftotext"):
-        out = subprocess.run(["pdftotext", "-q", str(path), "-"], capture_output=True, text=True)
+        try:
+            out = subprocess.run(
+                ["pdftotext", str(path), "-"], capture_output=True, text=True, timeout=60,
+            )
+        except subprocess.TimeoutExpired:
+            die(f"pdftotext timed out after 60s on {path.name} — the PDF may be malformed.")
         if out.returncode == 0:
             return out.stdout
+        die(f"pdftotext failed (exit {out.returncode}): {out.stderr.strip()[:200] or 'no stderr output'}")
     die("PDF extraction needs 'pypdf' (pip install pypdf) or the 'pdftotext' CLI.")
     return ""  # unreachable
 

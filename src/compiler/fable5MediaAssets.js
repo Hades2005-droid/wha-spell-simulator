@@ -26,10 +26,17 @@ export function mediaKind(pathOrName = "") {
   return "other";
 }
 
-/** True only for a local path — rejects http(s)/ftp/etc. `file://` is allowed. */
+/**
+ * True only for a local path. Rejects http(s)/ftp/etc. A `file://` URI is local
+ * only when its authority is empty or `localhost` — `file://host/...` can point
+ * at a remote authority on some platforms, so it is rejected.
+ */
 export function isLocalPath(p = "") {
   const s = String(p);
-  if (s.startsWith("file://")) return true;
+  if (s.startsWith("file://")) {
+    const host = s.slice("file://".length).split("/")[0];
+    return host === "" || host.toLowerCase() === "localhost";
+  }
   return !REMOTE_RE.test(s);
 }
 

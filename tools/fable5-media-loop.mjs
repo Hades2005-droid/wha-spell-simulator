@@ -52,6 +52,26 @@ function driveDefault() {
   return firstExisting(candidates);
 }
 
+// Hash a file in fixed-size chunks (stays synchronous) so large video/audio
+// files don't get read fully into memory.
+function hashFileSync(full) {
+  const CHUNK = 1 << 20; // 1 MiB
+  const hash = createHash("sha256");
+  const buf = Buffer.allocUnsafe(CHUNK);
+  const fd = fs.openSync(full, "r");
+  let size = 0;
+  try {
+    let bytes;
+    while ((bytes = fs.readSync(fd, buf, 0, CHUNK, null)) > 0) {
+      hash.update(buf.subarray(0, bytes));
+      size += bytes;
+    }
+  } finally {
+    fs.closeSync(fd);
+  }
+  return { size, sha256: hash.digest("hex") };
+}
+
 function scanMedia(root) {
   if (!root) return [];
   let entries;
@@ -66,8 +86,8 @@ function scanMedia(root) {
     const full = path.join(dir, ent.name);
     if (mediaKind(ent.name) === "other") continue;
     try {
-      const buf = fs.readFileSync(full);
-      files.push({ path: full, size: buf.length, sha256: createHash("sha256").update(buf).digest("hex") });
+      const { size, sha256 } = hashFileSync(full);
+      files.push({ path: full, size, sha256 });
     } catch { /* unreadable — skip */ }
   }
   return files;
