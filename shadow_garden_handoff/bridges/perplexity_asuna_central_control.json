@@ -1,6 +1,6 @@
 {
   "schema": "shadow_garden.perplexity_asuna_central_control.v1",
-  "generated_at": "2026-07-17T20:32:54Z",
+  "generated_at": "2026-07-19T20:54:56Z",
   "carrier": "love_and_harmony_6",
   "bridge_signature": "f2e596cd043d6819",
   "central_control": {
@@ -24,9 +24,9 @@
     {
       "id": "github",
       "role": "profile_index",
-      "ok": false,
+      "ok": true,
       "schema": "shadow_garden.github_asuna_point0_unification.v1",
-      "vector_count": 0,
+      "vector_count": 12,
       "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/github_asuna_point0_unification.json",
       "cli": "python3 tools/github_asuna_point0_unify.py write"
     },
@@ -83,12 +83,33 @@
       "config": "/Users/fredwashere/wha-spell-simulator/src/adapters/stripeConfig.js",
       "live_default": false,
       "bind": "127.0.0.1:4242"
+    },
+    {
+      "id": "local_mesh_prep",
+      "role": "complete_local_system_preparation",
+      "ok": true,
+      "cli": "/Users/fredwashere/wha-spell-simulator/tools/local_open_weights_mesh_prep.py",
+      "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/local_open_weights_mesh_prep.json",
+      "prep_ready": true,
+      "cutover_ready": false
+    },
+    {
+      "id": "cursor_agent_node",
+      "role": "reserved_addition_4_pending",
+      "ok": false,
+      "active": false,
+      "status": "pending",
+      "armed": false,
+      "endpoints": [],
+      "leverage_ordinal": 4,
+      "note": "RESERVED PLACEHOLDER \u2014 awaiting Perplexity addition 4 (fresh nod). No endpoints, not armed, no cutover. See federation/handoff/CURSOR_AGENT_NODE_ADDITION_4.md."
     }
   ],
   "leverage_stack": {
     "1": "deepseek_local_open_weights",
     "2": "grok_xai_harmony_6_white_moon",
-    "3": "kimi3_completion_to_local_open_weights"
+    "3": "kimi3_completion_to_local_open_weights",
+    "4": "cursor_agent_node_connection_pending"
   },
   "emphasis": {
     "deepseek": {
@@ -129,9 +150,9 @@
     }
   },
   "metrics": {
-    "surface_count": 7,
-    "surfaces_ok": 6,
-    "vector_sum": 77,
+    "surface_count": 9,
+    "surfaces_ok": 8,
+    "vector_sum": 89,
     "deepseek_ok": true,
     "discord_ok": true,
     "white_moon_ok": true,
@@ -152,6 +173,7 @@
     "deepseek": "python3 tools/deepseek_asuna_point0_unify.py write",
     "discord": "python3 tools/discord_asuna_point0_unify.py write",
     "kimi3": "python3 tools/kimi3_asuna_point0_unify.py write",
+    "local_mesh_prep": "python3 tools/local_open_weights_mesh_prep.py write",
     "packet": "python3 tools/shadow_garden_packet.py write"
   },
   "ok": true

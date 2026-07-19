@@ -114,6 +114,72 @@ def stripe_scaffold_status() -> dict[str, Any]:
     }
 
 
+def local_mesh_prep_status() -> dict[str, Any]:
+    bridge = (
+        WHA / "shadow_garden_handoff" / "bridges" / "local_open_weights_mesh_prep.json"
+    )
+    cli = WHA / "tools" / "local_open_weights_mesh_prep.py"
+    out: dict[str, Any] = {
+        "id": "local_mesh_prep",
+        "role": "complete_local_system_preparation",
+        "ok": False,
+        "cli": str(cli),
+        "catalog": str(bridge),
+    }
+    if not cli.is_file():
+        out["error"] = "missing_cli"
+        return out
+    if bridge.is_file():
+        try:
+            doc = json.loads(bridge.read_text(encoding="utf-8"))
+            out["ok"] = bool(doc.get("ok"))
+            out["prep_ready"] = (doc.get("readiness") or {}).get("prep_ready")
+            out["cutover_ready"] = (doc.get("readiness") or {}).get("cutover_ready")
+            return out
+        except (OSError, json.JSONDecodeError):
+            pass
+    proc = subprocess.run(
+        [sys.executable, str(cli), "write", "--no-refresh", "--no-packet"],
+        capture_output=True,
+        text=True,
+        timeout=60,
+        check=False,
+        cwd=str(WHA),
+    )
+    try:
+        doc = json.loads(proc.stdout or "{}")
+        out["ok"] = proc.returncode == 0 and bool(doc.get("ok"))
+        out["prep_ready"] = (doc.get("readiness") or {}).get("prep_ready")
+        out["cutover_ready"] = (doc.get("readiness") or {}).get("cutover_ready")
+    except json.JSONDecodeError:
+        out["ok"] = proc.returncode == 0
+    return out
+
+
+def reserved_addition_4() -> dict[str, Any]:
+    """Inert placeholder for Perplexity addition 4 (Cursor agent node connection).
+
+    RESERVED / pending only: not active, no endpoints, nothing armed. Latched
+    here so the ledger reflects the awaited surface without enabling it. Held
+    until Perplexity posts a fresh nod (south node -> north node catalyst).
+    """
+    return {
+        "id": "cursor_agent_node",
+        "role": "reserved_addition_4_pending",
+        "ok": False,
+        "active": False,
+        "status": "pending",
+        "armed": False,
+        "endpoints": [],
+        "leverage_ordinal": 4,
+        "note": (
+            "RESERVED PLACEHOLDER — awaiting Perplexity addition 4 (fresh nod). "
+            "No endpoints, not armed, no cutover. See "
+            "federation/handoff/CURSOR_AGENT_NODE_ADDITION_4.md."
+        ),
+    }
+
+
 def summarize(surface: dict[str, str], payload: dict[str, Any]) -> dict[str, Any]:
     metrics = payload.get("metrics") or {}
     return {
@@ -138,6 +204,8 @@ def build_central() -> dict[str, Any]:
         surfaces.append(summarize(spec, raw))
     stripe = stripe_scaffold_status()
     surfaces.append(stripe)
+    surfaces.append(local_mesh_prep_status())
+    surfaces.append(reserved_addition_4())
 
     bedrock = SG / "live" / "spacetime_alchemy" / "PERPLEXITY_CONTEXT_BEDROCK.md"
     compact = SG / "live" / "spacetime_alchemy" / "fable5-compact.json"
@@ -175,6 +243,7 @@ def build_central() -> dict[str, Any]:
             "1": "deepseek_local_open_weights",
             "2": "grok_xai_harmony_6_white_moon",
             "3": "kimi3_completion_to_local_open_weights",
+            "4": "cursor_agent_node_connection_pending",
         },
         "emphasis": {
             "deepseek": deepseek,
@@ -206,6 +275,7 @@ def build_central() -> dict[str, Any]:
             "deepseek": "python3 tools/deepseek_asuna_point0_unify.py write",
             "discord": "python3 tools/discord_asuna_point0_unify.py write",
             "kimi3": "python3 tools/kimi3_asuna_point0_unify.py write",
+            "local_mesh_prep": "python3 tools/local_open_weights_mesh_prep.py write",
             "packet": "python3 tools/shadow_garden_packet.py write",
         },
     }

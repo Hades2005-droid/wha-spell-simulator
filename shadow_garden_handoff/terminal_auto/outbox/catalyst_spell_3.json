@@ -2,6 +2,13 @@
   "schema": "shadow_garden.catalyst_spell_3.v1",
   "format_version": "1.0",
   "generated_at": "2026-07-15T20:11:00Z",
+  "_port_note": {
+    "canonical": "local_8189_manifest_only",
+    "comfy_preferred": 8189,
+    "comfy_alt": 8188,
+    "note": "Annotation only (metadata). Canonical ComfyUI lane is local_8189_manifest_only; legacy 8188 references in this stale outbox artifact are retained as historical. Tool behavior unchanged.",
+    "annotated_at": "2026-07-19"
+  },
   "spell": {
     "id": "catalyst_spell_3",
     "index": 3,

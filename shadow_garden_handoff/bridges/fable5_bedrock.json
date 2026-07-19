@@ -76,6 +76,8 @@
     "discord_asuna_point0": "shadow_garden_handoff/bridges/discord_asuna_point0_unification.json",
     "kimi3_asuna_point0": "shadow_garden_handoff/bridges/kimi3_asuna_point0_unification.json",
     "kimi3_local_open_weights_transition": "shadow_garden_handoff/bridges/kimi3_local_open_weights_transition.json",
+    "local_open_weights_mesh_prep": "shadow_garden_handoff/bridges/local_open_weights_mesh_prep.json",
+    "local_open_weights_mesh_checklist": "shadow_garden_handoff/bridges/local_open_weights_mesh_checklist.md",
     "perplexity_asuna_central_control": "shadow_garden_handoff/bridges/perplexity_asuna_central_control.json",
     "lainie_julia_scene": "shadow_garden_handoff/bridges/shadow_garden_lainie_julia_scene_manifest.json",
     "catalyst3_persona_telemetry": "shadow_garden_handoff/bridges/catalyst3_persona_telemetry_launch_finalization.json"

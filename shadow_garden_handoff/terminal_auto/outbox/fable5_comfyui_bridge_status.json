@@ -2,6 +2,13 @@
   "schema": "shadow_garden.integration_repo_roots.v1",
   "format_version": "1.0",
   "generated_at": "2026-07-12T17:03:09Z",
+  "_port_note": {
+    "canonical": "local_8189_manifest_only",
+    "comfy_preferred": 8189,
+    "comfy_alt": 8188,
+    "note": "Annotation only (metadata). Header lane 'comfyui: local_8188' is stale; body services already use 8189. Canonical ComfyUI lane is local_8189_manifest_only. Tool behavior unchanged.",
+    "annotated_at": "2026-07-19"
+  },
   "secrets_policy": "env_only",
   "lanes": {
     "perplexity": "fable5_synthesis",

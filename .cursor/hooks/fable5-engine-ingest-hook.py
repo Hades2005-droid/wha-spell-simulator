@@ -141,6 +141,7 @@ def main() -> int:
             "white_moon_eastern_corner": "python3 tools/white_moon_eastern_corner_unify.py write",
             "discord_asuna_point0": "python3 tools/discord_asuna_point0_unify.py write",
             "kimi3_asuna_point0": "python3 tools/kimi3_asuna_point0_unify.py write",
+            "local_mesh_prep": "python3 tools/local_open_weights_mesh_prep.py write",
             "perplexity_central": "python3 tools/perplexity_asuna_central_control.py write",
             "discord_local_notify": "python3 tools/discord_local/notify.py status",
             "stripe_local": "node tools/stripe_local/server.mjs",

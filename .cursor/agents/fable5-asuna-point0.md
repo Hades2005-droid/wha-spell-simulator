@@ -29,11 +29,13 @@ Use `perplexity_asuna_central_control` as the ledger into Perplexity.
 python3 tools/deepseek_asuna_point0_unify.py write
 python3 tools/discord_asuna_point0_unify.py write
 python3 tools/kimi3_asuna_point0_unify.py write
+python3 tools/local_open_weights_mesh_prep.py write
 python3 tools/perplexity_asuna_central_control.py write
 python3 tools/shadow_garden_packet.py write
 ```
 
-Arm local-open-weights transition only after explicit approval: `KIMI3_TRANSITION_ARMED=1`.
+Arm local-open-weights transition only after explicit approval: `KIMI3_TRANSITION_ARMED=1`.  
+Mark prep complete with `LOCAL_MESH_PREP=1`. Prefer `COMFYUI_URL=http://127.0.0.1:8189`.
 
 ## Operating contract
 

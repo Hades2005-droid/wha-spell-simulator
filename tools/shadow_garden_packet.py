@@ -374,10 +374,16 @@ def check_local_ports() -> dict[str, Any]:
         "eden": 8791,
         "sillytavern": 8000,
         "portal": 8760,
+        "ollama": 11434,
+        "stripe_local": 4242,
     }
+    probed = {name: port_open(port) for name, port in ports.items()}
     return {
         "ok": True,
-        "ports": {name: port_open(port) for name, port in ports.items()},
+        "bind": "127.0.0.1",
+        "mesh": "local_open_weights_mesh",
+        "ports": probed,
+        "up_count": sum(1 for v in probed.values() if v),
     }
 
 
@@ -778,6 +784,53 @@ def check_kimi3_asuna_point0() -> dict[str, Any]:
     }
 
 
+def check_local_open_weights_mesh_prep() -> dict[str, Any]:
+    path = WHA / "tools" / "local_open_weights_mesh_prep.py"
+    if not path.is_file():
+        return {"ok": False, "detail": "missing local_open_weights_mesh_prep.py"}
+    bridge = (
+        WHA / "shadow_garden_handoff" / "bridges" / "local_open_weights_mesh_prep.json"
+    )
+    checklist = (
+        WHA
+        / "shadow_garden_handoff"
+        / "bridges"
+        / "local_open_weights_mesh_checklist.md"
+    )
+    proc = subprocess.run(
+        [sys.executable, str(path), "write", "--no-refresh", "--no-packet"],
+        capture_output=True,
+        text=True,
+        timeout=60,
+        check=False,
+    )
+    ok = proc.returncode == 0 and bridge.is_file() and checklist.is_file()
+    readiness: dict[str, Any] = {}
+    if bridge.is_file():
+        try:
+            doc = json.loads(bridge.read_text(encoding="utf-8"))
+            readiness = doc.get("readiness") or {}
+            controls = doc.get("controls") or {}
+            ok = (
+                ok
+                and bool(doc.get("ok"))
+                and controls.get("local_bind_only") is True
+                and controls.get("provider_calls") is False
+            )
+        except json.JSONDecodeError:
+            ok = False
+    return {
+        "ok": ok,
+        "path": str(path),
+        "bridge": str(bridge),
+        "checklist": str(checklist),
+        "exit": proc.returncode,
+        "prep_ready": readiness.get("prep_ready"),
+        "cutover_ready": readiness.get("cutover_ready"),
+        "target": "local_open_weights_mesh",
+    }
+
+
 def check_catalyst3_scene_handoff() -> dict[str, Any]:
     if not SCENE_MANIFEST.is_file() or not CATALYST3_HANDOFF.is_file():
         return {"ok": False, "detail": "missing scene or Catalyst 3 handoff"}
@@ -857,6 +910,7 @@ def run_self_tests() -> dict[str, Any]:
         ("discord_asuna_point0", check_discord_asuna_point0),
         ("perplexity_central_control", check_perplexity_central_control),
         ("kimi3_asuna_point0", check_kimi3_asuna_point0),
+        ("local_open_weights_mesh_prep", check_local_open_weights_mesh_prep),
         ("catalyst3_scene_handoff", check_catalyst3_scene_handoff),
     ]
     results = [_run_check(name, fn) for name, fn in checks]
@@ -894,12 +948,15 @@ def build_packet(*, run_tests: bool = True) -> dict[str, Any]:
             "spacetime_alchemy": "engine",
             "eden": "bounded_local_metadata",
             "persona_telemetry": "local_manifest_only",
-            "deepseek": "local_ollama_11434_metadata_opt_in_remote",
+            "deepseek": "local_ollama_preferred",
             "eastern_white_moon": "deepseek_plus_grok_xai_asuna_corner",
             "discord": "status_notify_paused_default",
             "kimi3": "third_leverage_local_open_weights_transition",
+            "local_mesh": "local_open_weights_mesh_prep",
             "perplexity_central": "asuna_point0_unification_lever",
             "stripe": "local_4242_dry_run_scaffold",
+            "ollama": "local_11434",
+            "portal": "local_8760",
         },
         "aggregates": {
             "engine": [
@@ -914,6 +971,7 @@ def build_packet(*, run_tests: bool = True) -> dict[str, Any]:
                 "white_moon_eastern_corner_unify",
                 "discord_asuna_point0_unify",
                 "kimi3_asuna_point0_unify",
+                "local_open_weights_mesh_prep",
                 "perplexity_asuna_central_control",
                 "catalyst3_persona_telemetry",
             ],
@@ -1052,6 +1110,17 @@ def build_packet(*, run_tests: bool = True) -> dict[str, Any]:
             "kimi3_transition": str(
                 WHA
                 / "shadow_garden_handoff/bridges/kimi3_local_open_weights_transition.json"
+            ),
+            "local_mesh_prep": str(
+                WHA / "tools" / "local_open_weights_mesh_prep.py"
+            ),
+            "local_mesh_bridge": str(
+                WHA
+                / "shadow_garden_handoff/bridges/local_open_weights_mesh_prep.json"
+            ),
+            "local_mesh_checklist": str(
+                WHA
+                / "shadow_garden_handoff/bridges/local_open_weights_mesh_checklist.md"
             ),
             "lainie_julia_scene": str(SCENE_MANIFEST),
             "catalyst3_persona_telemetry": str(CATALYST3_HANDOFF),

@@ -322,9 +322,11 @@ def transition_plan(*, armed: bool, ollama: dict[str, Any]) -> dict[str, Any]:
         "local_kimi_tags": ollama.get("kimi_models") or [],
         "surfaces_to_localize": surfaces,
         "steps": [
+            "Run python3 tools/local_open_weights_mesh_prep.py write (port/Ollama/catalog prep).",
             "Refresh Asuna Point-0 catalogs (github/deepseek/grok/discord/central).",
             "Confirm Ollama up and optional kimi/moonshot local tags present.",
-            "Set KIMI3_TRANSITION_ARMED=1 after operator approval.",
+            "Set LOCAL_MESH_PREP=1 when prep checklist is green.",
+            "Set KIMI3_TRANSITION_ARMED=1 after operator approval for final cutover.",
             "Prefer 127.0.0.1 routes; leave remote Moonshot/DeepSeek/xAI unset.",
             "Rewrite packet lanes to local_open_weights_mesh; keep Discord PAUSED unless armed.",
             "One bounded cycle — no infinite recursive loops.",

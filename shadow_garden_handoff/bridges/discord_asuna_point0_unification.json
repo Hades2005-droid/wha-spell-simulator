@@ -1,6 +1,6 @@
 {
   "schema": "shadow_garden.discord_asuna_point0_unification.v1",
-  "generated_at": "2026-07-17T20:33:15Z",
+  "generated_at": "2026-07-19T20:54:56Z",
   "phase": 2,
   "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
   "carrier": "love_and_harmony_6",
@@ -103,8 +103,8 @@
       "is_file": true,
       "is_dir": false,
       "content_inlined": false,
-      "size_bytes": 9069,
-      "sha256_16": "0e36bc4d1bb1e97a"
+      "size_bytes": 9219,
+      "sha256_16": "5987f5d6e641bdb1"
     },
     {
       "role": "mcp_policy_doc",
@@ -125,8 +125,8 @@
       "is_file": true,
       "is_dir": false,
       "content_inlined": false,
-      "size_bytes": 9481,
-      "sha256_16": "6dca123b7e22fa6f"
+      "size_bytes": 9835,
+      "sha256_16": "589f61354ff227d3"
     },
     {
       "role": "discord_local_dry_run",
@@ -197,9 +197,9 @@
       "role": "bridge_env_names_surface",
       "path": "/Users/fredwashere/wha-spell-simulator/tools/fable5_comfyui_command_bridge.py",
       "lane": "discord_status_notify",
-      "sha256_16": "0e36bc4d1bb1e97a",
+      "sha256_16": "5987f5d6e641bdb1",
       "record_id": "discord:ptr:fable5_comfyui_command_bridge.py",
-      "content_hash": "0e36bc4d1bb1e97a",
+      "content_hash": "5987f5d6e641bdb1",
       "asuna_point0_route": "perplexity_fable5_home_sim",
       "sensitivity": "local_path_only"
     },
@@ -221,9 +221,9 @@
       "role": "catalyst_discord_paused",
       "path": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/terminal_auto/outbox/catalyst_spell_3.json",
       "lane": "discord_status_notify",
-      "sha256_16": "6dca123b7e22fa6f",
+      "sha256_16": "589f61354ff227d3",
       "record_id": "discord:ptr:catalyst_spell_3.json",
-      "content_hash": "6dca123b7e22fa6f",
+      "content_hash": "589f61354ff227d3",
       "asuna_point0_route": "perplexity_fable5_home_sim",
       "sensitivity": "local_path_only"
     },
@@ -266,6 +266,6 @@
     "default_lane": "read_only",
     "paused_by_default": true
   },
-  "unification_digest": "a60385b9e72d41ffa717ad142fe819f7c151ebec41aca86437b6932ec274a2e0",
+  "unification_digest": "75f58f5eecfbeeb0e587ff3a7ca4b179d6f66b3304ebbf8d62809682587ec68b",
   "ok": true
 }

@@ -1,6 +1,6 @@
 {
   "schema": "shadow_garden.kimi3_asuna_point0_unification.v1",
-  "generated_at": "2026-07-17T20:33:15Z",
+  "generated_at": "2026-07-19T20:54:56Z",
   "phase": 2,
   "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
   "carrier": "love_and_harmony_6",
@@ -166,8 +166,8 @@
       "is_file": true,
       "is_dir": false,
       "content_inlined": false,
-      "size_bytes": 9002,
-      "sha256_16": "bd494538cd629c4f"
+      "size_bytes": 11579,
+      "sha256_16": "863e2e2029ab87ac"
     },
     {
       "role": "local_open_weights_route_metadata",
@@ -194,7 +194,7 @@
   ],
   "transition": {
     "schema": "shadow_garden.kimi3_local_open_weights_transition.v1",
-    "generated_at": "2026-07-17T20:33:15Z",
+    "generated_at": "2026-07-19T20:54:56Z",
     "bridge": "kimi3_third_leverage",
     "ordinal": 3,
     "armed": false,
@@ -219,9 +219,11 @@
       "shadow_garden_packet"
     ],
     "steps": [
+      "Run python3 tools/local_open_weights_mesh_prep.py write (port/Ollama/catalog prep).",
       "Refresh Asuna Point-0 catalogs (github/deepseek/grok/discord/central).",
       "Confirm Ollama up and optional kimi/moonshot local tags present.",
-      "Set KIMI3_TRANSITION_ARMED=1 after operator approval.",
+      "Set LOCAL_MESH_PREP=1 when prep checklist is green.",
+      "Set KIMI3_TRANSITION_ARMED=1 after operator approval for final cutover.",
       "Prefer 127.0.0.1 routes; leave remote Moonshot/DeepSeek/xAI unset.",
       "Rewrite packet lanes to local_open_weights_mesh; keep Discord PAUSED unless armed.",
       "One bounded cycle \u2014 no infinite recursive loops."
@@ -348,9 +350,9 @@
       "role": "central_control_ledger",
       "path": "/Users/fredwashere/wha-spell-simulator/tools/perplexity_asuna_central_control.py",
       "leverage": "kimi3_third_leverage",
-      "sha256_16": "bd494538cd629c4f",
+      "sha256_16": "863e2e2029ab87ac",
       "record_id": "kimi3:ptr:perplexity_asuna_central_control.py",
-      "content_hash": "bd494538cd629c4f",
+      "content_hash": "863e2e2029ab87ac",
       "asuna_point0_route": "perplexity_fable5_home_sim",
       "transition_route": "local_open_weights_mesh",
       "sensitivity": "local_path_only"
@@ -415,6 +417,6 @@
     "local_open_weights_preferred": true,
     "transition_requires_KIMI3_TRANSITION_ARMED": true
   },
-  "unification_digest": "742e631d7a76038e4f2dadfb5bb0c175a3d8fd25d1a1f2effa97e6aad38dd86a",
+  "unification_digest": "1059a0aa2e0d762d31121e93c2acc3cc383f1d0c1bc1dfc83b487656aaf9d7de",
   "ok": true
 }

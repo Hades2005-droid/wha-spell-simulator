@@ -1,6 +1,6 @@
 {
   "schema": "shadow_garden.kimi3_local_open_weights_transition.v1",
-  "generated_at": "2026-07-17T20:33:15Z",
+  "generated_at": "2026-07-19T20:54:56Z",
   "bridge": "kimi3_third_leverage",
   "ordinal": 3,
   "armed": false,
@@ -25,9 +25,11 @@
     "shadow_garden_packet"
   ],
   "steps": [
+    "Run python3 tools/local_open_weights_mesh_prep.py write (port/Ollama/catalog prep).",
     "Refresh Asuna Point-0 catalogs (github/deepseek/grok/discord/central).",
     "Confirm Ollama up and optional kimi/moonshot local tags present.",
-    "Set KIMI3_TRANSITION_ARMED=1 after operator approval.",
+    "Set LOCAL_MESH_PREP=1 when prep checklist is green.",
+    "Set KIMI3_TRANSITION_ARMED=1 after operator approval for final cutover.",
     "Prefer 127.0.0.1 routes; leave remote Moonshot/DeepSeek/xAI unset.",
     "Rewrite packet lanes to local_open_weights_mesh; keep Discord PAUSED unless armed.",
     "One bounded cycle \u2014 no infinite recursive loops."
