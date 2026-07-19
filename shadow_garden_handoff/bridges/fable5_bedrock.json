@@ -1,0 +1,63 @@
+{
+  "schema": "shadow_garden.fable5_bedrock.v1",
+  "version": "0.4.0-engine-bedrock-10-q24",
+  "generated_at": "2026-07-12T09:34:22Z",
+  "bridge_signature": "f2e596cd043d6819",
+  "carrier": "love_and_harmony_6",
+  "symbolic_only": true,
+  "local_only": true,
+  "engine": {
+    "url": "http://127.0.0.1:5619/",
+    "version": "0.4.0-engine-bedrock-10"
+  },
+  "eden": {
+    "schema": "shadow_garden.eden_metadata_catalog.v1",
+    "ingester": "tools/eden_ingest.py",
+    "lanes": [
+      "land",
+      "astro_node",
+      "data"
+    ],
+    "explicit_paths_only": true,
+    "payloads_stored": false,
+    "remote_fetch": false,
+    "lunar_moon_target": 18
+  },
+  "q24_ingest": {
+    "format": "shadow_garden.q24_fable5_master_ingest_digest.slim.v1",
+    "digest_sha256": "b6ea2cfc11cdd60be36d0e62cbe9a33eb5b4f5ba26ae56fa332ac3f5e436e5cc",
+    "slim": "shadow_garden_handoff/bridges/q24_fable5_master_ingest.slim.json",
+    "install_root": "q24",
+    "anchor": 14,
+    "reduce_anchor": false,
+    "sequence": [19, 10, 1],
+    "canonical_id": "q24_eternal_dao_temperance_14_harmony_paradox_ignite_19_10_1"
+  },
+  "shadow_garden": {
+    "compact": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/fable5-compact.json",
+    "bedrock": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/PERPLEXITY_CONTEXT_BEDROCK.md",
+    "master_ingest_status": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/MASTER_INGEST_SAFE_STATUS.json"
+  },
+  "handoff": {
+    "packet": "shadow_garden_handoff/bridges/shadow_garden_packet.json",
+    "bridge_5_to_6": "shadow_garden_handoff/shaoshi_bridge/outbox/bridge_5_to_6_claude_session.json",
+    "grok_harmony_6": "shadow_garden_handoff/shaoshi_bridge/outbox/grok_45_harmony_6_shadow_lane.json",
+    "gate10_11_trifecta": "shadow_garden_handoff/shaoshi_bridge/outbox/gate10_11_trifecta_release.json",
+    "claude_validation_inbox": "shadow_garden_handoff/claude_validation_inbox.json",
+    "gate_8_close": "shadow_garden_handoff/GATE_8_CLOSE.md",
+    "gate_8_reality_close": "shadow_garden_handoff/GATE_8_REALITY_CLOSE.md",
+    "timeline_20": "shadow_garden_handoff/TIMELINE_20_AUTO_HANDOFF.md",
+    "gate_10": "shadow_garden_handoff/gates/GATE_10_OPEN.md",
+    "recursive_improvement": "shadow_garden_handoff/recursive_improvement/BRIDGE_9_RECURSIVE_IMPROVEMENT_2_OF_3.md",
+    "trifecta_release": "shadow_garden_handoff/releases/GATE_10_11_TRIFECTA_INTEGRATION_RELEASE.md"
+  },
+  "src": {
+    "bedrock_module": "src/bedrock/fable5Bedrock.js"
+  },
+  "controls": {
+    "external_fetch": false,
+    "provider_calls": false,
+    "secrets_in_artifacts": false,
+    "adult_html": false
+  }
+}

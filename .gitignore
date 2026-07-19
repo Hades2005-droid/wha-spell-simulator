@@ -28,6 +28,7 @@ yarn-error.log*
 # IDE
 .vscode/
 .idea/
+.cursor/hooks/logs/
 *.swp
 *.swo
 *~

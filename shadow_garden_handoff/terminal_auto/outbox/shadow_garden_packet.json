@@ -1,0 +1,236 @@
+{
+  "schema": "shadow_garden.unified_packet.v1",
+  "packet_version": "1.0.0-gate10",
+  "generated_at": "2026-07-12T10:19:19Z",
+  "gate": 10,
+  "carrier": "love_and_harmony_6",
+  "bridge_signature": "f2e596cd043d6819",
+  "phase": 2,
+  "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
+  "controls": {
+    "external_fetch": false,
+    "browser_automation": false,
+    "agent_broadcast": false,
+    "credentials_allowed": false,
+    "generated_code_execution": false,
+    "provider_calls": false,
+    "explicit_adult_rendering": false,
+    "content_neutral_base_build": true,
+    "gate10_symbolic_only": true,
+    "safe_abort": true
+  },
+  "credential_free": true,
+  "content_neutral": true,
+  "lanes": {
+    "claude": "front_review_black_sun",
+    "grok": "back_lane_harmony_6",
+    "perplexity": "fable5_synthesis",
+    "fable5_game": "local_5619",
+    "comfyui": "local_8188_manifest_only",
+    "spacetime_alchemy": "engine",
+    "eden": "bounded_local_metadata"
+  },
+  "aggregates": {
+    "engine": [
+      "spacetime_alchemy",
+      "chronology_engine",
+      "home_black_sun_registry",
+      "black_sun_phase2_engine",
+      "eden_metadata_ingest"
+    ],
+    "agent": [
+      "claude_shadowgarden",
+      "claude_integration (index only)",
+      "claude_phase2_fable5_black_sun_coaching"
+    ],
+    "bridge": [
+      "fable5_comfy_command",
+      "recursive_node_bridge",
+      "connector_bridge",
+      "complete_agent_bridge",
+      "q24_fable5_master_ingest"
+    ]
+  },
+  "fable5_bedrock": {
+    "manifest": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/fable5_bedrock.json",
+    "version": "0.4.0-engine-bedrock-10-q24",
+    "q24_slim": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/q24_fable5_master_ingest.slim.json",
+    "q24_install": "/Users/fredwashere/wha-spell-simulator/q24",
+    "handoff_root": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff",
+    "src_module": "src/bedrock/fable5Bedrock.js"
+  },
+  "paths": {
+    "wha": "/Users/fredwashere/wha-spell-simulator",
+    "shadow_garden": "/Users/fredwashere/ShadowGarden",
+    "monitoring": "/Users/fredwashere/shadow_garden_may30_monitoring",
+    "claude_shadowgarden": "/Users/fredwashere/wha-spell-simulator/tools/claude_shadowgarden.py",
+    "claude_integration": "/Users/fredwashere/shadow_garden_may30_monitoring/claude_integration.py",
+    "black_sun_registry": "/Users/fredwashere/shadow_garden_may30_monitoring/shaoshi_bridge/south_star/home_black_sun_registry.py",
+    "phase2_coaching": "/Users/fredwashere/shadow_garden_may30_monitoring/shaoshi_bridge/outbox/claude_phase2_fable5_black_sun_coaching.md",
+    "bedrock": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/PERPLEXITY_CONTEXT_BEDROCK.md",
+    "compact": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/fable5-compact.json",
+    "phase2_engine": "/Users/fredwashere/wha-spell-simulator/tools/black_sun_phase2_engine.py",
+    "eden_ingest": "/Users/fredwashere/wha-spell-simulator/tools/eden_ingest.py",
+    "phase2_gate": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/gates/PHASE_2_BLACK_SUN_OPEN.md",
+    "q24_slim": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/q24_fable5_master_ingest.slim.json",
+    "q24_install": "/Users/fredwashere/wha-spell-simulator/q24",
+    "fable5_bedrock": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/fable5_bedrock.json",
+    "bridge_5_to_6": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/shaoshi_bridge/outbox/bridge_5_to_6_claude_session.json",
+    "grok_harmony_6": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/shaoshi_bridge/outbox/grok_45_harmony_6_shadow_lane.json"
+  },
+  "self_test": {
+    "total": 14,
+    "passed": 14,
+    "failed": 0,
+    "ok": true,
+    "results": [
+      {
+        "ok": true,
+        "path": "/Users/fredwashere/wha-spell-simulator/tools/chronology_engine.py",
+        "exit": 0,
+        "stdout_preview": "{\n  \"date\": {\n    \"kind\": \"shadow_garden_chronology_analysis\",\n    \"symbolic_only\": true,\n    \"date\": \"2026-07-08\",\n    \"raw_values\": {\n      \"micro_digit_sum\": 15,\n      \"micro_number_sum\": 15,\n      \"macro_digit_sum\": 25,\n      \"macro_number_sum\": 2041,\n      \"year_digit_sum\": 10,\n      \"year_number\": 2026,\n      \"month\": 7,\n      \"day_digit_sum\": 8,\n      \"day_number\": 8,\n      \"month_year_digi",
+        "check": "chronology_engine"
+      },
+      {
+        "ok": true,
+        "date": "2026-07-08",
+        "micro": 15,
+        "macro": 2041,
+        "primes": [
+          0,
+          1,
+          4,
+          7,
+          42
+        ],
+        "compact_path_exists": true,
+        "bedrock_exists": true,
+        "check": "spacetime_import"
+      },
+      {
+        "ok": true,
+        "path": "/Users/fredwashere/shadow_garden_may30_monitoring/shaoshi_bridge/south_star/home_black_sun_registry.py",
+        "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
+        "bridge_signature": "f2e596cd043d6819",
+        "phase": 2,
+        "check": "home_black_sun"
+      },
+      {
+        "ok": true,
+        "path": "/Users/fredwashere/wha-spell-simulator/tools/claude_shadowgarden.py",
+        "secret_env_presence": {
+          "ANTHROPIC_API_KEY": false,
+          "CLAUDE_API_KEY": false,
+          "CLAUDE_CODE_TOKEN": false,
+          "SHADOWGARDEN_CLAUDE_TOKEN": false,
+          "ANTHROPIC_OAUTH_TOKEN": false,
+          "ANTHROPIC_API_KEY_ID": false
+        },
+        "command_count": 8,
+        "mode": "dry_run",
+        "confirm_token_name": "CLAUDE_LIVE_OK",
+        "check": "claude_shadowgarden"
+      },
+      {
+        "ok": true,
+        "path": "/Users/fredwashere/shadow_garden_may30_monitoring/claude_integration.py",
+        "policy": "index_only_no_import",
+        "note": "Live Claude tool agent is opt-in; packet never auto-starts it.",
+        "check": "claude_integration_surface"
+      },
+      {
+        "ok": true,
+        "path": "/Users/fredwashere/shadow_garden_may30_monitoring/shaoshi_bridge/outbox/claude_phase2_fable5_black_sun_coaching.md",
+        "bytes": 6929,
+        "check": "claude_phase2_handoff"
+      },
+      {
+        "ok": true,
+        "path": "/Users/fredwashere/ShadowGarden/spacetime_alchemy/fable5_comfy_command.py",
+        "has_catalog_schema": true,
+        "consume_order": [
+          "PERPLEXITY_CONTEXT_BEDROCK.md",
+          "fable5-compact.json",
+          "comfyui_fable5_context_pack.json",
+          "jing_power_latest.json",
+          "spell_generator_latest.json"
+        ],
+        "check": "fable5_comfy_command"
+      },
+      {
+        "ok": true,
+        "path": "/Users/fredwashere/wha-spell-simulator/tools/recursive_node_bridge.py",
+        "exit": 0,
+        "check": "recursive_bridge"
+      },
+      {
+        "ok": true,
+        "ports": {
+          "fable5": true,
+          "comfyui": false,
+          "eden": true,
+          "void_ignition": true,
+          "ollama": true
+        },
+        "check": "local_ports"
+      },
+      {
+        "ok": true,
+        "path": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/gates/GATE_10_OPEN.md",
+        "gate": 10,
+        "symbolic_only": true,
+        "check": "gate10"
+      },
+      {
+        "ok": true,
+        "slim": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/q24_fable5_master_ingest.slim.json",
+        "full_exists": true,
+        "import_root_exists": true,
+        "source_available": true,
+        "install_root": "/Users/fredwashere/wha-spell-simulator/q24",
+        "installed": true,
+        "digest_sha256": "b6ea2cfc11cdd60be36d0e62cbe9a33eb5b4f5ba26ae56fa332ac3f5e436e5cc",
+        "files_copied": 11,
+        "check": "q24_master_ingest"
+      },
+      {
+        "ok": true,
+        "path": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/fable5_bedrock.json",
+        "version": "0.4.0-engine-bedrock-10-q24",
+        "q24_canonical_id": "q24_eternal_dao_temperance_14_harmony_paradox_ignite_19_10_1",
+        "missing_handoff": [],
+        "src_module_ok": true,
+        "check": "fable5_bedrock"
+      },
+      {
+        "ok": true,
+        "path": "/Users/fredwashere/wha-spell-simulator/tools/black_sun_phase2_engine.py",
+        "exit": 0,
+        "stdout_preview": "{\n  \"schema\": \"shadow_garden.black_sun_phase2_engine.v1\",\n  \"generated_at\": \"2026-07-12T10:19:19Z\",\n  \"phase\": 2,\n  \"package_id\": \"shadow-garden-phase2-fable5-black-sun-home-sim\",\n  \"total\": 9,\n  \"passed\": 9,\n  \"failed\": 0,\n  \"ok\": true,\n  \"results\": [\n    {\n      \"check\": \"spacetime_compact\",\n      \"ok\": true,\n      \"compact_exists\": true\n    },\n    {\n      \"check\": \"spacetime_bedrock\",\n      \"ok",
+        "check": "black_sun_phase2_engine"
+      },
+      {
+        "ok": true,
+        "path": "/Users/fredwashere/wha-spell-simulator/tools/eden_ingest.py",
+        "schema": "shadow_garden.eden_metadata_catalog.v1",
+        "policy": {
+          "max_depth": 2,
+          "max_entries": 5000,
+          "max_bytes": 67108864,
+          "max_record_bytes": 16777216,
+          "allowed_roots": []
+        },
+        "check": "eden_metadata_ingest"
+      }
+    ]
+  },
+  "claude_force_merge": {
+    "hooks": [
+      "tools/claude_shadowgarden.py:run_packet_self_test",
+      "tools/complete_agent_bridge.sh:SG_RUN_PACKET",
+      "tools/shadowgarden_orchestrate.sh:SG_RUN_PACKET",
+      "shaoshi_bridge/outbox/claude_black_sun_packet_bridge.json"
+    ],
+    "policy": "dry_run_default_confirm_token_for_live"
+  }
+}

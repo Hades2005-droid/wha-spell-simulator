@@ -1,0 +1,24 @@
+{
+  "format": "shadow_garden.q24_fable5_master_ingest_digest.slim.v1",
+  "generated_at": "2026-07-12T09:34:22Z",
+  "digest_sha256": "b6ea2cfc11cdd60be36d0e62cbe9a33eb5b4f5ba26ae56fa332ac3f5e436e5cc",
+  "full": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/Q24_FABLE5_MASTER_INGEST_DIGEST.json",
+  "q24_import": "/Users/fredwashere/ShadowGarden/manual_imports/q24_unified",
+  "files_copied": 11,
+  "fable5_compact": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/fable5-compact.json",
+  "bedrock": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/PERPLEXITY_CONTEXT_BEDROCK.md",
+  "catalyst_3": {
+    "name": "bridge_5_to_6_claude_code_session_pointer",
+    "status": "staged_local_only",
+    "session_ref": "claude_bridge_5_to_6_session_pointer (local-only, not published)",
+    "symbolic_routing": {
+      "bridge_5": "perplexity_fable_front_synthesis",
+      "bridge_6": "grok_4_5_harmony_back_validation",
+      "claude": "handoff_bridge_only"
+    },
+    "read_only_extraction": true,
+    "external_writes": false,
+    "connector_mutations": false
+  },
+  "local_only": true
+}

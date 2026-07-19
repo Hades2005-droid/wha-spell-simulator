@@ -45,12 +45,24 @@ test('merges Downloads + local Drive folder into deduped local digests', () => {
 
   // digests flow straight into the catalyst
   const manifest = compileFable5MediaSpell({
-    spellIR: { element: 'light', primaryManifestation: 'aura', signature: 'light:image:true' },
+    spellIR: {
+      valid: true,
+      active: true,
+      element: 'light',
+      primaryManifestation: 'aura',
+      signature: 'light:image:true',
+      quality: 0.8,
+      stability: 0.8,
+      neatness: 0.8,
+      focus: 0.8,
+    },
     medium: 'image',
+    intent: 'Local asset digest review.',
     assetDigests: digestsForMedium(merged, 'image'),
   });
   assert.equal(manifest.assetDigests.length, 1);
-  assert.equal(manifest.controls.submitAllowed, false);
+  assert.equal(manifest.controls.approved, false);
+  assert.equal(manifest.controls.executionMode, 'manifest_only');
 });
 
 test('rejects remote sources and bad digests (local-only boundary)', () => {

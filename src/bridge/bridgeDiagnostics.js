@@ -131,11 +131,15 @@ export function updateBridgePanel() {
   // Services list
   const serviceIcons = {
     perplexity: '🔮',
+    perplexityApiBridge: '🛰️',
     grokApi: '🤖',
     grokRealtime: '🎤',
     linear: '📋',
     gemini: '✨',
     localModelControl: '🧠',
+    claudeCode: '💻',
+    cometExtension: '🧩',
+    recursiveNodeBridge: '🌀',
     sillyTavern1: '🎭',
     sillyTavern2: '🎭',
     comfyUI: '🎨',
@@ -143,11 +147,15 @@ export function updateBridgePanel() {
 
   const serviceNames = {
     perplexity: 'Perplexity Space',
+    perplexityApiBridge: 'Perplexity API Adapter',
     grokApi: 'Grok API',
     grokRealtime: 'Grok Voice',
     linear: 'Linear',
     gemini: 'Gemini/Echo',
     localModelControl: 'Local Model Control',
+    claudeCode: 'Claude Code',
+    cometExtension: 'Comet Extension Workspace',
+    recursiveNodeBridge: 'Recursive Node Bridge',
     sillyTavern1: 'SillyTavern 1',
     sillyTavern2: 'SillyTavern 2',
     comfyUI: 'ComfyUI',
@@ -158,11 +166,41 @@ export function updateBridgePanel() {
     const displayName = serviceNames[name] || name;
     const statusColor = service.status === 'connected' ? '#4caf50' : service.status === 'error' ? '#f44336' : '#9e9e9e';
     const lastPing = service.lastPing ? `${Date.now() - service.lastPing}ms ago` : 'never';
+    const legalGate = service.legalGate ? `lawful: ${service.legalGate.confirmed ? 'confirmed' : 'required'}` : '';
+    const workspace = service.workspace ? `workspace: ${service.workspace}` : '';
+    const riskFlags = Array.isArray(service.riskFlags) && service.riskFlags.length ? `risks: ${service.riskFlags.slice(0, 3).join(', ')}` : '';
+    const cometVerification = service.cometCompatibility
+      ? `Comet: ${service.cometVerified ? 'manually verified' : 'verification pending'}`
+      : '';
+    const quarantine = service.quarantineRequired
+      ? `quarantine artifacts: ${service.bundledArtifacts.join(', ') || 'review required'}`
+      : '';
+    const route = service.routeModel ? `route: ${service.routeModel}${service.routeEnabled ? '' : ' metadata-only'}` : '';
+    const locality = typeof service.localOnly === 'boolean' ? (service.localOnly ? 'local-only' : 'external') : '';
+    const handoff = typeof service.localOnlyHandoff === 'boolean'
+      ? `handoff: ${service.localOnlyHandoff ? 'local' : 'external'}`
+      : '';
+    const browserAutomation = service.browserAutomation ? 'browser automation: on' : '';
+    const detail = [
+      service.laneStatus,
+      legalGate,
+      workspace,
+      cometVerification,
+      quarantine,
+      route,
+      locality,
+      handoff,
+      browserAutomation,
+      riskFlags,
+    ].filter(Boolean).join(' · ');
 
     return `
-      <div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 0; border-bottom: 1px solid rgba(92, 74, 54, 0.3);">
-        <span>${icon} ${displayName}</span>
-        <span style="color: ${statusColor}; font-size: 10px;">${service.status} ${service.lastPing ? `(${lastPing})` : ''}</span>
+      <div style="padding: 4px 0; border-bottom: 1px solid rgba(92, 74, 54, 0.3);">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span>${icon} ${displayName}</span>
+          <span style="color: ${statusColor}; font-size: 10px;">${service.status} ${service.lastPing ? `(${lastPing})` : ''}</span>
+        </div>
+        ${detail ? `<div style="font-size: 10px; opacity: 0.72; margin-top: 2px; word-break: break-word;">${detail}</div>` : ''}
       </div>
     `;
   }).join('');

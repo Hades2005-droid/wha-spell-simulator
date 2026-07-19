@@ -18,11 +18,15 @@ const BRIDGE_STATUS = {
 // Service endpoints from Shadow Garden Mesh
 const MESH_ENDPOINTS = {
   perplexity: 'https://shadow-garden-mesh.pplx.app/',
+  perplexityApiBridge: 'http://127.0.0.1:8790/shadowgardencontrol/perplexity',
   grokApi: 'https://api.x.ai/v1',
   grokRealtime: 'wss://api.x.ai/v1/realtime',
   linear: 'https://api.linear.app/graphql',
   gemini: 'https://generativelanguage.googleapis.com/v1beta',
   localModelControl: 'http://127.0.0.1:8790/shadowgardencontrol',
+  claudeCode: 'http://127.0.0.1:8790/shadowgardencontrol/claude',
+  cometExtension: 'http://127.0.0.1:8790/shadowgardencontrol/extension',
+  recursiveNodeBridge: 'http://127.0.0.1:8790/shadowgardencontrol/recursive',
   sillyTavern1: 'http://localhost:8851',
   sillyTavern2: 'http://localhost:8852',
   comfyUI: 'http://localhost:8000',
@@ -69,10 +73,14 @@ export async function refreshMesh() {
   // Check all services in parallel
   const results = await Promise.allSettled([
     checkPerplexitySpace(),
+    checkPerplexityApiAdapter(),
     checkGrokTerminal(),
     checkLinear(),
     checkGeminiEcho(),
     checkLocalModelControl(),
+    checkClaudeCode(),
+    checkCometExtensionWorkspace(),
+    checkRecursiveNodeBridge(),
     checkSillyTavern(),
     checkComfyUI(),
   ]);
@@ -96,6 +104,13 @@ function getConfiguredLocalModelEndpoint() {
     return window.SHADOWGARDEN_CONTROL_URL || window.LOCAL_MODEL_CONTROL_URL || MESH_ENDPOINTS.localModelControl;
   }
   return process?.env?.SHADOWGARDEN_CONTROL_URL || process?.env?.LOCAL_MODEL_CONTROL_URL || MESH_ENDPOINTS.localModelControl;
+}
+
+function getConfiguredCometExtensionEndpoint() {
+  if (typeof window !== 'undefined') {
+    return window.SHADOWGARDEN_EXTENSION_STATUS_URL || window.COMET_EXTENSION_STATUS_URL || MESH_ENDPOINTS.cometExtension;
+  }
+  return process?.env?.SHADOWGARDEN_EXTENSION_STATUS_URL || process?.env?.COMET_EXTENSION_STATUS_URL || MESH_ENDPOINTS.cometExtension;
 }
 
 function buildLocalModelProbeUrls() {
@@ -257,6 +272,85 @@ async function checkPerplexitySpace() {
     bridgeState.errors.push({ service: 'perplexity', error: error.message });
     return false;
   }
+}
+
+function getConfiguredPerplexityAdapterEndpoint() {
+  if (typeof window !== 'undefined') {
+    return window.SHADOWGARDEN_PERPLEXITY_URL
+      || window.PERPLEXITY_API_BRIDGE_URL
+      || MESH_ENDPOINTS.perplexityApiBridge;
+  }
+  return process?.env?.SHADOWGARDEN_PERPLEXITY_URL
+    || process?.env?.PERPLEXITY_API_BRIDGE_URL
+    || MESH_ENDPOINTS.perplexityApiBridge;
+}
+
+function mapPerplexityAdapterStatus(laneStatus) {
+  if (laneStatus === 'ready' || laneStatus === 'dry_run_ready' || laneStatus === 'review_complete') {
+    return BRIDGE_STATUS.CONNECTED;
+  }
+  if (laneStatus === 'dry_run_api_key_missing' || laneStatus === 'blocked_api_key_missing') {
+    return BRIDGE_STATUS.AUTHENTICATING;
+  }
+  return BRIDGE_STATUS.ERROR;
+}
+
+function normalizePerplexityAdapterService(data, endpoint, latency = null) {
+  const laneStatus = data?.status || 'unknown';
+  const serviceStatus = mapPerplexityAdapterStatus(laneStatus);
+  return {
+    status: serviceStatus,
+    lastPing: Date.now(),
+    latency,
+    error: serviceStatus === BRIDGE_STATUS.CONNECTED || serviceStatus === BRIDGE_STATUS.AUTHENTICATING
+      ? null
+      : laneStatus,
+    endpoint,
+    laneStatus,
+    apiKeyPresent: data?.api_key_present === true,
+    localOnlyHandoff: data?.local_only_handoff !== false,
+    browserAutomation: data?.browser_automation === true,
+    broadcastToAgents: data?.broadcast_to_agents === true,
+    model: data?.model || null,
+    guardrails: Array.isArray(data?.guardrails) ? data.guardrails : [],
+    capabilities: ['perplexity_api_review', 'local_mesh_context', 'redacted_status'],
+  };
+}
+
+async function checkPerplexityApiAdapter() {
+  const configured = String(getConfiguredPerplexityAdapterEndpoint() || '').replace(/\/+$/, '');
+  const base = String(getConfiguredLocalModelEndpoint() || '').replace(/\/+$/, '');
+  const probeUrls = [...new Set([
+    `${base}/perplexity/status`,
+    `${base}/perplexity`,
+    configured,
+  ].filter(Boolean))];
+
+  let lastError = null;
+  for (const url of probeUrls) {
+    try {
+      const { data, latency } = await fetchJsonWithTimeout(url, 3500);
+      bridgeState.services.perplexityApiBridge = normalizePerplexityAdapterService(data, url, latency);
+      return bridgeState.services.perplexityApiBridge.status === BRIDGE_STATUS.CONNECTED
+        || bridgeState.services.perplexityApiBridge.status === BRIDGE_STATUS.AUTHENTICATING;
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  bridgeState.services.perplexityApiBridge = {
+    status: BRIDGE_STATUS.DISCONNECTED,
+    lastPing: null,
+    latency: null,
+    error: lastError?.message || 'local Perplexity API adapter unavailable',
+    endpoint: MESH_ENDPOINTS.perplexityApiBridge,
+    capabilities: [],
+  };
+  bridgeState.errors.push({
+    service: 'perplexityApiBridge',
+    error: bridgeState.services.perplexityApiBridge.error,
+  });
+  return false;
 }
 
 /**
@@ -475,6 +569,414 @@ async function checkLocalModelControl() {
     error: bridgeState.services.localModelControl.error,
   });
   return false;
+}
+
+/**
+ * Check Claude Code Shadow Garden cloud lane connectivity.
+ *
+ * Reads the local status file emitted by tools/claude_shadowgarden.py through
+ * the Shadow Garden Control endpoint. In pure-browser contexts without that
+ * endpoint, marks the service as disconnected with a helpful error.
+ */
+async function checkClaudeCode() {
+  const base = String(getConfiguredLocalModelEndpoint() || '').replace(/\/+$/, '');
+  const probeUrls = [
+    `${base}/claude/status`,
+    `${base}/claude`,
+    MESH_ENDPOINTS.claudeCode,
+  ].filter(Boolean);
+
+  let lastError = null;
+  for (const url of probeUrls) {
+    try {
+      const { data, latency } = await fetchJsonWithTimeout(url, 3500);
+      const status = data?.status || 'unknown';
+      const capabilities = Array.isArray(data?.capabilities) && data.capabilities.length
+        ? data.capabilities
+        : ['code', 'tool_use', 'long_context'];
+
+      bridgeState.services.claudeCode = {
+        status: status === 'dry_run' || status === 'live_ok'
+          ? BRIDGE_STATUS.CONNECTED
+          : BRIDGE_STATUS.ERROR,
+        lastPing: Date.now(),
+        latency,
+        error: status.startsWith('blocked') || status === 'live_failed' ? status : null,
+        endpoint: url,
+        capabilities,
+        model: data?.model || null,
+        session: data?.session_label || null,
+        laneStatus: status,
+        dryRun: Boolean(data?.dry_run),
+      };
+      return bridgeState.services.claudeCode.status === BRIDGE_STATUS.CONNECTED;
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  bridgeState.services.claudeCode = {
+    status: BRIDGE_STATUS.DISCONNECTED,
+    lastPing: null,
+    latency: null,
+    error: lastError?.message || 'claude shadowgarden lane unavailable',
+    endpoint: MESH_ENDPOINTS.claudeCode,
+    capabilities: [],
+  };
+  bridgeState.errors.push({
+    service: 'claudeCode',
+    error: bridgeState.services.claudeCode.error,
+  });
+  return false;
+}
+
+function mapCometExtensionStatus(laneStatus) {
+  if (laneStatus === 'ready') {
+    return BRIDGE_STATUS.CONNECTED;
+  }
+  if (laneStatus === 'blocked_lawful_confirmation_required') {
+    return BRIDGE_STATUS.AUTHENTICATING;
+  }
+  if (String(laneStatus || '').startsWith('not_ready')) {
+    return BRIDGE_STATUS.DISCONNECTED;
+  }
+  return BRIDGE_STATUS.ERROR;
+}
+
+function buildCometExtensionReviewPrompt(status = {}) {
+  const repo = status.repo?.url || 'https://github.com/webLiang/Pornhub-Video-Downloader-Plugin-v3.git';
+  const workspace = status.workspace?.path || 'unconfigured';
+  const laneStatus = status.status || 'unknown';
+  const manager = status.package?.manager || 'unknown';
+  return [
+    'Perplexity review brief for the Comet browser-extension workspace.',
+    `Repository: ${repo}`,
+    `Workspace: ${workspace}`,
+    `Lane status: ${laneStatus}`,
+    `Package manager: ${manager}`,
+    'Review Manifest V3 compatibility, Comet/Chromium unpacked loading, permissions, injected scripts, downloads behavior, build/test risks, and lawful-use guardrails.',
+    'Boundary: docs-only review; do not generate downloader logic, bypass instructions, or automated download workflows.',
+  ].join('\n');
+}
+
+function normalizeCometExtensionService(data, endpoint, latency = null) {
+  const laneStatus = data?.status || 'unknown';
+  const serviceStatus = mapCometExtensionStatus(laneStatus);
+  const capabilities = Array.isArray(data?.capabilities) && data.capabilities.length
+    ? data.capabilities
+    : ['browser_extension', 'comet', 'chromium', 'manifest_v3', 'local_workspace', 'perplexity_review'];
+  return {
+    status: serviceStatus,
+    lastPing: Date.now(),
+    latency,
+    error: serviceStatus === BRIDGE_STATUS.CONNECTED ? null : laneStatus,
+    endpoint,
+    capabilities,
+    laneStatus,
+    workspace: data?.workspace?.path || null,
+    distPath: data?.dist?.path || null,
+    legalGate: data?.legalGate || null,
+    riskFlags: Array.isArray(data?.riskFlags) ? data.riskFlags : [],
+    routeHints: Array.isArray(data?.routeHints) ? data.routeHints : [],
+    reviewPromptPath: data?.reviewPromptPath || null,
+    cometCompatibility: data?.cometCompatibility || null,
+    cometVerified: data?.cometCompatibility?.verifiedInComet === true,
+    bundledArtifacts: Array.isArray(data?.artifacts?.bundledCrxOrPem)
+      ? data.artifacts.bundledCrxOrPem
+      : [],
+    quarantineRequired: data?.artifacts?.quarantineRequired === true,
+    perplexityReviewPrompt: data?.perplexityReviewPrompt || buildCometExtensionReviewPrompt(data),
+  };
+}
+
+async function checkCometExtensionWorkspace() {
+  const configured = String(getConfiguredCometExtensionEndpoint() || '').replace(/\/+$/, '');
+  const base = String(getConfiguredLocalModelEndpoint() || '').replace(/\/+$/, '');
+  const probeUrls = [
+    `${base}/extension/status`,
+    `${base}/extension`,
+    configured,
+  ].filter(Boolean);
+
+  let lastError = null;
+  for (const url of [...new Set(probeUrls)]) {
+    try {
+      const { data, latency } = await fetchJsonWithTimeout(url, 3500);
+      bridgeState.services.cometExtension = normalizeCometExtensionService(data, url, latency);
+      return bridgeState.services.cometExtension.status === BRIDGE_STATUS.CONNECTED;
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  bridgeState.services.cometExtension = {
+    status: BRIDGE_STATUS.DISCONNECTED,
+    lastPing: null,
+    latency: null,
+    error: lastError?.message || 'comet extension workspace status unavailable',
+    endpoint: MESH_ENDPOINTS.cometExtension,
+    capabilities: [],
+  };
+  bridgeState.errors.push({
+    service: 'cometExtension',
+    error: bridgeState.services.cometExtension.error,
+  });
+  return false;
+}
+
+function mapRecursiveNodeBridgeStatus(laneStatus) {
+  if (laneStatus === 'ready' || laneStatus === 'running') {
+    return BRIDGE_STATUS.CONNECTED;
+  }
+  if (laneStatus === 'stopped' || laneStatus === 'blocked') {
+    return BRIDGE_STATUS.DISCONNECTED;
+  }
+  return BRIDGE_STATUS.ERROR;
+}
+
+function normalizeRecursiveNodeBridgeService(data, endpoint, latency = null) {
+  const laneStatus = data?.status || 'unknown';
+  const route = data?.route || {};
+  return {
+    status: mapRecursiveNodeBridgeStatus(laneStatus),
+    lastPing: Date.now(),
+    latency,
+    error: laneStatus === 'ready' || laneStatus === 'running' ? null : laneStatus,
+    endpoint,
+    laneStatus,
+    localOnly: data?.local_only !== false,
+    symbolicOnly: data?.symbolic_only !== false,
+    routeName: route.name || data?.config?.route_name || 'local-open-weights',
+    routeModel: route.model || data?.config?.route_model || 'deepseek-local',
+    routeEnabled: route.enabled === true,
+    guardrails: Array.isArray(data?.guardrails) ? data.guardrails : [],
+    capabilities: Array.isArray(data?.capabilities) && data.capabilities.length
+      ? data.capabilities
+      : ['recursive_node_evolution', 'chronology_engine', 'local_open_weights', 'deepseek_metadata'],
+  };
+}
+
+async function checkRecursiveNodeBridge() {
+  const configured = String(
+    (typeof window !== 'undefined'
+      ? window.SHADOWGARDEN_RECURSIVE_NODE_URL || window.RECURSIVE_NODE_BRIDGE_URL
+      : process?.env?.SHADOWGARDEN_RECURSIVE_NODE_URL || process?.env?.RECURSIVE_NODE_BRIDGE_URL)
+      || MESH_ENDPOINTS.recursiveNodeBridge,
+  ).replace(/\/+$/, '');
+  const base = String(getConfiguredLocalModelEndpoint() || '').replace(/\/+$/, '');
+  const probeUrls = [...new Set([
+    `${base}/recursive/status`,
+    `${base}/recursive`,
+    configured,
+  ].filter(Boolean))];
+
+  let lastError = null;
+  for (const url of probeUrls) {
+    try {
+      const { data, latency } = await fetchJsonWithTimeout(url, 3500);
+      bridgeState.services.recursiveNodeBridge = normalizeRecursiveNodeBridgeService(data, url, latency);
+      return bridgeState.services.recursiveNodeBridge.status === BRIDGE_STATUS.CONNECTED;
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  bridgeState.services.recursiveNodeBridge = {
+    status: BRIDGE_STATUS.DISCONNECTED,
+    lastPing: null,
+    latency: null,
+    error: lastError?.message || 'recursive node bridge unavailable',
+    endpoint: MESH_ENDPOINTS.recursiveNodeBridge,
+    capabilities: [],
+  };
+  bridgeState.errors.push({
+    service: 'recursiveNodeBridge',
+    error: bridgeState.services.recursiveNodeBridge.error,
+  });
+  return false;
+}
+
+function getClaudeApiKey() {
+  if (typeof window !== 'undefined') {
+    return window.ANTHROPIC_API_KEY || window.CLAUDE_API_KEY || null;
+  }
+  return process?.env?.ANTHROPIC_API_KEY || process?.env?.CLAUDE_API_KEY || null;
+}
+
+function getAnthropicOAuthToken() {
+  if (typeof window !== 'undefined') {
+    return window.ANTHROPIC_OAUTH_TOKEN || null;
+  }
+  return process?.env?.ANTHROPIC_OAUTH_TOKEN || null;
+}
+
+function getAnthropicApiKeyId() {
+  if (typeof window !== 'undefined') {
+    return window.ANTHROPIC_API_KEY_ID || null;
+  }
+  return process?.env?.ANTHROPIC_API_KEY_ID || null;
+}
+
+/**
+ * Verify a Claude API key's metadata via the Anthropic Admin API using an
+ * OAuth Bearer token. Mirrors:
+ *
+ *   curl https://api.anthropic.com/v1/organizations/api_keys/$API_KEY_ID \
+ *        -H 'anthropic-version: 2023-06-01' \
+ *        -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
+ *
+ * Returns a redacted summary; never echoes the token or key value. Also
+ * updates bridgeState.services.claudeCode.adminKeyCheck for the diagnostics UI.
+ */
+export async function verifyClaudeAdminKey({ apiKeyId, oauthToken } = {}) {
+  const keyId = apiKeyId || getAnthropicApiKeyId();
+  const oauth = oauthToken || getAnthropicOAuthToken();
+
+  if (!keyId || !oauth) {
+    const result = {
+      checked: false,
+      reason: 'ANTHROPIC_OAUTH_TOKEN / ANTHROPIC_API_KEY_ID not set',
+    };
+    if (bridgeState.services.claudeCode) {
+      bridgeState.services.claudeCode.adminKeyCheck = result;
+    }
+    return result;
+  }
+
+  const url = `https://api.anthropic.com/v1/organizations/api_keys/${encodeURIComponent(keyId)}`;
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 5000);
+
+  try {
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'anthropic-version': '2023-06-01',
+        Authorization: `Bearer ${oauth}`,
+        Accept: 'application/json',
+      },
+      signal: controller.signal,
+    });
+    clearTimeout(timeout);
+
+    let payload = {};
+    try {
+      payload = await response.json();
+    } catch {
+      payload = {};
+    }
+
+    const result = {
+      checked: true,
+      ok: response.ok,
+      httpStatus: response.status,
+      keyId: payload?.id || keyId,
+      name: payload?.name || null,
+      status: payload?.status || null,
+      workspaceId: payload?.workspace_id || null,
+      createdAt: payload?.created_at || null,
+      partialKeyHint: payload?.partial_key_hint || null,
+    };
+
+    if (bridgeState.services.claudeCode) {
+      bridgeState.services.claudeCode.adminKeyCheck = result;
+    }
+    return result;
+  } catch (error) {
+    clearTimeout(timeout);
+    const result = { checked: true, ok: false, error: error.message };
+    if (bridgeState.services.claudeCode) {
+      bridgeState.services.claudeCode.adminKeyCheck = result;
+    }
+    bridgeState.errors.push({ service: 'claudeAdminKey', error: error.message });
+    return result;
+  }
+}
+
+function buildClaudeSystemPrompt(command, activity) {
+  return [
+    'You are Claude Code operating inside the Shadow Garden mesh.',
+    `Sovereign: ${bridgeState.sovereign.caster} (${bridgeState.sovereign.authority}).`,
+    'Grok Terminal remains sovereign for media generation; you are the code /',
+    'tool-use authority. Coordinate with the Devin and Perplexity lanes.',
+    `Activity: ${activity}`,
+    `Command: ${command}`,
+    'Boundary: never inline secrets, prefer argv-style command plans, and emit',
+    'structured diffs suitable for the mesh bridge diagnostics UI.',
+  ].join(' ');
+}
+
+/**
+ * Delegate a command to the Claude Code cloud environment.
+ * Uses the Anthropic Messages API shape by default; the actual endpoint may be
+ * fronted by the Shadow Garden Control proxy.
+ */
+export async function delegateToClaude(command, context = {}) {
+  if (bridgeState.services.claudeCode?.status !== BRIDGE_STATUS.CONNECTED) {
+    throw new Error('Claude Code shadowgarden lane not connected');
+  }
+
+  const apiKey = getClaudeApiKey();
+  if (!apiKey) {
+    throw new Error('Claude API key not configured (ANTHROPIC_API_KEY / CLAUDE_API_KEY)');
+  }
+
+  const activity = detectShadowGardenActivity(command, context);
+  const model = context.model
+    || bridgeState.services.claudeCode.model
+    || (typeof window !== 'undefined' ? window.CLAUDE_MODEL : process?.env?.CLAUDE_MODEL)
+    || 'claude-sonnet-4-5';
+  const endpoint = context.endpoint
+    || (typeof window !== 'undefined' ? window.CLAUDE_ENDPOINT : process?.env?.CLAUDE_ENDPOINT)
+    || 'https://api.anthropic.com/v1/messages';
+  const normalizedPrompt = normalizeShadowGardenPrompt(
+    context.prompt || context.userPrompt || command,
+  );
+
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model,
+        max_tokens: context.maxTokens || 4096,
+        system: buildClaudeSystemPrompt(command, activity),
+        messages: [
+          {
+            role: 'user',
+            content: JSON.stringify({
+              ...context,
+              prompt: normalizedPrompt,
+              promptHandling: { activity, model, normalizedPrompt },
+            }),
+          },
+        ],
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Claude delegation failed: ${response.status}`);
+    }
+
+    const data = await response.json();
+    bridgeState.sovereign.lastCommand = {
+      command,
+      activity,
+      provider: 'claudeCode',
+      model,
+      timestamp: new Date().toISOString(),
+      response: data.content?.[0]?.text || null,
+    };
+
+    return data;
+  } catch (error) {
+    bridgeState.errors.push({ service: 'claudeDelegation', error: error.message });
+    throw error;
+  }
 }
 
 /**
@@ -800,12 +1302,21 @@ export const MeshBridge = {
   refresh: refreshMesh,
   getStatus: getBridgeStatus,
   delegateToGrok,
+  delegateToClaude,
+  verifyClaudeAdminKey,
   BRIDGE_STATUS,
   MESH_ENDPOINTS,
 };
 
 export {
-  BRIDGE_STATUS, MESH_ENDPOINTS, detectLocalModelFamily, buildPerplexityReviewPrompt,
+  BRIDGE_STATUS,
+  MESH_ENDPOINTS,
+  detectLocalModelFamily,
+  buildPerplexityReviewPrompt,
+  buildCometExtensionReviewPrompt,
+  normalizeCometExtensionService,
+  normalizePerplexityAdapterService,
+  normalizeRecursiveNodeBridgeService,
 };
 
 export default MeshBridge;

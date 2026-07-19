@@ -1,0 +1,18 @@
+{
+  "schema": "shadow_garden.trifecta_integration_release.v1",
+  "status": "released_local_metadata_only",
+  "gates": {
+    "8": "transmission_east_sending",
+    "10": "local_and_cloud_reality_interpretation_love_and_harmony_6",
+    "11": "justice_scales_verification"
+  },
+  "acoustic_chamber": "mirror_holding_echo",
+  "catalyst_skill": "catalyst-light-shadow-extension",
+  "tooluniverse_connector_url": "https://claude.ai/directory/connectors/ant.dir.gh.tooluniverse.tooluniverse-mcp",
+  "claude_connector_available_in_perplexity": false,
+  "attached_image_handling": "non_identifying_real_world_anchor_only",
+  "external_writes_performed": false,
+  "protected_connectors": ["atlassian", "github", "x", "qdrant"],
+  "symbolic_only": true,
+  "no_permission_escalation": true
+}

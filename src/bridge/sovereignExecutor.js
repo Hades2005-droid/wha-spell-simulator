@@ -15,6 +15,9 @@ const SOVEREIGN_EFFECTS = {
   launch_voice: executeSovereignVoice,
   show_status: executeSovereignStatus,
   delegate_grok: executeSovereignDelegate,
+  phase2_black_sun: executePhase2BlackSun,
+  phase2_moon_gate: executePhase2MoonGate,
+  phase2_recursive_spell: executePhase2RecursiveSpell,
 };
 
 /**
@@ -220,6 +223,63 @@ async function executeSovereignDelegate(context) {
       message: 'Delegation failed',
     };
   }
+}
+
+/**
+ * Phase 2 — Black Sun home sim (content-neutral, local metadata)
+ */
+async function executePhase2BlackSun(_context) {
+  return {
+    phase: 2,
+    packageId: 'shadow-garden-phase2-fable5-black-sun-home-sim',
+    q24Anchor: 14,
+    reduceAnchor: false,
+    sequence: [19, 10, 1],
+    carrier: 'love_and_harmony_6',
+    bridgeSignature: 'f2e596cd043d6819',
+    mechanic: 'scene_registry_gate',
+    executionMode: 'manifest_only',
+    contentNeutral: true,
+    cli: 'python3 tools/black_sun_phase2_engine.py self-test',
+    timestamp: new Date().toISOString(),
+    message: 'Phase 2 Black Sun home anchor armed (symbolic / local-only)',
+  };
+}
+
+/**
+ * Phase 2 — moon_18 gate checklist
+ */
+async function executePhase2MoonGate(_context) {
+  return {
+    phase: 2,
+    moonGate: { target: 18, catalysts: [5, 6, 7], formula: '5+6+7=18' },
+    checklist: ['launch', 'fable', 'harmony', 'chariot', 'land'],
+    maxTurns: 24,
+    executionMode: 'manifest_only',
+    contentNeutral: true,
+    cli: 'python3 tools/black_sun_phase2_engine.py replay --actions launch,fable,harmony,chariot,land',
+    timestamp: new Date().toISOString(),
+    message: 'Moon-18 gate checklist ready for party turn',
+  };
+}
+
+/**
+ * Phase 2 — bounded recursive spell evolve (never infinite)
+ */
+async function executePhase2RecursiveSpell(_context) {
+  return {
+    phase: 2,
+    boundedCyclesMax: 3,
+    defaultCycles: 1,
+    infiniteLoop: false,
+    executionMode: 'manifest_only',
+    contentNeutral: true,
+    agiTaskRef:
+      'https://github.com/Hades2005-droid/wha-spell-simulator/tasks/65421066-bc27-4336-a4a6-5f5e7b79d090',
+    cli: 'python3 tools/phase2_recursive_spell.py evolve --cycles 1',
+    timestamp: new Date().toISOString(),
+    message: 'Bounded Phase 2 recursive spell evolve (1 cycle) — run CLI to materialize candidates',
+  };
 }
 
 // Named exports

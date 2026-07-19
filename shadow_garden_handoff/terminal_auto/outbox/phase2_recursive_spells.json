@@ -1,0 +1,206 @@
+{
+  "schema": "shadow_garden.phase2_recursive_spell.v1",
+  "generated_at": "2026-07-12T10:34:39Z",
+  "phase": 2,
+  "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
+  "carrier": "love_and_harmony_6",
+  "bridge_signature": "f2e596cd043d6819",
+  "agi_task_ref": "https://github.com/Hades2005-droid/wha-spell-simulator/tasks/65421066-bc27-4336-a4a6-5f5e7b79d090",
+  "agi_task_note": "metadata pointer only; GitHub task URL may 404 until surfaced",
+  "cycles_requested": 1,
+  "cycles_ran": 1,
+  "improved": true,
+  "phase2_engine": {
+    "ok": true,
+    "passed": 9,
+    "total": 9,
+    "moon_18_open": true
+  },
+  "recursive_node": {
+    "ok": true,
+    "cycle_power": 0.09,
+    "status": "ready"
+  },
+  "spell_fuel": {
+    "ok": true,
+    "path": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/spell_generator_latest.json",
+    "jing_power": 13.61,
+    "authority": "grok_first",
+    "policy": "metadata_only_no_live_x_or_comet",
+    "sampled_at": "2026-07-12T10:33:21Z"
+  },
+  "history": [
+    {
+      "cycle": 1,
+      "mean_quality": 0.8681,
+      "ready_count": 5,
+      "top_id": "phase2-moon-18-gate",
+      "top_quality": 0.9081
+    }
+  ],
+  "spells": [
+    {
+      "id": "phase2-moon-18-gate",
+      "displayName": "Moon-18 Catalyst Gate",
+      "element": "water",
+      "intent": "Deterministic moon_18 gate before land: charge catalysts 5+6+7 = 18, then complete landing. Party-game turn prompt only.",
+      "mechanic": "turn_gate_checklist",
+      "quality": 0.9081,
+      "status": "ready_for_user_approval",
+      "fingerprint": "077612c12f8d7b97",
+      "phase2": {
+        "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
+        "carrier": "love_and_harmony_6",
+        "q24_canonical_id": "q24_eternal_dao_temperance_14_harmony_paradox_ignite_19_10_1",
+        "anchor": 14,
+        "reduce_anchor": false,
+        "sequence": [
+          19,
+          10,
+          1
+        ],
+        "moon_18_open": true
+      },
+      "controls": {
+        "executionMode": "manifest_only",
+        "localOnly": true,
+        "approved": false,
+        "contentNeutral": true
+      }
+    },
+    {
+      "id": "phase2-ignition-19-10-1",
+      "displayName": "Ignition Path 19\u219210\u21921",
+      "element": "fire",
+      "intent": "Ordered ignition path Sun-19 \u2192 gap-10 \u2192 loop-1 for Black Sun home sim. Explainable state machine step, MAX_TURNS=24 hard cap.",
+      "mechanic": "state_machine_arc",
+      "quality": 0.8881,
+      "status": "ready_for_user_approval",
+      "fingerprint": "f94a8aa3b3868f5a",
+      "phase2": {
+        "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
+        "carrier": "love_and_harmony_6",
+        "q24_canonical_id": "q24_eternal_dao_temperance_14_harmony_paradox_ignite_19_10_1",
+        "anchor": 14,
+        "reduce_anchor": false,
+        "sequence": [
+          19,
+          10,
+          1
+        ],
+        "moon_18_open": true
+      },
+      "controls": {
+        "executionMode": "manifest_only",
+        "localOnly": true,
+        "approved": false,
+        "contentNeutral": true
+      }
+    },
+    {
+      "id": "phase2-temperance-14-toggle",
+      "displayName": "Temperance 14 Justice Toggle",
+      "element": "wind",
+      "intent": "Dual render profile switch (MODE_SOLAR \u2194 MODE_LUNAR) keyed to Q24 anchor 14. Accessibility / atmosphere choice, not authority override.",
+      "mechanic": "accessibility_mode_toggle",
+      "quality": 0.8681,
+      "status": "ready_for_user_approval",
+      "fingerprint": "73cd447a79fddbff",
+      "phase2": {
+        "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
+        "carrier": "love_and_harmony_6",
+        "q24_canonical_id": "q24_eternal_dao_temperance_14_harmony_paradox_ignite_19_10_1",
+        "anchor": 14,
+        "reduce_anchor": false,
+        "sequence": [
+          19,
+          10,
+          1
+        ],
+        "moon_18_open": true
+      },
+      "controls": {
+        "executionMode": "manifest_only",
+        "localOnly": true,
+        "approved": false,
+        "contentNeutral": true
+      }
+    },
+    {
+      "id": "phase2-black-sun-home",
+      "displayName": "Black Sun Home Anchor",
+      "element": "light",
+      "intent": "Content-neutral home-simulation anchor: Temperance 14 unreduced, justice toggle solar/lunar, kitchen cabin Floor-22 protected node.",
+      "mechanic": "scene_registry_gate",
+      "quality": 0.8481,
+      "status": "ready_for_user_approval",
+      "fingerprint": "99cbc1f96603cdb0",
+      "phase2": {
+        "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
+        "carrier": "love_and_harmony_6",
+        "q24_canonical_id": "q24_eternal_dao_temperance_14_harmony_paradox_ignite_19_10_1",
+        "anchor": 14,
+        "reduce_anchor": false,
+        "sequence": [
+          19,
+          10,
+          1
+        ],
+        "moon_18_open": true
+      },
+      "controls": {
+        "executionMode": "manifest_only",
+        "localOnly": true,
+        "approved": false,
+        "contentNeutral": true
+      }
+    },
+    {
+      "id": "phase2-recursive-resonance",
+      "displayName": "Bounded Resonance Evolve",
+      "element": "earth",
+      "intent": "One-cycle recursive node resonance feeding spell quality \u2014 gain\u22648, nodes\u22649, local-only metadata. Never infinite.",
+      "mechanic": "bounded_recursive_improve",
+      "quality": 0.8281,
+      "status": "ready_for_user_approval",
+      "fingerprint": "c2bc67b28f4a2746",
+      "phase2": {
+        "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
+        "carrier": "love_and_harmony_6",
+        "q24_canonical_id": "q24_eternal_dao_temperance_14_harmony_paradox_ignite_19_10_1",
+        "anchor": 14,
+        "reduce_anchor": false,
+        "sequence": [
+          19,
+          10,
+          1
+        ],
+        "moon_18_open": true
+      },
+      "controls": {
+        "executionMode": "manifest_only",
+        "localOnly": true,
+        "approved": false,
+        "contentNeutral": true
+      }
+    }
+  ],
+  "metric": {
+    "name": "mean_spell_quality",
+    "before": 0.8681,
+    "after": 0.8681,
+    "ready_count": 5,
+    "acceptance": "ready_count>=4 and phase2_ok"
+  },
+  "controls": {
+    "external_fetch": false,
+    "provider_calls": false,
+    "credentials_allowed": false,
+    "generated_code_execution": false,
+    "explicit_adult_rendering": false,
+    "content_neutral_base_build": true,
+    "symbolic_only": true,
+    "bounded_cycles_max": 3,
+    "infinite_loop": false
+  }
+}

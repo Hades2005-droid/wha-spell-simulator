@@ -1,0 +1,44 @@
+{
+  "schema": "shadow_garden.q24_symbolic_registry.v1",
+  "canonical_id": "q24_eternal_dao_temperance_14_harmony_paradox_ignite_19_10_1",
+  "symbolic_only": true,
+  "carrier": "love_and_harmony_6",
+  "anchor": 14,
+  "reduce_anchor": false,
+  "sequence": [
+    19,
+    10,
+    1
+  ],
+  "display": {
+    "en": "Eternal Dao: Temperance 14, Perfect Harmony Paradox",
+    "zh": "永恒之道：十四节制与完美和谐悖论",
+    "ja": "永遠の道：節制14と完全調和のパラドックス",
+    "ko": "영원의 도: 절제 14와 완벽한 조화의 역설"
+  },
+  "deliverable": {
+    "front_lane_date": "2026-07-10",
+    "back_lane_date": "2026-07-11",
+    "label": "black_sun_singularity_symbolic_merge",
+    "playable_bridge_signature": "f2e596cd043d6819",
+    "parts_closed": [
+      "1_magician_sovereign_prime",
+      "2_q24_alpha",
+      "3_final_three_catalysts"
+    ]
+  },
+  "assets": {
+    "yaml": "/Users/fredwashere/shadow_garden_may30_monitoring/bundles/q24_unified/canon/q24_canonical.yaml",
+    "godot_tres": "/Users/fredwashere/shadow_garden_may30_monitoring/bundles/q24_unified/godot/Q24_EternalDao_Temperance14_HarmonyParadox_19to10to1.tres",
+    "zip_source": "/Users/fredwashere/shadow_garden_may30_monitoring/bundles/q24_unified"
+  },
+  "controls": {
+    "external_fetch": false,
+    "browser_automation": false,
+    "generated_code_execution": false,
+    "provider_calls": false,
+    "not_physics_or_executable_authority": true
+  },
+  "validation_errors": [],
+  "valid": true
+}

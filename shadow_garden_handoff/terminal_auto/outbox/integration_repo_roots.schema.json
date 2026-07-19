@@ -1,0 +1,13 @@
+{
+  "schema": "shadow_garden.integration_repo_roots.v1",
+  "format_version": "1.0",
+  "generated_at": "2026-07-12T06:59:35Z",
+  "description": "Allowlisted repo roots + local service pointers for Fable5/ComfyUI/Perplexity/Claude/Grok bridge",
+  "secrets_policy": "env_only",
+  "producer": "tools/fable5_comfyui_command_bridge.py",
+  "related_docs": [
+    "docs/chronology-recursive-bridge.md",
+    "docs/mesh-review-loop.md",
+    "docs/comet-extension-workspace.md"
+  ]
+}

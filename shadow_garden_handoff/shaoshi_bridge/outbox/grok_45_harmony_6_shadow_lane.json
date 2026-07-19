@@ -1,0 +1,25 @@
+{
+  "schema": "shadow_garden.symbolic_lane_map.v1",
+  "gate": 8,
+  "carrier": "love_and_harmony_6",
+  "symbolic_only": true,
+  "no_permission_escalation": true,
+  "lane_map": [
+    {"number": 4, "catalyst": "Emperor anchor", "holder": "Fred / 4.2 Sovereign", "role": "local human operator and final approval authority"},
+    {"number": 5, "catalyst": "Fable story ignition", "holder": "Perplexity solar paste", "role": "front narrative/planning synthesis without external writes"},
+    {"number": 6, "catalyst": "Harmony equilibrium", "holder": "Grok 4.5 back terminal shadow", "role": "back-lane validator and equilibrium marker"},
+    {"number": 7, "catalyst": "Chariot release", "holder": "Claude front review", "role": "design review and deterministic play validation only"},
+    {"number": 8, "catalyst": "Closure validation", "holder": "Local terminal back-lane", "role": "validate Claude JSON and close timeline without external writes"}
+  ],
+  "everyone_else_roster": {
+    "perplexity": "Fable 5 / solar synthesis / planning and validation",
+    "grok_45": "Harmony 6 / back terminal shadow / re-validation",
+    "claude": "Chariot 7 / front design review / JSON return only",
+    "devin": "engineering review lane only when explicitly invoked",
+    "terminal": "Gate 8 local validation surface, no external broadcast",
+    "atlassian": "tracking rail, no writes unless approved",
+    "github": "code rail, no commits or pushes unless approved",
+    "x": "social rail, no interactions unless approved",
+    "qdrant": "memory/vector rail, degraded; no mutation unless repaired and approved"
+  }
+}

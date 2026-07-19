@@ -1,158 +1,245 @@
 #!/usr/bin/env python3
-"""Perplexity mesh adapter — review one named local document with Sonar.
-
-Scoped and deliberate by design: it sends exactly the document you point it at,
-to Perplexity only, and only when you pass --send. Default is a dry run that
-assembles the request and prints a preview without touching the network. It does
-not scan Downloads/Drive or any folder — you name the file.
-
-    python3 tools/perplexity_mesh_adapter.py \\
-      --request "Review the Q24 recommendation for ingestion risks." \\
-      --document "/path/to/Q24_Alpha_Component_Recommendation.pdf"
-    #   ^ dry run: shows the assembled prompt, sends nothing
-    # add --send to make the live Sonar call.
-
-The API key is read only from the environment (PERPLEXITY_API_KEY) — never from
-a flag and never printed. Keep it in ~/ShadowGarden/.env or your shell env.
-"""
 from __future__ import annotations
 
 import argparse
-import importlib
 import json
 import os
-import shutil
-import subprocess
+import sys
 import urllib.error
 import urllib.request
+from datetime import datetime, timezone
 from pathlib import Path
+from typing import Any
 
-PERPLEXITY_BASE = os.getenv("PERPLEXITY_BASE_URL", "https://api.perplexity.ai")
-PERPLEXITY_ENDPOINT = os.getenv("PERPLEXITY_ENDPOINT", "/v1/sonar")
-DEFAULT_MODEL = os.getenv("PERPLEXITY_MODEL", "sonar-reasoning-pro")
-DOC_CHAR_CAP = 48000  # bound the request; large docs are truncated with a note.
-
-TEXTUAL = {".txt", ".md", ".json", ".csv", ".log", ".yaml", ".yml", ".xml", ""}
-
-
-def die(msg: str) -> "None":
-    raise SystemExit(f"[mesh] {msg}")
-
-
-def extract_pdf(path: Path) -> str:
-    for mod_name in ("pypdf", "PyPDF2"):
-        try:
-            mod = importlib.import_module(mod_name)
-        except ImportError:
-            continue
-        try:
-            reader = mod.PdfReader(str(path))
-            return "\n".join((page.extract_text() or "") for page in reader.pages)
-        except Exception as exc:  # pragma: no cover - malformed pdf
-            die(f"{mod_name} could not read the PDF: {exc}")
-    if shutil.which("pdftotext"):
-        try:
-            out = subprocess.run(
-                ["pdftotext", str(path), "-"], capture_output=True, text=True, timeout=60,
-            )
-        except subprocess.TimeoutExpired:
-            die(f"pdftotext timed out after 60s on {path.name} — the PDF may be malformed.")
-        if out.returncode == 0:
-            return out.stdout
-        die(f"pdftotext failed (exit {out.returncode}): {out.stderr.strip()[:200] or 'no stderr output'}")
-    die("PDF extraction needs 'pypdf' (pip install pypdf) or the 'pdftotext' CLI.")
-    return ""  # unreachable
-
-
-def read_document(path_str: str) -> str:
-    path = Path(path_str).expanduser()
-    if not path.exists():
-        die(f"document not found: {path}")
-    suffix = path.suffix.lower()
-    if suffix == ".pdf":
-        text = extract_pdf(path)
-    elif suffix in TEXTUAL:
-        text = path.read_text(errors="replace")
-    else:
-        try:
-            text = path.read_text(errors="replace")
-        except Exception:
-            die(f"cannot read '{suffix}' as text — convert it to .txt or .pdf first.")
-            text = ""
-    text = text.strip()
-    if len(text) > DOC_CHAR_CAP:
-        text = text[:DOC_CHAR_CAP] + f"\n\n[...truncated at {DOC_CHAR_CAP} chars...]"
-    return text
-
-
-def build_messages(request: str, doc_text: str, doc_name: str) -> list:
-    system = (
-        "You are the Perplexity Sonar reviewer for the Shadow Garden mesh. Ground your "
-        "review in the attached document, and use the web only to check facts. Be "
-        "concrete: surface risks, gaps, and one clear recommendation."
+try:
+    from .document_ingest import (
+        DEFAULT_MAX_CHARS,
+        DocumentIngestError,
+        NormalizedDocument,
+        document_prompt_block,
+        load_documents,
     )
-    user = request
-    if doc_text:
-        user += f"\n\n--- DOCUMENT: {doc_name} ---\n{doc_text}"
-    return [
-        {"role": "system", "content": system},
-        {"role": "user", "content": user},
+except ImportError:
+    from document_ingest import (
+        DEFAULT_MAX_CHARS,
+        DocumentIngestError,
+        NormalizedDocument,
+        document_prompt_block,
+        load_documents,
+    )
+
+DEFAULT_API_URL = "https://api.perplexity.ai/chat/completions"
+DEFAULT_MODEL = "sonar"
+DEFAULT_STATUS_FILE = "/tmp/shadow_garden_perplexity_status.json"
+DEFAULT_OUTPUT_FILE = "/tmp/shadow_garden_perplexity_review.json"
+LOCAL_CONTEXT_FILES = (
+    "/tmp/shadow_garden_recursive_node_status.json",
+    "/tmp/shadow_garden_extension_workspace_status.json",
+)
+
+
+def utc_now() -> str:
+    return datetime.now(timezone.utc).isoformat()
+
+
+def read_json(path: str) -> dict[str, Any] | None:
+    try:
+        payload = json.loads(Path(path).read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    return payload if isinstance(payload, dict) else None
+
+
+def local_context() -> dict[str, Any]:
+    context: dict[str, Any] = {}
+    for path in LOCAL_CONTEXT_FILES:
+        payload = read_json(path)
+        if payload is not None:
+            context[Path(path).stem] = payload
+    return context
+
+
+def build_prompt(
+    request: str,
+    context: dict[str, Any],
+    documents: list[NormalizedDocument] | None = None,
+) -> str:
+    normalized = " ".join((request or "").split())
+    if not normalized:
+        normalized = "Review the current local Shadow Garden mesh status."
+    lines = [
+        "Shadow Garden local mesh review.",
+        "Boundary: docs-only technical analysis; do not control browser profiles, automate Comet, scrape third-party pages, extract credentials, or broadcast prompts to other agents.",
+        "Treat chronology/vector output as symbolic metadata only, not as factual authority or a decision system.",
+        "Review the following request and local status metadata for reliability, integration risks, and a short actionable checklist.",
+        "Native PDF parts are not supported by this model path. Any PDF below has already been converted to bounded, redacted UTF-8 text.",
+        f"Request: {normalized}",
+        f"Local status metadata: {json.dumps(context, ensure_ascii=False, sort_keys=True)}",
     ]
+    if documents:
+        lines.extend(document_prompt_block(document) for document in documents)
+    return "\n".join(lines)
 
 
-def call_sonar(messages: list, model: str, max_tokens: int, timeout: int = 120) -> str:
-    key = os.environ.get("PERPLEXITY_API_KEY")
-    if not key:
-        die("PERPLEXITY_API_KEY is not set (keep it in ~/ShadowGarden/.env or your shell env).")
-    body = {"model": model, "messages": messages, "max_tokens": max_tokens}
-    req = urllib.request.Request(
-        PERPLEXITY_BASE + PERPLEXITY_ENDPOINT,
-        data=json.dumps(body).encode("utf-8"),
+def build_payload(model: str, prompt: str, max_tokens: int) -> dict[str, Any]:
+    return {
+        "model": model,
+        "messages": [
+            {
+                "role": "system",
+                "content": "You are a technical reviewer for a local-only development mesh. Stay grounded and follow the stated boundary.",
+            },
+            {"role": "user", "content": prompt},
+        ],
+        "max_tokens": max_tokens,
+        "temperature": 0.2,
+    }
+
+
+def write_json(path: str, payload: dict[str, Any]) -> None:
+    target = Path(path)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    temporary = target.with_suffix(f"{target.suffix}.tmp")
+    temporary.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    temporary.replace(target)
+
+
+def request_perplexity(
+    api_url: str,
+    api_key: str,
+    payload: dict[str, Any],
+    timeout: float,
+) -> dict[str, Any]:
+    request = urllib.request.Request(
+        api_url,
+        data=json.dumps(payload).encode("utf-8"),
+        headers={
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json",
+        },
         method="POST",
-        headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
     )
     try:
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
-            payload = json.loads(resp.read().decode("utf-8"))
+        with urllib.request.urlopen(request, timeout=timeout) as response:
+            body = response.read().decode("utf-8")
     except urllib.error.HTTPError as exc:
-        die(f"Perplexity HTTP {exc.code}: {exc.read().decode('utf-8', 'replace')[:200]}")
-    except urllib.error.URLError as exc:
-        die(f"Perplexity connection error: {exc.reason}")
-    return payload["choices"][0]["message"]["content"]
+        detail = exc.read().decode("utf-8", errors="replace")[:500]
+        raise RuntimeError(f"Perplexity API returned HTTP {exc.code}: {detail}") from exc
+    except (urllib.error.URLError, TimeoutError) as exc:
+        raise RuntimeError(f"Perplexity API request failed: {exc}") from exc
+    try:
+        parsed = json.loads(body)
+    except json.JSONDecodeError as exc:
+        raise RuntimeError("Perplexity API returned non-JSON data") from exc
+    return parsed if isinstance(parsed, dict) else {"response": parsed}
 
 
-def main(argv=None) -> None:
-    parser = argparse.ArgumentParser(description="Review one local document with Perplexity Sonar.")
-    parser.add_argument("--request", required=True, help="What to ask Sonar about the document.")
-    parser.add_argument("--document", help="Path to a local document (.pdf/.txt/.md/...).")
-    parser.add_argument("--model", default=DEFAULT_MODEL, help=f"Sonar model (default {DEFAULT_MODEL}).")
-    parser.add_argument("--max-tokens", type=int, default=1200)
-    parser.add_argument("--send", action="store_true", help="Make the live Sonar call (default: dry run).")
-    args = parser.parse_args(argv)
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Local Perplexity mesh review adapter")
+    parser.add_argument("--request", action="append", default=[])
+    parser.add_argument("--model", default=os.environ.get("PERPLEXITY_MODEL", DEFAULT_MODEL))
+    parser.add_argument("--api-url", default=os.environ.get("PERPLEXITY_API_URL", DEFAULT_API_URL))
+    parser.add_argument("--status-file", default=DEFAULT_STATUS_FILE)
+    parser.add_argument("--output-file", default=DEFAULT_OUTPUT_FILE)
+    parser.add_argument("--max-tokens", type=int, default=800)
+    parser.add_argument("--timeout", type=float, default=30.0)
+    parser.add_argument(
+        "--document",
+        action="append",
+        default=[],
+        help="local text/PDF document to normalize before review; may be repeated",
+    )
+    parser.add_argument("--max-document-chars", type=int, default=DEFAULT_MAX_CHARS)
+    parser.add_argument("--send", action="store_true", help="Explicitly allow one API request")
+    return parser.parse_args(argv)
 
-    doc_name = Path(args.document).name if args.document else "(none)"
-    doc_text = read_document(args.document) if args.document else ""
-    messages = build_messages(args.request, doc_text, doc_name)
-    key_present = bool(os.environ.get("PERPLEXITY_API_KEY"))
 
-    print("[mesh] Perplexity mesh adapter")
-    print(f"  endpoint : {PERPLEXITY_BASE}{PERPLEXITY_ENDPOINT}")
-    print(f"  model    : {args.model}")
-    print(f"  request  : {args.request}")
-    print(f"  document : {doc_name} ({len(doc_text)} chars)")
-    print(f"  api key  : {'present (env)' if key_present else 'NOT set'}")
+def main(argv: list[str] | None = None) -> int:
+    args = parse_args(argv)
+    if args.max_tokens < 1 or args.timeout <= 0:
+        print(json.dumps({"error": "max-tokens must be positive and timeout must be greater than zero"}))
+        return 2
+
+    request_text = " ".join(args.request).strip()
+    try:
+        documents = load_documents(args.document, max_chars=args.max_document_chars)
+    except DocumentIngestError as exc:
+        status = {
+            "kind": "shadow_garden_perplexity_status",
+            "generated_at": utc_now(),
+            "status": "document_ingest_error",
+            "local_only_handoff": True,
+            "native_pdf_input": False,
+            "error": str(exc),
+        }
+        write_json(args.status_file, status)
+        print(json.dumps(status, ensure_ascii=False, indent=2), file=sys.stderr)
+        return 2
+
+    context = local_context()
+    prompt = build_prompt(request_text, context, documents)
+    api_key = os.environ.get("PERPLEXITY_API_KEY", "")
+    status: dict[str, Any] = {
+        "kind": "shadow_garden_perplexity_status",
+        "generated_at": utc_now(),
+        "status": "ready" if api_key else "blocked_api_key_missing",
+        "local_only_handoff": True,
+        "native_pdf_input": False,
+        "browser_automation": False,
+        "broadcast_to_agents": False,
+        "api_key_present": bool(api_key),
+        "api_url": args.api_url,
+        "model": args.model,
+        "context_files": list(context),
+        "document_names": [document.name for document in documents],
+        "document_count": len(documents),
+        "document_representations": [document.source_type for document in documents],
+        "guardrails": [
+            "env_only_secret",
+            "dry_run_by_default",
+            "pdfs_normalized_to_text",
+            "explicit_send_required",
+            "no_browser_profile_control",
+            "no_third_party_scraping",
+            "no_credential_logging",
+            "docs_only_review",
+        ],
+    }
 
     if not args.send:
-        preview = messages[1]["content"]
-        print("\n[mesh] DRY RUN — nothing sent. Add --send for the live Sonar call.")
-        print("  prompt preview:")
-        print("  " + preview[:500].replace("\n", "\n  ") + ("..." if len(preview) > 500 else ""))
-        return
+        status["status"] = "dry_run_ready" if api_key else "dry_run_api_key_missing"
+        status["prompt_preview"] = prompt
+        write_json(args.status_file, status)
+        print(json.dumps(status, ensure_ascii=False, indent=2))
+        return 0
 
-    print("\n[mesh] sending to Perplexity Sonar...")
-    answer = call_sonar(messages, args.model, args.max_tokens)
-    print("\n" + answer.strip())
+    if not api_key:
+        status["status"] = "blocked_api_key_missing"
+        write_json(args.status_file, status)
+        print(json.dumps(status, ensure_ascii=False, indent=2))
+        return 2
+
+    try:
+        response = request_perplexity(
+            args.api_url,
+            api_key,
+            build_payload(args.model, prompt, args.max_tokens),
+            args.timeout,
+        )
+    except RuntimeError as exc:
+        status["status"] = "api_error"
+        status["error"] = str(exc)
+        write_json(args.status_file, status)
+        print(json.dumps(status, ensure_ascii=False, indent=2), file=sys.stderr)
+        return 1
+
+    status["status"] = "review_complete"
+    status["response_saved_to"] = args.output_file
+    write_json(args.output_file, {"generated_at": utc_now(), "request": request_text, "response": response})
+    write_json(args.status_file, status)
+    print(json.dumps(status, ensure_ascii=False, indent=2))
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

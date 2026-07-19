@@ -1,0 +1,180 @@
+{
+  "schema": "shadow_garden.integration_repo_roots.v1",
+  "format_version": "1.0",
+  "generated_at": "2026-07-12T10:05:34Z",
+  "secrets_policy": "env_only",
+  "lanes": {
+    "perplexity": "fable5_synthesis",
+    "fable5_game": "local_5619",
+    "comfyui": "local_8188",
+    "claude": "front_review_opt_in",
+    "grok_xai": "back_lane_env",
+    "spacetime_alchemy": "catalyst_export",
+    "jing_power": "technical_telemetry"
+  },
+  "repo_roots": [
+    {
+      "id": "wha_spell_simulator",
+      "path": "/Users/fredwashere/wha-spell-simulator",
+      "role": "spell_compiler_bridge",
+      "exists": true
+    },
+    {
+      "id": "shadow_garden",
+      "path": "/Users/fredwashere/ShadowGarden",
+      "role": "hub_spacetime_export",
+      "exists": true
+    },
+    {
+      "id": "shadow_garden_mesh",
+      "path": "/Users/fredwashere/shadow_garden_mesh",
+      "role": "github_help_mesh",
+      "exists": true
+    },
+    {
+      "id": "monitoring",
+      "path": "/Users/fredwashere/shadow_garden_may30_monitoring",
+      "role": "daemons_fable5_server",
+      "exists": true
+    },
+    {
+      "id": "gitmynotes",
+      "path": "/Users/fredwashere/shadow_garden_mesh/gitmynotes",
+      "role": "notes_asana",
+      "exists": true
+    },
+    {
+      "id": "flux_klein_local",
+      "path": "/Users/fredwashere/shadow_garden_mesh/flux_klein_local",
+      "role": "image_hud",
+      "exists": true
+    }
+  ],
+  "services": [
+    {
+      "id": "fable5_game",
+      "url": "http://127.0.0.1:5619/",
+      "port": 5619,
+      "port_open": true,
+      "http_code": 200
+    },
+    {
+      "id": "comfyui",
+      "url": "http://127.0.0.1:8189/",
+      "port": 8189,
+      "port_open": false,
+      "http_code": 0
+    },
+    {
+      "id": "comfyui_system_stats",
+      "url": "http://127.0.0.1:8189/system_stats",
+      "port": 8189,
+      "port_open": false,
+      "http_code": 0
+    },
+    {
+      "id": "eden_burst_alpha",
+      "url": "http://127.0.0.1:8791/",
+      "port": 8791,
+      "port_open": true,
+      "http_code": 200
+    },
+    {
+      "id": "void_ignition",
+      "url": "http://127.0.0.1:8790/api/health",
+      "port": 8790,
+      "port_open": true,
+      "http_code": 200
+    },
+    {
+      "id": "ollama",
+      "url": "http://127.0.0.1:11434/api/tags",
+      "port": 11434,
+      "port_open": true,
+      "http_code": 200
+    }
+  ],
+  "pointers": {
+    "fable5_compact": {
+      "path": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/fable5-compact.json",
+      "exists": true
+    },
+    "perplexity_bedrock": {
+      "path": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/PERPLEXITY_CONTEXT_BEDROCK.md",
+      "exists": true
+    },
+    "jing_power_latest": {
+      "path": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/jing_power_latest.json",
+      "exists": true
+    },
+    "comfyui_context_pack": {
+      "path": "/Users/fredwashere/ShadowGarden/exports/comfyui_fable5_context/comfyui_fable5_context_pack.json",
+      "exists": true
+    },
+    "mesh_registry": {
+      "path": "/Users/fredwashere/shadow_garden_mesh/MESH_REGISTRY.json",
+      "exists": true
+    },
+    "chronology_doc": {
+      "path": "/Users/fredwashere/wha-spell-simulator/docs/chronology-recursive-bridge.md",
+      "exists": true
+    },
+    "gate_10": {
+      "path": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/gates/GATE_10_OPEN.md",
+      "exists": true
+    },
+    "perplexity_open_merge_task": {
+      "path": "https://www.perplexity.ai/computer/tasks/37bce2fb-1ba6-471f-854f-3871d9c19947?view=thread",
+      "exists": null
+    },
+    "deepseek_testament_share": {
+      "path": "https://chat.deepseek.com/share/t3aum0slci9ny6c9bi",
+      "exists": null
+    }
+  },
+  "env_key_presence": {
+    "XAI_API_KEY": false,
+    "PERPLEXITY_API_KEY": true,
+    "ANTHROPIC_API_KEY": false,
+    "ELEVENLABS_API_KEY": true,
+    "STABLE_HORDE_API_KEY": true,
+    "COMFYUI_URL": true,
+    "GITHUB_TOKEN": false,
+    "GH_TOKEN": false,
+    "GITHUB_OWNER": false,
+    "GITHUB_REPO": false,
+    "ATLASSIAN_API_TOKEN": true,
+    "ATLASSIAN_EMAIL": true,
+    "ATLASSIAN_DOMAIN": false,
+    "JIRA_BASE_URL": false,
+    "JIRA_PROJECT_KEY": false,
+    "CONFLUENCE_BASE_URL": false,
+    "CONFLUENCE_SPACE_KEY": false,
+    "X_API_KEY": false,
+    "X_API_SECRET": false,
+    "X_ACCESS_TOKEN": false,
+    "X_ACCESS_SECRET": false,
+    "X_BEARER_TOKEN": false,
+    "QDRANT_URL": false,
+    "QDRANT_API_KEY": false,
+    "QDRANT_COLLECTION": false,
+    "LINEAR_API_KEY": false,
+    "SLACK_BOT_TOKEN": false,
+    "SLACK_APP_TOKEN": false,
+    "HARPA_API_URL": false,
+    "HARPA_API_KEY": false
+  },
+  "jing_power_summary": {
+    "jing_power": 13.61,
+    "grok_ok": null,
+    "comfyui_ok": null,
+    "sampled_at": "2026-07-12T10:03:18Z"
+  },
+  "guardrails": [
+    "no_secret_values_in_status",
+    "no_home_wide_crawl",
+    "no_comfy_prompt_without_approval",
+    "no_perplexity_scrape",
+    "symbolic_chronology_only"
+  ]
+}
