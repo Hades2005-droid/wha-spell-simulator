@@ -100,3 +100,4 @@ npm test
 - [Compiled spell output contract](docs/spell-ir.md)
 - [Visual effect renderer notes](docs/effect-rendering.md)
 - [NWW Asana Connector (optional telemetry reporting)](docs/asana-connector.md)
+- [ComfyUI ElevenLabs Garden bridge](docs/comfyui-elevenlabs-garden.md)

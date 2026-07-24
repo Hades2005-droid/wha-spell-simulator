@@ -1,0 +1,267 @@
+{
+  "schema": "shadow_garden.local_open_weights_mesh_prep.v1",
+  "generated_at": "2026-07-19T20:54:56Z",
+  "carrier": "love_and_harmony_6",
+  "bridge_signature": "f2e596cd043d6819",
+  "mesh_id": "local_open_weights_mesh",
+  "phase": "prepare",
+  "asuna_point0": {
+    "point_0": "HOME",
+    "label": "perplexity_asuna_point_0",
+    "completion_bridge": "kimi3_third_leverage",
+    "transition_target": "local_open_weights_mesh"
+  },
+  "leverage_stack": {
+    "1": "deepseek_local_open_weights",
+    "2": "grok_xai_harmony_6_white_moon",
+    "3": "kimi3_completion_to_local_open_weights"
+  },
+  "lanes": {
+    "mesh": "local_open_weights_mesh",
+    "fable5_game": "local_5619",
+    "eden": "local_8791",
+    "comfyui": "local_8189_manifest_only",
+    "portal": "local_8760",
+    "ollama": "local_11434",
+    "deepseek": "local_ollama_preferred",
+    "kimi3": "local_transition_bridge",
+    "grok": "harmony_6_metadata_opt_in_remote",
+    "perplexity": "bedrock_compact_local_pointers",
+    "discord": "status_notify_paused",
+    "stripe": "local_4242_dry_run",
+    "claude": "front_review_local_handoff"
+  },
+  "ports": {
+    "bind": "127.0.0.1",
+    "ports": {
+      "fable5": {
+        "port": 5619,
+        "up": true
+      },
+      "comfyui": {
+        "port": 8189,
+        "up": false
+      },
+      "comfyui_alt": {
+        "port": 8188,
+        "up": false
+      },
+      "eden": {
+        "port": 8791,
+        "up": false
+      },
+      "void_ignition": {
+        "port": 8790,
+        "up": false
+      },
+      "portal": {
+        "port": 8760,
+        "up": false
+      },
+      "ollama": {
+        "port": 11434,
+        "up": true
+      },
+      "stripe_local": {
+        "port": 4242,
+        "up": false
+      },
+      "vite_dev": {
+        "port": 5173,
+        "up": false
+      },
+      "sillytavern": {
+        "port": 8000,
+        "up": false
+      }
+    },
+    "core_up": 2,
+    "core_total": 5,
+    "comfy_preferred": 8189,
+    "comfy_alt_up": false,
+    "ok": true
+  },
+  "ollama": {
+    "url": "http://127.0.0.1:11434/api/tags",
+    "up": true,
+    "models": [
+      "qwen3:14b",
+      "qwen3:32b",
+      "qwen3:8b",
+      "llama3.2:3b"
+    ],
+    "deepseek_tags": [],
+    "kimi_tags": [],
+    "model_count": 4
+  },
+  "env": {
+    "mode": "env_names_only",
+    "present": {
+      "KIMI3_TRANSITION_ARMED": false,
+      "LOCAL_MESH_PREP": false,
+      "DEEPSEEK_LOCAL_ENABLED": false,
+      "KIMI_LOCAL_ENABLED": false,
+      "DEEPSEEK_API_KEY": false,
+      "KIMI_API_KEY": false,
+      "MOONSHOT_API_KEY": false,
+      "XAI_API_KEY": true,
+      "PERPLEXITY_API_KEY": true,
+      "ENABLE_DISCORD": false,
+      "DISCORD_LIVE_OK": false,
+      "STRIPE_LIVE_OK": false,
+      "OLLAMA_HOST": false,
+      "COMFYUI_URL": true,
+      "SG_RUN_CONNECT": false,
+      "SG_RUN_EXTENSION": false
+    },
+    "transition_armed": false,
+    "prep_marked": false,
+    "remote_keys_present": true,
+    "local_flags": {
+      "DEEPSEEK_LOCAL_ENABLED": null,
+      "KIMI_LOCAL_ENABLED": null
+    }
+  },
+  "catalog_refresh": [
+    {
+      "ok": true,
+      "cli": "cached:deepseek",
+      "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/deepseek_asuna_point0_unification.json",
+      "vector_count": 18,
+      "cached": true
+    },
+    {
+      "ok": true,
+      "cli": "cached:grok_xai",
+      "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/grok_xai_asuna_point0_unification.json",
+      "vector_count": 11,
+      "cached": true
+    },
+    {
+      "ok": true,
+      "cli": "cached:white_moon",
+      "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/white_moon_eastern_corner.json",
+      "vector_count": 29,
+      "cached": true
+    },
+    {
+      "ok": true,
+      "cli": "cached:discord",
+      "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/discord_asuna_point0_unification.json",
+      "vector_count": 8,
+      "cached": true
+    },
+    {
+      "ok": true,
+      "cli": "cached:kimi3",
+      "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/kimi3_asuna_point0_unification.json",
+      "vector_count": 11,
+      "cached": true
+    },
+    {
+      "ok": true,
+      "cli": "cached:central",
+      "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/perplexity_asuna_central_control.json",
+      "vector_count": 89,
+      "cached": true
+    }
+  ],
+  "packet": {
+    "ok": null,
+    "skipped": true
+  },
+  "checklist": [
+    {
+      "id": "bind_loopback",
+      "ok": true,
+      "detail": "All prep routes use 127.0.0.1"
+    },
+    {
+      "id": "ollama_up",
+      "ok": true,
+      "detail": "Ollama tags reachable (4 models)"
+    },
+    {
+      "id": "deepseek_local_tag",
+      "ok": false,
+      "detail": "Pull a local deepseek model when ready (optional for prep)",
+      "blocking": false
+    },
+    {
+      "id": "kimi_local_tag",
+      "ok": false,
+      "detail": "Pull a local kimi/moonshot model before full cutover (optional for prep)",
+      "blocking": false
+    },
+    {
+      "id": "comfy_8189",
+      "ok": true,
+      "detail": "Prefer COMFYUI_URL=http://127.0.0.1:8189 (alt 8188 noted if up)",
+      "blocking": false
+    },
+    {
+      "id": "catalogs_refreshed",
+      "ok": true,
+      "detail": "6/6 catalogs ok"
+    },
+    {
+      "id": "packet_refreshed",
+      "ok": true,
+      "detail": "packet artifact present=True (refresh skipped)"
+    },
+    {
+      "id": "remote_keys_unset_preferred",
+      "ok": false,
+      "detail": "Remote provider key names present \u2014 leave unset for pure local",
+      "blocking": false
+    },
+    {
+      "id": "discord_paused",
+      "ok": true,
+      "detail": "Discord status_notify remains paused by default"
+    },
+    {
+      "id": "stripe_dry_run",
+      "ok": true,
+      "detail": "Stripe stays dry-run unless STRIPE_LIVE_OK=1"
+    },
+    {
+      "id": "transition_arm_gate",
+      "ok": true,
+      "detail": "Final cutover still requires KIMI3_TRANSITION_ARMED=1 after approval",
+      "blocking": false
+    },
+    {
+      "id": "sg_connect_off",
+      "ok": true,
+      "detail": "SG_RUN_CONNECT should stay 0 unless explicitly reviewed"
+    }
+  ],
+  "readiness": {
+    "blocking_ok": 7,
+    "blocking_total": 7,
+    "soft_ok": 2,
+    "soft_total": 5,
+    "prep_ready": true,
+    "cutover_ready": false
+  },
+  "controls": {
+    "provider_calls": false,
+    "credential_logging": false,
+    "content_neutral": true,
+    "remote_default": false,
+    "local_bind_only": true,
+    "discord_webhook_post": false,
+    "stripe_live_default": false,
+    "final_cutover_requires_KIMI3_TRANSITION_ARMED": true
+  },
+  "cli": {
+    "prep": "python3 tools/local_open_weights_mesh_prep.py write",
+    "status": "python3 tools/local_open_weights_mesh_prep.py status",
+    "kimi3": "python3 tools/kimi3_asuna_point0_unify.py write",
+    "central": "python3 tools/perplexity_asuna_central_control.py write",
+    "packet": "python3 tools/shadow_garden_packet.py write",
+    "permission_wire": "python3 tools/permission_wire_agent.py wire --profile local_full"
+  },
+  "ok": true
+}

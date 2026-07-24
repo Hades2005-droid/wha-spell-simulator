@@ -1,0 +1,106 @@
+{
+  "schema": "shadow_garden.catalyst3_persona_telemetry_launch_finalization.v1",
+  "status": "launch_ready_local_manifest_only",
+  "title": {
+    "en": "Catalyst 3 / Persona Telemetry Center Launch Finalization",
+    "zh-CN": "Catalyst 3 / 人格遥测中心启动定稿"
+  },
+  "summary": {
+    "en": "Local-first routing is finalized for fictional adult persona tokens. Provider lanes remain disabled capability pointers.",
+    "zh-CN": "虚构成年人人格令牌的本地优先路由已定稿。所有提供商通道仍为禁用的能力指针。"
+  },
+  "launch": {
+    "mode": "manifest_only",
+    "local_first": true,
+    "external_posture": "closed_door",
+    "provider_connectivity_claimed": false,
+    "scene_manifest": "shadow_garden_lainie_julia_scene_manifest.json",
+    "github_asuna_point0": "github_asuna_point0_unification.json"
+  },
+  "persona_telemetry": {
+    "purpose": {
+      "en": "Route technical capabilities and verify local state.",
+      "zh-CN": "路由技术能力并验证本地状态。"
+    },
+    "fictional_adult_routing_personas_only": true,
+    "symbolic_metadata_is_factual_authority": false,
+    "real_person_identity_inference": false,
+    "payload_capture": false,
+    "consent_required": true
+  },
+  "terminal_auto_backport_capabilities": [
+    {
+      "provider": "Grok 4.5",
+      "capabilities": [
+        "technical_jing_analysis",
+        "structured_tool_planning"
+      ],
+      "enabled": false,
+      "mode": "pointer_only",
+      "env_names": [
+        "XAI_API_KEY"
+      ]
+    },
+    {
+      "provider": "Gemini",
+      "capabilities": [
+        "multimodal_context",
+        "long_context_synthesis"
+      ],
+      "enabled": false,
+      "mode": "pointer_only",
+      "env_names": [
+        "GEMINI_API_KEY"
+      ]
+    },
+    {
+      "provider": "GLM",
+      "capabilities": [
+        "bilingual_reasoning",
+        "structured_generation"
+      ],
+      "enabled": false,
+      "mode": "pointer_only",
+      "env_names": [
+        "GLM_API_KEY"
+      ]
+    },
+    {
+      "provider": "GPT",
+      "capabilities": [
+        "code_assistance",
+        "tool_orchestration"
+      ],
+      "enabled": false,
+      "mode": "pointer_only",
+      "env_names": [
+        "OPENAI_API_KEY"
+      ]
+    },
+    {
+      "provider": "Claude / Fable 5",
+      "capabilities": [
+        "safety_review",
+        "narrative_system_synthesis"
+      ],
+      "enabled": false,
+      "mode": "pointer_only",
+      "env_names": [
+        "ANTHROPIC_API_KEY"
+      ]
+    }
+  ],
+  "controls": {
+    "provider_calls": false,
+    "credentials_in_artifacts": false,
+    "external_writes": false,
+    "render_queued": false,
+    "loopback_only": true,
+    "approval_gates_locked": true,
+    "excluded_sources_ingested": false
+  },
+  "finalization": {
+    "en": "Ready for local launch after human approval; no provider connection or render has been started.",
+    "zh-CN": "经人工批准后可进行本地启动；尚未连接任何提供商，也未启动渲染。"
+  }
+}

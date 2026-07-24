@@ -41,7 +41,7 @@ Sibling docs:
 | **Grok 4.5** | Back lane / Harmony 6 / XAI | `XAI_API_KEY`, Grok CLI | env |
 | **Claude** | Front review / Chariot | `ANTHROPIC_API_KEY` (opt-in) | env |
 | **Perplexity Fable 5** | Synthesis / Space | compact + bedrock paste; optional `PERPLEXITY_API_KEY` | env |
-| **ComfyUI** | Image/video render | `http://127.0.0.1:8188` | local |
+| **ComfyUI** | Image/video render | prefer `http://127.0.0.1:8189` (alt `8188`) | local |
 | **Fable 5 game** | Party / deterministic play | `http://127.0.0.1:5619/` | local |
 | **EDEN Burst-Alpha** | Physics field UI | `http://127.0.0.1:8791/` | local |
 | **DeepSeek share** | Public testament pointer only | share URL (no keys) | none |

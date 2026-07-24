@@ -56,7 +56,7 @@ REPO_ROOTS: list[dict[str, str]] = [
     },
 ]
 
-COMFYUI_URL = os.environ.get("COMFYUI_URL", "http://127.0.0.1:8188").rstrip("/")
+COMFYUI_URL = os.environ.get("COMFYUI_URL", "http://127.0.0.1:8189").rstrip("/")
 _comfyui_endpoint = urlparse(COMFYUI_URL)
 COMFYUI_PORT = _comfyui_endpoint.port or (
     443 if _comfyui_endpoint.scheme == "https" else 80
@@ -72,7 +72,9 @@ LOCAL_SERVICES: list[dict[str, Any]] = [
     },
     {"id": "eden_burst_alpha", "url": "http://127.0.0.1:8791/", "port": 8791},
     {"id": "void_ignition", "url": "http://127.0.0.1:8790/api/health", "port": 8790},
+    {"id": "portal", "url": "http://127.0.0.1:8760/", "port": 8760},
     {"id": "ollama", "url": "http://127.0.0.1:11434/api/tags", "port": 11434},
+    {"id": "stripe_local", "url": "http://127.0.0.1:4242/health", "port": 4242},
 ]
 
 POINTERS: dict[str, str] = {
@@ -137,6 +139,29 @@ ENV_NAMES_ONLY = [
     "SLACK_APP_TOKEN",
     "HARPA_API_URL",
     "HARPA_API_KEY",
+    # Discord status_notify (paused by default; env names only)
+    "ENABLE_DISCORD",
+    "DISCORD_WEBHOOK_URL",
+    "DISCORD_BOT_TOKEN",
+    "DISCORD_TOKEN",
+    "DISCORD_CHANNEL_ID",
+    "DISCORD_GUILD_ID",
+    "DISCORD_LIVE_OK",
+    # DeepSeek / Ollama (local-open-weights preferred)
+    "DEEPSEEK_API_KEY",
+    "DEEPSEEK_BASE_URL",
+    "DEEPSEEK_MODEL",
+    "DEEPSEEK_LOCAL_ENABLED",
+    "OLLAMA_HOST",
+    "OLLAMA_MODELS",
+    # Kimi 3 — 3rd leverage / local open-weights transition
+    "KIMI_API_KEY",
+    "MOONSHOT_API_KEY",
+    "KIMI_BASE_URL",
+    "MOONSHOT_BASE_URL",
+    "KIMI_MODEL",
+    "KIMI_LOCAL_ENABLED",
+    "KIMI3_TRANSITION_ARMED",
 ]
 
 

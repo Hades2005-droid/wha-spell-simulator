@@ -27,6 +27,7 @@ const SUPPORTED_SOVEREIGN_SIGILS = new Set([
   'sovereign-black-sun',
   'sovereign-moon-gate',
   'sovereign-recursive-spell',
+  'sovereign-white-moon-gate',
 ]);
 
 const SPELL_PARAMETER_TUNING = {

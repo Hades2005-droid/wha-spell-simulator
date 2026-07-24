@@ -19,6 +19,9 @@ const BRIDGE_STATUS = {
 const MESH_ENDPOINTS = {
   perplexity: 'https://shadow-garden-mesh.pplx.app/',
   perplexityApiBridge: 'http://127.0.0.1:8790/shadowgardencontrol/perplexity',
+  polymarketGamma: 'https://gamma-api.polymarket.com',
+  polymarketClob: 'https://clob.polymarket.com',
+  polymarketDiscordInvite: 'https://discord.com/invite/polymarket',
   grokApi: 'https://api.x.ai/v1',
   grokRealtime: 'wss://api.x.ai/v1/realtime',
   linear: 'https://api.linear.app/graphql',

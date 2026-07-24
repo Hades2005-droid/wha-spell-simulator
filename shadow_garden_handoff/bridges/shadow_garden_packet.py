@@ -294,6 +294,49 @@ def check_fable5_comfy_command() -> dict[str, Any]:
     }
 
 
+def check_comfyui_elevenlabs_bridge() -> dict[str, Any]:
+    path = WHA / "tools" / "elevenlabs_garden_bridge.py"
+    if not path.is_file():
+        return {"ok": False, "detail": "missing elevenlabs_garden_bridge.py"}
+    proc = subprocess.run(
+        [sys.executable, str(path), "status"],
+        capture_output=True,
+        text=True,
+        timeout=30,
+        check=False,
+    )
+    if proc.returncode != 0:
+        return {
+            "ok": False,
+            "path": str(path),
+            "exit": proc.returncode,
+            "error": (proc.stderr or proc.stdout or "")[:240],
+        }
+    try:
+        manifest = json.loads(proc.stdout or "{}")
+    except json.JSONDecodeError as exc:
+        return {"ok": False, "path": str(path), "error": f"json: {exc}"}
+    controls = manifest.get("controls", {})
+    return {
+        "ok": (
+            manifest.get("schema") == "shadow_garden.comfyui_elevenlabs_bridge.v1"
+            and manifest.get("mode") == "manifest_only"
+            and controls.get("local_only") is True
+            and controls.get("provider_calls") is False
+            and controls.get("comfy_prompt_submission") is False
+            and controls.get("credentials_allowed") is False
+        ),
+        "path": str(path),
+        "native_extension_exists": manifest.get("comfyui", {})
+        .get("native_extension", {})
+        .get("exists"),
+        "workflow_exists": manifest.get("workflow", {}).get("exists"),
+        "api_endpoint_count": len(
+            manifest.get("comfyui", {}).get("api_contract", {}).get("endpoints", [])
+        ),
+    }
+
+
 def check_recursive_bridge() -> dict[str, Any]:
     path = WHA / "tools" / "recursive_node_bridge.py"
     if not path.is_file():
@@ -449,6 +492,7 @@ def run_self_tests() -> dict[str, Any]:
         ("claude_integration_surface", check_claude_integration_surface),
         ("claude_phase2_handoff", check_claude_phase2_handoff),
         ("fable5_comfy_command", check_fable5_comfy_command),
+        ("comfyui_elevenlabs_bridge", check_comfyui_elevenlabs_bridge),
         ("recursive_bridge", check_recursive_bridge),
         ("local_ports", check_local_ports),
         ("gate10", check_gate10),
@@ -488,6 +532,7 @@ def build_packet(*, run_tests: bool = True) -> dict[str, Any]:
             "perplexity": "fable5_synthesis",
             "fable5_game": "local_5619",
             "comfyui": "local_8188_manifest_only",
+            "elevenlabs": "comfyui_native_proxy_manifest_only",
             "spacetime_alchemy": "engine",
             "eden": "bounded_local_metadata",
         },
@@ -506,6 +551,7 @@ def build_packet(*, run_tests: bool = True) -> dict[str, Any]:
             ],
             "bridge": [
                 "fable5_comfy_command",
+                "comfyui_elevenlabs_bridge",
                 "recursive_node_bridge",
                 "connector_bridge",
                 "complete_agent_bridge",
@@ -538,6 +584,7 @@ def build_packet(*, run_tests: bool = True) -> dict[str, Any]:
             ),
             "compact": str(SG / "live/spacetime_alchemy/fable5-compact.json"),
             "phase2_engine": str(WHA / "tools" / "black_sun_phase2_engine.py"),
+            "elevenlabs_bridge": str(WHA / "tools" / "elevenlabs_garden_bridge.py"),
             "eden_ingest": str(WHA / "tools" / "eden_ingest.py"),
             "phase2_gate": str(
                 WHA / "shadow_garden_handoff/gates/PHASE_2_BLACK_SUN_OPEN.md"

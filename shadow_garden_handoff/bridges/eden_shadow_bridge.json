@@ -1,0 +1,57 @@
+{
+  "schema": "shadow_garden.eden_shadow_bridge.v1",
+  "generation": "deterministic_local_snapshot",
+  "created": "2026-07-16T06:00:00Z",
+  "label": "eden_shadow_floor_climber",
+  "meaning": "Local playable slice: turn-based floor-climbing RPG bridged from the Claude Fable lane (bridge 5) toward Grok Harmony back-lane validation (bridge 6). Symbolic routing only; no permission escalation.",
+  "game": {
+    "package": "eden_shadow/",
+    "entry": "python3 -m eden_shadow.game",
+    "demo": "python3 -m eden_shadow.game --demo --seed 7 --new",
+    "tests": "python3 -m unittest tests.test_eden_shadow -v",
+    "dependencies": "stdlib_only",
+    "save_state": "eden_shadow_save.json (local JSON, only file touched)",
+    "deterministic": true,
+    "target_floor": 10,
+    "boss_every": 5
+  },
+  "validation": {
+    "unit_tests": 18,
+    "unit_tests_pass": true,
+    "seeded_auto_runs": {
+      "seeds": [1, 2, 3, 4, 5, 7, 11, 42, 100, 2026],
+      "skill_policy_result": "victory_floor_11_all_seeds",
+      "basic_attack_only_result": "defeat_floor_10_boss_all_seeds",
+      "interpretation": "skill use is decisive; boss gate provides tension"
+    },
+    "js_suite_baseline": 218
+  },
+  "symbolic_routing": {
+    "bridge_5": "perplexity_fable_front_synthesis",
+    "bridge_6": "grok_harmony_back_lane_validation",
+    "black_sun_reference": "shadow_garden_handoff/gates/PHASE_2_BLACK_SUN_OPEN.md",
+    "asuna_point0_reference": "shadow_garden_handoff/bridges/github_asuna_point0_unification.json",
+    "note": "Labels are routing metadata only. They grant no permissions and authorize no external writes."
+  },
+  "background_port_posture": {
+    "ports_opened": 0,
+    "eden_8791": "reserved_untouched",
+    "void_8790": "reserved_untouched",
+    "network_calls": false
+  },
+  "controls": {
+    "local_only": true,
+    "external_fetch": false,
+    "external_writes": false,
+    "github_push": false,
+    "atlassian_writes": false,
+    "x_posts": false,
+    "qdrant_mutations": false,
+    "credential_access": false,
+    "secrets_in_artifacts": false,
+    "unattended_loops": false,
+    "content_neutral": true,
+    "symbolic_only": true
+  },
+  "ok": true
+}

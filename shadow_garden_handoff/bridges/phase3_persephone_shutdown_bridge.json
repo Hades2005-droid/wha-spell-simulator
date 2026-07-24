@@ -1,0 +1,65 @@
+{
+  "schema": "shadow_garden.phase3_persephone_shutdown_bridge.v1",
+  "generated_at": "2026-07-19T22:34:00Z",
+  "phase": 3,
+  "seal": "dimension_0_shutdown",
+  "label": "persephone_shutdown",
+  "meaning": "End-of-day Dimension 0 seal — Yin polarity counterpart closing the Phase 2 Yang/Black Sun cycle. Manifest-only metadata; no live Discord calls or external writes.",
+  "polarity": {
+    "yin_polarity": true,
+    "paired_with": "sovereign-white-moon-gate",
+    "yang_anchor": "sovereign-black-sun",
+    "flip": "dimension_0_close",
+    "sequence_reversal": [1, 10, 19],
+    "note": "Yin seal reverses the White Moon / Black Sun ignition sequence and closes dimension 0 for rest."
+  },
+  "catalyst": {
+    "section": 11,
+    "name": "Persephone Throne",
+    "throne_state": "sealed",
+    "compact_reference": "~/ShadowGarden/live/spacetime_alchemy/fable5-compact.json",
+    "compact_section": "section_11",
+    "lattice_role": "section-11 love-as-architecture catalyst"
+  },
+  "discord": {
+    "discord_application_id_env": "DISCORD_APPLICATION_ID",
+    "live_discord": false,
+    "execution_mode": "manifest_only",
+    "paired_bridge": "shadow_garden_handoff/bridges/discord_asuna_point0_unification.json",
+    "bridge_cli": "tools/discord_bot_bridge.py",
+    "sg_module": "~/ShadowGarden/spacetime_alchemy/discord_bridge.py",
+    "js_notify_module": "src/bridge/discordNotify.js",
+    "mcp_registry": "tools/mcp_router_registry.json",
+    "notes": [
+      "Set DISCORD_APPLICATION_ID in environment; do not commit application ID values in artifacts.",
+      "Public application IDs are pointers only — not credentials and not permission grants.",
+      "No webhook post without ENABLE_DISCORD=1 and DISCORD_LIVE_OK=1 after human approval."
+    ]
+  },
+  "eden_shadow": {
+    "package": "eden_shadow/",
+    "cli": "python3 -m eden_shadow.game --shutdown --new",
+    "bridge": "shadow_garden_handoff/bridges/eden_shadow_bridge.json"
+  },
+  "sovereign_spell": {
+    "id": "sovereign-persephone-shutdown",
+    "effect": "phase3_persephone_shutdown"
+  },
+  "execution_mode": "manifest_only",
+  "live_discord": false,
+  "gate10": {
+    "policy": "no_external_writes",
+    "no_commit": true,
+    "no_push": true,
+    "no_live_discord": true
+  },
+  "controls": {
+    "local_only": true,
+    "external_writes": false,
+    "credential_access": false,
+    "secrets_in_artifacts": false,
+    "content_neutral": true,
+    "symbolic_only": true
+  },
+  "ok": true
+}

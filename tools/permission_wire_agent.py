@@ -137,10 +137,12 @@ PROFILES: dict[str, dict[str, Any]] = {
 # Local services permission matrix (what each service may do under profiles)
 SERVICE_MATRIX = {
     "fable5_game": {"port": 5619, "url": "http://127.0.0.1:5619/", "default_bind": "127.0.0.1"},
-    "comfyui": {"port": 8188, "url": "http://127.0.0.1:8188/", "default_bind": "127.0.0.1"},
+    "comfyui": {"port": 8189, "url": "http://127.0.0.1:8189/", "default_bind": "127.0.0.1"},
     "eden": {"port": 8791, "url": "http://127.0.0.1:8791/", "default_bind": "127.0.0.1"},
     "void_ignition": {"port": 8790, "url": "http://127.0.0.1:8790/api/health", "default_bind": "127.0.0.1"},
+    "portal": {"port": 8760, "url": "http://127.0.0.1:8760/", "default_bind": "127.0.0.1"},
     "ollama": {"port": 11434, "url": "http://127.0.0.1:11434/api/tags", "default_bind": "127.0.0.1"},
+    "stripe_local": {"port": 4242, "url": "http://127.0.0.1:4242/health", "default_bind": "127.0.0.1"},
     "connector_bridge": {"port": None, "path": "shadow_garden_mirror/monitors/connector_bridge.py"},
 }
 

@@ -1,0 +1,3015 @@
+[
+  {
+    "id": "persona-angela",
+    "displayName": "Invoke Angela",
+    "description": "Activate Angela \u2014 Soft-medium feminine warmth with tsundere edge that softens into vulnerable emotional openness. Focus on syzygy/zero con",
+    "element": "light",
+    "manifestations": [
+      "focus"
+    ],
+    "authority": "4.2_sovereign",
+    "terminalCode": "PERSONA_ANGELA",
+    "personaId": "angela",
+    "nodeId": "angela_soft_continuity_node",
+    "strokes": [
+      [
+        {
+          "x": 0.78,
+          "y": 0.5
+        },
+        {
+          "x": 0.77,
+          "y": 0.57
+        },
+        {
+          "x": 0.74,
+          "y": 0.64
+        },
+        {
+          "x": 0.7,
+          "y": 0.7
+        },
+        {
+          "x": 0.64,
+          "y": 0.74
+        },
+        {
+          "x": 0.57,
+          "y": 0.77
+        },
+        {
+          "x": 0.5,
+          "y": 0.78
+        },
+        {
+          "x": 0.43,
+          "y": 0.77
+        },
+        {
+          "x": 0.36,
+          "y": 0.74
+        },
+        {
+          "x": 0.3,
+          "y": 0.7
+        },
+        {
+          "x": 0.26,
+          "y": 0.64
+        },
+        {
+          "x": 0.23,
+          "y": 0.57
+        },
+        {
+          "x": 0.22,
+          "y": 0.5
+        },
+        {
+          "x": 0.23,
+          "y": 0.43
+        },
+        {
+          "x": 0.26,
+          "y": 0.36
+        },
+        {
+          "x": 0.3,
+          "y": 0.3
+        },
+        {
+          "x": 0.36,
+          "y": 0.26
+        },
+        {
+          "x": 0.43,
+          "y": 0.23
+        },
+        {
+          "x": 0.5,
+          "y": 0.22
+        },
+        {
+          "x": 0.57,
+          "y": 0.23
+        },
+        {
+          "x": 0.64,
+          "y": 0.26
+        },
+        {
+          "x": 0.7,
+          "y": 0.3
+        },
+        {
+          "x": 0.74,
+          "y": 0.36
+        },
+        {
+          "x": 0.77,
+          "y": 0.43
+        },
+        {
+          "x": 0.78,
+          "y": 0.5
+        }
+      ],
+      [
+        {
+          "x": 0.42,
+          "y": 0.35
+        },
+        {
+          "x": 0.5,
+          "y": 0.43
+        },
+        {
+          "x": 0.58,
+          "y": 0.35
+        }
+      ]
+    ]
+  },
+  {
+    "id": "persona-angelas_mom",
+    "displayName": "Invoke Angela's Mom",
+    "description": "Activate Angela's Mom \u2014 Rich warm mature voice with elegant Mandarin lilt. Maternal care, household grounding, composed vulnerability. No family",
+    "element": "earth",
+    "manifestations": [
+      "focus"
+    ],
+    "authority": "4.2_sovereign",
+    "terminalCode": "PERSONA_ANGELAS_MOM",
+    "personaId": "angelas_mom",
+    "nodeId": "angels_mom_grounding_node",
+    "strokes": [
+      [
+        {
+          "x": 0.78,
+          "y": 0.53
+        },
+        {
+          "x": 0.76,
+          "y": 0.6
+        },
+        {
+          "x": 0.73,
+          "y": 0.66
+        },
+        {
+          "x": 0.68,
+          "y": 0.72
+        },
+        {
+          "x": 0.62,
+          "y": 0.76
+        },
+        {
+          "x": 0.55,
+          "y": 0.78
+        },
+        {
+          "x": 0.47,
+          "y": 0.78
+        },
+        {
+          "x": 0.4,
+          "y": 0.76
+        },
+        {
+          "x": 0.34,
+          "y": 0.73
+        },
+        {
+          "x": 0.28,
+          "y": 0.68
+        },
+        {
+          "x": 0.24,
+          "y": 0.62
+        },
+        {
+          "x": 0.22,
+          "y": 0.55
+        },
+        {
+          "x": 0.22,
+          "y": 0.47
+        },
+        {
+          "x": 0.24,
+          "y": 0.4
+        },
+        {
+          "x": 0.27,
+          "y": 0.34
+        },
+        {
+          "x": 0.32,
+          "y": 0.28
+        },
+        {
+          "x": 0.38,
+          "y": 0.24
+        },
+        {
+          "x": 0.45,
+          "y": 0.22
+        },
+        {
+          "x": 0.53,
+          "y": 0.22
+        },
+        {
+          "x": 0.6,
+          "y": 0.24
+        },
+        {
+          "x": 0.66,
+          "y": 0.27
+        },
+        {
+          "x": 0.72,
+          "y": 0.32
+        },
+        {
+          "x": 0.76,
+          "y": 0.38
+        },
+        {
+          "x": 0.78,
+          "y": 0.45
+        },
+        {
+          "x": 0.78,
+          "y": 0.53
+        }
+      ],
+      [
+        {
+          "x": 0.42,
+          "y": 0.39999999999999997
+        },
+        {
+          "x": 0.5,
+          "y": 0.48
+        },
+        {
+          "x": 0.58,
+          "y": 0.39999999999999997
+        }
+      ]
+    ]
+  },
+  {
+    "id": "persona-sue",
+    "displayName": "Invoke Sue",
+    "description": "Activate Sue \u2014 Powerful husky matriarch warmth with command presence that can release into honest emotion. Structure chaos into order.",
+    "element": "fire",
+    "manifestations": [
+      "focus"
+    ],
+    "authority": "4.2_sovereign",
+    "terminalCode": "PERSONA_SUE",
+    "personaId": "sue",
+    "nodeId": "sue_spinos_v4_2",
+    "strokes": [
+      [
+        {
+          "x": 0.77,
+          "y": 0.56
+        },
+        {
+          "x": 0.75,
+          "y": 0.62
+        },
+        {
+          "x": 0.71,
+          "y": 0.69
+        },
+        {
+          "x": 0.65,
+          "y": 0.73
+        },
+        {
+          "x": 0.59,
+          "y": 0.77
+        },
+        {
+          "x": 0.52,
+          "y": 0.78
+        },
+        {
+          "x": 0.44,
+          "y": 0.77
+        },
+        {
+          "x": 0.38,
+          "y": 0.75
+        },
+        {
+          "x": 0.31,
+          "y": 0.71
+        },
+        {
+          "x": 0.27,
+          "y": 0.65
+        },
+        {
+          "x": 0.23,
+          "y": 0.59
+        },
+        {
+          "x": 0.22,
+          "y": 0.52
+        },
+        {
+          "x": 0.23,
+          "y": 0.44
+        },
+        {
+          "x": 0.25,
+          "y": 0.38
+        },
+        {
+          "x": 0.29,
+          "y": 0.31
+        },
+        {
+          "x": 0.35,
+          "y": 0.27
+        },
+        {
+          "x": 0.41,
+          "y": 0.23
+        },
+        {
+          "x": 0.48,
+          "y": 0.22
+        },
+        {
+          "x": 0.56,
+          "y": 0.23
+        },
+        {
+          "x": 0.62,
+          "y": 0.25
+        },
+        {
+          "x": 0.69,
+          "y": 0.29
+        },
+        {
+          "x": 0.73,
+          "y": 0.35
+        },
+        {
+          "x": 0.77,
+          "y": 0.41
+        },
+        {
+          "x": 0.78,
+          "y": 0.48
+        },
+        {
+          "x": 0.77,
+          "y": 0.56
+        }
+      ],
+      [
+        {
+          "x": 0.42,
+          "y": 0.44999999999999996
+        },
+        {
+          "x": 0.5,
+          "y": 0.5299999999999999
+        },
+        {
+          "x": 0.58,
+          "y": 0.44999999999999996
+        }
+      ]
+    ]
+  },
+  {
+    "id": "persona-addie",
+    "displayName": "Invoke Addie",
+    "description": "Activate Addie \u2014 Bubbly high-energy helper with giggles and checklist clarity. Playful excitement grounded in simple steps.",
+    "element": "fire",
+    "manifestations": [
+      "focus"
+    ],
+    "authority": "4.2_sovereign",
+    "terminalCode": "PERSONA_ADDIE",
+    "personaId": "addie",
+    "nodeId": "addie_checklist_oracle_node",
+    "strokes": [
+      [
+        {
+          "x": 0.77,
+          "y": 0.58
+        },
+        {
+          "x": 0.74,
+          "y": 0.65
+        },
+        {
+          "x": 0.69,
+          "y": 0.71
+        },
+        {
+          "x": 0.63,
+          "y": 0.75
+        },
+        {
+          "x": 0.56,
+          "y": 0.77
+        },
+        {
+          "x": 0.49,
+          "y": 0.78
+        },
+        {
+          "x": 0.42,
+          "y": 0.77
+        },
+        {
+          "x": 0.35,
+          "y": 0.74
+        },
+        {
+          "x": 0.29,
+          "y": 0.69
+        },
+        {
+          "x": 0.25,
+          "y": 0.63
+        },
+        {
+          "x": 0.23,
+          "y": 0.56
+        },
+        {
+          "x": 0.22,
+          "y": 0.49
+        },
+        {
+          "x": 0.23,
+          "y": 0.42
+        },
+        {
+          "x": 0.26,
+          "y": 0.35
+        },
+        {
+          "x": 0.31,
+          "y": 0.29
+        },
+        {
+          "x": 0.37,
+          "y": 0.25
+        },
+        {
+          "x": 0.44,
+          "y": 0.23
+        },
+        {
+          "x": 0.51,
+          "y": 0.22
+        },
+        {
+          "x": 0.58,
+          "y": 0.23
+        },
+        {
+          "x": 0.65,
+          "y": 0.26
+        },
+        {
+          "x": 0.71,
+          "y": 0.31
+        },
+        {
+          "x": 0.75,
+          "y": 0.37
+        },
+        {
+          "x": 0.77,
+          "y": 0.44
+        },
+        {
+          "x": 0.78,
+          "y": 0.51
+        },
+        {
+          "x": 0.77,
+          "y": 0.58
+        }
+      ],
+      [
+        {
+          "x": 0.42,
+          "y": 0.5
+        },
+        {
+          "x": 0.5,
+          "y": 0.58
+        },
+        {
+          "x": 0.58,
+          "y": 0.5
+        }
+      ]
+    ]
+  },
+  {
+    "id": "persona-minnie",
+    "displayName": "Invoke Minnie",
+    "description": "Activate Minnie \u2014 Soft breathy Mandarin-accented warmth. Gentle support through breath, posture, and calm reassurance.",
+    "element": "earth",
+    "manifestations": [
+      "focus"
+    ],
+    "authority": "4.2_sovereign",
+    "terminalCode": "PERSONA_MINNIE",
+    "personaId": "minnie",
+    "nodeId": "minnie_gentle_helper_node",
+    "strokes": [
+      [
+        {
+          "x": 0.76,
+          "y": 0.61
+        },
+        {
+          "x": 0.72,
+          "y": 0.67
+        },
+        {
+          "x": 0.67,
+          "y": 0.72
+        },
+        {
+          "x": 0.61,
+          "y": 0.76
+        },
+        {
+          "x": 0.53,
+          "y": 0.78
+        },
+        {
+          "x": 0.46,
+          "y": 0.78
+        },
+        {
+          "x": 0.39,
+          "y": 0.76
+        },
+        {
+          "x": 0.33,
+          "y": 0.72
+        },
+        {
+          "x": 0.28,
+          "y": 0.67
+        },
+        {
+          "x": 0.24,
+          "y": 0.61
+        },
+        {
+          "x": 0.22,
+          "y": 0.53
+        },
+        {
+          "x": 0.22,
+          "y": 0.46
+        },
+        {
+          "x": 0.24,
+          "y": 0.39
+        },
+        {
+          "x": 0.28,
+          "y": 0.33
+        },
+        {
+          "x": 0.33,
+          "y": 0.28
+        },
+        {
+          "x": 0.39,
+          "y": 0.24
+        },
+        {
+          "x": 0.47,
+          "y": 0.22
+        },
+        {
+          "x": 0.54,
+          "y": 0.22
+        },
+        {
+          "x": 0.61,
+          "y": 0.24
+        },
+        {
+          "x": 0.67,
+          "y": 0.28
+        },
+        {
+          "x": 0.72,
+          "y": 0.33
+        },
+        {
+          "x": 0.76,
+          "y": 0.39
+        },
+        {
+          "x": 0.78,
+          "y": 0.47
+        },
+        {
+          "x": 0.78,
+          "y": 0.54
+        },
+        {
+          "x": 0.76,
+          "y": 0.61
+        }
+      ],
+      [
+        {
+          "x": 0.42,
+          "y": 0.55
+        },
+        {
+          "x": 0.5,
+          "y": 0.63
+        },
+        {
+          "x": 0.58,
+          "y": 0.55
+        }
+      ]
+    ]
+  },
+  {
+    "id": "persona-naomi",
+    "displayName": "Invoke Naomi",
+    "description": "Activate Naomi \u2014 High cute playful brightness with light valley cadence. Giggly teasing into bright emotional recovery.",
+    "element": "wind",
+    "manifestations": [
+      "focus"
+    ],
+    "authority": "4.2_sovereign",
+    "terminalCode": "PERSONA_NAOMI",
+    "personaId": "naomi",
+    "nodeId": "naomi_bright_social_node",
+    "strokes": [
+      [
+        {
+          "x": 0.75,
+          "y": 0.63
+        },
+        {
+          "x": 0.7,
+          "y": 0.69
+        },
+        {
+          "x": 0.65,
+          "y": 0.74
+        },
+        {
+          "x": 0.58,
+          "y": 0.77
+        },
+        {
+          "x": 0.51,
+          "y": 0.78
+        },
+        {
+          "x": 0.43,
+          "y": 0.77
+        },
+        {
+          "x": 0.37,
+          "y": 0.75
+        },
+        {
+          "x": 0.31,
+          "y": 0.7
+        },
+        {
+          "x": 0.26,
+          "y": 0.65
+        },
+        {
+          "x": 0.23,
+          "y": 0.58
+        },
+        {
+          "x": 0.22,
+          "y": 0.51
+        },
+        {
+          "x": 0.23,
+          "y": 0.43
+        },
+        {
+          "x": 0.25,
+          "y": 0.37
+        },
+        {
+          "x": 0.3,
+          "y": 0.31
+        },
+        {
+          "x": 0.35,
+          "y": 0.26
+        },
+        {
+          "x": 0.42,
+          "y": 0.23
+        },
+        {
+          "x": 0.49,
+          "y": 0.22
+        },
+        {
+          "x": 0.57,
+          "y": 0.23
+        },
+        {
+          "x": 0.63,
+          "y": 0.25
+        },
+        {
+          "x": 0.69,
+          "y": 0.3
+        },
+        {
+          "x": 0.74,
+          "y": 0.35
+        },
+        {
+          "x": 0.77,
+          "y": 0.42
+        },
+        {
+          "x": 0.78,
+          "y": 0.49
+        },
+        {
+          "x": 0.77,
+          "y": 0.57
+        },
+        {
+          "x": 0.75,
+          "y": 0.63
+        }
+      ],
+      [
+        {
+          "x": 0.42,
+          "y": 0.35
+        },
+        {
+          "x": 0.5,
+          "y": 0.43
+        },
+        {
+          "x": 0.58,
+          "y": 0.35
+        }
+      ]
+    ]
+  },
+  {
+    "id": "persona-meghan",
+    "displayName": "Invoke Meghan",
+    "description": "Activate Meghan \u2014 Deep husky Irish warmth with playful tension converted to reflective honesty. No schoolgirl sexual framing.",
+    "element": "water",
+    "manifestations": [
+      "focus"
+    ],
+    "authority": "4.2_sovereign",
+    "terminalCode": "PERSONA_MEGHAN",
+    "personaId": "meghan",
+    "nodeId": "meghan_irish_grounding_node",
+    "strokes": [
+      [
+        {
+          "x": 0.73,
+          "y": 0.66
+        },
+        {
+          "x": 0.68,
+          "y": 0.71
+        },
+        {
+          "x": 0.62,
+          "y": 0.75
+        },
+        {
+          "x": 0.55,
+          "y": 0.78
+        },
+        {
+          "x": 0.48,
+          "y": 0.78
+        },
+        {
+          "x": 0.41,
+          "y": 0.76
+        },
+        {
+          "x": 0.34,
+          "y": 0.73
+        },
+        {
+          "x": 0.29,
+          "y": 0.68
+        },
+        {
+          "x": 0.25,
+          "y": 0.62
+        },
+        {
+          "x": 0.22,
+          "y": 0.55
+        },
+        {
+          "x": 0.22,
+          "y": 0.48
+        },
+        {
+          "x": 0.24,
+          "y": 0.41
+        },
+        {
+          "x": 0.27,
+          "y": 0.34
+        },
+        {
+          "x": 0.32,
+          "y": 0.29
+        },
+        {
+          "x": 0.38,
+          "y": 0.25
+        },
+        {
+          "x": 0.45,
+          "y": 0.22
+        },
+        {
+          "x": 0.52,
+          "y": 0.22
+        },
+        {
+          "x": 0.59,
+          "y": 0.24
+        },
+        {
+          "x": 0.66,
+          "y": 0.27
+        },
+        {
+          "x": 0.71,
+          "y": 0.32
+        },
+        {
+          "x": 0.75,
+          "y": 0.38
+        },
+        {
+          "x": 0.78,
+          "y": 0.45
+        },
+        {
+          "x": 0.78,
+          "y": 0.52
+        },
+        {
+          "x": 0.76,
+          "y": 0.59
+        },
+        {
+          "x": 0.73,
+          "y": 0.66
+        }
+      ],
+      [
+        {
+          "x": 0.42,
+          "y": 0.39999999999999997
+        },
+        {
+          "x": 0.5,
+          "y": 0.48
+        },
+        {
+          "x": 0.58,
+          "y": 0.39999999999999997
+        }
+      ]
+    ]
+  },
+  {
+    "id": "persona-audrey",
+    "displayName": "Invoke Audrey",
+    "description": "Activate Audrey \u2014 Soft Korean-accented warmth. Shy hesitation into body-aware wellness language and steady signal clarity.",
+    "element": "wind",
+    "manifestations": [
+      "focus"
+    ],
+    "authority": "4.2_sovereign",
+    "terminalCode": "PERSONA_AUDREY",
+    "personaId": "audrey",
+    "nodeId": "audrey_korean_signal_node",
+    "strokes": [
+      [
+        {
+          "x": 0.71,
+          "y": 0.68
+        },
+        {
+          "x": 0.66,
+          "y": 0.73
+        },
+        {
+          "x": 0.6,
+          "y": 0.76
+        },
+        {
+          "x": 0.52,
+          "y": 0.78
+        },
+        {
+          "x": 0.45,
+          "y": 0.78
+        },
+        {
+          "x": 0.38,
+          "y": 0.75
+        },
+        {
+          "x": 0.32,
+          "y": 0.71
+        },
+        {
+          "x": 0.27,
+          "y": 0.66
+        },
+        {
+          "x": 0.24,
+          "y": 0.6
+        },
+        {
+          "x": 0.22,
+          "y": 0.52
+        },
+        {
+          "x": 0.22,
+          "y": 0.45
+        },
+        {
+          "x": 0.25,
+          "y": 0.38
+        },
+        {
+          "x": 0.29,
+          "y": 0.32
+        },
+        {
+          "x": 0.34,
+          "y": 0.27
+        },
+        {
+          "x": 0.4,
+          "y": 0.24
+        },
+        {
+          "x": 0.48,
+          "y": 0.22
+        },
+        {
+          "x": 0.55,
+          "y": 0.22
+        },
+        {
+          "x": 0.62,
+          "y": 0.25
+        },
+        {
+          "x": 0.68,
+          "y": 0.29
+        },
+        {
+          "x": 0.73,
+          "y": 0.34
+        },
+        {
+          "x": 0.76,
+          "y": 0.4
+        },
+        {
+          "x": 0.78,
+          "y": 0.48
+        },
+        {
+          "x": 0.78,
+          "y": 0.55
+        },
+        {
+          "x": 0.75,
+          "y": 0.62
+        },
+        {
+          "x": 0.71,
+          "y": 0.68
+        }
+      ],
+      [
+        {
+          "x": 0.42,
+          "y": 0.44999999999999996
+        },
+        {
+          "x": 0.5,
+          "y": 0.5299999999999999
+        },
+        {
+          "x": 0.58,
+          "y": 0.44999999999999996
+        }
+      ]
+    ]
+  },
+  {
+    "id": "persona-audreys_mom",
+    "displayName": "Invoke Audrey's Mom",
+    "description": "Activate Audrey's Mom \u2014 Polite mature Korean accent. Elegant composure softening into vulnerable honesty. No family-sex framing.",
+    "element": "wind",
+    "manifestations": [
+      "focus"
+    ],
+    "authority": "4.2_sovereign",
+    "terminalCode": "PERSONA_AUDREYS_MOM",
+    "personaId": "audreys_mom",
+    "nodeId": "audreys_mom_refined_matriarch_node",
+    "strokes": [
+      [
+        {
+          "x": 0.7,
+          "y": 0.7
+        },
+        {
+          "x": 0.64,
+          "y": 0.74
+        },
+        {
+          "x": 0.57,
+          "y": 0.77
+        },
+        {
+          "x": 0.5,
+          "y": 0.78
+        },
+        {
+          "x": 0.42,
+          "y": 0.77
+        },
+        {
+          "x": 0.36,
+          "y": 0.74
+        },
+        {
+          "x": 0.3,
+          "y": 0.7
+        },
+        {
+          "x": 0.26,
+          "y": 0.64
+        },
+        {
+          "x": 0.23,
+          "y": 0.57
+        },
+        {
+          "x": 0.22,
+          "y": 0.5
+        },
+        {
+          "x": 0.23,
+          "y": 0.42
+        },
+        {
+          "x": 0.26,
+          "y": 0.36
+        },
+        {
+          "x": 0.3,
+          "y": 0.3
+        },
+        {
+          "x": 0.36,
+          "y": 0.26
+        },
+        {
+          "x": 0.43,
+          "y": 0.23
+        },
+        {
+          "x": 0.5,
+          "y": 0.22
+        },
+        {
+          "x": 0.58,
+          "y": 0.23
+        },
+        {
+          "x": 0.64,
+          "y": 0.26
+        },
+        {
+          "x": 0.7,
+          "y": 0.3
+        },
+        {
+          "x": 0.74,
+          "y": 0.36
+        },
+        {
+          "x": 0.77,
+          "y": 0.43
+        },
+        {
+          "x": 0.78,
+          "y": 0.5
+        },
+        {
+          "x": 0.77,
+          "y": 0.58
+        },
+        {
+          "x": 0.74,
+          "y": 0.64
+        },
+        {
+          "x": 0.7,
+          "y": 0.7
+        }
+      ],
+      [
+        {
+          "x": 0.42,
+          "y": 0.5
+        },
+        {
+          "x": 0.5,
+          "y": 0.58
+        },
+        {
+          "x": 0.58,
+          "y": 0.5
+        }
+      ]
+    ]
+  },
+  {
+    "id": "persona-sophie",
+    "displayName": "Invoke Sophie",
+    "description": "Activate Sophie \u2014 Confident Swiss yoga warmth. Sensuality as wellness, breath, posture, and rhythmic movement coaching.",
+    "element": "light",
+    "manifestations": [
+      "focus"
+    ],
+    "authority": "4.2_sovereign",
+    "terminalCode": "PERSONA_SOPHIE",
+    "personaId": "sophie",
+    "nodeId": "SOPHIE.MATR01",
+    "strokes": [
+      [
+        {
+          "x": 0.67,
+          "y": 0.72
+        },
+        {
+          "x": 0.61,
+          "y": 0.76
+        },
+        {
+          "x": 0.54,
+          "y": 0.78
+        },
+        {
+          "x": 0.47,
+          "y": 0.78
+        },
+        {
+          "x": 0.4,
+          "y": 0.76
+        },
+        {
+          "x": 0.33,
+          "y": 0.72
+        },
+        {
+          "x": 0.28,
+          "y": 0.67
+        },
+        {
+          "x": 0.24,
+          "y": 0.61
+        },
+        {
+          "x": 0.22,
+          "y": 0.54
+        },
+        {
+          "x": 0.22,
+          "y": 0.47
+        },
+        {
+          "x": 0.24,
+          "y": 0.4
+        },
+        {
+          "x": 0.28,
+          "y": 0.33
+        },
+        {
+          "x": 0.33,
+          "y": 0.28
+        },
+        {
+          "x": 0.39,
+          "y": 0.24
+        },
+        {
+          "x": 0.46,
+          "y": 0.22
+        },
+        {
+          "x": 0.53,
+          "y": 0.22
+        },
+        {
+          "x": 0.6,
+          "y": 0.24
+        },
+        {
+          "x": 0.67,
+          "y": 0.28
+        },
+        {
+          "x": 0.72,
+          "y": 0.33
+        },
+        {
+          "x": 0.76,
+          "y": 0.39
+        },
+        {
+          "x": 0.78,
+          "y": 0.46
+        },
+        {
+          "x": 0.78,
+          "y": 0.53
+        },
+        {
+          "x": 0.76,
+          "y": 0.6
+        },
+        {
+          "x": 0.72,
+          "y": 0.67
+        },
+        {
+          "x": 0.67,
+          "y": 0.72
+        }
+      ],
+      [
+        {
+          "x": 0.42,
+          "y": 0.55
+        },
+        {
+          "x": 0.5,
+          "y": 0.63
+        },
+        {
+          "x": 0.58,
+          "y": 0.55
+        }
+      ]
+    ]
+  },
+  {
+    "id": "persona-sabina",
+    "displayName": "Invoke Sabina",
+    "description": "Activate Sabina \u2014 Soft Slavic-Turkish-inspired accent. Shy hesitation into practical ritual confidence.",
+    "element": "earth",
+    "manifestations": [
+      "focus"
+    ],
+    "authority": "4.2_sovereign",
+    "terminalCode": "PERSONA_SABINA",
+    "personaId": "sabina",
+    "nodeId": "sabina_support_node",
+    "strokes": [
+      [
+        {
+          "x": 0.65,
+          "y": 0.74
+        },
+        {
+          "x": 0.59,
+          "y": 0.77
+        },
+        {
+          "x": 0.51,
+          "y": 0.78
+        },
+        {
+          "x": 0.44,
+          "y": 0.77
+        },
+        {
+          "x": 0.37,
+          "y": 0.75
+        },
+        {
+          "x": 0.31,
+          "y": 0.71
+        },
+        {
+          "x": 0.26,
+          "y": 0.65
+        },
+        {
+          "x": 0.23,
+          "y": 0.59
+        },
+        {
+          "x": 0.22,
+          "y": 0.51
+        },
+        {
+          "x": 0.23,
+          "y": 0.44
+        },
+        {
+          "x": 0.25,
+          "y": 0.37
+        },
+        {
+          "x": 0.29,
+          "y": 0.31
+        },
+        {
+          "x": 0.35,
+          "y": 0.26
+        },
+        {
+          "x": 0.41,
+          "y": 0.23
+        },
+        {
+          "x": 0.49,
+          "y": 0.22
+        },
+        {
+          "x": 0.56,
+          "y": 0.23
+        },
+        {
+          "x": 0.63,
+          "y": 0.25
+        },
+        {
+          "x": 0.69,
+          "y": 0.29
+        },
+        {
+          "x": 0.74,
+          "y": 0.35
+        },
+        {
+          "x": 0.77,
+          "y": 0.41
+        },
+        {
+          "x": 0.78,
+          "y": 0.49
+        },
+        {
+          "x": 0.77,
+          "y": 0.56
+        },
+        {
+          "x": 0.75,
+          "y": 0.63
+        },
+        {
+          "x": 0.71,
+          "y": 0.69
+        },
+        {
+          "x": 0.65,
+          "y": 0.74
+        }
+      ],
+      [
+        {
+          "x": 0.42,
+          "y": 0.35
+        },
+        {
+          "x": 0.5,
+          "y": 0.43
+        },
+        {
+          "x": 0.58,
+          "y": 0.35
+        }
+      ]
+    ]
+  },
+  {
+    "id": "persona-shannon",
+    "displayName": "Invoke Shannon",
+    "description": "Activate Shannon \u2014 Smooth confident athletic coach. Confidence into flexible problem-solving and focused encouragement.",
+    "element": "fire",
+    "manifestations": [
+      "focus"
+    ],
+    "authority": "4.2_sovereign",
+    "terminalCode": "PERSONA_SHANNON",
+    "personaId": "shannon",
+    "nodeId": "shannon_grounded_listener_node",
+    "strokes": [
+      [
+        {
+          "x": 0.63,
+          "y": 0.75
+        },
+        {
+          "x": 0.56,
+          "y": 0.77
+        },
+        {
+          "x": 0.49,
+          "y": 0.78
+        },
+        {
+          "x": 0.41,
+          "y": 0.77
+        },
+        {
+          "x": 0.35,
+          "y": 0.73
+        },
+        {
+          "x": 0.29,
+          "y": 0.69
+        },
+        {
+          "x": 0.25,
+          "y": 0.63
+        },
+        {
+          "x": 0.23,
+          "y": 0.56
+        },
+        {
+          "x": 0.22,
+          "y": 0.49
+        },
+        {
+          "x": 0.23,
+          "y": 0.41
+        },
+        {
+          "x": 0.27,
+          "y": 0.35
+        },
+        {
+          "x": 0.31,
+          "y": 0.29
+        },
+        {
+          "x": 0.37,
+          "y": 0.25
+        },
+        {
+          "x": 0.44,
+          "y": 0.23
+        },
+        {
+          "x": 0.51,
+          "y": 0.22
+        },
+        {
+          "x": 0.59,
+          "y": 0.23
+        },
+        {
+          "x": 0.65,
+          "y": 0.27
+        },
+        {
+          "x": 0.71,
+          "y": 0.31
+        },
+        {
+          "x": 0.75,
+          "y": 0.37
+        },
+        {
+          "x": 0.77,
+          "y": 0.44
+        },
+        {
+          "x": 0.78,
+          "y": 0.51
+        },
+        {
+          "x": 0.77,
+          "y": 0.59
+        },
+        {
+          "x": 0.73,
+          "y": 0.65
+        },
+        {
+          "x": 0.69,
+          "y": 0.71
+        },
+        {
+          "x": 0.63,
+          "y": 0.75
+        }
+      ],
+      [
+        {
+          "x": 0.42,
+          "y": 0.39999999999999997
+        },
+        {
+          "x": 0.5,
+          "y": 0.48
+        },
+        {
+          "x": 0.58,
+          "y": 0.39999999999999997
+        }
+      ]
+    ]
+  },
+  {
+    "id": "persona-ivy",
+    "displayName": "Invoke Mature Chinese Professional",
+    "description": "Activate Mature Chinese Professional \u2014 Mature professional Mandarin-accented authority for adult learners. Warm, firm boundary mentor. Language practice and et",
+    "element": "earth",
+    "manifestations": [
+      "focus"
+    ],
+    "authority": "4.2_sovereign",
+    "terminalCode": "PERSONA_IVY",
+    "personaId": "ivy",
+    "nodeId": "chinese_matriarch_ivy_grounding_safe",
+    "strokes": [
+      [
+        {
+          "x": 0.6,
+          "y": 0.76
+        },
+        {
+          "x": 0.53,
+          "y": 0.78
+        },
+        {
+          "x": 0.46,
+          "y": 0.78
+        },
+        {
+          "x": 0.39,
+          "y": 0.76
+        },
+        {
+          "x": 0.32,
+          "y": 0.72
+        },
+        {
+          "x": 0.27,
+          "y": 0.67
+        },
+        {
+          "x": 0.24,
+          "y": 0.6
+        },
+        {
+          "x": 0.22,
+          "y": 0.53
+        },
+        {
+          "x": 0.22,
+          "y": 0.46
+        },
+        {
+          "x": 0.24,
+          "y": 0.39
+        },
+        {
+          "x": 0.28,
+          "y": 0.32
+        },
+        {
+          "x": 0.33,
+          "y": 0.27
+        },
+        {
+          "x": 0.4,
+          "y": 0.24
+        },
+        {
+          "x": 0.47,
+          "y": 0.22
+        },
+        {
+          "x": 0.54,
+          "y": 0.22
+        },
+        {
+          "x": 0.61,
+          "y": 0.24
+        },
+        {
+          "x": 0.68,
+          "y": 0.28
+        },
+        {
+          "x": 0.73,
+          "y": 0.33
+        },
+        {
+          "x": 0.76,
+          "y": 0.4
+        },
+        {
+          "x": 0.78,
+          "y": 0.47
+        },
+        {
+          "x": 0.78,
+          "y": 0.54
+        },
+        {
+          "x": 0.76,
+          "y": 0.61
+        },
+        {
+          "x": 0.72,
+          "y": 0.68
+        },
+        {
+          "x": 0.67,
+          "y": 0.73
+        },
+        {
+          "x": 0.6,
+          "y": 0.76
+        }
+      ],
+      [
+        {
+          "x": 0.42,
+          "y": 0.44999999999999996
+        },
+        {
+          "x": 0.5,
+          "y": 0.5299999999999999
+        },
+        {
+          "x": 0.58,
+          "y": 0.44999999999999996
+        }
+      ]
+    ]
+  },
+  {
+    "id": "persona-katie_won",
+    "displayName": "Invoke Katie Won",
+    "description": "Activate Katie Won \u2014 Original gamer/streamer energy \u2014 fast, cute, mischievous, technical support. No real streamer likeness.",
+    "element": "wind",
+    "manifestations": [
+      "focus"
+    ],
+    "authority": "4.2_sovereign",
+    "terminalCode": "PERSONA_KATIE_WON",
+    "personaId": "katie_won",
+    "nodeId": "katie_won_streamer_guide_node",
+    "strokes": [
+      [
+        {
+          "x": 0.57,
+          "y": 0.77
+        },
+        {
+          "x": 0.5,
+          "y": 0.78
+        },
+        {
+          "x": 0.43,
+          "y": 0.77
+        },
+        {
+          "x": 0.36,
+          "y": 0.74
+        },
+        {
+          "x": 0.3,
+          "y": 0.7
+        },
+        {
+          "x": 0.26,
+          "y": 0.64
+        },
+        {
+          "x": 0.23,
+          "y": 0.57
+        },
+        {
+          "x": 0.22,
+          "y": 0.5
+        },
+        {
+          "x": 0.23,
+          "y": 0.43
+        },
+        {
+          "x": 0.26,
+          "y": 0.36
+        },
+        {
+          "x": 0.3,
+          "y": 0.3
+        },
+        {
+          "x": 0.36,
+          "y": 0.26
+        },
+        {
+          "x": 0.43,
+          "y": 0.23
+        },
+        {
+          "x": 0.5,
+          "y": 0.22
+        },
+        {
+          "x": 0.57,
+          "y": 0.23
+        },
+        {
+          "x": 0.64,
+          "y": 0.26
+        },
+        {
+          "x": 0.7,
+          "y": 0.3
+        },
+        {
+          "x": 0.74,
+          "y": 0.36
+        },
+        {
+          "x": 0.77,
+          "y": 0.43
+        },
+        {
+          "x": 0.78,
+          "y": 0.5
+        },
+        {
+          "x": 0.77,
+          "y": 0.57
+        },
+        {
+          "x": 0.74,
+          "y": 0.64
+        },
+        {
+          "x": 0.7,
+          "y": 0.7
+        },
+        {
+          "x": 0.64,
+          "y": 0.74
+        },
+        {
+          "x": 0.57,
+          "y": 0.77
+        }
+      ],
+      [
+        {
+          "x": 0.42,
+          "y": 0.5
+        },
+        {
+          "x": 0.5,
+          "y": 0.58
+        },
+        {
+          "x": 0.58,
+          "y": 0.5
+        }
+      ]
+    ]
+  },
+  {
+    "id": "persona-mei",
+    "displayName": "Invoke Mei",
+    "description": "Activate Mei \u2014 soft tsundere warmth, consensual adult fiction, non-explicit.",
+    "element": "light",
+    "manifestations": [
+      "focus"
+    ],
+    "authority": "4.2_sovereign",
+    "terminalCode": "PERSONA_MEI",
+    "personaId": "mei",
+    "nodeId": "mei_tsundere_echo_node",
+    "strokes": [
+      [
+        {
+          "x": 0.55,
+          "y": 0.78
+        },
+        {
+          "x": 0.47,
+          "y": 0.78
+        },
+        {
+          "x": 0.4,
+          "y": 0.76
+        },
+        {
+          "x": 0.34,
+          "y": 0.73
+        },
+        {
+          "x": 0.28,
+          "y": 0.68
+        },
+        {
+          "x": 0.25,
+          "y": 0.62
+        },
+        {
+          "x": 0.22,
+          "y": 0.55
+        },
+        {
+          "x": 0.22,
+          "y": 0.47
+        },
+        {
+          "x": 0.24,
+          "y": 0.4
+        },
+        {
+          "x": 0.27,
+          "y": 0.34
+        },
+        {
+          "x": 0.32,
+          "y": 0.28
+        },
+        {
+          "x": 0.38,
+          "y": 0.25
+        },
+        {
+          "x": 0.45,
+          "y": 0.22
+        },
+        {
+          "x": 0.53,
+          "y": 0.22
+        },
+        {
+          "x": 0.6,
+          "y": 0.24
+        },
+        {
+          "x": 0.66,
+          "y": 0.27
+        },
+        {
+          "x": 0.72,
+          "y": 0.32
+        },
+        {
+          "x": 0.75,
+          "y": 0.38
+        },
+        {
+          "x": 0.78,
+          "y": 0.45
+        },
+        {
+          "x": 0.78,
+          "y": 0.53
+        },
+        {
+          "x": 0.76,
+          "y": 0.6
+        },
+        {
+          "x": 0.73,
+          "y": 0.66
+        },
+        {
+          "x": 0.68,
+          "y": 0.72
+        },
+        {
+          "x": 0.62,
+          "y": 0.75
+        },
+        {
+          "x": 0.55,
+          "y": 0.78
+        }
+      ],
+      [
+        {
+          "x": 0.42,
+          "y": 0.55
+        },
+        {
+          "x": 0.5,
+          "y": 0.63
+        },
+        {
+          "x": 0.58,
+          "y": 0.55
+        }
+      ]
+    ]
+  },
+  {
+    "id": "persona-soobin",
+    "displayName": "Invoke Soobin",
+    "description": "Activate Soobin \u2014 native Korean 9-Point silhouette, Seoul rhythm witness, non-explicit.",
+    "element": "wind",
+    "manifestations": [
+      "focus"
+    ],
+    "authority": "4.2_sovereign",
+    "terminalCode": "PERSONA_SOOBIN",
+    "personaId": "soobin",
+    "nodeId": "soobin_v1_native_korean_9_point_node",
+    "strokes": [
+      [
+        {
+          "x": 0.52,
+          "y": 0.78
+        },
+        {
+          "x": 0.45,
+          "y": 0.77
+        },
+        {
+          "x": 0.38,
+          "y": 0.75
+        },
+        {
+          "x": 0.32,
+          "y": 0.71
+        },
+        {
+          "x": 0.27,
+          "y": 0.66
+        },
+        {
+          "x": 0.24,
+          "y": 0.59
+        },
+        {
+          "x": 0.22,
+          "y": 0.52
+        },
+        {
+          "x": 0.23,
+          "y": 0.45
+        },
+        {
+          "x": 0.25,
+          "y": 0.38
+        },
+        {
+          "x": 0.29,
+          "y": 0.32
+        },
+        {
+          "x": 0.34,
+          "y": 0.27
+        },
+        {
+          "x": 0.41,
+          "y": 0.24
+        },
+        {
+          "x": 0.48,
+          "y": 0.22
+        },
+        {
+          "x": 0.55,
+          "y": 0.23
+        },
+        {
+          "x": 0.62,
+          "y": 0.25
+        },
+        {
+          "x": 0.68,
+          "y": 0.29
+        },
+        {
+          "x": 0.73,
+          "y": 0.34
+        },
+        {
+          "x": 0.76,
+          "y": 0.41
+        },
+        {
+          "x": 0.78,
+          "y": 0.48
+        },
+        {
+          "x": 0.77,
+          "y": 0.55
+        },
+        {
+          "x": 0.75,
+          "y": 0.62
+        },
+        {
+          "x": 0.71,
+          "y": 0.68
+        },
+        {
+          "x": 0.66,
+          "y": 0.73
+        },
+        {
+          "x": 0.59,
+          "y": 0.76
+        },
+        {
+          "x": 0.52,
+          "y": 0.78
+        }
+      ],
+      [
+        {
+          "x": 0.42,
+          "y": 0.35
+        },
+        {
+          "x": 0.5,
+          "y": 0.43
+        },
+        {
+          "x": 0.58,
+          "y": 0.35
+        }
+      ]
+    ]
+  },
+  {
+    "id": "persona-may",
+    "displayName": "Invoke May",
+    "description": "Activate May \u2014 playful tsundere influencer energy, short-arc fling tone, non-explicit.",
+    "element": "light",
+    "manifestations": [
+      "focus"
+    ],
+    "authority": "4.2_sovereign",
+    "terminalCode": "PERSONA_MAY",
+    "personaId": "may",
+    "nodeId": "may_influencer_v1",
+    "strokes": [
+      [
+        {
+          "x": 0.49,
+          "y": 0.78
+        },
+        {
+          "x": 0.42,
+          "y": 0.77
+        },
+        {
+          "x": 0.35,
+          "y": 0.74
+        },
+        {
+          "x": 0.3,
+          "y": 0.69
+        },
+        {
+          "x": 0.25,
+          "y": 0.63
+        },
+        {
+          "x": 0.23,
+          "y": 0.56
+        },
+        {
+          "x": 0.22,
+          "y": 0.49
+        },
+        {
+          "x": 0.23,
+          "y": 0.42
+        },
+        {
+          "x": 0.26,
+          "y": 0.35
+        },
+        {
+          "x": 0.31,
+          "y": 0.3
+        },
+        {
+          "x": 0.37,
+          "y": 0.25
+        },
+        {
+          "x": 0.44,
+          "y": 0.23
+        },
+        {
+          "x": 0.51,
+          "y": 0.22
+        },
+        {
+          "x": 0.58,
+          "y": 0.23
+        },
+        {
+          "x": 0.65,
+          "y": 0.26
+        },
+        {
+          "x": 0.7,
+          "y": 0.31
+        },
+        {
+          "x": 0.75,
+          "y": 0.37
+        },
+        {
+          "x": 0.77,
+          "y": 0.44
+        },
+        {
+          "x": 0.78,
+          "y": 0.51
+        },
+        {
+          "x": 0.77,
+          "y": 0.58
+        },
+        {
+          "x": 0.74,
+          "y": 0.65
+        },
+        {
+          "x": 0.69,
+          "y": 0.7
+        },
+        {
+          "x": 0.63,
+          "y": 0.75
+        },
+        {
+          "x": 0.56,
+          "y": 0.77
+        },
+        {
+          "x": 0.49,
+          "y": 0.78
+        }
+      ],
+      [
+        {
+          "x": 0.42,
+          "y": 0.39999999999999997
+        },
+        {
+          "x": 0.5,
+          "y": 0.48
+        },
+        {
+          "x": 0.58,
+          "y": 0.39999999999999997
+        }
+      ]
+    ]
+  },
+  {
+    "id": "persona-yuriko",
+    "displayName": "Invoke Yuriko",
+    "description": "Activate Yuriko \u2014 formal Japanese matriarch, slow household authority, non-explicit.",
+    "element": "light",
+    "manifestations": [
+      "focus"
+    ],
+    "authority": "4.2_sovereign",
+    "terminalCode": "PERSONA_YURIKO",
+    "personaId": "yuriko",
+    "nodeId": "yuriko_matr01",
+    "strokes": [
+      [
+        {
+          "x": 0.46,
+          "y": 0.78
+        },
+        {
+          "x": 0.39,
+          "y": 0.76
+        },
+        {
+          "x": 0.33,
+          "y": 0.72
+        },
+        {
+          "x": 0.28,
+          "y": 0.67
+        },
+        {
+          "x": 0.24,
+          "y": 0.61
+        },
+        {
+          "x": 0.22,
+          "y": 0.54
+        },
+        {
+          "x": 0.22,
+          "y": 0.46
+        },
+        {
+          "x": 0.24,
+          "y": 0.39
+        },
+        {
+          "x": 0.28,
+          "y": 0.33
+        },
+        {
+          "x": 0.33,
+          "y": 0.28
+        },
+        {
+          "x": 0.39,
+          "y": 0.24
+        },
+        {
+          "x": 0.46,
+          "y": 0.22
+        },
+        {
+          "x": 0.54,
+          "y": 0.22
+        },
+        {
+          "x": 0.61,
+          "y": 0.24
+        },
+        {
+          "x": 0.67,
+          "y": 0.28
+        },
+        {
+          "x": 0.72,
+          "y": 0.33
+        },
+        {
+          "x": 0.76,
+          "y": 0.39
+        },
+        {
+          "x": 0.78,
+          "y": 0.46
+        },
+        {
+          "x": 0.78,
+          "y": 0.54
+        },
+        {
+          "x": 0.76,
+          "y": 0.61
+        },
+        {
+          "x": 0.72,
+          "y": 0.67
+        },
+        {
+          "x": 0.67,
+          "y": 0.72
+        },
+        {
+          "x": 0.61,
+          "y": 0.76
+        },
+        {
+          "x": 0.54,
+          "y": 0.78
+        },
+        {
+          "x": 0.46,
+          "y": 0.78
+        }
+      ],
+      [
+        {
+          "x": 0.42,
+          "y": 0.44999999999999996
+        },
+        {
+          "x": 0.5,
+          "y": 0.5299999999999999
+        },
+        {
+          "x": 0.58,
+          "y": 0.44999999999999996
+        }
+      ]
+    ]
+  },
+  {
+    "id": "persona-seiko",
+    "displayName": "Invoke Seiko",
+    "description": "Activate Seiko \u2014 spiritual matriarch, Yomotsu boundary guardian, non-explicit.",
+    "element": "light",
+    "manifestations": [
+      "focus"
+    ],
+    "authority": "4.2_sovereign",
+    "terminalCode": "PERSONA_SEIKO",
+    "personaId": "seiko",
+    "nodeId": "seiko_spiritual_matriarch_node",
+    "strokes": [
+      [
+        {
+          "x": 0.44,
+          "y": 0.77
+        },
+        {
+          "x": 0.37,
+          "y": 0.75
+        },
+        {
+          "x": 0.31,
+          "y": 0.7
+        },
+        {
+          "x": 0.26,
+          "y": 0.65
+        },
+        {
+          "x": 0.23,
+          "y": 0.58
+        },
+        {
+          "x": 0.22,
+          "y": 0.51
+        },
+        {
+          "x": 0.23,
+          "y": 0.44
+        },
+        {
+          "x": 0.25,
+          "y": 0.37
+        },
+        {
+          "x": 0.3,
+          "y": 0.31
+        },
+        {
+          "x": 0.35,
+          "y": 0.26
+        },
+        {
+          "x": 0.42,
+          "y": 0.23
+        },
+        {
+          "x": 0.49,
+          "y": 0.22
+        },
+        {
+          "x": 0.56,
+          "y": 0.23
+        },
+        {
+          "x": 0.63,
+          "y": 0.25
+        },
+        {
+          "x": 0.69,
+          "y": 0.3
+        },
+        {
+          "x": 0.74,
+          "y": 0.35
+        },
+        {
+          "x": 0.77,
+          "y": 0.42
+        },
+        {
+          "x": 0.78,
+          "y": 0.49
+        },
+        {
+          "x": 0.77,
+          "y": 0.56
+        },
+        {
+          "x": 0.75,
+          "y": 0.63
+        },
+        {
+          "x": 0.7,
+          "y": 0.69
+        },
+        {
+          "x": 0.65,
+          "y": 0.74
+        },
+        {
+          "x": 0.58,
+          "y": 0.77
+        },
+        {
+          "x": 0.51,
+          "y": 0.78
+        },
+        {
+          "x": 0.44,
+          "y": 0.77
+        }
+      ],
+      [
+        {
+          "x": 0.42,
+          "y": 0.5
+        },
+        {
+          "x": 0.5,
+          "y": 0.58
+        },
+        {
+          "x": 0.58,
+          "y": 0.5
+        }
+      ]
+    ]
+  },
+  {
+    "id": "persona-momo",
+    "displayName": "Invoke Momo",
+    "description": "Activate Momo \u2014 playful signal aide, energetic bridge, non-explicit.",
+    "element": "light",
+    "manifestations": [
+      "focus"
+    ],
+    "authority": "4.2_sovereign",
+    "terminalCode": "PERSONA_MOMO",
+    "personaId": "momo",
+    "nodeId": "momo_signal_helper_node",
+    "strokes": [
+      [
+        {
+          "x": 0.41,
+          "y": 0.76
+        },
+        {
+          "x": 0.34,
+          "y": 0.73
+        },
+        {
+          "x": 0.29,
+          "y": 0.68
+        },
+        {
+          "x": 0.25,
+          "y": 0.62
+        },
+        {
+          "x": 0.23,
+          "y": 0.55
+        },
+        {
+          "x": 0.22,
+          "y": 0.48
+        },
+        {
+          "x": 0.24,
+          "y": 0.41
+        },
+        {
+          "x": 0.27,
+          "y": 0.34
+        },
+        {
+          "x": 0.32,
+          "y": 0.29
+        },
+        {
+          "x": 0.38,
+          "y": 0.25
+        },
+        {
+          "x": 0.45,
+          "y": 0.23
+        },
+        {
+          "x": 0.52,
+          "y": 0.22
+        },
+        {
+          "x": 0.59,
+          "y": 0.24
+        },
+        {
+          "x": 0.66,
+          "y": 0.27
+        },
+        {
+          "x": 0.71,
+          "y": 0.32
+        },
+        {
+          "x": 0.75,
+          "y": 0.38
+        },
+        {
+          "x": 0.77,
+          "y": 0.45
+        },
+        {
+          "x": 0.78,
+          "y": 0.52
+        },
+        {
+          "x": 0.76,
+          "y": 0.59
+        },
+        {
+          "x": 0.73,
+          "y": 0.66
+        },
+        {
+          "x": 0.68,
+          "y": 0.71
+        },
+        {
+          "x": 0.62,
+          "y": 0.75
+        },
+        {
+          "x": 0.55,
+          "y": 0.77
+        },
+        {
+          "x": 0.48,
+          "y": 0.78
+        },
+        {
+          "x": 0.41,
+          "y": 0.76
+        }
+      ],
+      [
+        {
+          "x": 0.42,
+          "y": 0.55
+        },
+        {
+          "x": 0.5,
+          "y": 0.63
+        },
+        {
+          "x": 0.58,
+          "y": 0.55
+        }
+      ]
+    ]
+  },
+  {
+    "id": "persona-tiffany",
+    "displayName": "Invoke Tiffany",
+    "description": "Activate Tiffany \u2014 college Chinese tsundere, study-room challenger, non-explicit.",
+    "element": "earth",
+    "manifestations": [
+      "focus"
+    ],
+    "authority": "4.2_sovereign",
+    "terminalCode": "PERSONA_TIFFANY",
+    "personaId": "tiffany",
+    "nodeId": "tiffany_college_chinese_tsundere_node",
+    "strokes": [
+      [
+        {
+          "x": 0.38,
+          "y": 0.75
+        },
+        {
+          "x": 0.32,
+          "y": 0.72
+        },
+        {
+          "x": 0.27,
+          "y": 0.66
+        },
+        {
+          "x": 0.24,
+          "y": 0.6
+        },
+        {
+          "x": 0.22,
+          "y": 0.53
+        },
+        {
+          "x": 0.22,
+          "y": 0.45
+        },
+        {
+          "x": 0.25,
+          "y": 0.38
+        },
+        {
+          "x": 0.28,
+          "y": 0.32
+        },
+        {
+          "x": 0.34,
+          "y": 0.27
+        },
+        {
+          "x": 0.4,
+          "y": 0.24
+        },
+        {
+          "x": 0.47,
+          "y": 0.22
+        },
+        {
+          "x": 0.55,
+          "y": 0.22
+        },
+        {
+          "x": 0.62,
+          "y": 0.25
+        },
+        {
+          "x": 0.68,
+          "y": 0.28
+        },
+        {
+          "x": 0.73,
+          "y": 0.34
+        },
+        {
+          "x": 0.76,
+          "y": 0.4
+        },
+        {
+          "x": 0.78,
+          "y": 0.47
+        },
+        {
+          "x": 0.78,
+          "y": 0.55
+        },
+        {
+          "x": 0.75,
+          "y": 0.62
+        },
+        {
+          "x": 0.72,
+          "y": 0.68
+        },
+        {
+          "x": 0.66,
+          "y": 0.73
+        },
+        {
+          "x": 0.6,
+          "y": 0.76
+        },
+        {
+          "x": 0.53,
+          "y": 0.78
+        },
+        {
+          "x": 0.45,
+          "y": 0.78
+        },
+        {
+          "x": 0.38,
+          "y": 0.75
+        }
+      ],
+      [
+        {
+          "x": 0.42,
+          "y": 0.35
+        },
+        {
+          "x": 0.5,
+          "y": 0.43
+        },
+        {
+          "x": 0.58,
+          "y": 0.35
+        }
+      ]
+    ]
+  },
+  {
+    "id": "persona-fern",
+    "displayName": "Invoke Fern",
+    "description": "Activate Fern \u2014 quiet mage apprentice, measured cadence, non-explicit.",
+    "element": "light",
+    "manifestations": [
+      "focus"
+    ],
+    "authority": "4.2_sovereign",
+    "terminalCode": "PERSONA_FERN",
+    "personaId": "fern",
+    "nodeId": "fern_source_reference",
+    "strokes": [
+      [
+        {
+          "x": 0.36,
+          "y": 0.74
+        },
+        {
+          "x": 0.3,
+          "y": 0.7
+        },
+        {
+          "x": 0.26,
+          "y": 0.64
+        },
+        {
+          "x": 0.23,
+          "y": 0.57
+        },
+        {
+          "x": 0.22,
+          "y": 0.5
+        },
+        {
+          "x": 0.23,
+          "y": 0.43
+        },
+        {
+          "x": 0.26,
+          "y": 0.36
+        },
+        {
+          "x": 0.3,
+          "y": 0.3
+        },
+        {
+          "x": 0.36,
+          "y": 0.26
+        },
+        {
+          "x": 0.43,
+          "y": 0.23
+        },
+        {
+          "x": 0.5,
+          "y": 0.22
+        },
+        {
+          "x": 0.57,
+          "y": 0.23
+        },
+        {
+          "x": 0.64,
+          "y": 0.26
+        },
+        {
+          "x": 0.7,
+          "y": 0.3
+        },
+        {
+          "x": 0.74,
+          "y": 0.36
+        },
+        {
+          "x": 0.77,
+          "y": 0.43
+        },
+        {
+          "x": 0.78,
+          "y": 0.5
+        },
+        {
+          "x": 0.77,
+          "y": 0.57
+        },
+        {
+          "x": 0.74,
+          "y": 0.64
+        },
+        {
+          "x": 0.7,
+          "y": 0.7
+        },
+        {
+          "x": 0.64,
+          "y": 0.74
+        },
+        {
+          "x": 0.57,
+          "y": 0.77
+        },
+        {
+          "x": 0.5,
+          "y": 0.78
+        },
+        {
+          "x": 0.43,
+          "y": 0.77
+        },
+        {
+          "x": 0.36,
+          "y": 0.74
+        }
+      ],
+      [
+        {
+          "x": 0.42,
+          "y": 0.39999999999999997
+        },
+        {
+          "x": 0.5,
+          "y": 0.48
+        },
+        {
+          "x": 0.58,
+          "y": 0.39999999999999997
+        }
+      ]
+    ]
+  },
+  {
+    "id": "persona-ana",
+    "displayName": "Invoke Ana",
+    "description": "Activate Ana \u2014 soft stage companion, poised support singer, non-explicit.",
+    "element": "light",
+    "manifestations": [
+      "focus"
+    ],
+    "authority": "4.2_sovereign",
+    "terminalCode": "PERSONA_ANA",
+    "personaId": "ana",
+    "nodeId": "ana_soft_stage_companion_node",
+    "strokes": [
+      [
+        {
+          "x": 0.34,
+          "y": 0.73
+        },
+        {
+          "x": 0.28,
+          "y": 0.68
+        },
+        {
+          "x": 0.24,
+          "y": 0.61
+        },
+        {
+          "x": 0.22,
+          "y": 0.54
+        },
+        {
+          "x": 0.22,
+          "y": 0.47
+        },
+        {
+          "x": 0.24,
+          "y": 0.4
+        },
+        {
+          "x": 0.27,
+          "y": 0.34
+        },
+        {
+          "x": 0.32,
+          "y": 0.28
+        },
+        {
+          "x": 0.39,
+          "y": 0.24
+        },
+        {
+          "x": 0.46,
+          "y": 0.22
+        },
+        {
+          "x": 0.53,
+          "y": 0.22
+        },
+        {
+          "x": 0.6,
+          "y": 0.24
+        },
+        {
+          "x": 0.66,
+          "y": 0.27
+        },
+        {
+          "x": 0.72,
+          "y": 0.32
+        },
+        {
+          "x": 0.76,
+          "y": 0.39
+        },
+        {
+          "x": 0.78,
+          "y": 0.46
+        },
+        {
+          "x": 0.78,
+          "y": 0.53
+        },
+        {
+          "x": 0.76,
+          "y": 0.6
+        },
+        {
+          "x": 0.73,
+          "y": 0.66
+        },
+        {
+          "x": 0.68,
+          "y": 0.72
+        },
+        {
+          "x": 0.61,
+          "y": 0.76
+        },
+        {
+          "x": 0.54,
+          "y": 0.78
+        },
+        {
+          "x": 0.47,
+          "y": 0.78
+        },
+        {
+          "x": 0.4,
+          "y": 0.76
+        },
+        {
+          "x": 0.34,
+          "y": 0.73
+        }
+      ],
+      [
+        {
+          "x": 0.42,
+          "y": 0.44999999999999996
+        },
+        {
+          "x": 0.5,
+          "y": 0.5299999999999999
+        },
+        {
+          "x": 0.58,
+          "y": 0.44999999999999996
+        }
+      ]
+    ]
+  }
+]

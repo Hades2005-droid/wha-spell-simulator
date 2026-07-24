@@ -5,13 +5,13 @@ A self-contained turn-based floor-climbing RPG. No external dependencies — std
 ## Play
 
 ```bash
-python -m eden_shadow.game
+python3 -m eden_shadow.game
 ```
 
-Or from the repo root:
+Or headless (auto-play smoke test):
 
 ```bash
-python eden_shadow/game.py
+python3 -m eden_shadow.game --demo --seed 7
 ```
 
 ## Features
@@ -20,22 +20,17 @@ python eden_shadow/game.py
 - **Turn-based combat** — basic attack or pick from your ready skills each turn
 - **Skill system** — MP costs, cooldowns, unlock new skills at level 3 and 5
 - **XP / leveling** — stats grow on level-up; HP and MP restored
-- **JSON save state** — progress saved after every cleared floor
-- **Test suite** — `pytest eden_shadow/tests/`
+- **JSON save state** — progress saved after every cleared floor (`eden_shadow_save.json`)
+- **Deterministic** — pass `--seed N` and the same run replays exactly
+- **Test suite** — `python3 -m unittest tests.test_eden_shadow -v`
 
-## Skills
+## Rules
 
-| Skill | MP | Base DMG | Cooldown | Notes |
-|---|---|---|---|---|
-| Slash | 5 | 20 | 1 | Quick strike |
-| Fireball | 15 | 40 | 3 | Burst damage |
-| Healing Wind | 10 | — | 4 | Restore 30 HP |
-| Thunder Clap | 20 | 60 | 4 | Unlocked Lv 3 |
-| Shadow Step | 8 | 35 | 2 | Unlocked Lv 5 |
+Climb to floor 10. Each turn choose a basic attack (`a`) or a ready skill
+(number). Skills cost MP and go on cooldown; MP regenerates 1 per round.
+Defeat ends the run; victory opens the Eden gate. `Ctrl-C` saves and exits.
 
-## Tests
+## Scope
 
-```bash
-pip install pytest
-pytest eden_shadow/tests/ -v
-```
+Local game slice only: no network calls, no external writes, the only file it
+touches is its own JSON save.

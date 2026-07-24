@@ -18,6 +18,18 @@ test('exports bounded Eden metadata ingestion lanes', () => {
   assert.equal(FABLE5_BEDROCK.eden.lunarMoonTarget, 18);
 });
 
+test('exports approval-gated ComfyUI ElevenLabs metadata', () => {
+  assert.equal(
+    FABLE5_BEDROCK.elevenLabs.schema,
+    'shadow_garden.comfyui_elevenlabs_bridge.v1',
+  );
+  assert.equal(FABLE5_BEDROCK.elevenLabs.envName, 'ELEVENLABS_API_KEY');
+  assert.equal(FABLE5_BEDROCK.elevenLabs.manifestOnly, true);
+  assert.equal(FABLE5_BEDROCK.elevenLabs.providerCalls, false);
+  assert.equal(FABLE5_BEDROCK.elevenLabs.promptSubmission, false);
+  assert.equal(FABLE5_BEDROCK.elevenLabs.approvalRequiredForLiveAudio, true);
+});
+
 test('recognizes registered handoff artifacts', () => {
   assert.equal(
     isFable5BedrockArtifact('shadow_garden_handoff/bridges/fable5_bedrock.json'),
