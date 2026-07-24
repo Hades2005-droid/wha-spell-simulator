@@ -1,6 +1,6 @@
 {
   "schema": "shadow_garden.perplexity_asuna_central_control.v1",
-  "generated_at": "2026-07-19T20:54:56Z",
+  "generated_at": "2026-07-19T23:05:44Z",
   "carrier": "love_and_harmony_6",
   "bridge_signature": "f2e596cd043d6819",
   "central_control": {
@@ -62,7 +62,7 @@
       "role": "status_notify_paused",
       "ok": true,
       "schema": "shadow_garden.discord_asuna_point0_unification.v1",
-      "vector_count": 8,
+      "vector_count": 10,
       "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/discord_asuna_point0_unification.json",
       "cli": "python3 tools/discord_asuna_point0_unify.py write"
     },
@@ -126,7 +126,7 @@
       "role": "status_notify_paused",
       "ok": true,
       "schema": "shadow_garden.discord_asuna_point0_unification.v1",
-      "vector_count": 8,
+      "vector_count": 10,
       "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/discord_asuna_point0_unification.json",
       "cli": "python3 tools/discord_asuna_point0_unify.py write"
     },
@@ -152,7 +152,7 @@
   "metrics": {
     "surface_count": 9,
     "surfaces_ok": 8,
-    "vector_sum": 89,
+    "vector_sum": 91,
     "deepseek_ok": true,
     "discord_ok": true,
     "white_moon_ok": true,

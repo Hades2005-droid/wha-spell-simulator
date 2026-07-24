@@ -317,6 +317,31 @@ describe('Sovereign Executor', () => {
       assert.strictEqual(blackSun.result.q24Anchor, whiteMoon.result.q24Anchor);
     });
   });
+
+  describe('Phase 3 Persephone shutdown — dimension 0 Yin seal', () => {
+    it('should identify the persephone shutdown as a sovereign spell', () => {
+      assert.strictEqual(isSovereignSpell('sovereign-persephone-shutdown'), true);
+    });
+
+    it('should expose phase3_persephone_shutdown as a manifest-only effect', () => {
+      assert.strictEqual(typeof SOVEREIGN_EFFECTS.phase3_persephone_shutdown, 'function');
+    });
+
+    it('should execute the persephone shutdown as a Yin polarity close', async () => {
+      const result = await executeSovereignEffect('phase3_persephone_shutdown', {});
+      assert.strictEqual(result.success, true);
+      assert.strictEqual(result.result.phase, 3);
+      assert.strictEqual(result.result.seal, 'dimension_0_shutdown');
+      assert.strictEqual(result.result.yinPolarity, true);
+      assert.strictEqual(result.result.pairedWith, 'sovereign-white-moon-gate');
+      assert.strictEqual(result.result.yangAnchor, 'sovereign-black-sun');
+      assert.strictEqual(result.result.throneState, 'sealed');
+      assert.strictEqual(result.result.executionMode, 'manifest_only');
+      assert.strictEqual(result.result.liveDiscord, false);
+      assert.strictEqual(result.result.discordApplicationIdEnv, 'DISCORD_APPLICATION_ID');
+      assert.ok(result.result.bridge.includes('phase3_persephone_shutdown_bridge.json'));
+    });
+  });
 });
 
 describe('Mesh Integration', () => {

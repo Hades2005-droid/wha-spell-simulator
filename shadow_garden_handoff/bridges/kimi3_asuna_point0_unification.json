@@ -1,6 +1,6 @@
 {
   "schema": "shadow_garden.kimi3_asuna_point0_unification.v1",
-  "generated_at": "2026-07-19T20:54:56Z",
+  "generated_at": "2026-07-19T23:05:44Z",
   "phase": 2,
   "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
   "carrier": "love_and_harmony_6",
@@ -194,7 +194,7 @@
   ],
   "transition": {
     "schema": "shadow_garden.kimi3_local_open_weights_transition.v1",
-    "generated_at": "2026-07-19T20:54:56Z",
+    "generated_at": "2026-07-19T23:05:44Z",
     "bridge": "kimi3_third_leverage",
     "ordinal": 3,
     "armed": false,

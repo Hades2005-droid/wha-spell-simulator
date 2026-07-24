@@ -101,6 +101,7 @@
       "transport": "webhook_or_bot_api",
       "env_vars": [
         "ENABLE_DISCORD",
+        "DISCORD_APPLICATION_ID",
         "DISCORD_WEBHOOK_URL",
         "DISCORD_BOT_TOKEN",
         "DISCORD_TOKEN",
@@ -118,6 +119,7 @@
       "default_lane": "read_only",
       "paused_by_default": true,
       "catalog": "shadow_garden_handoff/bridges/discord_asuna_point0_unification.json",
+      "phase3_bridge": "shadow_garden_handoff/bridges/phase3_persephone_shutdown_bridge.json",
       "unify_cli": "tools/discord_asuna_point0_unify.py",
       "local_notify_cli": "tools/discord_local/notify.py",
       "central_control_cli": "tools/perplexity_asuna_central_control.py",
@@ -278,6 +280,79 @@
         "remote_api_without_env_opt_in",
         "credential_exfil",
         "transition_without_KIMI3_TRANSITION_ARMED"
+      ]
+    },
+    {
+      "id": "polymarket",
+      "domain": "market_data_entropy",
+      "transport": "https_public_read",
+      "env_vars": [
+        "ENABLE_POLYMARKET",
+        "POLYMARKET_LIVE_OK",
+        "POLYMARKET_GAMMA_BASE",
+        "POLYMARKET_CLOB_BASE",
+        "POLYMARKET_MIN_LIQUIDITY",
+        "POLYMARKET_STALE_AFTER_MS"
+      ],
+      "capabilities": [
+        "list_markets",
+        "get_market",
+        "structured_probabilities",
+        "entropy_oracle_sample",
+        "metadata_catalog_unify"
+      ],
+      "allowed_lanes": ["read_only", "draft_write"],
+      "default_lane": "read_only",
+      "paused_by_default": true,
+      "catalog": "shadow_garden_handoff/bridges/polymarket_entropy_oracle.json",
+      "oracle_package": "src/oracle/polymarket/",
+      "oracle_cli": "tools/polymarket_oracle.mjs",
+      "unify_cli": "tools/polymarket_asuna_point0_unify.py",
+      "discord_community": "https://discord.com/invite/polymarket",
+      "discord_bridge_cli": "tools/discord_bot_bridge.py",
+      "perplexity_connect_cli": "tools/perplexity_connect.py",
+      "central_control_cli": "tools/perplexity_asuna_central_control.py",
+      "docs": [
+        "https://docs.polymarket.com/api-reference/rate-limits",
+        "https://docs.polymarket.com/market-data/fetching-markets",
+        "docs/POLYMARKET_ENTROPY_ORACLE.md"
+      ],
+      "forbidden": [
+        "trading_orders",
+        "place_order",
+        "cancel_order",
+        "credential_exfil",
+        "live_fetch_without_ENABLE_POLYMARKET",
+        "secret_logging"
+      ]
+    },
+    {
+      "id": "perplexity",
+      "domain": "research_auto_connect",
+      "transport": "https_api",
+      "env_vars": [
+        "PERPLEXITY_API_KEY",
+        "PPLX_API_KEY",
+        "PERPLEXITY_BASE_URL",
+        "PERPLEXITY_MODEL",
+        "ENABLE_PERPLEXITY",
+        "PERPLEXITY_LIVE_OK"
+      ],
+      "capabilities": [
+        "health",
+        "search",
+        "chat",
+        "central_control_unify"
+      ],
+      "allowed_lanes": ["read_only", "draft_write"],
+      "default_lane": "read_only",
+      "connect_cli": "tools/perplexity_connect.py",
+      "central_control_cli": "tools/perplexity_asuna_central_control.py",
+      "ssl": "certifi_context",
+      "forbidden": [
+        "log_or_echo_api_keys",
+        "bulk_upload_without_approval",
+        "credential_exfil"
       ]
     }
   ]

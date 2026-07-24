@@ -1,0 +1,150 @@
+{
+  "schema": "shadow_garden.polymarket_asuna_point0_unification.v1",
+  "generated_at": "2026-07-24T18:08:03Z",
+  "carrier": "love_and_harmony_6",
+  "bridge_signature": "f2e596cd043d6819",
+  "phase": 2,
+  "lane": {
+    "id": "polymarket_entropy_oracle",
+    "domain": "market_data_entropy",
+    "transport": "gamma_plus_clob_public_read",
+    "default_state": "PAUSED",
+    "leveraged_by": "perplexity_asuna_point_0"
+  },
+  "unification_target": {
+    "name": "perplexity_asuna_point_0",
+    "point_0": "HOME",
+    "lane": "perplexity_fable5_synthesis",
+    "role": "entropy_oracle_surface",
+    "meaning": "Index Polymarket structured probabilities as a fail-soft entropy oracle for the local simulation; Perplexity auto-connect for research."
+  },
+  "api_surface": {
+    "mode": "env_names_only",
+    "gamma": "https://gamma-api.polymarket.com",
+    "clob": "https://clob.polymarket.com",
+    "docs": "https://docs.polymarket.com/api-reference/rate-limits",
+    "env_names": [
+      "ENABLE_POLYMARKET",
+      "POLYMARKET_LIVE_OK",
+      "POLYMARKET_GAMMA_BASE",
+      "POLYMARKET_CLOB_BASE",
+      "POLYMARKET_MIN_LIQUIDITY",
+      "POLYMARKET_STALE_AFTER_MS"
+    ],
+    "env_present": {
+      "ENABLE_POLYMARKET": false,
+      "POLYMARKET_LIVE_OK": false,
+      "POLYMARKET_GAMMA_BASE": false,
+      "POLYMARKET_CLOB_BASE": false,
+      "POLYMARKET_MIN_LIQUIDITY": false,
+      "POLYMARKET_STALE_AFTER_MS": false
+    },
+    "enable_polymarket_armed": false,
+    "notes": [
+      "Read-only public endpoints; no trading keys in this surface.",
+      "Prefer /markets/keyset (offset pagination returns 422).",
+      "outcomePrices may be JSON strings \u2014 client parses defensively."
+    ]
+  },
+  "defenses": [
+    "timeout_abort",
+    "retry_backoff_retry_after",
+    "local_sliding_window_limiter",
+    "circuit_breaker",
+    "stale_liquidity_quality_gates",
+    "soft_empty_sample_when_live_off"
+  ],
+  "oracle": {
+    "package": "/Users/fredwashere/wha-spell-simulator/src/oracle/polymarket",
+    "cli": "tools/polymarket_oracle.mjs",
+    "files": [
+      {
+        "name": "index.ts",
+        "exists": true,
+        "path": "/Users/fredwashere/wha-spell-simulator/src/oracle/polymarket/index.ts"
+      },
+      {
+        "name": "client.ts",
+        "exists": true,
+        "path": "/Users/fredwashere/wha-spell-simulator/src/oracle/polymarket/client.ts"
+      },
+      {
+        "name": "entropy.ts",
+        "exists": true,
+        "path": "/Users/fredwashere/wha-spell-simulator/src/oracle/polymarket/entropy.ts"
+      },
+      {
+        "name": "parse.ts",
+        "exists": true,
+        "path": "/Users/fredwashere/wha-spell-simulator/src/oracle/polymarket/parse.ts"
+      },
+      {
+        "name": "http.ts",
+        "exists": true,
+        "path": "/Users/fredwashere/wha-spell-simulator/src/oracle/polymarket/http.ts"
+      },
+      {
+        "name": "rateLimit.ts",
+        "exists": true,
+        "path": "/Users/fredwashere/wha-spell-simulator/src/oracle/polymarket/rateLimit.ts"
+      },
+      {
+        "name": "research.ts",
+        "exists": true,
+        "path": "/Users/fredwashere/wha-spell-simulator/src/oracle/polymarket/research.ts"
+      },
+      {
+        "name": "types.ts",
+        "exists": true,
+        "path": "/Users/fredwashere/wha-spell-simulator/src/oracle/polymarket/types.ts"
+      }
+    ]
+  },
+  "discord": {
+    "community_invite": "https://discord.com/invite/polymarket",
+    "community_label": "Polymarket Discord",
+    "wha_bot_bridge": "tools/discord_bot_bridge.py",
+    "asuna_catalog": "shadow_garden_handoff/bridges/discord_asuna_point0_unification.json",
+    "notify_module": "src/bridge/discordNotify.js",
+    "live_requires": [
+      "ENABLE_DISCORD=1",
+      "DISCORD_LIVE_OK=1"
+    ],
+    "paused_by_default": true,
+    "roles": [
+      "status_notify_oracle_health",
+      "polymarket_community_pointer",
+      "phase3_persephone_paired_lane"
+    ]
+  },
+  "perplexity": {
+    "auto_connect_cli": "tools/perplexity_connect.py",
+    "central_control_cli": "tools/perplexity_asuna_central_control.py",
+    "role": "research_and_going_forward_leverage",
+    "ssl_fix": "certifi_context",
+    "bulk_upload_requires_approval": true
+  },
+  "live_sample": null,
+  "controls": {
+    "provider_trading": false,
+    "credential_logging": false,
+    "content_neutral": true,
+    "live_default": false,
+    "discord_webhook_post": false
+  },
+  "cli": {
+    "status": "node --experimental-strip-types tools/polymarket_oracle.mjs status",
+    "research": "node --experimental-strip-types tools/polymarket_oracle.mjs research",
+    "sample": "ENABLE_POLYMARKET=1 node --experimental-strip-types tools/polymarket_oracle.mjs sample",
+    "unify": "python3 tools/polymarket_asuna_point0_unify.py write",
+    "perplexity_health": "python3 tools/perplexity_connect.py health",
+    "discord_status": "python3 tools/discord_bot_bridge.py status"
+  },
+  "ok": true,
+  "metrics": {
+    "vector_count": 8,
+    "files_ok": true,
+    "live_armed": false,
+    "live_sample_ok": false
+  }
+}

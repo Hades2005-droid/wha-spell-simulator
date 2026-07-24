@@ -69,6 +69,12 @@ SURFACES: list[dict[str, str]] = [
         "catalog": "kimi3_asuna_point0_unification.json",
         "role": "third_leverage_local_open_weights_transition",
     },
+    {
+        "id": "polymarket",
+        "cli": "polymarket_asuna_point0_unify.py",
+        "catalog": "polymarket_entropy_oracle.json",
+        "role": "entropy_oracle_market_probabilities",
+    },
 ]
 
 
@@ -215,6 +221,7 @@ def build_central() -> dict[str, Any]:
     discord = next((s for s in surfaces if s["id"] == "discord"), {})
     white_moon = next((s for s in surfaces if s["id"] == "white_moon"), {})
     kimi3 = next((s for s in surfaces if s["id"] == "kimi3"), {})
+    polymarket = next((s for s in surfaces if s["id"] == "polymarket"), {})
 
     payload = {
         "schema": SCHEMA,
@@ -250,6 +257,7 @@ def build_central() -> dict[str, Any]:
             "discord": discord,
             "eastern_white_moon": white_moon,
             "kimi3": kimi3,
+            "polymarket": polymarket,
         },
         "metrics": {
             "surface_count": len(surfaces),
@@ -259,6 +267,7 @@ def build_central() -> dict[str, Any]:
             "discord_ok": bool(discord.get("ok")),
             "white_moon_ok": bool(white_moon.get("ok")),
             "kimi3_ok": bool(kimi3.get("ok")),
+            "polymarket_ok": bool(polymarket.get("ok")),
             "all_core_ok": ok_count >= 6,
         },
         "controls": {
@@ -269,12 +278,15 @@ def build_central() -> dict[str, Any]:
             "discord_webhook_post": False,
             "bulk_upload_perplexity": False,
             "local_open_weights_preferred": True,
+            "polymarket_live_default": False,
         },
         "cli": {
             "central": "python3 tools/perplexity_asuna_central_control.py write",
             "deepseek": "python3 tools/deepseek_asuna_point0_unify.py write",
             "discord": "python3 tools/discord_asuna_point0_unify.py write",
             "kimi3": "python3 tools/kimi3_asuna_point0_unify.py write",
+            "polymarket": "python3 tools/polymarket_asuna_point0_unify.py write",
+            "perplexity_connect": "python3 tools/perplexity_connect.py health",
             "local_mesh_prep": "python3 tools/local_open_weights_mesh_prep.py write",
             "packet": "python3 tools/shadow_garden_packet.py write",
         },

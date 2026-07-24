@@ -142,6 +142,17 @@ class SaveLoadTest(unittest.TestCase):
         self.assertEqual(game.status, "climbing")
         self.assertFalse(self.save.exists())
 
+    def test_shutdown_seal_clears_save_and_exits(self):
+        from eden_shadow.game import main
+
+        game = quiet_game(save_path=self.save)
+        game.floor = 6
+        game.save()
+        self.assertTrue(self.save.exists())
+        rc = main(["--shutdown", "--save", str(self.save)])
+        self.assertEqual(rc, 0)
+        self.assertFalse(self.save.exists())
+
 
 class AutoRunTest(unittest.TestCase):
     def setUp(self):
