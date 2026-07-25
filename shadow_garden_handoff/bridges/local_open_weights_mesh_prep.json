@@ -1,6 +1,6 @@
 {
   "schema": "shadow_garden.local_open_weights_mesh_prep.v1",
-  "generated_at": "2026-07-19T20:54:56Z",
+  "generated_at": "2026-07-25T23:53:09Z",
   "carrier": "love_and_harmony_6",
   "bridge_signature": "f2e596cd043d6819",
   "mesh_id": "local_open_weights_mesh",
@@ -14,7 +14,8 @@
   "leverage_stack": {
     "1": "deepseek_local_open_weights",
     "2": "grok_xai_harmony_6_white_moon",
-    "3": "kimi3_completion_to_local_open_weights"
+    "3": "kimi3_completion_to_local_open_weights",
+    "4": "cursor_agent_node_connection_pending"
   },
   "lanes": {
     "mesh": "local_open_weights_mesh",
@@ -162,7 +163,7 @@
       "ok": true,
       "cli": "cached:central",
       "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/perplexity_asuna_central_control.json",
-      "vector_count": 89,
+      "vector_count": 97,
       "cached": true
     }
   ],
@@ -195,8 +196,8 @@
     },
     {
       "id": "comfy_8189",
-      "ok": true,
-      "detail": "Prefer COMFYUI_URL=http://127.0.0.1:8189 (alt 8188 noted if up)",
+      "ok": false,
+      "detail": "ComfyUI daemon down \u2014 prefer COMFYUI_URL=http://127.0.0.1:8189 (alt 8188) when up",
       "blocking": false
     },
     {
@@ -240,7 +241,7 @@
   "readiness": {
     "blocking_ok": 7,
     "blocking_total": 7,
-    "soft_ok": 2,
+    "soft_ok": 1,
     "soft_total": 5,
     "prep_ready": true,
     "cutover_ready": false

@@ -998,6 +998,7 @@ def build_packet(*, run_tests: bool = True) -> dict[str, Any]:
             "1": "deepseek_local_open_weights",
             "2": "grok_xai_harmony_6_white_moon",
             "3": "kimi3_completion_to_local_open_weights",
+            "4": "cursor_agent_node_connection_pending",
         },
         "eastern_white_moon": {
             "id": "eastern_white_moon",

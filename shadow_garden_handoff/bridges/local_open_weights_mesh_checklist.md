@@ -1,6 +1,6 @@
 # Local open-weights mesh — readiness checklist
 
-Generated: `2026-07-19T20:54:56Z`
+Generated: `2026-07-25T23:53:09Z`
 Mesh: `local_open_weights_mesh` · Carrier: `love_and_harmony_6`
 Prep ready: **True** · Cutover ready: **False**
 
@@ -10,7 +10,7 @@ Prep ready: **True** · Cutover ready: **False**
 - [x] `ollama_up` (blocking) — Ollama tags reachable (4 models)
 - [ ] `deepseek_local_tag` (soft) — Pull a local deepseek model when ready (optional for prep)
 - [ ] `kimi_local_tag` (soft) — Pull a local kimi/moonshot model before full cutover (optional for prep)
-- [x] `comfy_8189` (soft) — Prefer COMFYUI_URL=http://127.0.0.1:8189 (alt 8188 noted if up)
+- [ ] `comfy_8189` (soft) — ComfyUI daemon down — prefer COMFYUI_URL=http://127.0.0.1:8189 (alt 8188) when up
 - [x] `catalogs_refreshed` (blocking) — 6/6 catalogs ok
 - [x] `packet_refreshed` (blocking) — packet artifact present=True (refresh skipped)
 - [ ] `remote_keys_unset_preferred` (soft) — Remote provider key names present — leave unset for pure local

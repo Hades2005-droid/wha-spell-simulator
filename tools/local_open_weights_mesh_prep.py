@@ -290,6 +290,9 @@ def build_checklist(
     packet: dict[str, Any],
 ) -> list[dict[str, Any]]:
     catalog_ok_count = sum(1 for c in catalogs if c.get("ok"))
+    port_map = (ports or {}).get("ports") or {}
+    comfy_up = bool((port_map.get("comfyui") or {}).get("up"))
+    comfy_alt_up = bool((port_map.get("comfyui_alt") or {}).get("up"))
     packet_skipped = bool(packet.get("skipped"))
     packet_bridge = (
         WHA / "shadow_garden_handoff" / "bridges" / "shadow_garden_packet.json"
@@ -327,8 +330,14 @@ def build_checklist(
         },
         {
             "id": "comfy_8189",
-            "ok": True,
-            "detail": "Prefer COMFYUI_URL=http://127.0.0.1:8189 (alt 8188 noted if up)",
+            "ok": comfy_up or comfy_alt_up,
+            "detail": (
+                "ComfyUI reachable on 127.0.0.1:8189 (preferred)"
+                if comfy_up
+                else "ComfyUI reachable on 127.0.0.1:8188 (alt); prefer 8189"
+                if comfy_alt_up
+                else "ComfyUI daemon down — prefer COMFYUI_URL=http://127.0.0.1:8189 (alt 8188) when up"
+            ),
             "blocking": False,
         },
         {
@@ -501,6 +510,7 @@ def build_prep(*, refresh: bool, write_packet: bool) -> dict[str, Any]:
             "1": "deepseek_local_open_weights",
             "2": "grok_xai_harmony_6_white_moon",
             "3": "kimi3_completion_to_local_open_weights",
+            "4": "cursor_agent_node_connection_pending",
         },
         "lanes": local_lanes(),
         "ports": ports,
