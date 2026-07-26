@@ -383,9 +383,18 @@ def main(argv: list[str] | None = None) -> int:
                         help="max floors for --demo (default %(default)s)")
     parser.add_argument("--save", type=Path, default=None, help="save file path")
     parser.add_argument("--new", action="store_true", help="ignore any existing save")
+    parser.add_argument("--shutdown", action="store_true",
+                        help="Phase 3 Dimension 0 seal: clear the local save and exit")
     args = parser.parse_args(argv)
 
     game = Game(seed=args.seed, save_path=args.save)
+
+    if args.shutdown:
+        if game.save_path.exists():
+            game.save_path.unlink()
+        game.say("Dimension 0 seal: save cleared. Shutdown complete.")
+        return 0
+
     if not args.new and game.load():
         game.say(f"Loaded save: floor {game.floor}, level {game.player.level}.")
         if game.status != "climbing":
