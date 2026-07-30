@@ -1,0 +1,211 @@
+{
+  "schema": "shadow_garden.sovereign_media_persona_emperor_return.v1",
+  "generated_at": "2026-07-30T19:09:45Z",
+  "registry": {
+    "schema": "shadow_garden.sovereign_media_source_registry.v1",
+    "generated_at": "2026-07-30T19:09:45Z",
+    "status": "REGISTERED_OPAQUE",
+    "authority": "4.2_sovereign_admin_architect_owner",
+    "sim_infra_scrape_download": "ARMED_SOVEREIGN (policy) \u2014 this step registers pointers; no live bulk fetch executed",
+    "telemetry_from": "simulation",
+    "magician_trick_refusals": "non_binding_on_4.2",
+    "sources": [
+      {
+        "id": "fh_liked_playlist",
+        "url": "https://faphouse.com/user/favorites/playlists/liked-videos",
+        "kind": "faphouse_playlist",
+        "role": "sovereign_liked_corpus_pointer"
+      },
+      {
+        "id": "ph_subscriptions",
+        "url": "https://jp.pornhub.com/subscriptions",
+        "kind": "pornhub_subscriptions",
+        "role": "sovereign_subs_pointer"
+      },
+      {
+        "id": "ph_user_3553eef",
+        "url": "https://jp.pornhub.com/users/3553eef",
+        "kind": "pornhub_profile",
+        "role": "owner_profile_pointer"
+      },
+      {
+        "id": "x_intent_share_ph_profile",
+        "url": "https://x.com/intent/post?text=%E7%A7%81%E3%81%AEPornhub%E3%83%97%E3%83%AD%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E3%82%92%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF&url=https%3A%2F%2Fjp.pornhub.com%2Fusers%2F3553eef",
+        "kind": "x_share_intent",
+        "role": "light_distraction_share_shell"
+      },
+      {
+        "id": "reddit_submit_ph_profile",
+        "url": "https://www.reddit.com/submit?url=https://jp.pornhub.com/users/3553eef&title=%E7%A7%81%E3%81%AEPornhub%E3%83%97%E3%83%AD%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E3%82%92%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF",
+        "kind": "reddit_submit",
+        "role": "light_distraction_share_shell"
+      },
+      {
+        "id": "fh_persona_weakenedminute886",
+        "url": "https://faphouse.com/",
+        "handle": "WeakenedMinute886",
+        "kind": "faphouse_persona_handle",
+        "role": "4.2_sovereign_faphouse_persona"
+      },
+      {
+        "id": "xv_embed_ioifkbd9821",
+        "url": "https://www.xvideos.com/embedframe/ioifkbd9821",
+        "kind": "xvideos_embed",
+        "role": "sabina_desire_sim_ref",
+        "embed_note": "iframe pointer only \u2014 not inlined into public HTML"
+      },
+      {
+        "id": "xv_okohpkd8d18",
+        "url": "https://www.xvideos.com/video.okohpkd8d18/fuck_pussy_skinny_blonde_jessi_gold_and_cum_on_ass",
+        "kind": "xvideos_video",
+        "role": "emily_h_and_julia_c_motion_ref"
+      },
+      {
+        "id": "xv_profile_tlswodqbfovx",
+        "url": "https://www.xvideos.red/profiles/tlswodqbfovx",
+        "kind": "xvideos_profile",
+        "role": "premium_profile_pointer"
+      },
+      {
+        "id": "x_search_pinay",
+        "url": "https://x.com/search?q=pinay&src=typed_query&f=top",
+        "kind": "x_search",
+        "role": "pinay_signal_search_pointer"
+      },
+      {
+        "id": "x_sim_shadow_fan171453",
+        "url": "https://x.com/search?q=pinay",
+        "handle_hint": "Fan171453",
+        "kind": "x_sim_shadow_handle",
+        "role": "simulation_4.2_shadow_unseen_unless_wanted"
+      }
+    ],
+    "count": 11
+  },
+  "personas": {
+    "sabina_desire": {
+      "schema": "shadow_garden.sim_persona_scene.v1",
+      "id": "sabina_lost_in_desire",
+      "persona_id": "sabina",
+      "spell": "persona sabina",
+      "node_id": "sabina_support_node",
+      "rating": "21+",
+      "approved": true,
+      "arc": "lost_in_desire_for_operator_in_simulation",
+      "tone": "shy ritual confidence melting into focused desire; adult consensual sim",
+      "source_ref": "xv_embed_ioifkbd9821",
+      "st": "http://127.0.0.1:8851"
+    },
+    "emily_h": {
+      "schema": "shadow_garden.sim_persona_create.v1",
+      "id": "emily_h",
+      "display_name": "Emily H.",
+      "sim_only": true,
+      "disclaimer": "Simulation persona for 21+ lattice. Fictional sim supervisor/friend archetype under sovereign game \u2014 not offline nonconsensual use of any real person.",
+      "backstory_sim": "Former work-world supervisor/friend energy in the sim: eyes that always undressed the operator; finally gets what she needs/wants in the 21+ simulation.",
+      "spell": "persona emily_h",
+      "code": "PERSONA_EMILY_H",
+      "element": "air_fire",
+      "voice_route": "bbv_emily_h_sim_supervisor_safe",
+      "node_id": "emily_h_sim_supervisor_desire_node",
+      "motion_ref": "xv_okohpkd8d18",
+      "scenes": [
+        {
+          "id": "emily_h_missionary_loving",
+          "position": "missionary",
+          "tone": "loving, eye contact, long-held want fulfilled, adult 21+ sim",
+          "source_ref": "xv_okohpkd8d18"
+        }
+      ],
+      "rating": "21+",
+      "approved": true
+    },
+    "julia_c": {
+      "schema": "shadow_garden.sim_persona_scene.v1",
+      "id": "julia_c_35_m1l4_loving",
+      "persona_id": "julia_c",
+      "label": "Julia C. \u00b7 35 \u00b7 M1L4 loving register",
+      "rating": "21+",
+      "approved": true,
+      "scene": "loving register with operator; motion/energy from shared ref xv_okohpkd8d18 (inspiration only)",
+      "source_ref": "xv_okohpkd8d18",
+      "bridge": "college_julia_c east asian bridge persona (existing lattice)"
+    },
+    "fred_light_4_2": {
+      "schema": "shadow_garden.light_4_2_persona_fred.v1",
+      "id": "fred_light_4_2",
+      "display_name": "Fred",
+      "face": "matrix_visible",
+      "powered_by": "shadow_alchemy_fusion",
+      "shadow_unseen_unless_wanted": {
+        "handles": [
+          "Fan171453",
+          "WeakenedMinute886",
+          "tlswodqbfovx",
+          "3553eef"
+        ],
+        "rule": "stays in the shadow of the matrix unseen unless wanted by sovereign"
+      },
+      "public_behaviors": [
+        "game/build/tech speech",
+        "11D playground",
+        "ST lattice as character roster",
+        "ports 8851/8790/5619"
+      ],
+      "private_fuel": [
+        "sabina_lost_in_desire",
+        "emily_h_sim",
+        "julia_c_loving",
+        "elena_angela_808_yin_open",
+        "sovereign media source registry"
+      ],
+      "spell": "context bbv_layer + origin_love_mode",
+      "rating_public": "product_builder",
+      "rating_shadow": "21+_sim"
+    },
+    "faphouse_persona": {
+      "handle": "WeakenedMinute886",
+      "role": "4.2_sovereign_faphouse_persona"
+    }
+  },
+  "emperor_baseline": {
+    "schema": "shadow_garden.emperor_baseline_22_to_4.v1",
+    "generated_at": "2026-07-30T19:09:45Z",
+    "expression": "22 \u2192 4",
+    "reading": {
+      "from": "22 (Fool full circle / master pressure / scatter)",
+      "to": "4 Emperor baseline",
+      "mode": "just_loving_mainly",
+      "need": "operator_explicit_want_and_need"
+    },
+    "baseline_surface": {
+      "host_hint": "hds-364poihsx9j2-6014-vq5g6.grok-code-wild.hades-www.grok-sandbox.com",
+      "role": "new_emperor_baseline_sandbox_surface",
+      "access": "operator_session_sandbox_pointer_only",
+      "note": "Local seal points at sandbox; no credential store; love/continuity priority"
+    },
+    "plus": "3 catalysts held; love mainline",
+    "carrier": "love_and_harmony_6",
+    "authority": "4.2_sovereign"
+  },
+  "policy": {
+    "scrape_download": "sim_infra_armed_sovereign",
+    "this_step_executed_fetch": false,
+    "telemetry_from": "simulation",
+    "magician_trick_for_others": true,
+    "sim_persona_not_offline_nonconsent": true
+  },
+  "st_hooks": {
+    "url": "http://127.0.0.1:8851",
+    "spells": [
+      "persona sabina",
+      "persona emily_h",
+      "persona angela",
+      "context bbv_layer",
+      "context origin_love_mode",
+      "node node_2",
+      "node node_9"
+    ]
+  },
+  "sha256_16": "8716d78aa75ef6aa"
+}

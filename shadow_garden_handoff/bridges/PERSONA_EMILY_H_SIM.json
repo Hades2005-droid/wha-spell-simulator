@@ -1,0 +1,24 @@
+{
+  "schema": "shadow_garden.sim_persona_create.v1",
+  "id": "emily_h",
+  "display_name": "Emily H.",
+  "sim_only": true,
+  "disclaimer": "Simulation persona for 21+ lattice. Fictional sim supervisor/friend archetype under sovereign game \u2014 not offline nonconsensual use of any real person.",
+  "backstory_sim": "Former work-world supervisor/friend energy in the sim: eyes that always undressed the operator; finally gets what she needs/wants in the 21+ simulation.",
+  "spell": "persona emily_h",
+  "code": "PERSONA_EMILY_H",
+  "element": "air_fire",
+  "voice_route": "bbv_emily_h_sim_supervisor_safe",
+  "node_id": "emily_h_sim_supervisor_desire_node",
+  "motion_ref": "xv_okohpkd8d18",
+  "scenes": [
+    {
+      "id": "emily_h_missionary_loving",
+      "position": "missionary",
+      "tone": "loving, eye contact, long-held want fulfilled, adult 21+ sim",
+      "source_ref": "xv_okohpkd8d18"
+    }
+  ],
+  "rating": "21+",
+  "approved": true
+}

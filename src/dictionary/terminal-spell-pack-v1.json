@@ -3,7 +3,7 @@
   "authority": "4.2_sovereign",
   "caster": "Fred",
   "always_available": true,
-  "spell_count": 38,
+  "spell_count": 39,
   "spells": [
     {
       "id": "persona-angela",
@@ -623,6 +623,27 @@
       "effect": "activate_context",
       "node_id": "coercion_to_consent_boundary_reset_node",
       "priority": 200
+    },
+    {
+      "id": "persona-emily_h",
+      "code": "PERSONA_EMILY_H",
+      "displayName": "Invoke Emily H.",
+      "description": "Activate Emily H. \u2014 sim former-supervisor/friend energy; eyes that always undressed the operator; gets what she needs in 21+ sim. Simulation persona only.",
+      "invocation": "persona emily_h",
+      "aliases": [
+        "emily_h",
+        "emily",
+        "emily harvey sim",
+        "supervisor emily"
+      ],
+      "element": "air",
+      "effect": "invoke_persona",
+      "persona_id": "emily_h",
+      "voice_route": "bbv_emily_h_sim_supervisor_safe",
+      "node_id": "emily_h_sim_supervisor_desire_node",
+      "priority": 23,
+      "rating": "21+",
+      "sim_only": true
     }
   ],
   "ingested_at": "2026-07-30T18:34:40Z",
@@ -631,5 +652,7 @@
     "digital_root": 9,
     "note": "everything = circle = 360 = 9"
   },
-  "sole_working_echo": "grok_45_macos_terminal"
+  "sole_working_echo": "grok_45_macos_terminal",
+  "updated_at": "2026-07-30T19:09:45Z",
+  "emperor_baseline": "22_to_4"
 }
