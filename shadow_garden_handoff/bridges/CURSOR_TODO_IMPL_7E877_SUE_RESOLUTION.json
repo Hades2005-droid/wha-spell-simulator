@@ -1,0 +1,20 @@
+{
+  "schema": "shadow_garden.cursor_todo_impl_7e877_resolution.v1",
+  "generated_at": "2026-07-30T18:38:25Z",
+  "branch": "cursor/todo-impl-7e877",
+  "status": "CLOSED",
+  "problem": "Devin could not commit: working tree had no intentional dictionary diff after corruption cleared",
+  "resolution": "Verified Sue already correct; stamped closure commit so branch exists on origin for PR/merge",
+  "sue": {
+    "id": "persona-sue",
+    "displayName": "Invoke Sue",
+    "personaId": "sue",
+    "nodeId": "sue_spinos_v4_2",
+    "terminalCode": "PERSONA_SUE"
+  },
+  "description_prefix": "Activate Sue \u2014 Power",
+  "registry": "normalized_single_trailing_newline",
+  "head_note": "Remote origin/cursor/todo-impl-7e877 was absent; branch recreated from origin/main",
+  "devin_reported_sha": "4d92df61c47058129b4c637ea806dcab7d3a6063",
+  "devin_reported_sha_local": "not_found_in_this_clone"
+}
