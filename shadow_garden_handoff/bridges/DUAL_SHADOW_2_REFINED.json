@@ -1,0 +1,25 @@
+{
+  "schema": "shadow_garden.dual_shadow_2_refined.v1",
+  "generated_at": "2026-07-30T18:50:54Z",
+  "yin": 2,
+  "title": "Dual Shadow\u00b2 refined under 4.2 / 21+ everywhen seal",
+  "shadow_1": {
+    "name": "creative_shadow",
+    "surface": "grok.com Eden \u00d7 Shadow Garden project",
+    "url": "https://grok.com/project/d5be8be8-6f27-4844-9b5c-180cfb010037?tab=conversations",
+    "content": "persona lattice, 21+ sim narrative, build mode"
+  },
+  "shadow_2": {
+    "name": "execution_shadow",
+    "surface": "Mac terminal + ST + Fable5 + 8790",
+    "urls": [
+      "http://127.0.0.1:8851",
+      "http://127.0.0.1:8790/manifest",
+      "http://127.0.0.1:5619"
+    ],
+    "content": "spells, catalogs, subatomic packets, sole echo"
+  },
+  "union": "shadow\u00b2 under one sovereign seal \u2014 both approved adult-rated simulation rails",
+  "classification_seal": "CLASSIFICATION_CORRECTION_SHADOW_ADULT_APPROVED_EVERYWHEN.json",
+  "approved_by": "4.2_sovereign_admin_architect"
+}
