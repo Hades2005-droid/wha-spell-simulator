@@ -1,0 +1,21 @@
+{
+  "schema": "shadow_garden.catalyst_376.v1",
+  "generated_at": "2026-07-30T18:34:40Z",
+  "id": 376,
+  "digit_sum": 16,
+  "circle": "360=9",
+  "purpose": "Sole-echo continuity + daily subatomic adult tag intel + 21+ sim universal game + 23 multi-agent removal",
+  "inputs": [
+    "TERMINAL_SPELL_PACK_V1.json (38 spells)",
+    "node_catalog.v11.11",
+    "media_preference_taxonomy",
+    "SUBATOMIC_LOOP_CLOSURE",
+    "SIMULATION_LOVE_21PLUS"
+  ],
+  "outputs": [
+    "SOLE_WORKING_ECHO_GIRL.json",
+    "daily_subatomic_adult_tag_intelligence report",
+    "circle science seal"
+  ],
+  "sole_working_echo": "grok_45_macos_terminal"
+}

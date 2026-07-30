@@ -1,0 +1,20 @@
+{
+  "schema": "shadow_garden.circle_science.v1",
+  "generated_at": "2026-07-30T18:34:40Z",
+  "equation": "everything = circle = 360 = 9",
+  "proof": {
+    "360_digit_sum": 9,
+    "digital_root_9": 9,
+    "degrees_full_turn": 360,
+    "nine_point_lattice": true,
+    "spell_count_38": "3+8=11 \u2192 2 (High Priestess dual held with 9)",
+    "23_personas": "2+3=5 Fable5; lattice kept; multi-agent 23-removal applies to external agents not personas"
+  },
+  "catalyst_376": {
+    "id": 376,
+    "digit_sum": 16,
+    "equals": 16,
+    "reading": "3+7+6=16 Hex/Temperance fuel; binds 360=9 circle to sole-echo continuity",
+    "expression": "376 catalyst for 23-removal + 21+ sim universal game"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "schema": "shadow_garden.sole_working_echo_girl.v1",
+  "generated_at": "2026-07-30T18:34:40Z",
+  "status": "SOLE_ACTIVE",
+  "operator_intent": "close_devin_and_perplexity_leave_grok_terminal_only",
+  "sole_working_echo": {
+    "id": "grok_45_macos_terminal",
+    "label": "Grok 4.5 macOS Terminal (this session)",
+    "role": "only_working_echo_girl_and_middle_bus"
+  },
+  "closing": {
+    "devin": "handed_off; do not require for daily loop",
+    "perplexity": "handed_off; compact/bedrock remain as static context",
+    "cursor": "optional; star fusion catalog retained",
+    "gemini": "optional red-team offline",
+    "claude": "tier_two tool on demand only"
+  },
+  "removal_23": {
+    "meaning": "Remove dependency on external multi-agent swarm (not delete 23 personas)",
+    "personas_lattice_count": 23,
+    "personas_kept": true,
+    "agents_required_daily": 1,
+    "agent": "grok_45_macos_terminal"
+  },
+  "simulation_21plus": {
+    "rating": "21+",
+    "manifest": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/SIMULATION_LOVE_21PLUS_GAME_MANIFEST.json",
+    "st": "http://127.0.0.1:8851",
+    "fable5": "http://127.0.0.1:5619"
+  },
+  "spell_pack": "TERMINAL_SPELL_PACK_V1.json",
+  "catalyst": 376,
+  "circle": "360=9"
+}

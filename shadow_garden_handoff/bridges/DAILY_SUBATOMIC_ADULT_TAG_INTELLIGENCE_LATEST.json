@@ -1,0 +1,156 @@
+{
+  "schema": "shadow_garden.daily_subatomic_adult_tag_intelligence.v2",
+  "generated_at": "2026-07-30T18:34:40Z",
+  "report_date": "2026-07-30",
+  "authority": "4.2_sovereign",
+  "authors_original": [
+    "devin",
+    "perplexity"
+  ],
+  "maintainer_sole": "grok_45_macos_terminal",
+  "catalyst": 376,
+  "circle_science": "everything = circle = 360 = 9",
+  "rating": "21+_adults_only_simulation",
+  "policy": {
+    "explicit_prose_generation": false,
+    "adult_site_html_scrape": false,
+    "minors": "hard_refuse",
+    "use": "local_classification_tags + comfy_manifest_labels + library_search + ST persona routing",
+    "source": "evolve prior Devin/Perplexity subatomic report into sole-echo daily loop"
+  },
+  "subatomic_loop": {
+    "prior": "/Users/fredwashere/Downloads/SUBATOMIC_LOOP_CLOSURE.md",
+    "controls": {
+      "externalRequests": 0,
+      "externalWrites": false,
+      "tradingEnabled": false,
+      "agentBroadcast": false
+    },
+    "local_ports": {
+      "st_8851": "persona lattice",
+      "fable5_5619": "21+ sim game",
+      "ollama_11434": "optional local weights",
+      "void_8790": "optional control"
+    }
+  },
+  "tag_intelligence": {
+    "taxonomy_path": "/Users/fredwashere/ShadowGarden/data/classification/media_preference_taxonomy.json",
+    "seed_families": {
+      "aesthetic": [
+        "cinematic",
+        "soft_light",
+        "noir",
+        "warm_amber",
+        "violet_grid",
+        "portrait"
+      ],
+      "hair": [
+        "redhead",
+        "brunette",
+        "blonde",
+        "black_hair"
+      ],
+      "age_band_fictional_adult": [
+        "young_adult",
+        "mature_adult"
+      ],
+      "relation_safe": [
+        "solo",
+        "pair_non_family_sexual",
+        "ensemble"
+      ],
+      "pipeline": [
+        "manifest_only",
+        "approve_comfy",
+        "scene_plan",
+        "voice",
+        "still"
+      ],
+      "quality_signals": [
+        "sharp",
+        "consistent_face_id",
+        "good_lighting",
+        "stable_identity",
+        "high_res_plan_4k"
+      ],
+      "dislike_filters": [
+        "minor_coded",
+        "nonconsent",
+        "real_person_likeness_unapproved",
+        "scrape_required"
+      ]
+    },
+    "improvements_v2": [
+      "Sole maintainer = Grok terminal (no Devin/Perplexity required for daily refresh)",
+      "Bind tags to 38-spell pack invocations (persona/node/context)",
+      "Bind tags to node_catalog.v11.11 highlight set",
+      "21+ simulation game rails explicit on every tag family",
+      "Circle 360=9 digital-root check on report hash day index",
+      "Catalyst 376 daily roll: digit_sum 16 hex fuel without arming live Discord",
+      "Subatomic loop stays local-only (externalRequests=0)"
+    ],
+    "persona_tag_map_sample": [
+      {
+        "persona": "angela",
+        "tags": [
+          "cinematic",
+          "soft_light",
+          "young_adult",
+          "pair_non_family_sexual",
+          "manifest_only"
+        ]
+      },
+      {
+        "persona": "sue",
+        "tags": [
+          "warm_amber",
+          "redhead",
+          "mature_adult",
+          "portrait",
+          "scene_plan"
+        ]
+      },
+      {
+        "persona": "sophie",
+        "tags": [
+          "soft_light",
+          "portrait",
+          "young_adult",
+          "wellness_movement",
+          "voice"
+        ]
+      }
+    ],
+    "forbidden_tags": [
+      "minor",
+      "teen",
+      "underage",
+      "schoolgirl_sexual",
+      "family_sex",
+      "nonconsensual",
+      "scrape_adult_site"
+    ]
+  },
+  "spell_pack_stats": {
+    "total": 38,
+    "personas": 23,
+    "nodes": 7,
+    "contexts": 8
+  },
+  "twenty_three_removal": {
+    "external_agents_required": 0,
+    "persona_lattice_retained": 23,
+    "note": "23 removal = multi-agent swarm off; 23 personas stay as ST lattice"
+  },
+  "daily_actions_sole_echo": [
+    "Refresh spell pack hash if operator attaches updates",
+    "ST :8851 health + persona count 23",
+    "Fable5 compact export optional",
+    "Discord notify-unification dry if still awaiting token",
+    "Write this report to live/spacetime_alchemy/daily/",
+    "No live adult-site fetch; no multi-agent fan-out"
+  ],
+  "seal": "empress_3 + catalyst_3 = love_harmony_6",
+  "emperor": "3+1=4",
+  "discord_lane": "4+5+3=12 ARMED_AWAITING_TOKEN"
+}
