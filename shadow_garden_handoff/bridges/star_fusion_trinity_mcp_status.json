@@ -1,0 +1,87 @@
+{
+  "schema": "shadow_garden.star_fusion_trinity_mcp_status.v1",
+  "generated_at": "2026-07-24T21:12:04Z",
+  "mode": "dry_run_metadata",
+  "symbolic_name": "star_fusion_trinity",
+  "meaning": "Local simulation unification of GitHub (code) + Asana (ops) + Perplexity (synthesis) feeding Cursor; content-neutral; metadata/index first; ahead of later local open-weights.",
+  "policy": {
+    "writes_gated": true,
+    "github_mcp_read_only": true,
+    "asana_destructive_confirm_required": true,
+    "no_secrets_in_repo": true,
+    "mac_intake_watchers": "paused_do_not_enable",
+    "master_mcp_router": "not_built_scaffolding_only",
+    "perplexity_asana_independent": "do_not_break"
+  },
+  "lanes": {
+    "github": {
+      "role": "code",
+      "mcp_server_key": "github",
+      "status": "ready",
+      "launcher": "/Users/fredwashere/.cursor/bin/github-mcp-stdio.sh",
+      "launcher_exists": true,
+      "pat_slot": "set",
+      "read_only": true,
+      "leave_intact": true
+    },
+    "linear": {
+      "role": "ops_adjacent",
+      "mcp_server_key": "plugin-linear-linear",
+      "status": "ready_marketplace",
+      "note": "Stale OAuth cleared; marketplace Linear works. Leave intact.",
+      "leave_intact": true
+    },
+    "asana": {
+      "role": "ops",
+      "mcp_server_key": "asana",
+      "status": "awaiting_credentials",
+      "mcp_url": "https://mcp.asana.com/v2/mcp",
+      "redirect_uri": "cursor://anysphere.cursor-mcp/oauth/callback",
+      "app_name_hint": "Cursor Shadow Garden MCP",
+      "wired_in_mcp_json": true,
+      "client_id_slot": "empty",
+      "client_secret_slot": "empty",
+      "prepare_script": "/Users/fredwashere/.cursor/bin/asana-mcp-prepare.sh",
+      "prepare_script_exists": true,
+      "marketplace_plugin": "plugin-asana-asana",
+      "docs": "https://developers.asana.com/docs/connecting-mcp-clients-to-asanas-v2-server"
+    },
+    "perplexity": {
+      "role": "synthesis",
+      "mcp_server_keys": [
+        "perplexity-docs",
+        "perplexity-tools"
+      ],
+      "status": "ready",
+      "docs_mcp": true,
+      "tools_mcp": true,
+      "pointer": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/perplexity_asuna_central_control.json",
+      "pointer_exists": true,
+      "asana_via_perplexity": "independent_leave_intact"
+    }
+  },
+  "devin": {
+    "role": "coordination_notes_dry_run_only",
+    "workflow": "/Users/fredwashere/wha-spell-simulator/.devin/workflows/shadowgarden.md",
+    "workflow_exists": true,
+    "terminal_bridge": "/Users/fredwashere/shadow_garden_may30_monitoring/DevinTerminalBridge",
+    "terminal_bridge_exists": true,
+    "unbounded_loops": false
+  },
+  "mac_intake": {
+    "path": "/Users/fredwashere/Desktop/shadow-jing-garden/mac_intake",
+    "present": true,
+    "activation": "paused",
+    "watchers_50k": "do_not_enable"
+  },
+  "next_steps": [
+    "Paste ASANA_CLIENT_ID and ASANA_CLIENT_SECRET into ~/.cursor/secrets.env",
+    "Run ~/.cursor/bin/asana-mcp-prepare.sh --apply-gui-env",
+    "Fully quit and reopen Cursor → Tools & MCP → asana → Connect",
+    "Later: master MCP router (not in this scaffolding pass)"
+  ],
+  "artifacts": {
+    "status_json": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/star_fusion_trinity_mcp_status.json",
+    "cli": "python3 tools/star_fusion_trinity_status.py"
+  }
+}

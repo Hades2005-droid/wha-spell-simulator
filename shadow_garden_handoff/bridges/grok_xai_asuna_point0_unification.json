@@ -1,6 +1,6 @@
 {
   "schema": "shadow_garden.grok_xai_asuna_point0_unification.v1",
-  "generated_at": "2026-07-19T23:05:43Z",
+  "generated_at": "2026-07-29T23:47:42Z",
   "phase": 2,
   "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
   "carrier": "love_and_harmony_6",
@@ -127,7 +127,7 @@
   "grok_cli": {
     "on_path": true,
     "path": "/Users/fredwashere/.grok/bin/grok",
-    "version_preview": "grok 0.2.101 (5bc4b5dfadcf) [stable]",
+    "version_preview": "grok 0.2.114 (0c785038798) [stable]",
     "ok": true
   },
   "mesh_pointers": [

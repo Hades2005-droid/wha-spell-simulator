@@ -227,31 +227,6 @@ def mesh_pointers() -> list[dict[str, Any]]:
             role="discord_local_dry_run",
             kind="tool",
         ),
-        file_pointer(
-            WHA / "tools" / "discord_bot_bridge.py",
-            role="discord_sg_bridge_adapter",
-            kind="tool",
-        ),
-        file_pointer(
-            SG / "spacetime_alchemy" / "discord_bridge.py",
-            role="shadow_garden_discord_bridge",
-            kind="code",
-        ),
-        file_pointer(
-            WHA / "tools" / "polymarket_asuna_point0_unify.py",
-            role="polymarket_entropy_oracle_unify",
-            kind="tool",
-        ),
-        file_pointer(
-            WHA / "src" / "bridge" / "polymarketDiscord.js",
-            role="polymarket_discord_community_surface",
-            kind="code",
-        ),
-        file_pointer(
-            WHA / "tools" / "perplexity_connect.py",
-            role="perplexity_auto_connect",
-            kind="tool",
-        ),
     ]
 
 

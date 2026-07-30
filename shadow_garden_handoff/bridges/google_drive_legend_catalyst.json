@@ -1,0 +1,82 @@
+{
+  "schema": "shadow_garden.google_drive_legend_catalyst.v1",
+  "generated_at": "2026-07-29T23:47:41Z",
+  "carrier": "love_and_harmony_6",
+  "bridge_signature": "f2e596cd043d6819",
+  "catalyst": {
+    "ordinal": 3,
+    "id": "catalyst_3_google_drive_legend",
+    "label": "Google Drive legend catalyst 3",
+    "paired_local_spell": "shadow_garden_handoff/terminal_auto/outbox/catalyst_spell_3.json",
+    "meaning": "Drive-synced legend docs steer local open-weights defaults (Qwen3-8B) and Catalyst 3 package provenance \u2014 metadata only."
+  },
+  "legend": {
+    "drive_root": "/Users/fredwashere/Library/CloudStorage/GoogleDrive-frederickpr10@gmail.com",
+    "my_drive": "/Users/fredwashere/Library/CloudStorage/GoogleDrive-frederickpr10@gmail.com/My Drive",
+    "my_drive_exists": true,
+    "items": [
+      {
+        "id": "local_ai_stack_decision",
+        "role": "qwen3_8b_default_decision_legend",
+        "rel": "local-ai-stack-decision-shadow-garden.md",
+        "path": "/Users/fredwashere/Library/CloudStorage/GoogleDrive-frederickpr10@gmail.com/My Drive/local-ai-stack-decision-shadow-garden.md",
+        "exists": true,
+        "preferred_model": "qwen3:8b",
+        "sha256_16": "cb5c2774c1aae110",
+        "bytes": 19510,
+        "title": "Local AI Stack Decision Report for Eden, Shadow Garden, and King Jing Labo"
+      },
+      {
+        "id": "catalyst_unified",
+        "role": "catalyst_3_unified_technical_package",
+        "rel": "CATALYST_UNIFIED.md",
+        "path": "/Users/fredwashere/Library/CloudStorage/GoogleDrive-frederickpr10@gmail.com/My Drive/CATALYST_UNIFIED.md",
+        "exists": true,
+        "preferred_model": null,
+        "sha256_16": "f5cb4d11a0f314db",
+        "bytes": 57919,
+        "title": "Catalyst \u2014 Unified Technical Package (verified build)"
+      }
+    ],
+    "qwen_default": {
+      "from_legend": true,
+      "ollama_tag": "qwen3:8b",
+      "family": "qwen3",
+      "role": "always_on_local_open_weights",
+      "source_doc": "local-ai-stack-decision-shadow-garden.md"
+    },
+    "mcp": {
+      "google_drive_mcp_configured": false,
+      "note": "No Google Drive MCP server is active in Cursor. This catalyst uses local CloudStorage sync. When a Drive MCP is added, point GOOGLE_DRIVE_ROOT and reload MCP.",
+      "suggested_env": [
+        "GOOGLE_DRIVE_ROOT",
+        "GOOGLE_DRIVE_MCP_ENABLED"
+      ]
+    }
+  },
+  "polymarket_handoff": {
+    "role": "entropy_oracle_feeds_qwen_local",
+    "oracle_cli": "tools/polymarket_oracle.mjs",
+    "bridge_cli": "tools/polymarket_qwen_open_weights_bridge.py",
+    "preferred_model": "qwen3:8b"
+  },
+  "controls": {
+    "uploads": false,
+    "provider_calls": false,
+    "credential_logging": false,
+    "content_neutral": true,
+    "arm_transition": false,
+    "secrets_in_artifacts": false
+  },
+  "cli": {
+    "status": "python3 tools/google_drive_legend_catalyst.py status",
+    "write": "python3 tools/google_drive_legend_catalyst.py write"
+  },
+  "metrics": {
+    "vector_count": 5,
+    "legend_files_present": 2,
+    "legend_files_total": 2,
+    "qwen_decision_present": true
+  },
+  "ok": true
+}

@@ -1,6 +1,6 @@
 {
   "schema": "shadow_garden.perplexity_asuna_central_control.v1",
-  "generated_at": "2026-07-19T23:05:44Z",
+  "generated_at": "2026-07-29T23:47:41Z",
   "carrier": "love_and_harmony_6",
   "bridge_signature": "f2e596cd043d6819",
   "central_control": {
@@ -62,7 +62,7 @@
       "role": "status_notify_paused",
       "ok": true,
       "schema": "shadow_garden.discord_asuna_point0_unification.v1",
-      "vector_count": 10,
+      "vector_count": 8,
       "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/discord_asuna_point0_unification.json",
       "cli": "python3 tools/discord_asuna_point0_unify.py write"
     },
@@ -74,6 +74,15 @@
       "vector_count": 11,
       "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/kimi3_asuna_point0_unification.json",
       "cli": "python3 tools/kimi3_asuna_point0_unify.py write"
+    },
+    {
+      "id": "polymarket",
+      "role": "entropy_oracle_market_probabilities",
+      "ok": true,
+      "schema": "shadow_garden.polymarket_asuna_point0_unification.v1",
+      "vector_count": 8,
+      "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/polymarket_entropy_oracle.json",
+      "cli": "python3 tools/polymarket_asuna_point0_unify.py write"
     },
     {
       "id": "stripe",
@@ -126,7 +135,7 @@
       "role": "status_notify_paused",
       "ok": true,
       "schema": "shadow_garden.discord_asuna_point0_unification.v1",
-      "vector_count": 10,
+      "vector_count": 8,
       "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/discord_asuna_point0_unification.json",
       "cli": "python3 tools/discord_asuna_point0_unify.py write"
     },
@@ -147,16 +156,26 @@
       "vector_count": 11,
       "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/kimi3_asuna_point0_unification.json",
       "cli": "python3 tools/kimi3_asuna_point0_unify.py write"
+    },
+    "polymarket": {
+      "id": "polymarket",
+      "role": "entropy_oracle_market_probabilities",
+      "ok": true,
+      "schema": "shadow_garden.polymarket_asuna_point0_unification.v1",
+      "vector_count": 8,
+      "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/polymarket_entropy_oracle.json",
+      "cli": "python3 tools/polymarket_asuna_point0_unify.py write"
     }
   },
   "metrics": {
-    "surface_count": 9,
-    "surfaces_ok": 8,
-    "vector_sum": 91,
+    "surface_count": 10,
+    "surfaces_ok": 9,
+    "vector_sum": 97,
     "deepseek_ok": true,
     "discord_ok": true,
     "white_moon_ok": true,
     "kimi3_ok": true,
+    "polymarket_ok": true,
     "all_core_ok": true
   },
   "controls": {
@@ -166,13 +185,16 @@
     "symbolic_only": true,
     "discord_webhook_post": false,
     "bulk_upload_perplexity": false,
-    "local_open_weights_preferred": true
+    "local_open_weights_preferred": true,
+    "polymarket_live_default": false
   },
   "cli": {
     "central": "python3 tools/perplexity_asuna_central_control.py write",
     "deepseek": "python3 tools/deepseek_asuna_point0_unify.py write",
     "discord": "python3 tools/discord_asuna_point0_unify.py write",
     "kimi3": "python3 tools/kimi3_asuna_point0_unify.py write",
+    "polymarket": "python3 tools/polymarket_asuna_point0_unify.py write",
+    "perplexity_connect": "python3 tools/perplexity_connect.py health",
     "local_mesh_prep": "python3 tools/local_open_weights_mesh_prep.py write",
     "packet": "python3 tools/shadow_garden_packet.py write"
   },

@@ -1,6 +1,6 @@
 {
   "schema": "shadow_garden.kimi3_asuna_point0_unification.v1",
-  "generated_at": "2026-07-19T23:05:44Z",
+  "generated_at": "2026-07-29T23:47:41Z",
   "phase": 2,
   "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
   "carrier": "love_and_harmony_6",
@@ -72,12 +72,12 @@
       "OLLAMA_MODELS"
     ],
     "env_present": {
-      "KIMI_API_KEY": false,
-      "MOONSHOT_API_KEY": false,
-      "KIMI_BASE_URL": false,
-      "MOONSHOT_BASE_URL": false,
-      "KIMI_MODEL": false,
-      "KIMI_LOCAL_ENABLED": false,
+      "KIMI_API_KEY": true,
+      "MOONSHOT_API_KEY": true,
+      "KIMI_BASE_URL": true,
+      "MOONSHOT_BASE_URL": true,
+      "KIMI_MODEL": true,
+      "KIMI_LOCAL_ENABLED": true,
       "KIMI3_TRANSITION_ARMED": false,
       "OLLAMA_HOST": false,
       "OLLAMA_MODELS": false
@@ -166,8 +166,8 @@
       "is_file": true,
       "is_dir": false,
       "content_inlined": false,
-      "size_bytes": 11579,
-      "sha256_16": "863e2e2029ab87ac"
+      "size_bytes": 12158,
+      "sha256_16": "e9078b60eb232711"
     },
     {
       "role": "local_open_weights_route_metadata",
@@ -194,7 +194,7 @@
   ],
   "transition": {
     "schema": "shadow_garden.kimi3_local_open_weights_transition.v1",
-    "generated_at": "2026-07-19T23:05:44Z",
+    "generated_at": "2026-07-29T23:47:41Z",
     "bridge": "kimi3_third_leverage",
     "ordinal": 3,
     "armed": false,
@@ -350,9 +350,9 @@
       "role": "central_control_ledger",
       "path": "/Users/fredwashere/wha-spell-simulator/tools/perplexity_asuna_central_control.py",
       "leverage": "kimi3_third_leverage",
-      "sha256_16": "863e2e2029ab87ac",
+      "sha256_16": "e9078b60eb232711",
       "record_id": "kimi3:ptr:perplexity_asuna_central_control.py",
-      "content_hash": "863e2e2029ab87ac",
+      "content_hash": "e9078b60eb232711",
       "asuna_point0_route": "perplexity_fable5_home_sim",
       "transition_route": "local_open_weights_mesh",
       "sensitivity": "local_path_only"
@@ -417,6 +417,6 @@
     "local_open_weights_preferred": true,
     "transition_requires_KIMI3_TRANSITION_ARMED": true
   },
-  "unification_digest": "1059a0aa2e0d762d31121e93c2acc3cc383f1d0c1bc1dfc83b487656aaf9d7de",
+  "unification_digest": "b007e6eb3d21c4f766d1d468de25806005bf7af857e346c196f62146894c3375",
   "ok": true
 }

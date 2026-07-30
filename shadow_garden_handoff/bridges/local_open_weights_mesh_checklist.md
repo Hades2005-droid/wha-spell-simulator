@@ -1,6 +1,6 @@
 # Local open-weights mesh — readiness checklist
 
-Generated: `2026-07-25T23:53:09Z`
+Generated: `2026-07-29T23:47:41Z`
 Mesh: `local_open_weights_mesh` · Carrier: `love_and_harmony_6`
 Prep ready: **True** · Cutover ready: **False**
 

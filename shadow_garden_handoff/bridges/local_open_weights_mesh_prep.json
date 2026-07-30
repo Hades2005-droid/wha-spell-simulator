@@ -1,6 +1,6 @@
 {
   "schema": "shadow_garden.local_open_weights_mesh_prep.v1",
-  "generated_at": "2026-07-25T23:53:09Z",
+  "generated_at": "2026-07-29T23:47:41Z",
   "carrier": "love_and_harmony_6",
   "bridge_signature": "f2e596cd043d6819",
   "mesh_id": "local_open_weights_mesh",
@@ -99,12 +99,12 @@
     "mode": "env_names_only",
     "present": {
       "KIMI3_TRANSITION_ARMED": false,
-      "LOCAL_MESH_PREP": false,
+      "LOCAL_MESH_PREP": true,
       "DEEPSEEK_LOCAL_ENABLED": false,
-      "KIMI_LOCAL_ENABLED": false,
+      "KIMI_LOCAL_ENABLED": true,
       "DEEPSEEK_API_KEY": false,
-      "KIMI_API_KEY": false,
-      "MOONSHOT_API_KEY": false,
+      "KIMI_API_KEY": true,
+      "MOONSHOT_API_KEY": true,
       "XAI_API_KEY": true,
       "PERPLEXITY_API_KEY": true,
       "ENABLE_DISCORD": false,
@@ -116,11 +116,11 @@
       "SG_RUN_EXTENSION": false
     },
     "transition_armed": false,
-    "prep_marked": false,
+    "prep_marked": true,
     "remote_keys_present": true,
     "local_flags": {
       "DEEPSEEK_LOCAL_ENABLED": null,
-      "KIMI_LOCAL_ENABLED": null
+      "KIMI_LOCAL_ENABLED": "0"
     }
   },
   "catalog_refresh": [

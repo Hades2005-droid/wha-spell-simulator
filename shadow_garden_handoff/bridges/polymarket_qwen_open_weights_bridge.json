@@ -1,0 +1,99 @@
+{
+  "schema": "shadow_garden.polymarket_qwen_open_weights_bridge.v1",
+  "generated_at": "2026-07-24T21:49:51Z",
+  "carrier": "love_and_harmony_6",
+  "bridge_signature": "f2e596cd043d6819",
+  "phase": "prepare",
+  "lane": {
+    "id": "polymarket_to_qwen3_8b_local",
+    "from": "polymarket_entropy_oracle",
+    "to": "local_open_weights_qwen3_8b",
+    "catalyst": "google_drive_legend_catalyst_3",
+    "cutover_gate": "KIMI3_TRANSITION_ARMED",
+    "armed": false
+  },
+  "preferred_model": "qwen3:8b",
+  "resolved_model": "qwen3:8b",
+  "drive_legend": {
+    "ok": true,
+    "qwen_default": {
+      "from_legend": true,
+      "ollama_tag": "qwen3:8b",
+      "family": "qwen3",
+      "role": "always_on_local_open_weights",
+      "source_doc": "local-ai-stack-decision-shadow-garden.md"
+    },
+    "mcp_note": "No Google Drive MCP server is active in Cursor. This catalyst uses local CloudStorage sync. When a Drive MCP is added, point GOOGLE_DRIVE_ROOT and reload MCP."
+  },
+  "ollama": {
+    "host": "http://127.0.0.1:11434",
+    "preferred": "qwen3:8b",
+    "up": true,
+    "tag_present": true,
+    "qwen_tags": [
+      "qwen3:14b",
+      "qwen3:32b",
+      "qwen3:8b"
+    ],
+    "resolved_tag": "qwen3:8b"
+  },
+  "entropy_sample": {
+    "ok": true,
+    "degraded": false,
+    "marketId": "540819",
+    "question": "Will Jesus Christ return before GTA VI?",
+    "entropyBits": 0.9999278640456615,
+    "seedHex16": "a46cea63a583bf47",
+    "error": null,
+    "quality_ok": true
+  },
+  "chat_packet": {
+    "model": "qwen3:8b",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are the local open-weights orchestration layer for Shadow Garden. Stay content-neutral and technical. Use the Polymarket entropy sample only as structured probability / seed metadata \u2014 do not invent trades or place orders. Prefer local loopback tools."
+      },
+      {
+        "role": "user",
+        "content": "Preferred local model: qwen3:8b\nMarket id: 540819\nQuestion: Will Jesus Christ return before GTA VI?\nProbabilities: [0.495, 0.505]\nEntropy bits: 0.9999278640456615\nSeed hex (first 16): a46cea63a583bf47\nQuality: {\"closed\": false, \"incompleteOutcomes\": false, \"lowLiquidity\": false, \"ok\": true, \"priceSum\": 1, \"pricesSumNearOne\": true, \"renormalized\": false, \"stale\": false, \"usedClobPrices\": true, \"warnings\": [\"used_clob_midpoints\"]}\n\nTask: propose a short local-only sim routing note (JSON keys: route, seed_use, risk_flags, next_local_step). No remote calls."
+      }
+    ],
+    "stream": false,
+    "options": {
+      "temperature": 0.2
+    }
+  },
+  "invocation": {
+    "ok": true,
+    "model": "qwen3:8b",
+    "content": "{\n  \"route\": \"local_loopback\",\n  \"seed_use\": \"hex:a46cea63a583bf47\",\n  \"risk_flags\": [\"high_uncertainty\", \"binary_outcome\"],\n  \"next_local_step\": \"entropy_based_simulation\"\n}",
+    "done": true
+  },
+  "controls": {
+    "provider_calls": false,
+    "remote_default": false,
+    "kimi3_transition_armed": false,
+    "polymarket_live": true,
+    "invoke_local": true,
+    "content_neutral": true,
+    "secrets_in_artifacts": false
+  },
+  "cli": {
+    "write": "python3 tools/polymarket_qwen_open_weights_bridge.py write",
+    "status": "python3 tools/polymarket_qwen_open_weights_bridge.py status",
+    "invoke": "ENABLE_POLYMARKET=1 python3 tools/polymarket_qwen_open_weights_bridge.py write --invoke-local",
+    "drive_legend": "python3 tools/google_drive_legend_catalyst.py write",
+    "mesh_prep": "python3 tools/local_open_weights_mesh_prep.py write"
+  },
+  "ok": true,
+  "metrics": {
+    "vector_count": 6,
+    "ollama_up": true,
+    "qwen8b_present": true,
+    "legend_ok": true,
+    "sample_ok": true,
+    "prep_ready": true,
+    "cutover_ready": false
+  }
+}

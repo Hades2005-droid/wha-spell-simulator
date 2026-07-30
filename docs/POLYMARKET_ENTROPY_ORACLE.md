@@ -73,6 +73,27 @@ Local client budgets stay **well under** these (60 Gamma / 120 CLOB per 10s).
 | CLOB 404 | Keep Gamma probs; null mid/price |
 | Hard mode | `failureMode: 'hard'` throws / rejects instead of degrade |
 
+## Google Drive legend catalyst 3 → Qwen3:8B
+
+Google Drive MCP is **not** currently configured in Cursor. The active path is
+local CloudStorage sync:
+
+`~/Library/CloudStorage/GoogleDrive-*/My Drive/`
+
+| Legend doc | Role |
+|------------|------|
+| `local-ai-stack-decision-shadow-garden.md` | Default always-on **Qwen3-8B** |
+| `CATALYST_UNIFIED.md` | Catalyst 3 unified technical package |
+
+```bash
+python3 tools/google_drive_legend_catalyst.py write
+python3 tools/polymarket_qwen_open_weights_bridge.py write
+ENABLE_POLYMARKET=1 python3 tools/polymarket_qwen_open_weights_bridge.py write --invoke-local
+python3 tools/local_open_weights_mesh_prep.py write --no-refresh
+```
+
+Cutover still requires a Perplexity nod + `KIMI3_TRANSITION_ARMED=1` — prep only by default.
+
 ## Discord
 
 - Community (public): https://discord.com/invite/polymarket

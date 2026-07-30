@@ -1,0 +1,1849 @@
+{
+  "schema": "shadow_garden.kimi3_devin_perplexity_project_evolution.v1",
+  "generated_at": "2026-07-29T18:32:23Z",
+  "phase": "prep_for_multi_agent_evolution",
+  "carrier": "love_and_harmony_6",
+  "leverage": "kimi3_third_leverage",
+  "partners": [
+    "devin",
+    "perplexity",
+    "codex",
+    "grok",
+    "shadow_garden"
+  ],
+  "api": {
+    "provider": "moonshot",
+    "label": "Kimi3",
+    "base_url": "https://api.moonshot.ai/v1",
+    "auth_status": "valid_models_list_200",
+    "chat_status": "blocked_insufficient_balance_429",
+    "available_models": [
+      "kimi-k2.6",
+      "kimi-k2.7-code"
+    ],
+    "default_model": "kimi-k2.6",
+    "code_model": "kimi-k2.7-code",
+    "env_names": [
+      "KIMI_API_KEY",
+      "MOONSHOT_API_KEY",
+      "KIMI_BASE_URL",
+      "MOONSHOT_BASE_URL",
+      "KIMI_MODEL",
+      "KIMI_CODE_MODEL",
+      "KIMI_LOCAL_ENABLED",
+      "LOCAL_MESH_PREP",
+      "KIMI3_TRANSITION_ARMED"
+    ],
+    "secret_store": "/Users/fredwashere/.config/kimi/env",
+    "load": "source ~/.config/kimi/env  # or: eval \"$(kimi-env)\"",
+    "openai_compatible": true,
+    "docs": "https://platform.moonshot.ai/docs",
+    "operator_actions_required": [
+      "Recharge Moonshot / Kimi account balance (chat currently 429)",
+      "Optional: set KIMI3_TRANSITION_ARMED=1 after local mesh green",
+      "Rotate API key if this chat log is shared (key was pasted in plaintext)"
+    ]
+  },
+  "controls": {
+    "secrets_in_artifacts": false,
+    "secrets_in_git": false,
+    "provider_calls_from_handoff": false,
+    "content_neutral_lattice": true,
+    "discord_default": "paused",
+    "key_locations_gitignored": [
+      "/Users/fredwashere/.config/kimi/env",
+      "/Users/fredwashere/ShadowGarden/.env",
+      "/Users/fredwashere/wha-spell-simulator/.env.local"
+    ]
+  },
+  "prep_steps": [
+    "Load env: source ~/.config/kimi/env",
+    "Recharge Moonshot balance so chat/completions work",
+    "Primary evolve order: ShadowGarden → wha-spell-simulator → shadow-jing-garden → xai-sdk-python → SillyTavern → ComfyUI",
+    "In Devin: open primary path, attach KIMI_MODEL=kimi-k2.6, use kimi-k2.7-code for refactors",
+    "In Perplexity: use PERPLEXITY_API_KEY already in ShadowGarden/.env; research only, no secret paste",
+    "In Codex: cd <project> && codex; AGENTS.md is the instruction surface",
+    "Run: python3 ~/wha-spell-simulator/tools/kimi3_asuna_point0_unify.py write",
+    "Run: python3 ~/wha-spell-simulator/tools/local_open_weights_mesh_prep.py write",
+    "Keep Discord PAUSED unless armed; content-neutral symbolic evolution only for lattice"
+  ],
+  "project_count": {
+    "primary": 17,
+    "secondary": 14,
+    "total": 31
+  },
+  "projects": [
+    {
+      "id": "shadowgarden",
+      "name": "ShadowGarden",
+      "kind": "control_plane",
+      "blurb": "VOID-IGNITION / lattice / ST staging",
+      "path": "/Users/fredwashere/ShadowGarden",
+      "priority": "primary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "perplexity",
+        "codex",
+        "grok"
+      ],
+      "evolution": {
+        "improve": true,
+        "refactor": false,
+        "document": true,
+        "test": false,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": false,
+        "package_json": false,
+        "pyproject": false,
+        "agents_md": false,
+        "readme": true,
+        "env_example": true,
+        "env_file": true,
+        "devin_md": false,
+        "codex_md": false,
+        "top_entries": [
+          "Obsidian_Vault",
+          "README.md",
+          "SillyTavern",
+          "__pycache__",
+          "agi_persona_loop.py",
+          "backups",
+          "bridge.py",
+          "catalyst_launcher.py",
+          "characters",
+          "chats",
+          "data",
+          "docs",
+          "exports",
+          "final_alchemy_catalyst.py",
+          "garden_parallel_launcher.py",
+          "garden_parallel_launcher.py.bak_corrupt_20260712",
+          "grok-translator",
+          "imports",
+          "inbox",
+          "install-local.sh",
+          "install.sh",
+          "live",
+          "logs",
+          "manifests"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/ShadowGarden && codex",
+        "devin": "cd /Users/fredwashere/ShadowGarden && devin",
+        "shell": "cd /Users/fredwashere/ShadowGarden"
+      }
+    },
+    {
+      "id": "shadow-jing-garden",
+      "name": "shadow-jing-garden",
+      "kind": "app",
+      "blurb": "Vite app + federation + AGENTS",
+      "path": "/Users/fredwashere/shadow-jing-garden",
+      "priority": "primary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "perplexity",
+        "codex",
+        "grok"
+      ],
+      "evolution": {
+        "improve": true,
+        "refactor": true,
+        "document": true,
+        "test": true,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": true,
+        "package_json": true,
+        "pyproject": false,
+        "agents_md": true,
+        "readme": true,
+        "env_example": true,
+        "env_file": true,
+        "devin_md": false,
+        "codex_md": true,
+        "top_entries": [
+          "4.2-ingestion",
+          "AGENTS.md",
+          "GROK_UNIVERSE_MANIFEST.json",
+          "README.md",
+          "data",
+          "dist",
+          "docs",
+          "eslint.config.js",
+          "federation",
+          "index.html",
+          "node_modules",
+          "package-lock.json",
+          "package.json",
+          "public",
+          "r4-lattice",
+          "recordings",
+          "references",
+          "scripts",
+          "server",
+          "shadow-jing-fusion-core.html",
+          "shadow_garden_bridge.py",
+          "shadow_garden_mcp",
+          "shadowgarden",
+          "shaoshi_bridge"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/shadow-jing-garden && codex",
+        "devin": "cd /Users/fredwashere/shadow-jing-garden && devin",
+        "shell": "cd /Users/fredwashere/shadow-jing-garden"
+      }
+    },
+    {
+      "id": "wha-spell-simulator",
+      "name": "wha-spell-simulator",
+      "kind": "app",
+      "blurb": "Fable5 / handoff bridges / tools",
+      "path": "/Users/fredwashere/wha-spell-simulator",
+      "priority": "primary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "perplexity",
+        "codex",
+        "grok"
+      ],
+      "evolution": {
+        "improve": true,
+        "refactor": true,
+        "document": true,
+        "test": true,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": true,
+        "package_json": true,
+        "pyproject": false,
+        "agents_md": false,
+        "readme": true,
+        "env_example": true,
+        "env_file": true,
+        "devin_md": true,
+        "codex_md": false,
+        "top_entries": [
+          "ASANA_INTEGRATION_CHECKLIST.md",
+          "LICENSE",
+          "NWW_ASANA_INTEGRATION_GUIDE.md",
+          "README.md",
+          "STATUS.md",
+          "asana_connector",
+          "assets",
+          "code-security.datadog.yaml",
+          "cpp",
+          "dist",
+          "docs",
+          "eden",
+          "eden_shadow",
+          "index.html",
+          "node_modules",
+          "package-lock.json",
+          "package.json",
+          "q24",
+          "requirements-tools.txt",
+          "shadow_garden_handoff",
+          "skills-lock.json",
+          "src",
+          "tests",
+          "tools"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/wha-spell-simulator && codex",
+        "devin": "cd /Users/fredwashere/wha-spell-simulator && devin",
+        "shell": "cd /Users/fredwashere/wha-spell-simulator"
+      }
+    },
+    {
+      "id": "xai-sdk-python",
+      "name": "xai-sdk-python",
+      "kind": "sdk",
+      "blurb": "xAI official Python SDK clone",
+      "path": "/Users/fredwashere/xai-sdk-python",
+      "priority": "primary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "perplexity",
+        "codex",
+        "grok"
+      ],
+      "evolution": {
+        "improve": true,
+        "refactor": true,
+        "document": true,
+        "test": true,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": true,
+        "package_json": false,
+        "pyproject": true,
+        "agents_md": false,
+        "readme": true,
+        "env_example": false,
+        "env_file": false,
+        "devin_md": false,
+        "codex_md": false,
+        "top_entries": [
+          "CHANGELOG.md",
+          "CLA.md",
+          "CONTRIBUTING.md",
+          "LICENSE",
+          "README.md",
+          "SECURITY.md",
+          "examples",
+          "pyproject.toml",
+          "src",
+          "tests",
+          "uv.lock"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/xai-sdk-python && codex",
+        "devin": "cd /Users/fredwashere/xai-sdk-python && devin",
+        "shell": "cd /Users/fredwashere/xai-sdk-python"
+      }
+    },
+    {
+      "id": "sillytavern",
+      "name": "SillyTavern",
+      "kind": "runtime",
+      "blurb": "SillyTavern main install",
+      "path": "/Users/fredwashere/SillyTavern",
+      "priority": "primary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "perplexity",
+        "codex",
+        "grok"
+      ],
+      "evolution": {
+        "improve": true,
+        "refactor": false,
+        "document": true,
+        "test": false,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": true,
+        "package_json": true,
+        "pyproject": false,
+        "agents_md": false,
+        "readme": true,
+        "env_example": false,
+        "env_file": false,
+        "devin_md": false,
+        "codex_md": false,
+        "top_entries": [
+          "CONTRIBUTING.md",
+          "Dockerfile",
+          "LICENSE",
+          "README.md",
+          "Remote-Link.cmd",
+          "SECURITY.md",
+          "Start.bat",
+          "Update-Instructions.txt",
+          "UpdateAndStart.bat",
+          "UpdateForkAndStart.bat",
+          "backups",
+          "colab",
+          "config.yaml",
+          "data",
+          "default",
+          "docker",
+          "index.d.ts",
+          "jsconfig.json",
+          "node_modules",
+          "package-lock.json",
+          "package.json",
+          "plugins",
+          "plugins.js",
+          "public"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/SillyTavern && codex",
+        "devin": "cd /Users/fredwashere/SillyTavern && devin",
+        "shell": "cd /Users/fredwashere/SillyTavern"
+      }
+    },
+    {
+      "id": "comfyui",
+      "name": "ComfyUI",
+      "kind": "runtime",
+      "blurb": "Open-weight image pipeline",
+      "path": "/Users/fredwashere/ComfyUI",
+      "priority": "primary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "perplexity",
+        "codex",
+        "grok"
+      ],
+      "evolution": {
+        "improve": true,
+        "refactor": false,
+        "document": true,
+        "test": false,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": true,
+        "package_json": false,
+        "pyproject": true,
+        "agents_md": true,
+        "readme": true,
+        "env_example": false,
+        "env_file": false,
+        "devin_md": false,
+        "codex_md": true,
+        "top_entries": [
+          "AGENTS.md",
+          "CODEOWNERS",
+          "CONTRIBUTING.md",
+          "LICENSE",
+          "QUANTIZATION.md",
+          "QWEN_IMAGE_EDIT_GUIDE.md",
+          "README.md",
+          "SECURITY.md",
+          "__pycache__",
+          "alembic.ini",
+          "alembic_db",
+          "api_server",
+          "app",
+          "blueprints",
+          "comfy",
+          "comfy_api",
+          "comfy_api_nodes",
+          "comfy_config",
+          "comfy_execution",
+          "comfy_extras",
+          "comfyui_version.py",
+          "cuda_malloc.py",
+          "custom_nodes",
+          "execution.py"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/ComfyUI && codex",
+        "devin": "cd /Users/fredwashere/ComfyUI && devin",
+        "shell": "cd /Users/fredwashere/ComfyUI"
+      }
+    },
+    {
+      "id": "movies_grok-videos",
+      "name": "Movies/Grok-Videos",
+      "kind": "media",
+      "blurb": "Grok video / ST merge scripts",
+      "path": "/Users/fredwashere/Movies/Grok-Videos",
+      "priority": "primary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "perplexity",
+        "codex",
+        "grok"
+      ],
+      "evolution": {
+        "improve": true,
+        "refactor": false,
+        "document": true,
+        "test": false,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": true,
+        "package_json": false,
+        "pyproject": false,
+        "agents_md": false,
+        "readme": true,
+        "env_example": true,
+        "env_file": true,
+        "devin_md": false,
+        "codex_md": false,
+        "top_entries": [
+          "2026-05-24-4.2-Sovereign-Lattice",
+          "4.2",
+          "9-point-angela-framework-syzygy-symbol.jpg",
+          "Downloads",
+          "GROK_UNIVERSE_MANIFEST.json",
+          "Google Drive",
+          "Grok-Current-Session-Images",
+          "Grok-Images",
+          "Music",
+          "Pictures",
+          "Public",
+          "README.md",
+          "eden_shadow_garden_fusion",
+          "fuse_eden_shadow_garden.sh",
+          "grimoire_terminal_v4.py",
+          "grok-voice-agent",
+          "javhd-ingestion",
+          "launch_unified.sh",
+          "live",
+          "perplexity_eden_install.sh",
+          "persona",
+          "shadow-king-jing-4.2-fusion",
+          "sovereign",
+          "st_merge.sh"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/Movies/Grok-Videos && codex",
+        "devin": "cd /Users/fredwashere/Movies/Grok-Videos && devin",
+        "shell": "cd /Users/fredwashere/Movies/Grok-Videos"
+      }
+    },
+    {
+      "id": "shadow-garden-launcher",
+      "name": "shadow-garden-launcher",
+      "kind": "tooling",
+      "blurb": "Launcher",
+      "path": "/Users/fredwashere/shadow-garden-launcher",
+      "priority": "primary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "perplexity",
+        "codex",
+        "grok"
+      ],
+      "evolution": {
+        "improve": true,
+        "refactor": true,
+        "document": true,
+        "test": false,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": true,
+        "package_json": false,
+        "pyproject": false,
+        "agents_md": false,
+        "readme": true,
+        "env_example": true,
+        "env_file": false,
+        "devin_md": false,
+        "codex_md": false,
+        "top_entries": [
+          "ASANA_INTEGRATION_CHECKLIST.md",
+          "NWW_ASANA_INTEGRATION_GUIDE.md",
+          "README.md",
+          "adapters",
+          "asana_connector",
+          "asana_connector.py",
+          "bridge.py",
+          "docs",
+          "eden",
+          "install-local.sh",
+          "install.sh",
+          "master_sync.sh",
+          "nww_bridge",
+          "releases",
+          "research",
+          "scripts",
+          "shaoshi_bridge",
+          "templates",
+          "tests"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/shadow-garden-launcher && codex",
+        "devin": "cd /Users/fredwashere/shadow-garden-launcher && devin",
+        "shell": "cd /Users/fredwashere/shadow-garden-launcher"
+      }
+    },
+    {
+      "id": "flux_klein_local",
+      "name": "flux_klein_local",
+      "kind": "runtime",
+      "blurb": "Flux Klein local",
+      "path": "/Users/fredwashere/flux_klein_local",
+      "priority": "primary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "perplexity",
+        "codex",
+        "grok"
+      ],
+      "evolution": {
+        "improve": true,
+        "refactor": false,
+        "document": true,
+        "test": false,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": true,
+        "package_json": false,
+        "pyproject": false,
+        "agents_md": false,
+        "readme": true,
+        "env_example": false,
+        "env_file": false,
+        "devin_md": false,
+        "codex_md": false,
+        "top_entries": [
+          "DEGRADATION.md",
+          "IMPROVE_LOG.md",
+          "MODEL_LAYOUT.md",
+          "README.md",
+          "comet_reconnect_probe.py",
+          "flux_klein_workflow.json",
+          "gallery.py",
+          "generate.py",
+          "hud.py",
+          "profiles.json",
+          "push_to_mac.sh",
+          "x_prompt_context.py"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/flux_klein_local && codex",
+        "devin": "cd /Users/fredwashere/flux_klein_local && devin",
+        "shell": "cd /Users/fredwashere/flux_klein_local"
+      }
+    },
+    {
+      "id": "gitmynotes",
+      "name": "gitmynotes",
+      "kind": "notes",
+      "blurb": "Notes repo",
+      "path": "/Users/fredwashere/gitmynotes",
+      "priority": "primary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "perplexity",
+        "codex",
+        "grok"
+      ],
+      "evolution": {
+        "improve": true,
+        "refactor": false,
+        "document": true,
+        "test": false,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": true,
+        "package_json": false,
+        "pyproject": false,
+        "agents_md": false,
+        "readme": true,
+        "env_example": true,
+        "env_file": false,
+        "devin_md": false,
+        "codex_md": false,
+        "top_entries": [
+          "ASANA_INTEGRATION_CHECKLIST.md",
+          "LICENSE",
+          "NWW_ASANA_INTEGRATION_GUIDE.md",
+          "README.md",
+          "adapters",
+          "asana.env.example",
+          "asana_connector",
+          "asana_connector.py",
+          "currentnote.txt",
+          "docs",
+          "eden",
+          "export_notes_for_gemini.py",
+          "fable5_comfyui_unification.py",
+          "gitmynotes.py",
+          "gmn_config.yaml",
+          "persona_provenance.py",
+          "reddit_fetch.py",
+          "reddit_prefetch.py",
+          "requirements.txt",
+          "run_gitmynotes_looper.sh",
+          "scripts",
+          "static-analysis.datadog.yml",
+          "stopwords.txt",
+          "test_asana_connector.py"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/gitmynotes && codex",
+        "devin": "cd /Users/fredwashere/gitmynotes && devin",
+        "shell": "cd /Users/fredwashere/gitmynotes"
+      }
+    },
+    {
+      "id": "shadow_garden_mesh",
+      "name": "shadow_garden_mesh",
+      "kind": "mesh",
+      "blurb": "Mesh mirrors + packages",
+      "path": "/Users/fredwashere/shadow_garden_mesh",
+      "priority": "primary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "perplexity",
+        "codex",
+        "grok"
+      ],
+      "evolution": {
+        "improve": true,
+        "refactor": false,
+        "document": true,
+        "test": false,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": false,
+        "package_json": false,
+        "pyproject": false,
+        "agents_md": false,
+        "readme": true,
+        "env_example": false,
+        "env_file": false,
+        "devin_md": false,
+        "codex_md": false,
+        "top_entries": [
+          "MESH_REGISTRY.json",
+          "PERPLEXITY_CONTEXT_BEDROCK.md",
+          "README.md",
+          "diffs",
+          "flux_klein_local",
+          "gitmynotes",
+          "integration_repo_roots.schema.json",
+          "shadow-garden-launcher",
+          "shadow-garden-launcher-main",
+          "shadow-jing-garden",
+          "shadow-jing-garden-main",
+          "wha-spell-simulator",
+          "wha-spell-simulator-main",
+          "wha-spell-simulator-ytnrvdf"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/shadow_garden_mesh && codex",
+        "devin": "cd /Users/fredwashere/shadow_garden_mesh && devin",
+        "shell": "cd /Users/fredwashere/shadow_garden_mesh"
+      }
+    },
+    {
+      "id": "shadow_garden_mcp",
+      "name": "shadow_garden_mcp",
+      "kind": "mcp",
+      "blurb": "MCP packages",
+      "path": "/Users/fredwashere/shadow_garden_mcp",
+      "priority": "primary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "perplexity",
+        "codex",
+        "grok"
+      ],
+      "evolution": {
+        "improve": true,
+        "refactor": false,
+        "document": true,
+        "test": false,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": false,
+        "package_json": false,
+        "pyproject": false,
+        "agents_md": false,
+        "readme": false,
+        "env_example": false,
+        "env_file": false,
+        "devin_md": false,
+        "codex_md": false,
+        "top_entries": [
+          "ComfyUI",
+          "comfyui_scaffold",
+          "install.sh",
+          "mcp_server",
+          "requirements.txt",
+          "runtime",
+          "scripts",
+          "universe"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/shadow_garden_mcp && codex",
+        "devin": "cd /Users/fredwashere/shadow_garden_mcp && devin",
+        "shell": "cd /Users/fredwashere/shadow_garden_mcp"
+      }
+    },
+    {
+      "id": "shadow_garden_may30_monitoring",
+      "name": "shadow_garden_may30_monitoring",
+      "kind": "monitor",
+      "blurb": "Monitoring + home black sun",
+      "path": "/Users/fredwashere/shadow_garden_may30_monitoring",
+      "priority": "primary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "perplexity",
+        "codex",
+        "grok"
+      ],
+      "evolution": {
+        "improve": true,
+        "refactor": false,
+        "document": true,
+        "test": false,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": false,
+        "package_json": true,
+        "pyproject": false,
+        "agents_md": false,
+        "readme": false,
+        "env_example": false,
+        "env_file": false,
+        "devin_md": false,
+        "codex_md": false,
+        "top_entries": [
+          "BACKPORT_PLACEMENT_MAP.md",
+          "CLAUDE.md",
+          "CLAUDE_INTEGRATION_README.md",
+          "CLAUDE_OPUS_CONTEXT.md",
+          "CURSOR_AGENT_RULES.md",
+          "DEVIN_CONNECTION.md",
+          "DEVIN_INTEGRATION_USAGE.md",
+          "DevinTerminalBridge",
+          "GATE6_AUDIO_SETUP.command",
+          "GENERIC_EXTERNAL_REPO_INTEGRATION.md",
+          "GROK_EVERYWHERE_USAGE.md",
+          "LAUNCH_LOOP.command",
+          "Launch Fable 5.command",
+          "MESH_NPM_USAGE.md",
+          "Makefile",
+          "Makefile.perplexity-backup-20260726-2346",
+          "Makefile.perplexity-rollback-20260726-2346",
+          "PERPLEXITY_COMET_CHAT_INGEST_GUIDE.md",
+          "QUICK_START.md",
+          "SAFE_BRIDGE_V4_2_AUTOMATION.md",
+          "SHADOW_CONTENT_FEDERATION_RUNNER_USAGE.md",
+          "SHADOW_GARDEN_BRIDGE_WRAPPER_USAGE.md",
+          "SHADOW_GARDEN_DIGEST_AND_IMPROVEMENTS.md",
+          "SHADOW_GARDEN_SETUP.command"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/shadow_garden_may30_monitoring && codex",
+        "devin": "cd /Users/fredwashere/shadow_garden_may30_monitoring && devin",
+        "shell": "cd /Users/fredwashere/shadow_garden_may30_monitoring"
+      }
+    },
+    {
+      "id": "xai-voice-pack",
+      "name": "xai-voice-pack",
+      "kind": "voice",
+      "blurb": "Voice pack",
+      "path": "/Users/fredwashere/xai-voice-pack",
+      "priority": "primary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "perplexity",
+        "codex",
+        "grok"
+      ],
+      "evolution": {
+        "improve": true,
+        "refactor": false,
+        "document": true,
+        "test": false,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": false,
+        "package_json": false,
+        "pyproject": false,
+        "agents_md": false,
+        "readme": false,
+        "env_example": false,
+        "env_file": false,
+        "devin_md": false,
+        "codex_md": false,
+        "top_entries": [
+          "build.py",
+          "dist",
+          "personas.json",
+          "schema.json",
+          "templates"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/xai-voice-pack && codex",
+        "devin": "cd /Users/fredwashere/xai-voice-pack && devin",
+        "shell": "cd /Users/fredwashere/xai-voice-pack"
+      }
+    },
+    {
+      "id": "echo-agent-bundle",
+      "name": "echo-agent-bundle",
+      "kind": "bundle",
+      "blurb": "Echo agent bundle",
+      "path": "/Users/fredwashere/echo-agent-bundle",
+      "priority": "primary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "perplexity",
+        "codex",
+        "grok"
+      ],
+      "evolution": {
+        "improve": true,
+        "refactor": false,
+        "document": true,
+        "test": false,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": false,
+        "package_json": false,
+        "pyproject": false,
+        "agents_md": false,
+        "readme": false,
+        "env_example": false,
+        "env_file": false,
+        "devin_md": false,
+        "codex_md": false,
+        "top_entries": [
+          "framework.md",
+          "generation-key.md",
+          "manifest.json",
+          "notes-for-gemini.md",
+          "quickstart.md"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/echo-agent-bundle && codex",
+        "devin": "cd /Users/fredwashere/echo-agent-bundle && devin",
+        "shell": "cd /Users/fredwashere/echo-agent-bundle"
+      }
+    },
+    {
+      "id": "production",
+      "name": "production",
+      "kind": "ops",
+      "blurb": "Production lattice tools",
+      "path": "/Users/fredwashere/production",
+      "priority": "primary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "perplexity",
+        "codex",
+        "grok"
+      ],
+      "evolution": {
+        "improve": true,
+        "refactor": false,
+        "document": true,
+        "test": false,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": false,
+        "package_json": false,
+        "pyproject": false,
+        "agents_md": false,
+        "readme": false,
+        "env_example": false,
+        "env_file": false,
+        "devin_md": false,
+        "codex_md": false,
+        "top_entries": [
+          "ai_connects",
+          "kimi3_evolution",
+          "r4_lattice",
+          "tools"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/production && codex",
+        "devin": "cd /Users/fredwashere/production && devin",
+        "shell": "cd /Users/fredwashere/production"
+      }
+    },
+    {
+      "id": "shadow-garden-launcher",
+      "name": "shadow-garden-launcher",
+      "kind": "tooling",
+      "blurb": "Launcher",
+      "path": "/Users/fredwashere/shadow-garden-launcher",
+      "priority": "primary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "perplexity",
+        "codex",
+        "grok"
+      ],
+      "evolution": {
+        "improve": true,
+        "refactor": true,
+        "document": true,
+        "test": false,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": true,
+        "package_json": false,
+        "pyproject": false,
+        "agents_md": false,
+        "readme": true,
+        "env_example": true,
+        "env_file": false,
+        "devin_md": false,
+        "codex_md": false,
+        "top_entries": [
+          "ASANA_INTEGRATION_CHECKLIST.md",
+          "NWW_ASANA_INTEGRATION_GUIDE.md",
+          "README.md",
+          "adapters",
+          "asana_connector",
+          "asana_connector.py",
+          "bridge.py",
+          "docs",
+          "eden",
+          "install-local.sh",
+          "install.sh",
+          "master_sync.sh",
+          "nww_bridge",
+          "releases",
+          "research",
+          "scripts",
+          "shaoshi_bridge",
+          "templates",
+          "tests"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/shadow-garden-launcher && codex",
+        "devin": "cd /Users/fredwashere/shadow-garden-launcher && devin",
+        "shell": "cd /Users/fredwashere/shadow-garden-launcher"
+      }
+    },
+    {
+      "id": "cascadeprojects_shadow-jing-garden-agent-merge",
+      "name": "CascadeProjects/shadow-jing-garden-agent-merge",
+      "kind": "worktree_or_copy",
+      "blurb": "Secondary worktree / desktop copy",
+      "path": "/Users/fredwashere/CascadeProjects/shadow-jing-garden-agent-merge",
+      "priority": "secondary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "codex"
+      ],
+      "evolution": {
+        "improve": true,
+        "document": true,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": true,
+        "package_json": true,
+        "pyproject": false,
+        "agents_md": true,
+        "readme": true,
+        "env_example": true,
+        "env_file": false,
+        "devin_md": false,
+        "codex_md": true,
+        "top_entries": [
+          "AGENTS.md",
+          "README.md",
+          "docs",
+          "eslint.config.js",
+          "index.html",
+          "package-lock.json",
+          "package.json",
+          "public",
+          "r4-lattice",
+          "references",
+          "server",
+          "shadow-jing-fusion-core.html",
+          "src",
+          "temporal",
+          "tests",
+          "tools",
+          "tsconfig.json",
+          "vite-env.d.ts",
+          "vite.config.ts",
+          "vitest.config.ts"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/CascadeProjects/shadow-jing-garden-agent-merge && codex",
+        "shell": "cd /Users/fredwashere/CascadeProjects/shadow-jing-garden-agent-merge"
+      }
+    },
+    {
+      "id": "cascadeprojects_shadow-jing-garden-pr15",
+      "name": "CascadeProjects/shadow-jing-garden-pr15",
+      "kind": "worktree_or_copy",
+      "blurb": "Secondary worktree / desktop copy",
+      "path": "/Users/fredwashere/CascadeProjects/shadow-jing-garden-pr15",
+      "priority": "secondary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "codex"
+      ],
+      "evolution": {
+        "improve": true,
+        "document": true,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": true,
+        "package_json": true,
+        "pyproject": false,
+        "agents_md": true,
+        "readme": true,
+        "env_example": true,
+        "env_file": false,
+        "devin_md": false,
+        "codex_md": true,
+        "top_entries": [
+          "AGENTS.md",
+          "README.md",
+          "data",
+          "eslint.config.js",
+          "grok_universe_manifest.json",
+          "index.html",
+          "package-lock.json",
+          "package.json",
+          "public",
+          "r4-lattice",
+          "references",
+          "scripts",
+          "server",
+          "shadow-jing-fusion-core.html",
+          "shadow_garden_bridge.py",
+          "shadow_garden_mcp",
+          "shadowgarden",
+          "shaoshi_bridge",
+          "src",
+          "temporal",
+          "tsconfig.json",
+          "universe",
+          "vite-env.d.ts",
+          "vite.config.ts"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/CascadeProjects/shadow-jing-garden-pr15 && codex",
+        "shell": "cd /Users/fredwashere/CascadeProjects/shadow-jing-garden-pr15"
+      }
+    },
+    {
+      "id": "cascadeprojects_shadow-jing-garden-pr33",
+      "name": "CascadeProjects/shadow-jing-garden-pr33",
+      "kind": "worktree_or_copy",
+      "blurb": "Secondary worktree / desktop copy",
+      "path": "/Users/fredwashere/CascadeProjects/shadow-jing-garden-pr33",
+      "priority": "secondary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "codex"
+      ],
+      "evolution": {
+        "improve": true,
+        "document": true,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": true,
+        "package_json": true,
+        "pyproject": false,
+        "agents_md": true,
+        "readme": true,
+        "env_example": true,
+        "env_file": false,
+        "devin_md": false,
+        "codex_md": true,
+        "top_entries": [
+          "AGENTS.md",
+          "GROK_UNIVERSE_MANIFEST.json",
+          "README.md",
+          "data",
+          "docs",
+          "eslint.config.js",
+          "index.html",
+          "package-lock.json",
+          "package.json",
+          "public",
+          "r4-lattice",
+          "references",
+          "scripts",
+          "server",
+          "shadow-jing-fusion-core.html",
+          "shadow_garden_bridge.py",
+          "shadow_garden_mcp",
+          "shadowgarden",
+          "shaoshi_bridge",
+          "src",
+          "temporal",
+          "tools",
+          "tsconfig.json",
+          "universe"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/CascadeProjects/shadow-jing-garden-pr33 && codex",
+        "shell": "cd /Users/fredwashere/CascadeProjects/shadow-jing-garden-pr33"
+      }
+    },
+    {
+      "id": "cascadeprojects_sjg-1783725409-remove-unused-imports",
+      "name": "CascadeProjects/sjg-1783725409-remove-unused-imports",
+      "kind": "worktree_or_copy",
+      "blurb": "Secondary worktree / desktop copy",
+      "path": "/Users/fredwashere/CascadeProjects/sjg-1783725409-remove-unused-imports",
+      "priority": "secondary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "codex"
+      ],
+      "evolution": {
+        "improve": true,
+        "document": true,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": true,
+        "package_json": true,
+        "pyproject": false,
+        "agents_md": true,
+        "readme": true,
+        "env_example": true,
+        "env_file": false,
+        "devin_md": false,
+        "codex_md": true,
+        "top_entries": [
+          "AGENTS.md",
+          "README.md",
+          "data",
+          "eslint.config.js",
+          "grok_universe_manifest.json",
+          "index.html",
+          "package-lock.json",
+          "package.json",
+          "public",
+          "r4-lattice",
+          "references",
+          "scripts",
+          "server",
+          "shadow-jing-fusion-core.html",
+          "shadow_garden_bridge.py",
+          "shadow_garden_mcp",
+          "shadowgarden",
+          "shaoshi_bridge",
+          "src",
+          "temporal",
+          "tsconfig.json",
+          "universe",
+          "vite-env.d.ts",
+          "vite.config.ts"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/CascadeProjects/sjg-1783725409-remove-unused-imports && codex",
+        "shell": "cd /Users/fredwashere/CascadeProjects/sjg-1783725409-remove-unused-imports"
+      }
+    },
+    {
+      "id": "cascadeprojects_sjg-1783726150-fstring-noplaceholder",
+      "name": "CascadeProjects/sjg-1783726150-fstring-noplaceholder",
+      "kind": "worktree_or_copy",
+      "blurb": "Secondary worktree / desktop copy",
+      "path": "/Users/fredwashere/CascadeProjects/sjg-1783726150-fstring-noplaceholder",
+      "priority": "secondary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "codex"
+      ],
+      "evolution": {
+        "improve": true,
+        "document": true,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": true,
+        "package_json": true,
+        "pyproject": false,
+        "agents_md": true,
+        "readme": true,
+        "env_example": true,
+        "env_file": false,
+        "devin_md": false,
+        "codex_md": true,
+        "top_entries": [
+          "AGENTS.md",
+          "README.md",
+          "data",
+          "eslint.config.js",
+          "grok_universe_manifest.json",
+          "index.html",
+          "package-lock.json",
+          "package.json",
+          "public",
+          "r4-lattice",
+          "references",
+          "scripts",
+          "server",
+          "shadow-jing-fusion-core.html",
+          "shadow_garden_bridge.py",
+          "shadow_garden_mcp",
+          "shadowgarden",
+          "shaoshi_bridge",
+          "src",
+          "temporal",
+          "tsconfig.json",
+          "universe",
+          "vite-env.d.ts",
+          "vite.config.ts"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/CascadeProjects/sjg-1783726150-fstring-noplaceholder && codex",
+        "shell": "cd /Users/fredwashere/CascadeProjects/sjg-1783726150-fstring-noplaceholder"
+      }
+    },
+    {
+      "id": "desktop_shadow-jing-garden",
+      "name": "Desktop/shadow-jing-garden",
+      "kind": "worktree_or_copy",
+      "blurb": "Secondary worktree / desktop copy",
+      "path": "/Users/fredwashere/Desktop/shadow-jing-garden",
+      "priority": "secondary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "codex"
+      ],
+      "evolution": {
+        "improve": true,
+        "document": true,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": true,
+        "package_json": true,
+        "pyproject": false,
+        "agents_md": true,
+        "readme": true,
+        "env_example": true,
+        "env_file": true,
+        "devin_md": false,
+        "codex_md": true,
+        "top_entries": [
+          "AGENTS.md",
+          "README.md",
+          "agent-io-contract.schema.json",
+          "artifacts",
+          "dist",
+          "eslint.config.js",
+          "index.html",
+          "intake",
+          "mac_intake",
+          "mac_intake_router_8e399ad.patch",
+          "node_modules",
+          "package-lock.json",
+          "package.json",
+          "public",
+          "r4-lattice",
+          "scripts",
+          "shadow-garden-launch",
+          "shadow-sessions",
+          "src",
+          "temporal",
+          "tsconfig.json",
+          "tsconfig.node.json",
+          "tsconfig.tsbuildinfo",
+          "vite.config.js"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/Desktop/shadow-jing-garden && codex",
+        "shell": "cd /Users/fredwashere/Desktop/shadow-jing-garden"
+      }
+    },
+    {
+      "id": "desktop_light-jing-garden_2_+_3_=_5_bridge_copy",
+      "name": "Desktop/light-jing-garden 2 + 3 = 5 bridge copy",
+      "kind": "worktree_or_copy",
+      "blurb": "Secondary worktree / desktop copy",
+      "path": "/Users/fredwashere/Desktop/light-jing-garden 2 + 3 = 5 bridge copy",
+      "priority": "secondary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "codex"
+      ],
+      "evolution": {
+        "improve": true,
+        "document": true,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": true,
+        "package_json": true,
+        "pyproject": false,
+        "agents_md": true,
+        "readme": true,
+        "env_example": true,
+        "env_file": true,
+        "devin_md": false,
+        "codex_md": true,
+        "top_entries": [
+          "(19) brunette teen - Search _ X.html",
+          "(19) brunette teen - Search _ X_files.zip",
+          "3r7RM9_sJShAUiC3.mp4",
+          "4.2-ingestion",
+          "6C5DDDAC-35EB-4306-AF28-77ED001A4FE9.png",
+          "AGENTS.md",
+          "EfhQc96X0AALHp0.jpeg",
+          "Fable5 Black Sun — Shadow Garden.zip",
+          "G1_uuXHbgAAGz35.jpeg",
+          "G1_uuXUa0AAiR9e.jpeg",
+          "G8AAZJqXEAAAJuY.jpeg",
+          "GH1SMb-XUAADvEx.jpeg",
+          "Gz1IQboWEAA4LH5.jpeg",
+          "GzyZR6yWgAA23v5.jpeg",
+          "HGrBkJLXQAAaOUJ.jpeg",
+          "HIICDDeW4AAGs9G.jpeg",
+          "HItjs7ebwAAalQ4.jpeg",
+          "IMG_0732.PNG",
+          "IMG_0733.PNG",
+          "IMG_0734.PNG",
+          "IMG_1419.heic",
+          "IMG_1422.HEIC",
+          "IMG_1423.heic",
+          "IMG_1426.heic"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/Desktop/light-jing-garden 2 + 3 = 5 bridge copy && codex",
+        "shell": "cd /Users/fredwashere/Desktop/light-jing-garden 2 + 3 = 5 bridge copy"
+      }
+    },
+    {
+      "id": "desktop_eden_wha-spell-simulator",
+      "name": "Desktop/Eden/wha-spell-simulator",
+      "kind": "worktree_or_copy",
+      "blurb": "Secondary worktree / desktop copy",
+      "path": "/Users/fredwashere/Desktop/Eden/wha-spell-simulator",
+      "priority": "secondary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "codex"
+      ],
+      "evolution": {
+        "improve": true,
+        "document": true,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": true,
+        "package_json": false,
+        "pyproject": false,
+        "agents_md": false,
+        "readme": false,
+        "env_example": false,
+        "env_file": false,
+        "devin_md": false,
+        "codex_md": false,
+        "top_entries": [
+          "PLAYABLE_SLICE.md",
+          "__pycache__",
+          "consent_simulation",
+          "mesh_status.py",
+          "play_party_round.py",
+          "src",
+          "tests"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/Desktop/Eden/wha-spell-simulator && codex",
+        "shell": "cd /Users/fredwashere/Desktop/Eden/wha-spell-simulator"
+      }
+    },
+    {
+      "id": "desktop_eden_eden-x-shadow-gaden",
+      "name": "Desktop/Eden/Eden-x-Shadow-Gaden",
+      "kind": "worktree_or_copy",
+      "blurb": "Secondary worktree / desktop copy",
+      "path": "/Users/fredwashere/Desktop/Eden/Eden-x-Shadow-Gaden",
+      "priority": "secondary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "codex"
+      ],
+      "evolution": {
+        "improve": true,
+        "document": true,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": true,
+        "package_json": false,
+        "pyproject": false,
+        "agents_md": false,
+        "readme": true,
+        "env_example": false,
+        "env_file": false,
+        "devin_md": false,
+        "codex_md": false,
+        "top_entries": [
+          "README.md",
+          "authority",
+          "connectors",
+          "scripts"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/Desktop/Eden/Eden-x-Shadow-Gaden && codex",
+        "shell": "cd /Users/fredwashere/Desktop/Eden/Eden-x-Shadow-Gaden"
+      }
+    },
+    {
+      "id": "shadowgarden_sillytavern",
+      "name": "ShadowGarden/SillyTavern",
+      "kind": "worktree_or_copy",
+      "blurb": "Secondary worktree / desktop copy",
+      "path": "/Users/fredwashere/ShadowGarden/SillyTavern",
+      "priority": "secondary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "codex"
+      ],
+      "evolution": {
+        "improve": true,
+        "document": true,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": true,
+        "package_json": true,
+        "pyproject": false,
+        "agents_md": false,
+        "readme": true,
+        "env_example": false,
+        "env_file": false,
+        "devin_md": false,
+        "codex_md": false,
+        "top_entries": [
+          "CONTRIBUTING.md",
+          "Dockerfile",
+          "LICENSE",
+          "README.md",
+          "Remote-Link.cmd",
+          "SECURITY.md",
+          "Start.bat",
+          "Update-Instructions.txt",
+          "UpdateAndStart.bat",
+          "UpdateForkAndStart.bat",
+          "backups",
+          "colab",
+          "config.yaml",
+          "data",
+          "default",
+          "docker",
+          "index.d.ts",
+          "jsconfig.json",
+          "node_modules",
+          "package-lock.json",
+          "package.json",
+          "plugins",
+          "plugins.js",
+          "public"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/ShadowGarden/SillyTavern && codex",
+        "shell": "cd /Users/fredwashere/ShadowGarden/SillyTavern"
+      }
+    },
+    {
+      "id": "shadow_garden_mesh_gitmynotes",
+      "name": "shadow_garden_mesh/gitmynotes",
+      "kind": "worktree_or_copy",
+      "blurb": "Secondary worktree / desktop copy",
+      "path": "/Users/fredwashere/shadow_garden_mesh/gitmynotes",
+      "priority": "secondary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "codex"
+      ],
+      "evolution": {
+        "improve": true,
+        "document": true,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": true,
+        "package_json": false,
+        "pyproject": false,
+        "agents_md": false,
+        "readme": true,
+        "env_example": true,
+        "env_file": false,
+        "devin_md": false,
+        "codex_md": false,
+        "top_entries": [
+          "ASANA_INTEGRATION_CHECKLIST.md",
+          "LICENSE",
+          "NWW_ASANA_INTEGRATION_GUIDE.md",
+          "README.md",
+          "adapters",
+          "asana.env.example",
+          "asana_connector",
+          "asana_connector.py",
+          "currentnote.txt",
+          "docs",
+          "eden",
+          "export_notes_for_gemini.py",
+          "fable5_comfyui_unification.py",
+          "gitmynotes.py",
+          "gmn_config.yaml",
+          "persona_provenance.py",
+          "reddit_fetch.py",
+          "reddit_prefetch.py",
+          "requirements.txt",
+          "run_gitmynotes_looper.sh",
+          "scripts",
+          "static-analysis.datadog.yml",
+          "stopwords.txt",
+          "test_asana_connector.py"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/shadow_garden_mesh/gitmynotes && codex",
+        "shell": "cd /Users/fredwashere/shadow_garden_mesh/gitmynotes"
+      }
+    },
+    {
+      "id": "shadow_garden_mesh_flux_klein_local",
+      "name": "shadow_garden_mesh/flux_klein_local",
+      "kind": "worktree_or_copy",
+      "blurb": "Secondary worktree / desktop copy",
+      "path": "/Users/fredwashere/shadow_garden_mesh/flux_klein_local",
+      "priority": "secondary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "codex"
+      ],
+      "evolution": {
+        "improve": true,
+        "document": true,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": true,
+        "package_json": false,
+        "pyproject": false,
+        "agents_md": false,
+        "readme": true,
+        "env_example": false,
+        "env_file": false,
+        "devin_md": false,
+        "codex_md": false,
+        "top_entries": [
+          "DEGRADATION.md",
+          "IMPROVE_LOG.md",
+          "MODEL_LAYOUT.md",
+          "README.md",
+          "comet_reconnect_probe.py",
+          "flux_klein_workflow.json",
+          "gallery.py",
+          "generate.py",
+          "hud.py",
+          "profiles.json",
+          "push_to_mac.sh",
+          "x_prompt_context.py"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/shadow_garden_mesh/flux_klein_local && codex",
+        "shell": "cd /Users/fredwashere/shadow_garden_mesh/flux_klein_local"
+      }
+    },
+    {
+      "id": "shadow_garden_mesh_wha-spell-simulator-ytnrvdf",
+      "name": "shadow_garden_mesh/wha-spell-simulator-ytnrvdf",
+      "kind": "worktree_or_copy",
+      "blurb": "Secondary worktree / desktop copy",
+      "path": "/Users/fredwashere/shadow_garden_mesh/wha-spell-simulator-ytnrvdf",
+      "priority": "secondary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "codex"
+      ],
+      "evolution": {
+        "improve": true,
+        "document": true,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": true,
+        "package_json": true,
+        "pyproject": false,
+        "agents_md": false,
+        "readme": true,
+        "env_example": false,
+        "env_file": false,
+        "devin_md": false,
+        "codex_md": false,
+        "top_entries": [
+          "LICENSE",
+          "README.md",
+          "assets",
+          "docs",
+          "index.html",
+          "package-lock.json",
+          "package.json",
+          "src",
+          "tests",
+          "tools",
+          "vite.config.js"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/shadow_garden_mesh/wha-spell-simulator-ytnrvdf && codex",
+        "shell": "cd /Users/fredwashere/shadow_garden_mesh/wha-spell-simulator-ytnrvdf"
+      }
+    },
+    {
+      "id": "shadow_garden_may30_monitoring_sillytavern",
+      "name": "shadow_garden_may30_monitoring/sillytavern",
+      "kind": "worktree_or_copy",
+      "blurb": "Secondary worktree / desktop copy",
+      "path": "/Users/fredwashere/shadow_garden_may30_monitoring/sillytavern",
+      "priority": "secondary",
+      "tools": [
+        "kimi3",
+        "devin",
+        "codex"
+      ],
+      "evolution": {
+        "improve": true,
+        "document": true,
+        "handoff_ready": true
+      },
+      "markers": {
+        "exists": true,
+        "git": true,
+        "package_json": true,
+        "pyproject": false,
+        "agents_md": false,
+        "readme": true,
+        "env_example": false,
+        "env_file": false,
+        "devin_md": false,
+        "codex_md": false,
+        "top_entries": [
+          "CONTRIBUTING.md",
+          "Dockerfile",
+          "LICENSE",
+          "README.md",
+          "Remote-Link.cmd",
+          "SECURITY.md",
+          "Start.bat",
+          "Update-Instructions.txt",
+          "UpdateAndStart.bat",
+          "UpdateForkAndStart.bat",
+          "backups",
+          "colab",
+          "config.yaml",
+          "data",
+          "default",
+          "docker",
+          "index.d.ts",
+          "jsconfig.json",
+          "node_modules",
+          "package-lock.json",
+          "package.json",
+          "plugins",
+          "plugins.js",
+          "public"
+        ]
+      },
+      "open_with": {
+        "codex": "cd /Users/fredwashere/shadow_garden_may30_monitoring/sillytavern && codex",
+        "shell": "cd /Users/fredwashere/shadow_garden_may30_monitoring/sillytavern"
+      }
+    }
+  ],
+  "recommended_evolution_order": [
+    "ShadowGarden",
+    "wha-spell-simulator",
+    "shadow-jing-garden",
+    "xai-sdk-python",
+    "SillyTavern",
+    "ComfyUI",
+    "Movies/Grok-Videos",
+    "shadow_garden_mesh",
+    "shadow_garden_may30_monitoring",
+    "flux_klein_local"
+  ]
+}
