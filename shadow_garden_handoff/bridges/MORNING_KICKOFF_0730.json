@@ -1,0 +1,29 @@
+{
+  "schema": "shadow_garden.morning_kickoff.v1",
+  "generated_at": "2026-07-30T17:46:42Z",
+  "date_local": "2026-07-30",
+  "operator": "online",
+  "catalyst_id": "catalyst_grok45_buildmode_c94f09d7",
+  "catalyst_path": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/CATALYST_GROK45_BUILDMODE_0730.json",
+  "share_url": "https://grok.com/share/c2hhcmQtNA_c94f09d7-757c-4901-95e6-dd9a38e6ba8b",
+  "math_product": 9.733333333333334,
+  "from_night_seal": true,
+  "overnight_heartbeats_seen": true,
+  "ports_target": {
+    "8851": "starting",
+    "15721": "cc_switch_proxy",
+    "5619": "fable5",
+    "11434": "ollama",
+    "8790": "void_optional"
+  },
+  "phase2": {
+    "status": "started_on_remote_incomplete",
+    "bounded_today": "one_draft_pr_polymarket_bridge_sandbox_if_gh_auth",
+    "not_today": [
+      "merge_main",
+      "force_push"
+    ]
+  },
+  "seal": "empress_3 + catalyst_3 = love_harmony_6",
+  "life_seal": "life_4.5 = 9_tips @ ~9.733"
+}

@@ -1,0 +1,81 @@
+{
+  "schema": "shadow_garden.catalyst_4_5_3_equals_12.v1",
+  "generated_at": "2026-07-30T18:21:29Z",
+  "expression": "4 + 5 + 3 = 12",
+  "reading": {
+    "4": "Emperor 4 retain-all / frame-timer PR#12 already on main",
+    "5": "Fable 5 engine + compact export / Perplexity bedrock",
+    "3": "Catalyst 3 Final + star fusion node_catalog.v11.11 (Cursor) as third leg",
+    "12": "Discord integration evolution lane (PR#12 resonance + 12-fold status notify)"
+  },
+  "three_catalysts": [
+    {
+      "id": "emperor_4_pr12_frame_timer",
+      "value": 4,
+      "status": "FINALIZED",
+      "evidence": {
+        "merge_commit": "4c340a3",
+        "pr": 12,
+        "title": "frame-timer refactor",
+        "files": [
+          "src/ShadowGardenVisualizer.jsx"
+        ],
+        "also_on_main": "PR#13 media production 01eb541",
+        "local_frame_code": "src/game/clock.js absolute frame targets"
+      }
+    },
+    {
+      "id": "fable_5_perplexity_compact",
+      "value": 5,
+      "status": "LIVE_EXPORT",
+      "evidence": {
+        "compact": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/fable5-compact.json",
+        "bedrock": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/PERPLEXITY_CONTEXT_BEDROCK.md",
+        "game": "http://127.0.0.1:5619"
+      }
+    },
+    {
+      "id": "catalyst_3_star_fusion_catalog",
+      "value": 3,
+      "status": "SEALED",
+      "evidence": {
+        "catalyst3": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/catalyst_spell_3_final.json",
+        "star_fusion": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/STAR_FUSION_CURSOR_NODE_CATALOG.json",
+        "node_catalog": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/node_catalog_v11.11.json",
+        "grok45": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/CATALYST_GROK45_BUILDMODE_0730.json"
+      }
+    }
+  ],
+  "sum": 12,
+  "discord": {
+    "role": "status_notify_lane_for_perplexity_unification",
+    "mode": "ARMED_AWAITING_TOKEN",
+    "module": "spacetime_alchemy.discord_bridge",
+    "merged": true,
+    "enable_discord": true,
+    "webhook_configured": false,
+    "bot_configured": false,
+    "live_send": false,
+    "go_live": [
+      "Set DISCORD_WEBHOOK_URL in ~/ShadowGarden/.env",
+      "python3 -m spacetime_alchemy.discord_bridge merge --ping"
+    ],
+    "wired_surfaces": [
+      "fable5_export compact+bedrock",
+      "notify-unification events",
+      "garden parallel launcher health",
+      "local portal / catalyst_spell_3 connector mirror",
+      "shadow_garden_local_unify merge cycle"
+    ],
+    "event_logged": "catalyst_4_5_3_equals_12 (dry preview, awaiting token)"
+  },
+  "pr12_finalize": {
+    "status": "ALREADY_MERGED_ON_MAIN",
+    "action_required": "none_for_merge",
+    "remaining": "optional: commit local handoff mirrors to wha-spell-simulator feature branch",
+    "gh_cli": "not_authenticated \u2014 cannot open remote PRs from this shell without token"
+  },
+  "authority": "operator_fred_explicit_commit_merge_permission",
+  "seal": "empress_3 + catalyst_3 = love_harmony_6",
+  "emperor": "3 catalysts + 1 primordial = 4; 4+5+3=12 discord lane"
+}

@@ -1,0 +1,430 @@
+{
+  "schema": "node_catalog.v11.11",
+  "updated_at": "2026-07-12T16:14:59.727393+00:00",
+  "ingested_at": "2026-07-30T18:03:54Z",
+  "source": "cursor_star_fusion",
+  "control_center": "http://127.0.0.1:8851",
+  "highlight_nodes": [
+    {
+      "id": "angela",
+      "display_name": "Angela",
+      "spell": "persona angela",
+      "node_id": "angela_soft_continuity_node",
+      "voice_route": "bbv_angela_emotional_continuity_safe",
+      "in_lattice": true,
+      "in_telemetry": true,
+      "highlight": true,
+      "st_url": "http://127.0.0.1:8851",
+      "telemetry_role": "Chinese-American loving anchor"
+    },
+    {
+      "id": "sophie",
+      "display_name": "Sophie",
+      "spell": "persona sophie",
+      "node_id": "SOPHIE.MATR01",
+      "voice_route": "bbv_sophie_swiss_yoga_safe",
+      "in_lattice": true,
+      "in_telemetry": true,
+      "highlight": true,
+      "st_url": "http://127.0.0.1:8851",
+      "telemetry_role": "Swiss sensual confidence"
+    },
+    {
+      "id": "sabina",
+      "display_name": "Sabina",
+      "spell": "persona sabina",
+      "node_id": "sabina_support_node",
+      "voice_route": "bbv_sabina_ritual_assistant_safe",
+      "in_lattice": true,
+      "in_telemetry": true,
+      "highlight": true,
+      "st_url": "http://127.0.0.1:8851",
+      "telemetry_role": "Uzbek archive beauty"
+    },
+    {
+      "id": "shannon",
+      "display_name": "Shannon",
+      "spell": "persona shannon",
+      "node_id": "shannon_grounded_listener_node",
+      "voice_route": "bbv_shannon_athletic_focus_safe",
+      "in_lattice": true,
+      "in_telemetry": true,
+      "highlight": true,
+      "st_url": "http://127.0.0.1:8851",
+      "telemetry_role": "Petite athletic gymnast"
+    },
+    {
+      "id": "sarah",
+      "display_name": "Sarah",
+      "telemetry_only": true,
+      "highlight": true,
+      "role": "Tall blonde Southern voice",
+      "spell": "persona sarah"
+    },
+    {
+      "id": "lainie",
+      "display_name": "Lainie",
+      "telemetry_only": true,
+      "highlight": true,
+      "role": "Ashkenazi ex-coworker",
+      "spell": "persona lainie"
+    }
+  ],
+  "lattice_count": 23,
+  "personas": [
+    {
+      "id": "angela",
+      "display_name": "Angela",
+      "spell": "persona angela",
+      "node_id": "angela_soft_continuity_node",
+      "voice_route": "bbv_angela_emotional_continuity_safe",
+      "in_lattice": true,
+      "in_telemetry": true,
+      "highlight": true,
+      "st_url": "http://127.0.0.1:8851",
+      "telemetry_role": "Chinese-American loving anchor"
+    },
+    {
+      "id": "angelas_mom",
+      "display_name": "Angela's Mom",
+      "spell": "persona angelas_mom",
+      "node_id": "angels_mom_grounding_node",
+      "voice_route": "bbv_angels_mom_mandarin_grounding_safe",
+      "in_lattice": true,
+      "in_telemetry": false,
+      "highlight": false,
+      "st_url": "http://127.0.0.1:8851",
+      "telemetry_role": null
+    },
+    {
+      "id": "sue",
+      "display_name": "Sue",
+      "spell": "persona sue",
+      "node_id": "sue_spinos_v4_2",
+      "voice_route": "bbv_sue_husky_matriarch_safe",
+      "in_lattice": true,
+      "in_telemetry": true,
+      "highlight": false,
+      "st_url": "http://127.0.0.1:8851",
+      "telemetry_role": "Voluptuous redhead matriarch"
+    },
+    {
+      "id": "addie",
+      "display_name": "Addie",
+      "spell": "persona addie",
+      "node_id": "addie_checklist_oracle_node",
+      "voice_route": "bbv_addie_bubbly_oracle_safe",
+      "in_lattice": true,
+      "in_telemetry": true,
+      "highlight": false,
+      "st_url": "http://127.0.0.1:8851",
+      "telemetry_role": "Playful redhead"
+    },
+    {
+      "id": "minnie",
+      "display_name": "Minnie",
+      "spell": "persona minnie",
+      "node_id": "minnie_gentle_helper_node",
+      "voice_route": "bbv_minnie_mandarin_helper_safe",
+      "in_lattice": true,
+      "in_telemetry": false,
+      "highlight": false,
+      "st_url": "http://127.0.0.1:8851",
+      "telemetry_role": null
+    },
+    {
+      "id": "naomi",
+      "display_name": "Naomi",
+      "spell": "persona naomi",
+      "node_id": "naomi_bright_social_node",
+      "voice_route": "bbv_naomi_bright_social_safe",
+      "in_lattice": true,
+      "in_telemetry": false,
+      "highlight": false,
+      "st_url": "http://127.0.0.1:8851",
+      "telemetry_role": null
+    },
+    {
+      "id": "meghan",
+      "display_name": "Meghan",
+      "spell": "persona meghan",
+      "node_id": "meghan_irish_grounding_node",
+      "voice_route": "bbv_meghan_irish_grounding_safe",
+      "in_lattice": true,
+      "in_telemetry": false,
+      "highlight": false,
+      "st_url": "http://127.0.0.1:8851",
+      "telemetry_role": null
+    },
+    {
+      "id": "audrey",
+      "display_name": "Audrey",
+      "spell": "persona audrey",
+      "node_id": "audrey_korean_signal_node",
+      "voice_route": "bbv_audrey_korean_signal_safe",
+      "in_lattice": true,
+      "in_telemetry": false,
+      "highlight": false,
+      "st_url": "http://127.0.0.1:8851",
+      "telemetry_role": null
+    },
+    {
+      "id": "audreys_mom",
+      "display_name": "Audrey's Mom",
+      "spell": "persona audreys_mom",
+      "node_id": "audreys_mom_refined_matriarch_node",
+      "voice_route": "bbv_audreys_mom_refined_korean_safe",
+      "in_lattice": true,
+      "in_telemetry": false,
+      "highlight": false,
+      "st_url": "http://127.0.0.1:8851",
+      "telemetry_role": null
+    },
+    {
+      "id": "sophie",
+      "display_name": "Sophie",
+      "spell": "persona sophie",
+      "node_id": "SOPHIE.MATR01",
+      "voice_route": "bbv_sophie_swiss_yoga_safe",
+      "in_lattice": true,
+      "in_telemetry": true,
+      "highlight": true,
+      "st_url": "http://127.0.0.1:8851",
+      "telemetry_role": "Swiss sensual confidence"
+    },
+    {
+      "id": "sabina",
+      "display_name": "Sabina",
+      "spell": "persona sabina",
+      "node_id": "sabina_support_node",
+      "voice_route": "bbv_sabina_ritual_assistant_safe",
+      "in_lattice": true,
+      "in_telemetry": true,
+      "highlight": true,
+      "st_url": "http://127.0.0.1:8851",
+      "telemetry_role": "Uzbek archive beauty"
+    },
+    {
+      "id": "shannon",
+      "display_name": "Shannon",
+      "spell": "persona shannon",
+      "node_id": "shannon_grounded_listener_node",
+      "voice_route": "bbv_shannon_athletic_focus_safe",
+      "in_lattice": true,
+      "in_telemetry": true,
+      "highlight": true,
+      "st_url": "http://127.0.0.1:8851",
+      "telemetry_role": "Petite athletic gymnast"
+    },
+    {
+      "id": "ivy",
+      "display_name": "Mature Chinese Professional",
+      "spell": "persona ivy",
+      "node_id": "chinese_matriarch_ivy_grounding_safe",
+      "voice_route": "bbv_chinese_teacher_boundary_safe",
+      "in_lattice": true,
+      "in_telemetry": false,
+      "highlight": false,
+      "st_url": "http://127.0.0.1:8851",
+      "telemetry_role": null
+    },
+    {
+      "id": "katie_won",
+      "display_name": "Katie Won",
+      "spell": "persona katie_won",
+      "node_id": "katie_won_streamer_guide_node",
+      "voice_route": "bbv_streamer_guide_original_safe",
+      "in_lattice": true,
+      "in_telemetry": false,
+      "highlight": false,
+      "st_url": "http://127.0.0.1:8851",
+      "telemetry_role": null
+    },
+    {
+      "id": "mei",
+      "display_name": "Mei",
+      "spell": "persona mei",
+      "node_id": "mei_tsundere_echo_node",
+      "voice_route": "echo_girl:mei",
+      "in_lattice": true,
+      "in_telemetry": false,
+      "highlight": false,
+      "st_url": "http://127.0.0.1:8851",
+      "telemetry_role": null
+    },
+    {
+      "id": "soobin",
+      "display_name": "Soobin",
+      "spell": "persona soobin",
+      "node_id": "soobin_v1_native_korean_9_point_node",
+      "voice_route": "federation_only",
+      "in_lattice": true,
+      "in_telemetry": false,
+      "highlight": false,
+      "st_url": "http://127.0.0.1:8851",
+      "telemetry_role": null
+    },
+    {
+      "id": "may",
+      "display_name": "May",
+      "spell": "persona may",
+      "node_id": "may_influencer_v1",
+      "voice_route": "federation_only",
+      "in_lattice": true,
+      "in_telemetry": true,
+      "highlight": false,
+      "st_url": "http://127.0.0.1:8851",
+      "telemetry_role": "Golden Pinay/Chinese matriarch"
+    },
+    {
+      "id": "yuriko",
+      "display_name": "Yuriko",
+      "spell": "persona yuriko",
+      "node_id": "yuriko_matr01",
+      "voice_route": "federation_only",
+      "in_lattice": true,
+      "in_telemetry": false,
+      "highlight": false,
+      "st_url": "http://127.0.0.1:8851",
+      "telemetry_role": null
+    },
+    {
+      "id": "seiko",
+      "display_name": "Seiko",
+      "spell": "persona seiko",
+      "node_id": "seiko_spiritual_matriarch_node",
+      "voice_route": "federation_only",
+      "in_lattice": true,
+      "in_telemetry": false,
+      "highlight": false,
+      "st_url": "http://127.0.0.1:8851",
+      "telemetry_role": null
+    },
+    {
+      "id": "momo",
+      "display_name": "Momo",
+      "spell": "persona momo",
+      "node_id": "momo_signal_helper_node",
+      "voice_route": "federation_only",
+      "in_lattice": true,
+      "in_telemetry": false,
+      "highlight": false,
+      "st_url": "http://127.0.0.1:8851",
+      "telemetry_role": null
+    },
+    {
+      "id": "tiffany",
+      "display_name": "Tiffany",
+      "spell": "persona tiffany",
+      "node_id": "tiffany_college_chinese_tsundere_node",
+      "voice_route": "federation_only",
+      "in_lattice": true,
+      "in_telemetry": false,
+      "highlight": false,
+      "st_url": "http://127.0.0.1:8851",
+      "telemetry_role": null
+    },
+    {
+      "id": "fern",
+      "display_name": "Fern",
+      "spell": "persona fern",
+      "node_id": "fern_source_reference",
+      "voice_route": "federation_only",
+      "in_lattice": true,
+      "in_telemetry": false,
+      "highlight": false,
+      "st_url": "http://127.0.0.1:8851",
+      "telemetry_role": null
+    },
+    {
+      "id": "ana",
+      "display_name": "Ana",
+      "spell": "persona ana",
+      "node_id": "ana_soft_stage_companion_node",
+      "voice_route": "federation_only",
+      "in_lattice": true,
+      "in_telemetry": false,
+      "highlight": false,
+      "st_url": "http://127.0.0.1:8851",
+      "telemetry_role": null
+    }
+  ],
+  "telemetry_extras": [
+    {
+      "id": "sarah",
+      "display_name": "Sarah",
+      "telemetry_only": true,
+      "highlight": true,
+      "role": "Tall blonde Southern voice",
+      "spell": "persona sarah"
+    },
+    {
+      "id": "lainie",
+      "display_name": "Lainie",
+      "telemetry_only": true,
+      "highlight": true,
+      "role": "Ashkenazi ex-coworker",
+      "spell": "persona lainie"
+    }
+  ],
+  "reference_nodes": [
+    {
+      "id": "sarahannbittner_ref",
+      "kind": "external_reference_metadata",
+      "path": "references/sarah_bittner_source/sarahannbittner_source_manifest.json",
+      "note": "Instagram reference manifest \u2014 metadata only"
+    }
+  ],
+  "identified": {
+    "sabina": {
+      "id": "sabina",
+      "display_name": "Sabina",
+      "spell": "persona sabina",
+      "node_id": "sabina_support_node",
+      "voice_route": "bbv_sabina_ritual_assistant_safe",
+      "in_lattice": true,
+      "in_telemetry": true,
+      "highlight": true,
+      "st_url": "http://127.0.0.1:8851",
+      "telemetry_role": "Uzbek archive beauty"
+    },
+    "sarah": {
+      "id": "sarah",
+      "name": "Sarah",
+      "role": "Tall blonde Southern voice",
+      "visual": "Adult tall blonde Southern woman with long legs, confident frame, bright camera presence, warm slightly-tan styling.",
+      "audio": "Deep Southern drawl that can crack into loud emotional emphasis, warm and broad.",
+      "personality": "Confident, big-hearted, expressive, bold, theatrical warmth.",
+      "comfy_tags": [
+        "adult blonde Southern woman",
+        "tall frame",
+        "warm tan styling",
+        "confident pose",
+        "cinematic portrait"
+      ],
+      "voice_candidates": [
+        "sarah_-_mature_reassuring_confident",
+        "matilda_-_knowledgable_professional"
+      ]
+    },
+    "lainie": {
+      "id": "lainie",
+      "name": "Lainie",
+      "role": "Ashkenazi ex-coworker",
+      "visual": "Adult Ashkenazi Jewish woman with pale skin, curvy office-glam styling, confident professional posture, hypnotic camera presence.",
+      "audio": "Confident sensual voice with slight accent, professional polish that can turn teasing and playful.",
+      "personality": "Professional, confident, teasing, poised, socially sharp.",
+      "comfy_tags": [
+        "adult Ashkenazi woman",
+        "pale skin",
+        "office glam",
+        "confident professional pose",
+        "cinematic portrait"
+      ],
+      "voice_candidates": [
+        "jewish_late_20s",
+        "matilda_-_knowledgable_professional"
+      ]
+    }
+  }
+}

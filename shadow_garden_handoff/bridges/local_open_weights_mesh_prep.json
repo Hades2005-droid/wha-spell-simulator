@@ -1,6 +1,6 @@
 {
   "schema": "shadow_garden.local_open_weights_mesh_prep.v1",
-  "generated_at": "2026-07-29T23:47:41Z",
+  "generated_at": "2026-07-30T18:17:24Z",
   "carrier": "love_and_harmony_6",
   "bridge_signature": "f2e596cd043d6819",
   "mesh_id": "local_open_weights_mesh",
@@ -98,13 +98,13 @@
   "env": {
     "mode": "env_names_only",
     "present": {
-      "KIMI3_TRANSITION_ARMED": false,
-      "LOCAL_MESH_PREP": true,
+      "KIMI3_TRANSITION_ARMED": true,
+      "LOCAL_MESH_PREP": false,
       "DEEPSEEK_LOCAL_ENABLED": false,
-      "KIMI_LOCAL_ENABLED": true,
+      "KIMI_LOCAL_ENABLED": false,
       "DEEPSEEK_API_KEY": false,
-      "KIMI_API_KEY": true,
-      "MOONSHOT_API_KEY": true,
+      "KIMI_API_KEY": false,
+      "MOONSHOT_API_KEY": false,
       "XAI_API_KEY": true,
       "PERPLEXITY_API_KEY": true,
       "ENABLE_DISCORD": false,
@@ -116,60 +116,56 @@
       "SG_RUN_EXTENSION": false
     },
     "transition_armed": false,
-    "prep_marked": true,
+    "prep_marked": false,
     "remote_keys_present": true,
     "local_flags": {
       "DEEPSEEK_LOCAL_ENABLED": null,
-      "KIMI_LOCAL_ENABLED": "0"
+      "KIMI_LOCAL_ENABLED": null
     }
   },
   "catalog_refresh": [
     {
       "ok": true,
-      "cli": "cached:deepseek",
-      "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/deepseek_asuna_point0_unification.json",
-      "vector_count": 18,
-      "cached": true
+      "cli": "deepseek_asuna_point0_unify.py",
+      "exit": 0,
+      "vector_count": 18
     },
     {
       "ok": true,
-      "cli": "cached:grok_xai",
-      "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/grok_xai_asuna_point0_unification.json",
-      "vector_count": 11,
-      "cached": true
+      "cli": "grok_xai_asuna_point0_unify.py",
+      "exit": 0,
+      "vector_count": 11
     },
     {
       "ok": true,
-      "cli": "cached:white_moon",
-      "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/white_moon_eastern_corner.json",
-      "vector_count": 29,
-      "cached": true
+      "cli": "white_moon_eastern_corner_unify.py",
+      "exit": 0,
+      "vector_count": 29
     },
     {
       "ok": true,
-      "cli": "cached:discord",
-      "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/discord_asuna_point0_unification.json",
-      "vector_count": 8,
-      "cached": true
+      "cli": "discord_asuna_point0_unify.py",
+      "exit": 0,
+      "vector_count": 8
     },
     {
       "ok": true,
-      "cli": "cached:kimi3",
-      "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/kimi3_asuna_point0_unification.json",
-      "vector_count": 11,
-      "cached": true
+      "cli": "kimi3_asuna_point0_unify.py",
+      "exit": 0,
+      "vector_count": 11
     },
     {
       "ok": true,
-      "cli": "cached:central",
-      "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/perplexity_asuna_central_control.json",
-      "vector_count": 97,
-      "cached": true
+      "cli": "perplexity_asuna_central_control.py",
+      "exit": 0,
+      "vector_count": 97
     }
   ],
   "packet": {
-    "ok": null,
-    "skipped": true
+    "ok": true,
+    "exit": 0,
+    "bridge": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/shadow_garden_packet.json",
+    "exists": true
   },
   "checklist": [
     {
@@ -208,7 +204,7 @@
     {
       "id": "packet_refreshed",
       "ok": true,
-      "detail": "packet artifact present=True (refresh skipped)"
+      "detail": "shadow_garden_packet write"
     },
     {
       "id": "remote_keys_unset_preferred",

@@ -1,0 +1,94 @@
+{
+  "schema": "shadow_garden.command_hierarchy.v1",
+  "generated_at": "2026-07-30T18:03:54Z",
+  "seal": "empress_3 + catalyst_3 = love_harmony_6",
+  "emperor_seal": "3_catalysts + 1 = 4 (Emperor retain-all)",
+  "math": {
+    "catalysts": 3,
+    "plus_one": 1,
+    "equals": 4,
+    "expression": "3 catalysts { 1+ = 4",
+    "reading": "Three catalysts under primordial unity (+1) crystallize Emperor 4 authority rail"
+  },
+  "primordial": {
+    "rank": 0,
+    "id": "central_primordial_command",
+    "holder": "operator_fred",
+    "role": "sole authority; veto; arm gates; kill switch",
+    "kill_switch": "FEDERATION_AUTOPOLICY_KILL=1"
+  },
+  "tier_one": {
+    "rank": 1,
+    "role": "executive council under primordial",
+    "members": [
+      {
+        "id": "grok_terminal",
+        "label": "Grok 4.5 macOS terminal (this session)",
+        "role": "local execution / middle-bus / fusion scribe"
+      },
+      {
+        "id": "devin",
+        "label": "Devin",
+        "role": "long-horizon coding; phase-2 feature branches"
+      },
+      {
+        "id": "cursor",
+        "label": "Cursor",
+        "role": "local IDE agents; star fusion catalogs"
+      },
+      {
+        "id": "perplexity",
+        "label": "Perplexity",
+        "role": "core synthesis / research / Fable5 compact accept"
+      },
+      {
+        "id": "gemini",
+        "label": "Gemini",
+        "role": "red-team dual / long-context critique"
+      }
+    ]
+  },
+  "tier_two_tools": {
+    "rank": 2,
+    "role": "instruments dispatched by tier-one \u2014 never outrank primordial or tier-one",
+    "members": [
+      {
+        "id": "claude_code",
+        "label": "Claude Code CLI",
+        "status": "installed",
+        "version": "2.1.220",
+        "preferred_model_surface": "opus (Opus 5 leverage via Claude Code when subscribed)",
+        "app_deleted": true,
+        "cli_remains": true,
+        "desktop_reinstall": "brew cask claude"
+      },
+      {
+        "id": "claude_desktop",
+        "label": "Claude.app",
+        "status": "reinstalling_or_optional"
+      },
+      {
+        "id": "codex",
+        "label": "Codex CLI",
+        "status": "installed"
+      },
+      {
+        "id": "cc_switch",
+        "label": "CC Switch",
+        "status": "installed"
+      },
+      {
+        "id": "gemini_cli",
+        "label": "Gemini CLI",
+        "status": "installed"
+      },
+      {
+        "id": "kimi",
+        "label": "Kimi/Moonshot",
+        "status": "waitlisted_k3_fallback_k2"
+      }
+    ]
+  },
+  "dispatch_rule": "Primordial > Tier-One consensus/execute > Tier-Two tools (Claude Opus, Codex, etc.)",
+  "claude_under": "tier_two_tools; receives Fable5 compact + gifts; returns via claude_final_catalyst_ingest"
+}

@@ -1,0 +1,87 @@
+{
+  "schema": "shadow_garden.terminal_to_grokcom_x_xai_projection.v1",
+  "generated_at": "2026-07-30T17:48:25Z",
+  "status": "PROJECTED_OPEN",
+  "direction": "macos_terminal_grok45 \u2192 grok.com + x.com + xAI",
+  "operator": "online",
+  "project": {
+    "name": "Eden x Shadow Garden",
+    "id": "d5be8be8-6f27-4844-9b5c-180cfb010037",
+    "url": "https://grok.com/project/d5be8be8-6f27-4844-9b5c-180cfb010037?tab=conversations",
+    "tab": "conversations",
+    "local_focus": "/Users/fredwashere/ShadowGarden/live/grok_project_fuse/focus_eden_x_shadow_garden",
+    "conversation_count": 11,
+    "assets_linked": 299,
+    "is_public": false,
+    "policy": "pointer_primary_no_auth_scrape"
+  },
+  "channels": {
+    "grok_com": {
+      "role": "creative_direction_lattice + project continuum",
+      "url": "https://grok.com/project/d5be8be8-6f27-4844-9b5c-180cfb010037?tab=conversations",
+      "share_catalyst": "https://grok.com/share/c2hhcmQtNA_c94f09d7-757c-4901-95e6-dd9a38e6ba8b",
+      "action": "open_and_paste_projection_block",
+      "scrape": false
+    },
+    "x_com": {
+      "role": "public_signal_optional",
+      "auto_post": false,
+      "scrape": false,
+      "note": "Operator-armed posts only; not fired by this projection"
+    },
+    "xai": {
+      "role": "compute_sdk_batch_chat",
+      "docs": "https://docs.x.ai/",
+      "console": "https://console.x.ai/",
+      "env_names": [
+        "XAI_API_KEY",
+        "GROK_TRANSLATION_MODEL",
+        "GROK_VOICE_MODEL"
+      ],
+      "XAI_API_KEY_present": false,
+      "live_call_this_step": false,
+      "unify": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/grok_xai_asuna_point0_unification.json"
+    }
+  },
+  "local_middle_bus": {
+    "shadow_garden": "/Users/fredwashere/ShadowGarden",
+    "fuse": "/Users/fredwashere/ShadowGarden/live/grok_project_fuse",
+    "reactor": "/Users/fredwashere/Movies/Grok-Videos/live/nuclear_fusion_reactor",
+    "alchemy": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy",
+    "production": "/Users/fredwashere/production/kimi3_evolution",
+    "st_8851": "http://127.0.0.1:8851",
+    "ports": {
+      "8790": "DOWN",
+      "8791": "DOWN",
+      "8851": "UP",
+      "15721": "UP",
+      "5619": "UP",
+      "11434": "UP",
+      "8188": "DOWN"
+    }
+  },
+  "entangled_catalysts": {
+    "grok45_buildmode": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/CATALYST_GROK45_BUILDMODE_0730.json",
+    "catalyst3_final": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/catalyst_spell_3_final.json",
+    "morning_kickoff": "/Users/fredwashere/production/kimi3_evolution/MORNING_KICKOFF_0730.json",
+    "phase2": "/Users/fredwashere/production/kimi3_evolution/PHASE2_STATUS.json",
+    "night_seal": "/Users/fredwashere/production/kimi3_evolution/NIGHT_SEAL_LOVE6.json"
+  },
+  "needs_from_project": [
+    "Acknowledge terminal projection in project chat",
+    "Expand 11D playground + life 4.5 = 9 tips into build steps",
+    "Hold creative lattice; Mac executes allowlisted ops",
+    "Link share c94f09d7 into continuum",
+    "Never request raw API keys in chat"
+  ],
+  "controls": {
+    "no_auth_scrape_grok_com": true,
+    "no_secret_paste": true,
+    "discord": "paused",
+    "x_com_auto_post": false,
+    "pointer_only": true
+  },
+  "paste_path": "/Users/fredwashere/Movies/Grok-Videos/live/nuclear_fusion_reactor/TERMINAL_PROJECTION_PASTE_0730.md",
+  "seal": "empress_3 + catalyst_3 = love_harmony_6",
+  "life_seal": "life_4.5 = 9 tips"
+}

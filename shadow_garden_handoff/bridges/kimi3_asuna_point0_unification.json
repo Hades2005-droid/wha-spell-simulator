@@ -1,6 +1,6 @@
 {
   "schema": "shadow_garden.kimi3_asuna_point0_unification.v1",
-  "generated_at": "2026-07-29T23:47:41Z",
+  "generated_at": "2026-07-30T18:17:25Z",
   "phase": 2,
   "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
   "carrier": "love_and_harmony_6",
@@ -72,17 +72,17 @@
       "OLLAMA_MODELS"
     ],
     "env_present": {
-      "KIMI_API_KEY": true,
-      "MOONSHOT_API_KEY": true,
-      "KIMI_BASE_URL": true,
-      "MOONSHOT_BASE_URL": true,
-      "KIMI_MODEL": true,
-      "KIMI_LOCAL_ENABLED": true,
-      "KIMI3_TRANSITION_ARMED": false,
+      "KIMI_API_KEY": false,
+      "MOONSHOT_API_KEY": false,
+      "KIMI_BASE_URL": false,
+      "MOONSHOT_BASE_URL": false,
+      "KIMI_MODEL": false,
+      "KIMI_LOCAL_ENABLED": false,
+      "KIMI3_TRANSITION_ARMED": true,
       "OLLAMA_HOST": false,
       "OLLAMA_MODELS": false
     },
-    "transition_armed": false,
+    "transition_armed": true,
     "notes": [
       "Never print or catalog secret values.",
       "Prefer Ollama / kimi-local over remote Moonshot API.",
@@ -194,11 +194,11 @@
   ],
   "transition": {
     "schema": "shadow_garden.kimi3_local_open_weights_transition.v1",
-    "generated_at": "2026-07-29T23:47:41Z",
+    "generated_at": "2026-07-30T18:17:25Z",
     "bridge": "kimi3_third_leverage",
     "ordinal": 3,
-    "armed": false,
-    "status": "indexed_awaiting_KIMI3_TRANSITION_ARMED",
+    "armed": true,
+    "status": "armed_ready",
     "from": "perplexity_asuna_point_0_cloud_hybrid_mesh",
     "to": "local_open_weights_mesh",
     "preferred_runtime": {
@@ -400,7 +400,7 @@
     "model_count": 4,
     "ollama_up": true,
     "local_kimi_tag_count": 0,
-    "transition_armed": false,
+    "transition_armed": true,
     "provider_calls": 0,
     "point0_manifest_ok": true
   },

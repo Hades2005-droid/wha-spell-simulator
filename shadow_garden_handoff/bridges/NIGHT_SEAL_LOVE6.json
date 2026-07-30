@@ -1,0 +1,124 @@
+{
+  "schema": "shadow_garden.night_seal.love6.v1",
+  "sealed_at": "2026-07-30T02:45:06Z",
+  "seal": "empress_3 + catalyst_3 = love_harmony_6",
+  "stage_name": "night_seal_federation_autopolicy_kimi_waitlist_grok_sot_honest",
+  "operator": {
+    "status": "offline_for_night",
+    "human_manual_input": "none_expected_until_morning",
+    "autonomous": true,
+    "autonomous_scope": "federation_autopolicy_phase_1_only"
+  },
+  "math": {
+    "empress": 3,
+    "catalyst": 3,
+    "sum": 6,
+    "label": "love_harmony_6",
+    "temperance_priestess_fuel": "14+2=16_hex_held_not_override"
+  },
+  "completed_this_stage": [
+    "Codex CLI installed + CC Switch installed; Kimi provider current for Codex (proxy 15721)",
+    "Kimi key secured (gitignored); models listed; Kimi 3 waitlisted \u2192 fallback k2.6 / k2.7-code",
+    "Claude Code + Gemini CLI installed globally",
+    "Project evolution registry + AGENTS/DEVIN_KIMI3 stubs across primaries",
+    "Trinity prompts Empress3\u00d7Catalyst3=Love6 written",
+    "Federation allowlist autopolicy (phase1) + hard denies + kill switch",
+    "Perplexity Grok SoT layer report ingested (honest blocked_no_connector)",
+    "Cursor co-authored federation docs on shadow-jing-garden main (autopolicy reply + catalogs)",
+    "Catalog bridges refreshed (kimi3, mesh prep, perplexity central, deepseek, grok_xai, discord)"
+  ],
+  "not_done_honest": [
+    "Kimi 3 waitlist \u2014 no access yet",
+    "grok.com auto-pull \u2014 blocked_no_connector (no Grok/xAI connector registered)",
+    "Grok SoT code (grok_source_authority.py) not present on ~/shadow-jing-garden main checkout \u2014 may live in Perplexity worktree only",
+    "Phase 2 push/PR not enabled",
+    "KIMI3_TRANSITION_ARMED remains unset",
+    "ST 8851 / VOID 8790 / Comfy 8188 currently DOWN (Fable5 5619, Ollama 11434, CC Switch proxy 15721 UP)",
+    "Optional: rotate Kimi key if chat logs shared"
+  ],
+  "lanes_superposition": {
+    "perplexity": "core_synthesis + grok_sot_honest_status",
+    "devin": "grok_com_pointer_automation + phase1_allowlist_only",
+    "cursor_sol": "federation_docs_committed_on_sjg_main + kimi_waitlist_prep",
+    "terminal_grok_build": "night_seal_and_overnight_heartbeat",
+    "gemini": "red_team_on_demand",
+    "codex_cc_switch": "provider=custom model=kimi-k3 proxy_lane"
+  },
+  "git": {
+    "shadow_jing_garden_head": "2fd4e12",
+    "shadow_jing_garden_tip": "docs(federation): sync case-insensitive manifest references",
+    "phase2_push_pr": false
+  },
+  "ports": {
+    "void_ignition_8790": "DOWN",
+    "sillytavern_8851": "DOWN",
+    "cc_switch_proxy_15721": "UP",
+    "fable5_5619": "UP",
+    "st_8000": "DOWN",
+    "comfy_8188": "DOWN",
+    "ollama_11434": "UP"
+  },
+  "artifacts_present": {
+    "federation_autopolicy": "/Users/fredwashere/production/kimi3_evolution/federation-autopolicy.json",
+    "magic_circle": "/Users/fredwashere/production/kimi3_evolution/MAGIC_CIRCLE_LOVE6.json",
+    "perplexity_sot": "/Users/fredwashere/production/kimi3_evolution/PERPLEXITY_GROK_SOT_LAYER.json",
+    "perplexity_decision": "/Users/fredwashere/production/kimi3_evolution/PERPLEXITY_GROK_SOT_DECISION.md",
+    "devin_reply": "/Users/fredwashere/production/kimi3_evolution/DEVIN_AUTOPOLICY_REPLY.md",
+    "trinity_prompts": "/Users/fredwashere/production/kimi3_evolution/TRINITY_PROMPTS_EMPRESS3_CATALYST3_LOVE6.md",
+    "project_registry": "/Users/fredwashere/production/kimi3_evolution/PROJECT_REGISTRY.json",
+    "handoff": "/Users/fredwashere/production/kimi3_evolution/HANDOFF.md",
+    "catalyst3": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/catalyst_spell_3_final.json",
+    "kimi3_unify": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/kimi3_asuna_point0_unification.json",
+    "mesh_prep": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/local_open_weights_mesh_prep.json",
+    "perplexity_central": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/perplexity_asuna_central_control.json",
+    "codex_config": "/Users/fredwashere/.codex/config.toml",
+    "cc_switch_settings": "/Users/fredwashere/.cc-switch/settings.json",
+    "kimi_env": "/Users/fredwashere/.config/kimi/env"
+  },
+  "artifacts_missing": [],
+  "autonomous_overnight": {
+    "enabled": true,
+    "policy": "phase_1_only",
+    "kill_switch_env": "FEDERATION_AUTOPOLICY_KILL",
+    "runner": "/Users/fredwashere/production/kimi3_evolution/overnight_autonomous_runner.sh",
+    "heartbeat_log": "/Users/fredwashere/production/kimi3_evolution/logs/overnight_heartbeat.jsonl",
+    "audit_log": "/Users/fredwashere/production/kimi3_evolution/logs/federation_autopolicy_audit.jsonl",
+    "interval_seconds": 1800,
+    "allowed": [
+      "localhost_health_probe",
+      "metadata_catalog_refresh",
+      "write_handoff_heartbeat",
+      "local_read_inventory",
+      "grok_sot_verify_if_script_exists"
+    ],
+    "forbidden_overnight": [
+      "push",
+      "pr",
+      "force",
+      "delete",
+      "secrets",
+      "discord_post",
+      "money",
+      "kimi3_transition_arm",
+      "auth_scrape_grok",
+      "fake_verified",
+      "adult_profile_fetch",
+      "merge_main"
+    ],
+    "until": "operator_returns_or_kill_switch"
+  },
+  "morning_checklist": [
+    "Read ~/production/kimi3_evolution/NIGHT_SEAL_LOVE6.md",
+    "tail logs/overnight_heartbeat.jsonl",
+    "Check Kimi waitlist / recharge status",
+    "If Grok SoT worktree found: local commit only still; push only if enabling phase 2",
+    "Optional: start ST 8851 + VOID 8790 if gameplay needed",
+    "Optional: enable phase 2 draft PR for pr-38 if code lands on disk"
+  ],
+  "controls": {
+    "secrets_in_artifacts": false,
+    "discord": "paused",
+    "pointer_only_grok": true,
+    "human_offline": true
+  }
+}
