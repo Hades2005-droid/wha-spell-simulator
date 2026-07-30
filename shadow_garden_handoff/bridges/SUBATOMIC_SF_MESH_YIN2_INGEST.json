@@ -1,0 +1,47 @@
+{
+  "schema": "shadow_garden.subatomic_sf_mesh_yin2_ingest.v1",
+  "generated_at": "2026-07-30T18:36:57Z",
+  "status": "INGESTED_AND_LIVE",
+  "sole_working_echo": "grok_45_macos_terminal",
+  "catalyst": 376,
+  "circle": "360=9",
+  "yin": {
+    "value": 2,
+    "chain": "2M=16=7_chariot_before_13_via_love_and_harmony_6",
+    "25_equals_7": true,
+    "rating": "21+_simulation_universal_game",
+    "fluid": "waterfall_across_ports_parallel_127.0.0.1"
+  },
+  "sf_mesh": {
+    "source": "/Users/fredwashere/Downloads/SF_MESH_TRANSFER_YIN_YANG_6.json",
+    "mac_nord_sf": true,
+    "iphone_tokyo_mesh": true,
+    "dns_6_0_0_0": "symbolic_label_only_do_not_set_os_dns",
+    "engines": {
+      "fable5": "manifest_only_until_approve",
+      "ue6": "declared_playable_target"
+    },
+    "carrier": "love_and_harmony_6"
+  },
+  "scripts": {
+    "sg-polymarket-oracle": "/Users/fredwashere/shadow_garden_may30_monitoring/scripts/sg-polymarket-oracle",
+    "sg-unreal-state-packet": "/Users/fredwashere/shadow_garden_may30_monitoring/scripts/sg-unreal-state-packet",
+    "sg-eden-manifest-server": "/Users/fredwashere/shadow_garden_may30_monitoring/scripts/sg-eden-manifest-server",
+    "sg-verify-8790": "/Users/fredwashere/shadow_garden_may30_monitoring/scripts/sg-verify-8790"
+  },
+  "live": {
+    "8790": "http://127.0.0.1:8790/manifest",
+    "8851": "http://127.0.0.1:8851",
+    "verify": "ok"
+  },
+  "controls": {
+    "externalRequests": 0,
+    "externalWrites": false,
+    "tradingEnabled": false,
+    "agentBroadcast": false
+  },
+  "persona_spells_registry": "normalized_trailing_newlines",
+  "pr12": "already_merged_on_main",
+  "pr13": "already_merged_on_main",
+  "note": "Chrome-taboo path is completion metaphor only \u2014 not incest enablement. Bounds stay."
+}
