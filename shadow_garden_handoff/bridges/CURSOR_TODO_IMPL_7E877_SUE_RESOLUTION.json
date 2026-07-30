@@ -1,0 +1,22 @@
+{
+  "schema": "shadow_garden.cursor_todo_impl_7e877_resolution.v1",
+  "generated_at": "2026-07-30T18:38:04Z",
+  "branch": "cursor/todo-impl-7e877",
+  "problem": "Devin could not commit: working tree had no intentional dictionary diff; Sue already correct",
+  "resolution": "Verified Sue + registry; stamped resolution so branch can merge; no corrupted blanking present",
+  "sue": {
+    "ok": true,
+    "entry": {
+      "id": "persona-sue",
+      "displayName": "Invoke Sue",
+      "personaId": "sue",
+      "nodeId": "sue_spinos_v4_2",
+      "terminalCode": "PERSONA_SUE"
+    }
+  },
+  "changes_applied": [
+    "none_required_already_correct"
+  ],
+  "devin_report_sha_hint": "4d92df61c47058129b4c637ea806dcab7d3a6063",
+  "note": "Remote cursor/todo-impl-7e877 was missing from origin at resolution time; branch recreated from origin/main"
+}
