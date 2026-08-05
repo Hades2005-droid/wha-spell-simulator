@@ -1,0 +1,46 @@
+{
+  "schema": "shadow_garden.passkeys_shared_approval_gate.v1",
+  "id": "passkeys_shared_approval_gate",
+  "label": "Passkeys Shared Approval Gate",
+  "generated_at": "2026-08-05T06:16:00Z",
+  "ok": true,
+  "parallel_lanes": {
+    "white_moon": "shadow_garden_handoff/bridges/white_moon_eastern_corner.json",
+    "black_sun": "Phase 2 Black Sun / home Black Sun (parallel lane; not replaced)",
+    "note": "Runs parallel to white moon / black sun — does not replace either lane"
+  },
+  "paths": {
+    "hook": ".cursor/hooks/passkeys-shared-approval-gate-hook.py",
+    "agent": ".cursor/agents/passkeys-shared-approval-gate.md",
+    "user_agent": "~/.cursor/agents/passkeys-shared-approval-gate.md",
+    "sample_shared": "/Users/fredwashere/Downloads/ConnectingToAServiceWithPasskeys/Shared/"
+  },
+  "hooks_json": {
+    "sessionStart": true,
+    "beforeSubmitPrompt": true,
+    "beforeShellExecution": {
+      "enabled": true,
+      "matcher": "auto-connect|passkey|passkeys"
+    }
+  },
+  "policy": {
+    "no_silent_auto_connect": true,
+    "ask_before_auto_bridge_shell": true,
+    "keep_shared_base_lproj": true,
+    "fail_open": true,
+    "fail_open_except": "ask/deny for risky passkey auto-connect shell",
+    "external_writes": false,
+    "default_auto_bridge": "deny"
+  },
+  "controls": {
+    "external_writes": false,
+    "credential_logging": false,
+    "cloud_publish": false,
+    "provider_calls": false
+  },
+  "lattice": {
+    "slot": 9,
+    "binding": "9 → passkeys-shared-approval-gate",
+    "note": "Passkeys / biometric handshake gate — not Wallfacer Dimensional Fold"
+  }
+}

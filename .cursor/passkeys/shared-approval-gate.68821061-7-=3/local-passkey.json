@@ -1,0 +1,11 @@
+{
+  "schema": "passkeys.local_only_credential.v1",
+  "gate_id": "shared-approval-gate.68821061-7-=3",
+  "credential_kind": "cursor_local_envelope",
+  "status": "created_local_only",
+  "mirror_of": "/Users/fredwashere/.cursor/passkeys/shared-approval-gate.68821061-7-=3/local-passkey.json",
+  "cloud_publish": false,
+  "private_key_material": null,
+  "approval_gate_armed": true,
+  "auto_connect_allowed": false
+}

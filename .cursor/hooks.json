@@ -20,6 +20,12 @@
         "description": "fable5-one-cycle-bounded-evolution"
       },
       {
+        "command": "python3 .cursor/hooks/passkeys-shared-approval-gate-hook.py",
+        "timeout": 8,
+        "failClosed": false,
+        "description": "passkeys-shared-approval-gate-parallel-white-moon-black-sun"
+      },
+      {
         "command": "python3 .cursor/hooks/fable5-engine-ingest-hook.py",
         "timeout": 5,
         "failClosed": false
@@ -70,6 +76,13 @@
         "description": "deny-unbounded-recursive-improvement"
       },
       {
+        "command": "python3 .cursor/hooks/passkeys-shared-approval-gate-hook.py",
+        "matcher": "auto-connect|passkey|passkeys",
+        "timeout": 8,
+        "failClosed": false,
+        "description": "passkeys-ask-before-auto-bridge"
+      },
+      {
         "command": "python3 .cursor/hooks/scan-shell-secrets.py",
         "timeout": 5,
         "failClosed": false
@@ -116,6 +129,12 @@
         "timeout": 8,
         "failClosed": false,
         "description": "fable5-one-cycle-bounded-evolution"
+      },
+      {
+        "command": "python3 .cursor/hooks/passkeys-shared-approval-gate-hook.py",
+        "timeout": 8,
+        "failClosed": false,
+        "description": "passkeys-shared-approval-gate-parallel-white-moon-black-sun"
       },
       {
         "command": "python3 .cursor/hooks/fable5-engine-ingest-hook.py",

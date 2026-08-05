@@ -1,0 +1,36 @@
+{
+  "schema": "passkeys.shared_approval_gate.v1",
+  "gate_id": "shared-approval-gate.68821061-7-=3",
+  "created_at": "2026-08-05T06:10:00Z",
+  "updated_at": "2026-08-05T06:13:00Z",
+  "scope": "local_only",
+  "cloud_publish": false,
+  "external_credential_exposure": false,
+  "approval_required": true,
+  "admin_board_auto_connect_approved": false,
+  "default_policy": "deny",
+  "armed": true,
+  "auto_bridge": "blocked_until_approval",
+  "mesh_wallet_link": "disabled",
+  "symbolic_ledger_note": {
+    "note": "6 - -1 = 7",
+    "authority": false,
+    "role": "metadata_only"
+  },
+  "catalyst_3": {
+    "index": 3,
+    "of_series": "26-8",
+    "label": "6 - -1 = 7",
+    "symbolic_only": true,
+    "is_credential": false,
+    "is_crypto_key": false,
+    "is_network_join": false,
+    "authority": false,
+    "asset_pointer": "/Users/fredwashere/.cursor/projects/Users-fredwashere-Desktop-Eden-wha-spell-simulator/assets/Sketch-e8f0ff6b-4c9e-4db2-87eb-de7f6cb0b286.png",
+    "description": "Numeral-7 sketch; theoretical integration catalyst only"
+  },
+  "canonical_cursor_local": "/Users/fredwashere/.cursor/passkeys/shared-approval-gate.68821061-7-=3/",
+  "sample_shared": "/Users/fredwashere/Downloads/ConnectingToAServiceWithPasskeys/Shared/",
+  "swift_gate": "PasskeyApprovalGate.swift",
+  "hook": "/Users/fredwashere/wha-spell-simulator/.cursor/hooks/passkeys-shared-approval-gate-hook.py"
+}
