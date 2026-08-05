@@ -1,10 +1,10 @@
 {
   "schema": "shadow_garden.kimi3_local_open_weights_transition.v1",
-  "generated_at": "2026-07-29T23:47:41Z",
+  "generated_at": "2026-07-31T17:19:55Z",
   "bridge": "kimi3_third_leverage",
   "ordinal": 3,
-  "armed": false,
-  "status": "indexed_awaiting_KIMI3_TRANSITION_ARMED",
+  "armed": true,
+  "status": "armed_ready",
   "from": "perplexity_asuna_point_0_cloud_hybrid_mesh",
   "to": "local_open_weights_mesh",
   "preferred_runtime": {

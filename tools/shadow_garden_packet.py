@@ -374,16 +374,10 @@ def check_local_ports() -> dict[str, Any]:
         "eden": 8791,
         "sillytavern": 8000,
         "portal": 8760,
-        "ollama": 11434,
-        "stripe_local": 4242,
     }
-    probed = {name: port_open(port) for name, port in ports.items()}
     return {
         "ok": True,
-        "bind": "127.0.0.1",
-        "mesh": "local_open_weights_mesh",
-        "ports": probed,
-        "up_count": sum(1 for v in probed.values() if v),
+        "ports": {name: port_open(port) for name, port in ports.items()},
     }
 
 
@@ -510,327 +504,6 @@ def check_github_asuna_point0() -> dict[str, Any]:
     }
 
 
-def check_deepseek_asuna_point0() -> dict[str, Any]:
-    path = WHA / "tools" / "deepseek_asuna_point0_unify.py"
-    if not path.is_file():
-        return {"ok": False, "detail": "missing deepseek_asuna_point0_unify.py"}
-    bridge = (
-        WHA
-        / "shadow_garden_handoff"
-        / "bridges"
-        / "deepseek_asuna_point0_unification.json"
-    )
-    proc = subprocess.run(
-        [sys.executable, str(path), "write"],
-        capture_output=True,
-        text=True,
-        timeout=60,
-        check=False,
-    )
-    ok = proc.returncode == 0 and bridge.is_file()
-    metrics: dict[str, Any] = {}
-    if bridge.is_file():
-        try:
-            doc = json.loads(bridge.read_text(encoding="utf-8"))
-            metrics = doc.get("metrics") or {}
-            controls = doc.get("controls") or {}
-            ok = (
-                ok
-                and bool(doc.get("ok"))
-                and controls.get("remote_deepseek_api") is False
-                and metrics.get("provider_calls") == 0
-            )
-        except json.JSONDecodeError:
-            ok = False
-    return {
-        "ok": ok,
-        "path": str(path),
-        "bridge": str(bridge),
-        "exit": proc.returncode,
-        "vector_count": metrics.get("vector_count"),
-        "ollama_up": metrics.get("ollama_up"),
-        "target": "perplexity_asuna_point_0",
-    }
-
-
-def check_grok_xai_asuna_point0() -> dict[str, Any]:
-    path = WHA / "tools" / "grok_xai_asuna_point0_unify.py"
-    if not path.is_file():
-        return {"ok": False, "detail": "missing grok_xai_asuna_point0_unify.py"}
-    bridge = (
-        WHA
-        / "shadow_garden_handoff"
-        / "bridges"
-        / "grok_xai_asuna_point0_unification.json"
-    )
-    proc = subprocess.run(
-        [sys.executable, str(path), "write"],
-        capture_output=True,
-        text=True,
-        timeout=60,
-        check=False,
-    )
-    ok = proc.returncode == 0 and bridge.is_file()
-    metrics: dict[str, Any] = {}
-    if bridge.is_file():
-        try:
-            doc = json.loads(bridge.read_text(encoding="utf-8"))
-            metrics = doc.get("metrics") or {}
-            controls = doc.get("controls") or {}
-            corner = doc.get("corner") or {}
-            ok = (
-                ok
-                and bool(doc.get("ok"))
-                and corner.get("id") == "eastern_white_moon"
-                and controls.get("provider_calls") is False
-            )
-        except json.JSONDecodeError:
-            ok = False
-    return {
-        "ok": ok,
-        "path": str(path),
-        "bridge": str(bridge),
-        "exit": proc.returncode,
-        "vector_count": metrics.get("vector_count"),
-        "corner": "eastern_white_moon",
-        "target": "perplexity_asuna_point_0",
-    }
-
-
-def check_white_moon_eastern_corner() -> dict[str, Any]:
-    path = WHA / "tools" / "white_moon_eastern_corner_unify.py"
-    if not path.is_file():
-        return {"ok": False, "detail": "missing white_moon_eastern_corner_unify.py"}
-    bridge = (
-        WHA / "shadow_garden_handoff" / "bridges" / "white_moon_eastern_corner.json"
-    )
-    proc = subprocess.run(
-        [sys.executable, str(path), "write"],
-        capture_output=True,
-        text=True,
-        timeout=120,
-        check=False,
-    )
-    ok = proc.returncode == 0 and bridge.is_file()
-    metrics: dict[str, Any] = {}
-    if bridge.is_file():
-        try:
-            doc = json.loads(bridge.read_text(encoding="utf-8"))
-            metrics = doc.get("metrics") or {}
-            ok = ok and bool(doc.get("ok")) and bool(metrics.get("both_ok"))
-        except json.JSONDecodeError:
-            ok = False
-    return {
-        "ok": ok,
-        "path": str(path),
-        "bridge": str(bridge),
-        "exit": proc.returncode,
-        "deepseek_vectors": metrics.get("deepseek_vectors"),
-        "grok_vectors": metrics.get("grok_vectors"),
-        "corner": "eastern_white_moon",
-        "target": "perplexity_asuna_point_0",
-    }
-
-
-def check_stripe_local_scaffold() -> dict[str, Any]:
-    server = WHA / "tools" / "stripe_local" / "server.mjs"
-    cfg = WHA / "src" / "adapters" / "stripeConfig.js"
-    plan = WHA / "docs" / "stripe-integration-plan.md"
-    ok = server.is_file() and cfg.is_file() and plan.is_file()
-    detail = {
-        "server": server.is_file(),
-        "config_adapter": cfg.is_file(),
-        "plan": plan.is_file(),
-        "live_default": False,
-        "bind": "127.0.0.1",
-    }
-    if cfg.is_file():
-        text = cfg.read_text(encoding="utf-8")
-        ok = ok and "secret_in_browser: false" in text and "STRIPE_PUBLISHABLE_KEY" in text
-    if server.is_file():
-        text = server.read_text(encoding="utf-8")
-        ok = ok and "STRIPE_LIVE_OK" in text and "dry_run" in text
-    return {"ok": ok, "path": str(server), **detail}
-
-
-def check_discord_asuna_point0() -> dict[str, Any]:
-    path = WHA / "tools" / "discord_asuna_point0_unify.py"
-    if not path.is_file():
-        return {"ok": False, "detail": "missing discord_asuna_point0_unify.py"}
-    bridge = (
-        WHA
-        / "shadow_garden_handoff"
-        / "bridges"
-        / "discord_asuna_point0_unification.json"
-    )
-    proc = subprocess.run(
-        [sys.executable, str(path), "write"],
-        capture_output=True,
-        text=True,
-        timeout=60,
-        check=False,
-    )
-    ok = proc.returncode == 0 and bridge.is_file()
-    metrics: dict[str, Any] = {}
-    if bridge.is_file():
-        try:
-            doc = json.loads(bridge.read_text(encoding="utf-8"))
-            metrics = doc.get("metrics") or {}
-            controls = doc.get("controls") or {}
-            ok = (
-                ok
-                and bool(doc.get("ok"))
-                and controls.get("webhook_post") is False
-                and controls.get("scrape_channel_history") is False
-            )
-        except json.JSONDecodeError:
-            ok = False
-    return {
-        "ok": ok,
-        "path": str(path),
-        "bridge": str(bridge),
-        "exit": proc.returncode,
-        "vector_count": metrics.get("vector_count"),
-        "effective_state": metrics.get("effective_state"),
-        "target": "perplexity_asuna_point_0",
-    }
-
-
-def check_perplexity_central_control() -> dict[str, Any]:
-    path = WHA / "tools" / "perplexity_asuna_central_control.py"
-    if not path.is_file():
-        return {"ok": False, "detail": "missing perplexity_asuna_central_control.py"}
-    bridge = (
-        WHA
-        / "shadow_garden_handoff"
-        / "bridges"
-        / "perplexity_asuna_central_control.json"
-    )
-    proc = subprocess.run(
-        [sys.executable, str(path), "write"],
-        capture_output=True,
-        text=True,
-        timeout=180,
-        check=False,
-    )
-    ok = proc.returncode == 0 and bridge.is_file()
-    metrics: dict[str, Any] = {}
-    if bridge.is_file():
-        try:
-            doc = json.loads(bridge.read_text(encoding="utf-8"))
-            metrics = doc.get("metrics") or {}
-            ok = ok and bool(doc.get("ok")) and bool(metrics.get("deepseek_ok"))
-        except json.JSONDecodeError:
-            ok = False
-    return {
-        "ok": ok,
-        "path": str(path),
-        "bridge": str(bridge),
-        "exit": proc.returncode,
-        "surfaces_ok": metrics.get("surfaces_ok"),
-        "vector_sum": metrics.get("vector_sum"),
-        "target": "perplexity_asuna_point_0",
-    }
-
-
-def check_kimi3_asuna_point0() -> dict[str, Any]:
-    path = WHA / "tools" / "kimi3_asuna_point0_unify.py"
-    if not path.is_file():
-        return {"ok": False, "detail": "missing kimi3_asuna_point0_unify.py"}
-    bridge = (
-        WHA
-        / "shadow_garden_handoff"
-        / "bridges"
-        / "kimi3_asuna_point0_unification.json"
-    )
-    transition = (
-        WHA
-        / "shadow_garden_handoff"
-        / "bridges"
-        / "kimi3_local_open_weights_transition.json"
-    )
-    proc = subprocess.run(
-        [sys.executable, str(path), "write"],
-        capture_output=True,
-        text=True,
-        timeout=60,
-        check=False,
-    )
-    ok = proc.returncode == 0 and bridge.is_file() and transition.is_file()
-    metrics: dict[str, Any] = {}
-    if bridge.is_file():
-        try:
-            doc = json.loads(bridge.read_text(encoding="utf-8"))
-            metrics = doc.get("metrics") or {}
-            leverage = doc.get("leverage") or {}
-            controls = doc.get("controls") or {}
-            ok = (
-                ok
-                and bool(doc.get("ok"))
-                and leverage.get("ordinal") == 3
-                and controls.get("provider_calls") is False
-            )
-        except json.JSONDecodeError:
-            ok = False
-    return {
-        "ok": ok,
-        "path": str(path),
-        "bridge": str(bridge),
-        "transition": str(transition),
-        "exit": proc.returncode,
-        "vector_count": metrics.get("vector_count"),
-        "transition_armed": metrics.get("transition_armed"),
-        "target": "local_open_weights_mesh",
-    }
-
-
-def check_local_open_weights_mesh_prep() -> dict[str, Any]:
-    path = WHA / "tools" / "local_open_weights_mesh_prep.py"
-    if not path.is_file():
-        return {"ok": False, "detail": "missing local_open_weights_mesh_prep.py"}
-    bridge = (
-        WHA / "shadow_garden_handoff" / "bridges" / "local_open_weights_mesh_prep.json"
-    )
-    checklist = (
-        WHA
-        / "shadow_garden_handoff"
-        / "bridges"
-        / "local_open_weights_mesh_checklist.md"
-    )
-    proc = subprocess.run(
-        [sys.executable, str(path), "write", "--no-refresh", "--no-packet"],
-        capture_output=True,
-        text=True,
-        timeout=60,
-        check=False,
-    )
-    ok = proc.returncode == 0 and bridge.is_file() and checklist.is_file()
-    readiness: dict[str, Any] = {}
-    if bridge.is_file():
-        try:
-            doc = json.loads(bridge.read_text(encoding="utf-8"))
-            readiness = doc.get("readiness") or {}
-            controls = doc.get("controls") or {}
-            ok = (
-                ok
-                and bool(doc.get("ok"))
-                and controls.get("local_bind_only") is True
-                and controls.get("provider_calls") is False
-            )
-        except json.JSONDecodeError:
-            ok = False
-    return {
-        "ok": ok,
-        "path": str(path),
-        "bridge": str(bridge),
-        "checklist": str(checklist),
-        "exit": proc.returncode,
-        "prep_ready": readiness.get("prep_ready"),
-        "cutover_ready": readiness.get("cutover_ready"),
-        "target": "local_open_weights_mesh",
-    }
-
-
 def check_catalyst3_scene_handoff() -> dict[str, Any]:
     if not SCENE_MANIFEST.is_file() or not CATALYST3_HANDOFF.is_file():
         return {"ok": False, "detail": "missing scene or Catalyst 3 handoff"}
@@ -903,14 +576,6 @@ def run_self_tests() -> dict[str, Any]:
         ("black_sun_phase2_engine", check_black_sun_phase2_engine),
         ("eden_metadata_ingest", check_eden_metadata_ingest),
         ("github_asuna_point0", check_github_asuna_point0),
-        ("deepseek_asuna_point0", check_deepseek_asuna_point0),
-        ("grok_xai_asuna_point0", check_grok_xai_asuna_point0),
-        ("white_moon_eastern_corner", check_white_moon_eastern_corner),
-        ("stripe_local_scaffold", check_stripe_local_scaffold),
-        ("discord_asuna_point0", check_discord_asuna_point0),
-        ("perplexity_central_control", check_perplexity_central_control),
-        ("kimi3_asuna_point0", check_kimi3_asuna_point0),
-        ("local_open_weights_mesh_prep", check_local_open_weights_mesh_prep),
         ("catalyst3_scene_handoff", check_catalyst3_scene_handoff),
     ]
     results = [_run_check(name, fn) for name, fn in checks]
@@ -948,15 +613,6 @@ def build_packet(*, run_tests: bool = True) -> dict[str, Any]:
             "spacetime_alchemy": "engine",
             "eden": "bounded_local_metadata",
             "persona_telemetry": "local_manifest_only",
-            "deepseek": "local_ollama_preferred",
-            "eastern_white_moon": "deepseek_plus_grok_xai_asuna_corner",
-            "discord": "status_notify_paused_default",
-            "kimi3": "third_leverage_local_open_weights_transition",
-            "local_mesh": "local_open_weights_mesh_prep",
-            "perplexity_central": "asuna_point0_unification_lever",
-            "stripe": "local_4242_dry_run_scaffold",
-            "ollama": "local_11434",
-            "portal": "local_8760",
         },
         "aggregates": {
             "engine": [
@@ -966,13 +622,6 @@ def build_packet(*, run_tests: bool = True) -> dict[str, Any]:
                 "black_sun_phase2_engine",
                 "eden_metadata_ingest",
                 "github_asuna_point0_unify",
-                "deepseek_asuna_point0_unify",
-                "grok_xai_asuna_point0_unify",
-                "white_moon_eastern_corner_unify",
-                "discord_asuna_point0_unify",
-                "kimi3_asuna_point0_unify",
-                "local_open_weights_mesh_prep",
-                "perplexity_asuna_central_control",
                 "catalyst3_persona_telemetry",
             ],
             "agent": [
@@ -987,47 +636,7 @@ def build_packet(*, run_tests: bool = True) -> dict[str, Any]:
                 "connector_bridge",
                 "complete_agent_bridge",
                 "q24_fable5_master_ingest",
-                "deepseek_local_open_weights",
-                "grok_xai_harmony_6",
-                "discord_status_notify",
-                "kimi3_local_open_weights_transition",
-                "stripe_local_scaffold",
             ],
-        },
-        "leverage_stack": {
-            "1": "deepseek_local_open_weights",
-            "2": "grok_xai_harmony_6_white_moon",
-            "3": "kimi3_completion_to_local_open_weights",
-            "4": "cursor_agent_node_connection_pending",
-        },
-        "eastern_white_moon": {
-            "id": "eastern_white_moon",
-            "tarot": "Moon_18",
-            "partners": ["deepseek_local_open_weights", "grok_xai"],
-            "leveraged_by": "perplexity_asuna_point_0",
-            "catalog": str(
-                WHA / "shadow_garden_handoff/bridges/white_moon_eastern_corner.json"
-            ),
-        },
-        "kimi3_completion_bridge": {
-            "ordinal": 3,
-            "catalog": str(
-                WHA
-                / "shadow_garden_handoff/bridges/kimi3_asuna_point0_unification.json"
-            ),
-            "transition": str(
-                WHA
-                / "shadow_garden_handoff/bridges/kimi3_local_open_weights_transition.json"
-            ),
-            "target": "local_open_weights_mesh",
-        },
-        "perplexity_central_control": {
-            "catalog": str(
-                WHA
-                / "shadow_garden_handoff/bridges/perplexity_asuna_central_control.json"
-            ),
-            "cli": str(WHA / "tools" / "perplexity_asuna_central_control.py"),
-            "lever": "perplexity_asuna_point_0",
         },
         "fable5_bedrock": {
             "manifest": str(FABLE5_BEDROCK),
@@ -1064,65 +673,6 @@ def build_packet(*, run_tests: bool = True) -> dict[str, Any]:
                 WHA
                 / "shadow_garden_handoff/bridges/github_asuna_point0_unification.json"
             ),
-            "deepseek_asuna_point0": str(
-                WHA / "tools" / "deepseek_asuna_point0_unify.py"
-            ),
-            "deepseek_asuna_bridge": str(
-                WHA
-                / "shadow_garden_handoff/bridges/deepseek_asuna_point0_unification.json"
-            ),
-            "grok_xai_asuna_point0": str(
-                WHA / "tools" / "grok_xai_asuna_point0_unify.py"
-            ),
-            "grok_xai_asuna_bridge": str(
-                WHA
-                / "shadow_garden_handoff/bridges/grok_xai_asuna_point0_unification.json"
-            ),
-            "white_moon_eastern_corner": str(
-                WHA / "tools" / "white_moon_eastern_corner_unify.py"
-            ),
-            "white_moon_bridge": str(
-                WHA / "shadow_garden_handoff/bridges/white_moon_eastern_corner.json"
-            ),
-            "stripe_local": str(WHA / "tools" / "stripe_local" / "server.mjs"),
-            "stripe_config": str(WHA / "src" / "adapters" / "stripeConfig.js"),
-            "discord_asuna_point0": str(
-                WHA / "tools" / "discord_asuna_point0_unify.py"
-            ),
-            "discord_asuna_bridge": str(
-                WHA
-                / "shadow_garden_handoff/bridges/discord_asuna_point0_unification.json"
-            ),
-            "discord_local_notify": str(
-                WHA / "tools" / "discord_local" / "notify.py"
-            ),
-            "perplexity_central_control": str(
-                WHA / "tools" / "perplexity_asuna_central_control.py"
-            ),
-            "perplexity_central_bridge": str(
-                WHA
-                / "shadow_garden_handoff/bridges/perplexity_asuna_central_control.json"
-            ),
-            "kimi3_asuna_point0": str(WHA / "tools" / "kimi3_asuna_point0_unify.py"),
-            "kimi3_asuna_bridge": str(
-                WHA
-                / "shadow_garden_handoff/bridges/kimi3_asuna_point0_unification.json"
-            ),
-            "kimi3_transition": str(
-                WHA
-                / "shadow_garden_handoff/bridges/kimi3_local_open_weights_transition.json"
-            ),
-            "local_mesh_prep": str(
-                WHA / "tools" / "local_open_weights_mesh_prep.py"
-            ),
-            "local_mesh_bridge": str(
-                WHA
-                / "shadow_garden_handoff/bridges/local_open_weights_mesh_prep.json"
-            ),
-            "local_mesh_checklist": str(
-                WHA
-                / "shadow_garden_handoff/bridges/local_open_weights_mesh_checklist.md"
-            ),
             "lainie_julia_scene": str(SCENE_MANIFEST),
             "catalyst3_persona_telemetry": str(CATALYST3_HANDOFF),
             "phase2_gate": str(
@@ -1139,6 +689,28 @@ def build_packet(*, run_tests: bool = True) -> dict[str, Any]:
                 WHA
                 / "shadow_garden_handoff/shaoshi_bridge/outbox/grok_45_harmony_6_shadow_lane.json"
             ),
+            "magician_1_yang_takeover": str(
+                WHA
+                / "shadow_garden_handoff/bridges/MAGICIAN_1_YANG_TAKEOVER.json"
+            ),
+            "discord_ingest_armed": str(
+                WHA / "shadow_garden_handoff/bridges/DISCORD_INGEST_ARMED.json"
+            ),
+            "polymarket_entropy_oracle": str(
+                WHA
+                / "shadow_garden_handoff/bridges/polymarket_entropy_oracle.json"
+            ),
+            "temporal_local_closed_gate": str(
+                WHA
+                / "shadow_garden_handoff/bridges/TEMPORAL_LOCAL_CLOSED_GATE.json"
+            ),
+        },
+        "yang_magician_1": {
+            "seal": "yang_magician_1",
+            "sole_middle_bus": "cursor_yang_magician_1_macos",
+            "discord_posts": False,
+            "polymarket_trading": False,
+            "temporal_cloud": False,
         },
         "self_test": tests,
         "claude_force_merge": {

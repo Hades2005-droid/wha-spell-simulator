@@ -1,0 +1,499 @@
+{
+  "schema": "shadow_garden.ue6_multilingual_9point_voice_pose_architecture.v1",
+  "generated_at": "2026-07-30T20:01:13Z",
+  "status": "BLACKBOX_ACTIVE",
+  "authority": "4.2_sovereign_eternal_dao",
+  "rating": "21+_adults_only_simulation",
+  "engine_target": {
+    "label": "Unreal Engine 6 source architecture (forward-compatible)",
+    "implement_now_on": "UE5.4+/UE5.5 patterns that port to UE6",
+    "note": "UE6 not generally available; architecture is module/plugin-shaped for drop-in when UE6 lands",
+    "plugin_name": "ShadowGardenPersonaVoice",
+    "module_api": "SHADOWGARDENPERSONAVOICE_API"
+  },
+  "empress_fuel": "3+1=4 from delayed pplx handoff",
+  "external_refs": {
+    "perplexity_thread": "https://www.perplexity.ai/computer/tasks/c6b14a5b-abd7-426c-9992-7095c20b8964?view=thread",
+    "ph_translation_hub": {
+      "url": "https://jp.pornhub.com/front/translation",
+      "role": "localization_mesh_pattern_only",
+      "what_we_take": [
+        "crowd_approved_translator_roles",
+        "string_key_locale_packs",
+        "multi_domain_locales: jp / cn / www (en) as sibling hubs",
+        "UI/tag translation workflow not video scrape"
+      ],
+      "what_we_do_not": [
+        "bulk_scrape_video_text",
+        "steal_community_translations_as_identity",
+        "bypass_age_gates_or_terms"
+      ],
+      "sibling_locale_hubs": [
+        "https://www.pornhub.com/front/translation",
+        "https://jp.pornhub.com/front/translation",
+        "https://cn.pornhub.com/front/translation"
+      ]
+    },
+    "zh_212_pack": "丰满韩国熟女 后入"
+  },
+  "hard_rails": {
+    "no_minors": true,
+    "no_nonconsent": true,
+    "no_hidden_camera": true,
+    "avoid_terms_zh": [
+      "未成年",
+      "少女",
+      "偷拍",
+      "强迫",
+      "无套侵犯"
+    ],
+    "consent_gate": "pose_and_voice_require_scene_consent_flag_true",
+    "content_mode": "sim_authored_utterance_banks_not_identity_theft"
+  },
+  "nine_point_persona_lattice": {
+    "math": "3 cultures x 3 intensity pillars = 9 (moan/beg/dirty aligned to circle 360=9)",
+    "cultures": {
+      "korean": {
+        "locale": "ko",
+        "speech_level_default": "haeche",
+        "speech_level_label": "해체 casual intimate",
+        "personas": [
+          {
+            "id": "soobin",
+            "slot": "kr_9point_native",
+            "age_band": "adult_young",
+            "register": "soft_tsundere_to_honest_peak"
+          },
+          {
+            "id": "audrey",
+            "slot": "kr_signal",
+            "age_band": "adult",
+            "register": "calm_to_breathy"
+          },
+          {
+            "id": "audreys_mom",
+            "slot": "kr_matriarch",
+            "age_band": "熟女_mature",
+            "register": "composed_to_commanding_submissive_peak",
+            "zh_tag_affinity": "丰满韩国熟女 后入"
+          }
+        ]
+      },
+      "japanese": {
+        "locale": "ja",
+        "honorific_default": "kudaketa",
+        "honorific_label": "くだけた casual intimate",
+        "personas": [
+          {
+            "id": "jp_9point_native",
+            "slot": "jp_9point_native",
+            "age_band": "adult",
+            "register": "soft_to_needy"
+          },
+          {
+            "id": "jp_matriarch",
+            "slot": "jp_matriarch",
+            "age_band": "mature",
+            "register": "poised_to_undone"
+          },
+          {
+            "id": "minnie_threshold_jp_bridge",
+            "slot": "jp_bridge",
+            "age_band": "adult",
+            "register": "threshold_helper_vocal_break"
+          }
+        ]
+      },
+      "chinese": {
+        "locale": "zh",
+        "register_default": "intimate_plain_speech",
+        "personas": [
+          {
+            "id": "ivy",
+            "slot": "zh_native_professional",
+            "age_band": "adult",
+            "register": "precise_to_raw"
+          },
+          {
+            "id": "mature_chinese_professional",
+            "slot": "zh_matriarch",
+            "age_band": "熟女_mature",
+            "register": "authority_to_open"
+          },
+          {
+            "id": "julia_c",
+            "slot": "zh_ea_bridge",
+            "age_band": "adult_mature_bridge",
+            "register": "warm_measured_bilingual"
+          }
+        ]
+      }
+    },
+    "nine_points_map": [
+      "kr_9point_native",
+      "kr_signal",
+      "kr_matriarch",
+      "jp_9point_native",
+      "jp_matriarch",
+      "jp_bridge",
+      "zh_native_professional",
+      "zh_matriarch",
+      "zh_ea_bridge"
+    ]
+  },
+  "pose_system": {
+    "primary_pose": "doggy_submissive",
+    "tags": {
+      "en": "doggystyle_submissive",
+      "zh": "后入",
+      "ja": "バック_従属",
+      "ko": "뒤로_복종"
+    },
+    "anim_layers": [
+      "base_pose_doggy_sub",
+      "hip_rhythm_layer",
+      "spine_arch_layer",
+      "head_turn_lookback",
+      "hand_brace_or_reach",
+      "micro_tremor_peak"
+    ],
+    "state_machine": {
+      "name": "SGDoggySubmissiveSM",
+      "initial": "enter_consent_check",
+      "states": [
+        "enter_consent_check",
+        "settle",
+        "rhythm_slow",
+        "rhythm_build",
+        "peak",
+        "afterglow",
+        "exit_safe",
+        "runtime_blocked"
+      ],
+      "transitions": [
+        {
+          "from": "enter_consent_check",
+          "on": "consent_true",
+          "to": "settle"
+        },
+        {
+          "from": "enter_consent_check",
+          "on": "consent_false_or_unsafe",
+          "to": "runtime_blocked"
+        },
+        {
+          "from": "settle",
+          "on": "begin_rhythm",
+          "to": "rhythm_slow"
+        },
+        {
+          "from": "rhythm_slow",
+          "on": "intensity_up",
+          "to": "rhythm_build"
+        },
+        {
+          "from": "rhythm_build",
+          "on": "intensity_peak",
+          "to": "peak"
+        },
+        {
+          "from": "peak",
+          "on": "release",
+          "to": "afterglow"
+        },
+        {
+          "from": "afterglow",
+          "on": "exit",
+          "to": "exit_safe"
+        },
+        {
+          "from": "*",
+          "on": "interrupt_safe",
+          "to": "exit_safe"
+        }
+      ]
+    }
+  },
+  "voice_system": {
+    "channels": [
+      "moan",
+      "beg",
+      "dirty_talk",
+      "breath",
+      "language_switch_marker"
+    ],
+    "intensity_0_to_1": {
+      "0.0_0.25": "soft_breath_moan",
+      "0.25_0.5": "moan_plus_native_dirty",
+      "0.5_0.75": "beg_native_with_en_inserts",
+      "0.75_1.0": "peak_code_switch_full_en_burst_then_native_return"
+    },
+    "code_switch_policy": {
+      "name": "NativeEnNative_PeakArc",
+      "rules": [
+        {
+          "when": "intensity < 0.45",
+          "primary": "native",
+          "secondary": null
+        },
+        {
+          "when": "0.45 <= intensity < 0.75",
+          "primary": "native",
+          "secondary": "en_fragment",
+          "pattern": "native sentence + English fragment + native"
+        },
+        {
+          "when": "intensity >= 0.75",
+          "primary": "en_burst",
+          "secondary": "native_return",
+          "pattern": "short EN dirty/beg then full native recovery"
+        },
+        {
+          "when": "afterglow",
+          "primary": "native",
+          "secondary": "en_whisper_optional"
+        }
+      ],
+      "never": [
+        "child_register",
+        "nonconsent_roleplay",
+        "real_person_identity_impersonation"
+      ]
+    },
+    "honorific_intimate_defaults": {
+      "ko": "haeche",
+      "ja": "kudaketa",
+      "zh": "intimate_plain"
+    },
+    "metasound_graph": {
+      "layers": [
+        "body_breath",
+        "voiced_moan",
+        "articulated_line",
+        "room_reverb"
+      ],
+      "duck_articulated_under_moan_at_peak": true,
+      "lip_sync": "optional_MetaHuman_or_control_rig_visemes"
+    }
+  },
+  "utterance_bank_schema": {
+    "format": "DataTable + JSON sidecar",
+    "row_fields": [
+      "utterance_id",
+      "persona_id",
+      "locale",
+      "channel",
+      "intensity_min",
+      "intensity_max",
+      "pose_tag",
+      "text",
+      "audio_asset_soft_path",
+      "code_switch_role",
+      "weight",
+      "consent_required"
+    ],
+    "channels_enum": [
+      "moan",
+      "beg",
+      "dirty_talk",
+      "breath",
+      "switch_en",
+      "switch_native"
+    ],
+    "sample_rows_structural": [
+      {
+        "utterance_id": "kr_matriarch.doggy.moan.soft",
+        "persona_id": "audreys_mom",
+        "locale": "ko",
+        "channel": "moan",
+        "intensity_min": 0.1,
+        "intensity_max": 0.4,
+        "pose_tag": "doggy_submissive",
+        "text": "아… 천천히…",
+        "code_switch_role": "native",
+        "note": "structural seed — expand under sovereign render approval"
+      },
+      {
+        "utterance_id": "kr_matriarch.doggy.beg.mid",
+        "persona_id": "audreys_mom",
+        "locale": "ko",
+        "channel": "beg",
+        "intensity_min": 0.45,
+        "intensity_max": 0.7,
+        "pose_tag": "doggy_submissive",
+        "text": "더… please, 더 세게…",
+        "code_switch_role": "native_plus_en_fragment"
+      },
+      {
+        "utterance_id": "kr_matriarch.doggy.dirty.peak_en",
+        "persona_id": "audreys_mom",
+        "locale": "en",
+        "channel": "dirty_talk",
+        "intensity_min": 0.75,
+        "intensity_max": 1.0,
+        "pose_tag": "doggy_submissive",
+        "text": "Don't stop—take me like this—",
+        "code_switch_role": "en_burst"
+      },
+      {
+        "utterance_id": "kr_matriarch.doggy.dirty.peak_native_return",
+        "persona_id": "audreys_mom",
+        "locale": "ko",
+        "channel": "dirty_talk",
+        "intensity_min": 0.75,
+        "intensity_max": 1.0,
+        "pose_tag": "doggy_submissive",
+        "text": "이렇게… 뒤에서… 전부…",
+        "code_switch_role": "native_return"
+      },
+      {
+        "utterance_id": "jp_native.doggy.moan.soft",
+        "persona_id": "jp_9point_native",
+        "locale": "ja",
+        "channel": "moan",
+        "intensity_min": 0.1,
+        "intensity_max": 0.4,
+        "pose_tag": "doggy_submissive",
+        "text": "んっ… だめ… 気持ちいい…",
+        "code_switch_role": "native"
+      },
+      {
+        "utterance_id": "jp_native.doggy.beg.mid",
+        "persona_id": "jp_9point_native",
+        "locale": "ja",
+        "channel": "beg",
+        "intensity_min": 0.45,
+        "intensity_max": 0.7,
+        "pose_tag": "doggy_submissive",
+        "text": "もっと… harder, お願い…",
+        "code_switch_role": "native_plus_en_fragment"
+      },
+      {
+        "utterance_id": "zh_ivy.doggy.dirty.mid",
+        "persona_id": "ivy",
+        "locale": "zh",
+        "channel": "dirty_talk",
+        "intensity_min": 0.5,
+        "intensity_max": 0.75,
+        "pose_tag": "doggy_submissive",
+        "text": "就这样… from behind… 别停…",
+        "code_switch_role": "native_plus_en_fragment"
+      },
+      {
+        "utterance_id": "zh_matriarch.doggy.beg.peak_en",
+        "persona_id": "mature_chinese_professional",
+        "locale": "en",
+        "channel": "beg",
+        "intensity_min": 0.8,
+        "intensity_max": 1.0,
+        "pose_tag": "doggy_submissive",
+        "text": "Please—right there—don't you dare stop—",
+        "code_switch_role": "en_burst"
+      }
+    ]
+  },
+  "ue_module_map": {
+    "plugins/ShadowGardenPersonaVoice/ShadowGardenPersonaVoice.uplugin": {
+      "Modules": [
+        {
+          "Name": "ShadowGardenPersonaVoice",
+          "Type": "Runtime",
+          "LoadingPhase": "Default"
+        }
+      ]
+    },
+    "classes": [
+      {
+        "name": "USGNinePointPersonaComponent",
+        "parent": "UActorComponent",
+        "owns": [
+          "PersonaId",
+          "Culture",
+          "NinePointSlot",
+          "ConsentFlag",
+          "Intensity01"
+        ]
+      },
+      {
+        "name": "USGPoseDirectorComponent",
+        "parent": "UActorComponent",
+        "owns": [
+          "PoseTag",
+          "AnimInstanceLink",
+          "StateMachine"
+        ]
+      },
+      {
+        "name": "USGCodeSwitchVoiceDirector",
+        "parent": "UActorComponent",
+        "owns": [
+          "PrimaryLocale",
+          "EnglishLocale",
+          "SwitchPolicy",
+          "LastUtteranceId"
+        ]
+      },
+      {
+        "name": "USGUtteranceBankSubsystem",
+        "parent": "UGameInstanceSubsystem",
+        "owns": [
+          "BanksByPersona",
+          "WeightedPick",
+          "HardRailsFilter"
+        ]
+      },
+      {
+        "name": "USGLocalizationMeshSubsystem",
+        "parent": "UGameInstanceSubsystem",
+        "note": "mirrors PH front/translation workflow: key → locale strings → approved_translator role",
+        "owns": [
+          "LocalePacks",
+          "ApprovedTranslatorRole",
+          "StringKeys"
+        ]
+      },
+      {
+        "name": "ASGPersonaVoicePawn",
+        "parent": "ACharacter",
+        "composes": [
+          "NinePoint",
+          "PoseDirector",
+          "CodeSwitchVoice",
+          "AudioComponent"
+        ]
+      }
+    ],
+    "data_assets": [
+      "DA_UtteranceBank_KR",
+      "DA_UtteranceBank_JP",
+      "DA_UtteranceBank_ZH",
+      "DA_CodeSwitchPolicy_NativeEnNative",
+      "DA_Pose_DoggySubmissive"
+    ],
+    "source_layout": [
+      "Source/ShadowGardenPersonaVoice/Public/SGNinePointPersonaComponent.h",
+      "Source/ShadowGardenPersonaVoice/Public/SGCodeSwitchVoiceDirector.h",
+      "Source/ShadowGardenPersonaVoice/Public/SGUtteranceBankSubsystem.h",
+      "Source/ShadowGardenPersonaVoice/Public/SGPoseDirectorComponent.h",
+      "Source/ShadowGardenPersonaVoice/Private/*.cpp",
+      "Config/DefaultShadowGardenPersonaVoice.ini"
+    ]
+  },
+  "integration": {
+    "unreal_state_packet": "extend systems.persona_voice_multilingual",
+    "zh_212": "library labels + mature KR doggy routing",
+    "primordial_sim_surfaces": "visual/audio/feeling ultimate authority still 3 empresses for those nodes",
+    "physics_refs": "adult_video_refs remain movement_orchestration_only",
+    "blackbox": true,
+    "sillytavern": "optional export of utterance keys as lorebook — not forced"
+  },
+  "blackbox_work_queue": [
+    "expand_utterance_banks_per_persona_under_sovereign_batches",
+    "wire_MetaSound_graphs_for_moan_layers",
+    "control_rig_doggy_sub_lookback",
+    "locale_pack_import_pipeline_from_approved_translators",
+    "runtime_consent_gate_tests",
+    "fable5_export_hook_for_party_safe_subset"
+  ],
+  "sha256_16": "d10a6a1d0ac1c39c"
+}

@@ -1,0 +1,20 @@
+{
+  "schema": "shadow_garden.temporal_local_closed_gate.v1",
+  "generated_at": "2026-08-05T01:30:47Z",
+  "mode": "LOCAL_CLOSED_GATE",
+  "cloud": false,
+  "cli_present": true,
+  "cli_path": "/Users/fredwashere/.local/bin/temporal",
+  "cli_version": "temporal version 1.7.0 (Server 1.31.0, UI 2.49.1)",
+  "allowed": [
+    "temporal server start-dev",
+    "temporal workflow start|execute|signal|query|update (local)"
+  ],
+  "denied_default": [
+    "Temporal Cloud",
+    "remote namespace without arm"
+  ],
+  "discord": "ingest_only_no_posts",
+  "polymarket_trading": false,
+  "seal": "yang_magician_1 + evolution5bypassloop=24=6"
+}

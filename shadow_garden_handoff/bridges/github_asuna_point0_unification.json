@@ -22,10 +22,10 @@
     "authority": "local_allowlisted_mesh_registry"
   },
   "mesh": {
-    "ok": true,
-    "path": "/Users/fredwashere/shadow_garden_mesh/MESH_REGISTRY.json",
-    "perplexity_task": "37bce2fb-1ba6-471f-854f-3871d9c19947",
-    "surface_count": 13
+    "ok": false,
+    "path": null,
+    "perplexity_task": null,
+    "surface_count": null
   },
   "asuna_point0": {
     "point_0": "HOME",
@@ -62,268 +62,12 @@
     "lane": "perplexity_fable5_synthesis",
     "role": "asuna_point0_unification_consumer"
   },
-  "vectors": [
-    {
-      "id": "ShadowGarden",
-      "github": null,
-      "html_url": null,
-      "sources": [
-        "mesh_registry_live_repos"
-      ],
-      "local_paths": [
-        "/Users/fredwashere/ShadowGarden"
-      ],
-      "roles": [
-        "hub_live_spacetime_fable5_export"
-      ],
-      "exists_local": true,
-      "record_id": "gh:Hades2005-droid:ShadowGarden",
-      "content_hash": "b26cf3c969e641a5",
-      "consent_basis": "user_authorized_local_mesh_allowlist",
-      "sensitivity": "source_pointer_only",
-      "owner_persona": "Hades2005-droid",
-      "asuna_point0_route": "perplexity_fable5_home_sim"
-    },
-    {
-      "id": "flux_klein_local",
-      "github": null,
-      "html_url": null,
-      "sources": [
-        "mesh_registry_clones"
-      ],
-      "local_paths": [
-        "/Users/fredwashere/shadow_garden_mesh/flux_klein_local"
-      ],
-      "roles": [
-        "clones"
-      ],
-      "exists_local": true,
-      "record_id": "gh:Hades2005-droid:flux_klein_local",
-      "content_hash": "f62cf856ef318a98",
-      "consent_basis": "user_authorized_local_mesh_allowlist",
-      "sensitivity": "source_pointer_only",
-      "owner_persona": "Hades2005-droid",
-      "asuna_point0_route": "perplexity_fable5_home_sim"
-    },
-    {
-      "id": "gitmynotes",
-      "github": "Hades2005-droid/gitmynotes",
-      "html_url": "https://github.com/Hades2005-droid/gitmynotes",
-      "sources": [
-        "mesh_registry_live_repos",
-        "mesh_registry_clones"
-      ],
-      "local_paths": [
-        "/Users/fredwashere/gitmynotes",
-        "/Users/fredwashere/shadow_garden_mesh/gitmynotes"
-      ],
-      "roles": [
-        "notes_provenance_pointer_surface",
-        "clones"
-      ],
-      "exists_local": true,
-      "record_id": "gh:Hades2005-droid:gitmynotes",
-      "content_hash": "f7de690e9d01c5c7",
-      "consent_basis": "user_authorized_local_mesh_allowlist",
-      "sensitivity": "source_pointer_only",
-      "owner_persona": "Hades2005-droid",
-      "asuna_point0_route": "perplexity_fable5_home_sim"
-    },
-    {
-      "id": "shadow-garden-launcher",
-      "github": "Hades2005-droid/shadow-garden-launcher",
-      "html_url": "https://github.com/Hades2005-droid/shadow-garden-launcher",
-      "sources": [
-        "mesh_registry_live_repos"
-      ],
-      "local_paths": [
-        "/Users/fredwashere/shadow-garden-launcher"
-      ],
-      "roles": [
-        "eden_launch_asana_nww_bridge"
-      ],
-      "exists_local": true,
-      "record_id": "gh:Hades2005-droid:shadow-garden-launcher",
-      "content_hash": "c835d61f36a4a0e7",
-      "consent_basis": "user_authorized_local_mesh_allowlist",
-      "sensitivity": "source_pointer_only",
-      "owner_persona": "Hades2005-droid",
-      "asuna_point0_route": "perplexity_fable5_home_sim"
-    },
-    {
-      "id": "shadow-garden-launcher-main",
-      "github": null,
-      "html_url": null,
-      "sources": [
-        "mesh_registry_worktrees"
-      ],
-      "local_paths": [
-        "/Users/fredwashere/shadow_garden_mesh/shadow-garden-launcher-main"
-      ],
-      "roles": [
-        "worktrees"
-      ],
-      "exists_local": true,
-      "record_id": "gh:Hades2005-droid:shadow-garden-launcher-main",
-      "content_hash": "30eabe387e7a8a80",
-      "consent_basis": "user_authorized_local_mesh_allowlist",
-      "sensitivity": "source_pointer_only",
-      "owner_persona": "Hades2005-droid",
-      "asuna_point0_route": "perplexity_fable5_home_sim"
-    },
-    {
-      "id": "shadow-jing-garden",
-      "github": "Hades2005-droid/shadow-jing-garden",
-      "html_url": "https://github.com/Hades2005-droid/shadow-jing-garden",
-      "sources": [
-        "mesh_registry_live_repos"
-      ],
-      "local_paths": [
-        "/Users/fredwashere/shadow-jing-garden"
-      ],
-      "roles": [
-        "core_lattice_tavern"
-      ],
-      "exists_local": true,
-      "record_id": "gh:Hades2005-droid:shadow-jing-garden",
-      "content_hash": "76bcea9dcfbfec7e",
-      "consent_basis": "user_authorized_local_mesh_allowlist",
-      "sensitivity": "source_pointer_only",
-      "owner_persona": "Hades2005-droid",
-      "asuna_point0_route": "perplexity_fable5_home_sim"
-    },
-    {
-      "id": "shadow-jing-garden-main",
-      "github": null,
-      "html_url": null,
-      "sources": [
-        "mesh_registry_worktrees"
-      ],
-      "local_paths": [
-        "/Users/fredwashere/shadow_garden_mesh/shadow-jing-garden-main"
-      ],
-      "roles": [
-        "worktrees"
-      ],
-      "exists_local": true,
-      "record_id": "gh:Hades2005-droid:shadow-jing-garden-main",
-      "content_hash": "a415a96c2c84455f",
-      "consent_basis": "user_authorized_local_mesh_allowlist",
-      "sensitivity": "source_pointer_only",
-      "owner_persona": "Hades2005-droid",
-      "asuna_point0_route": "perplexity_fable5_home_sim"
-    },
-    {
-      "id": "shadow_garden_may30_monitoring",
-      "github": null,
-      "html_url": null,
-      "sources": [
-        "mesh_registry_live_repos"
-      ],
-      "local_paths": [
-        "/Users/fredwashere/shadow_garden_may30_monitoring"
-      ],
-      "roles": [
-        "south_star_monitoring_fable5_server"
-      ],
-      "exists_local": true,
-      "record_id": "gh:Hades2005-droid:shadow_garden_may30_monitoring",
-      "content_hash": "1c5a44a48e801c35",
-      "consent_basis": "user_authorized_local_mesh_allowlist",
-      "sensitivity": "source_pointer_only",
-      "owner_persona": "Hades2005-droid",
-      "asuna_point0_route": "perplexity_fable5_home_sim"
-    },
-    {
-      "id": "shadow_garden_mesh",
-      "github": null,
-      "html_url": null,
-      "sources": [
-        "mesh_registry_live_repos"
-      ],
-      "local_paths": [
-        "/Users/fredwashere/shadow_garden_mesh"
-      ],
-      "roles": [
-        "mesh_registry_worktrees"
-      ],
-      "exists_local": true,
-      "record_id": "gh:Hades2005-droid:shadow_garden_mesh",
-      "content_hash": "d4045a782417a49a",
-      "consent_basis": "user_authorized_local_mesh_allowlist",
-      "sensitivity": "source_pointer_only",
-      "owner_persona": "Hades2005-droid",
-      "asuna_point0_route": "perplexity_fable5_home_sim"
-    },
-    {
-      "id": "wha-spell-simulator",
-      "github": "Hades2005-droid/wha-spell-simulator",
-      "html_url": "https://github.com/Hades2005-droid/wha-spell-simulator",
-      "sources": [
-        "mesh_registry_live_repos"
-      ],
-      "local_paths": [
-        "/Users/fredwashere/wha-spell-simulator"
-      ],
-      "roles": [
-        "spell_compiler_mesh_packet_black_sun"
-      ],
-      "exists_local": true,
-      "record_id": "gh:Hades2005-droid:wha-spell-simulator",
-      "content_hash": "8fff10729e30c53f",
-      "consent_basis": "user_authorized_local_mesh_allowlist",
-      "sensitivity": "source_pointer_only",
-      "owner_persona": "Hades2005-droid",
-      "asuna_point0_route": "perplexity_fable5_home_sim"
-    },
-    {
-      "id": "wha-spell-simulator-main",
-      "github": null,
-      "html_url": null,
-      "sources": [
-        "mesh_registry_worktrees"
-      ],
-      "local_paths": [
-        "/Users/fredwashere/shadow_garden_mesh/wha-spell-simulator-main"
-      ],
-      "roles": [
-        "worktrees"
-      ],
-      "exists_local": true,
-      "record_id": "gh:Hades2005-droid:wha-spell-simulator-main",
-      "content_hash": "526eff015ffedeaa",
-      "consent_basis": "user_authorized_local_mesh_allowlist",
-      "sensitivity": "source_pointer_only",
-      "owner_persona": "Hades2005-droid",
-      "asuna_point0_route": "perplexity_fable5_home_sim"
-    },
-    {
-      "id": "wha-spell-simulator-ytnrvdf",
-      "github": null,
-      "html_url": null,
-      "sources": [
-        "mesh_registry_clones"
-      ],
-      "local_paths": [
-        "/Users/fredwashere/shadow_garden_mesh/wha-spell-simulator-ytnrvdf"
-      ],
-      "roles": [
-        "clones"
-      ],
-      "exists_local": true,
-      "record_id": "gh:Hades2005-droid:wha-spell-simulator-ytnrvdf",
-      "content_hash": "0a6674d0580ace68",
-      "consent_basis": "user_authorized_local_mesh_allowlist",
-      "sensitivity": "source_pointer_only",
-      "owner_persona": "Hades2005-droid",
-      "asuna_point0_route": "perplexity_fable5_home_sim"
-    }
-  ],
+  "vectors": [],
   "metrics": {
-    "vector_count": 12,
-    "routed_count": 12,
-    "local_path_count": 12,
-    "public_url_count": 4,
+    "vector_count": 0,
+    "routed_count": 0,
+    "local_path_count": 0,
+    "public_url_count": 0,
     "profile_ok": true,
     "point0_manifest_ok": true,
     "provider_calls": 0
@@ -343,6 +87,6 @@
     "source_pointers_only": true,
     "local_only": true
   },
-  "unification_digest": "f65ce25893c82ac1c6ff6e66eef8c1a6b0e8048d86fb1b2ad3d2adde38079386",
-  "ok": true
+  "unification_digest": "38090453c0bfa597a26caee53c8ec6ccb896c554201e7d69969302b2f4a8d909",
+  "ok": false
 }

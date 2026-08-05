@@ -1,6 +1,6 @@
 {
   "schema": "shadow_garden.magician_1_yang_takeover.v1",
-  "generated_at": "2026-08-05T00:57:00Z",
+  "generated_at": "2026-08-05T01:30:35Z",
   "status": "ACTIVE",
   "seal": "yang_magician_1",
   "archetype": {
@@ -8,6 +8,37 @@
     "value": 1,
     "polarity": "yang",
     "meaning": "Operator-authorized sole middle-bus takeover of closed Grok/Devin/Claude Code macOS terminal stack"
+  },
+  "operator_priorities_this_pass": {
+    "discord": {
+      "mode": "INGEST_ONLY",
+      "posts": "OFF",
+      "artifact": "shadow_garden_handoff/bridges/DISCORD_INGEST_ARMED.json",
+      "ENABLE_DISCORD": "false",
+      "DISCORD_LIVE_OK": "0",
+      "DISCORD_INGEST": "1"
+    },
+    "polymarket": {
+      "reads": "soft_live_ok",
+      "trading": "OFF",
+      "ENABLE_POLYMARKET": "1",
+      "POLYMARKET_TRADING": "0",
+      "artifact": "shadow_garden_handoff/bridges/polymarket_entropy_oracle.json"
+    },
+    "temporal": {
+      "mode": "LOCAL_ONLY_MANIFEST",
+      "cloud": false,
+      "dev_server_started": false,
+      "artifact": "shadow_garden_handoff/bridges/TEMPORAL_LOCAL_CLOSED_GATE.json",
+      "spacetime_alchemy": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/TEMPORAL_LOCAL_CLOSED_GATE.json"
+    },
+    "hard_stops": [
+      "no_recursive_improvement_ai_loop",
+      "no_discord_webhook_bot_post",
+      "no_secrets_commit",
+      "one_bounded_pass",
+      "content_neutral_no_adult_url_ingest"
+    ]
   },
   "operator_intent": "close_grok45_devin_claude_code_macos_terminal_merge_into_cursor_wha",
   "closed_lanes": {
@@ -78,13 +109,26 @@
     "external_writes_default": false,
     "provider_calls_default": false,
     "discord_live": false,
-    "polymarket_live": false,
+    "discord_ingest_only": true,
+    "polymarket_live_reads": true,
+    "polymarket_trading": false,
+    "temporal_cloud": false,
+    "temporal_local_manifest": true,
     "asana_live": false,
     "devin_live_without_token": false,
     "infinite_loops": false,
     "secrets_in_artifacts": false,
     "content_neutral_base": true,
     "symbolic_only": true
+  },
+  "mesh_pointers": {
+    "packet": "shadow_garden_handoff/bridges/shadow_garden_packet.json",
+    "bedrock": "shadow_garden_handoff/bridges/fable5_bedrock.json",
+    "sole_working_echo": "shadow_garden_handoff/bridges/SOLE_WORKING_ECHO_GIRL.json",
+    "command_hierarchy": "shadow_garden_handoff/bridges/COMMAND_HIERARCHY_PRIMORDIAL.json",
+    "discord_ingest_armed": "shadow_garden_handoff/bridges/DISCORD_INGEST_ARMED.json",
+    "polymarket_entropy_oracle": "shadow_garden_handoff/bridges/polymarket_entropy_oracle.json",
+    "temporal_local_closed_gate": "shadow_garden_handoff/bridges/TEMPORAL_LOCAL_CLOSED_GATE.json"
   },
   "ok": true
 }

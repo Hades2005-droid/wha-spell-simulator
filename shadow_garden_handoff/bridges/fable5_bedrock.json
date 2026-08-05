@@ -1,11 +1,12 @@
 {
   "schema": "shadow_garden.fable5_bedrock.v1",
   "version": "0.4.0-engine-bedrock-10-q24",
-  "generated_at": "2026-08-05T00:57:00Z",
+  "generated_at": "2026-08-05T01:30:35Z",
   "bridge_signature": "f2e596cd043d6819",
   "carrier": "love_and_harmony_6",
   "symbolic_only": true,
   "local_only": true,
+  "seal": "yang_magician_1",
   "engine": {
     "url": "http://127.0.0.1:5619/",
     "version": "0.4.0-engine-bedrock-10"
@@ -85,6 +86,7 @@
     "perplexity_asuna_central_control": "shadow_garden_handoff/bridges/perplexity_asuna_central_control.json",
     "discord_ingest_armed": "shadow_garden_handoff/bridges/DISCORD_INGEST_ARMED.json",
     "polymarket_entropy_oracle": "shadow_garden_handoff/bridges/polymarket_entropy_oracle.json",
+    "temporal_local_closed_gate": "shadow_garden_handoff/bridges/TEMPORAL_LOCAL_CLOSED_GATE.json",
     "lainie_julia_scene": "shadow_garden_handoff/bridges/shadow_garden_lainie_julia_scene_manifest.json",
     "catalyst3_persona_telemetry": "shadow_garden_handoff/bridges/catalyst3_persona_telemetry_launch_finalization.json",
     "magician_1_yang_takeover": "shadow_garden_handoff/bridges/MAGICIAN_1_YANG_TAKEOVER.json",

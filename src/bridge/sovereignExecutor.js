@@ -19,7 +19,6 @@ const SOVEREIGN_EFFECTS = {
   phase2_moon_gate: executePhase2MoonGate,
   phase2_recursive_spell: executePhase2RecursiveSpell,
   phase2_white_moon_gate: executePhase2WhiteMoonGate,
-  phase3_persephone_shutdown: executePhase3PersephoneShutdown,
 };
 
 /**
@@ -286,31 +285,6 @@ async function executePhase2WhiteMoonGate(_context) {
     contentNeutral: true,
     timestamp: new Date().toISOString(),
     message: 'White Moon Gate polarity reversal armed (symbolic / local-only) — Black Sun anchor released',
-  };
-}
-
-/**
- * Phase 3 — Persephone shutdown (Dimension 0 seal). Yin polarity close paired
- * with the Phase 2 Black Sun / White Moon gate cycle. Manifest-only pointer;
- * no live Discord calls from the spell compiler.
- */
-async function executePhase3PersephoneShutdown(_context) {
-  return {
-    phase: 3,
-    seal: 'dimension_0_shutdown',
-    yinPolarity: true,
-    pairedWith: 'sovereign-white-moon-gate',
-    yangAnchor: 'sovereign-black-sun',
-    polarity: { flip: 'dimension_0_close', from: 'north_light', to: 'dimension_0_rest' },
-    throneState: 'sealed',
-    executionMode: 'manifest_only',
-    contentNeutral: true,
-    liveDiscord: false,
-    discordApplicationIdEnv: 'DISCORD_APPLICATION_ID',
-    cli: 'python3 -m eden_shadow.game --shutdown --new',
-    bridge: 'shadow_garden_handoff/bridges/phase3_persephone_shutdown_bridge.json',
-    timestamp: new Date().toISOString(),
-    message: 'Phase 3 Persephone shutdown seal armed (manifest-only / local-only)',
   };
 }
 

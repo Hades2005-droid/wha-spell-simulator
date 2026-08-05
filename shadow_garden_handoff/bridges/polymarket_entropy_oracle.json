@@ -1,14 +1,22 @@
 {
   "schema": "shadow_garden.polymarket_asuna_point0_unification.v1",
-  "generated_at": "2026-08-05T01:17:36Z",
+  "generated_at": "2026-08-05T01:30:35Z",
   "carrier": "love_and_harmony_6",
   "bridge_signature": "f2e596cd043d6819",
   "phase": 2,
+  "seal": "yang_magician_1",
+  "posture": {
+    "ENABLE_POLYMARKET": "1",
+    "POLYMARKET_TRADING": "0",
+    "reads": "soft_live_ok",
+    "trading": "OFF",
+    "note": "Soft-live public reads cataloged; trading remains disabled. Shell may unset ENABLE_POLYMARKET until operator exports."
+  },
   "lane": {
     "id": "polymarket_entropy_oracle",
     "domain": "market_data_entropy",
     "transport": "gamma_plus_clob_public_read",
-    "default_state": "PAUSED",
+    "default_state": "SOFT_LIVE_READS_TRADING_OFF",
     "leveraged_by": "perplexity_asuna_point_0"
   },
   "unification_target": {
@@ -25,6 +33,7 @@
     "docs": "https://docs.polymarket.com/api-reference/rate-limits",
     "env_names": [
       "ENABLE_POLYMARKET",
+      "POLYMARKET_TRADING",
       "POLYMARKET_LIVE_OK",
       "POLYMARKET_GAMMA_BASE",
       "POLYMARKET_CLOB_BASE",
@@ -32,16 +41,22 @@
       "POLYMARKET_STALE_AFTER_MS"
     ],
     "env_present": {
-      "ENABLE_POLYMARKET": true,
-      "POLYMARKET_LIVE_OK": true,
+      "ENABLE_POLYMARKET": false,
+      "POLYMARKET_TRADING": false,
+      "POLYMARKET_LIVE_OK": false,
       "POLYMARKET_GAMMA_BASE": false,
       "POLYMARKET_CLOB_BASE": false,
       "POLYMARKET_MIN_LIQUIDITY": false,
       "POLYMARKET_STALE_AFTER_MS": false
     },
-    "enable_polymarket_armed": true,
+    "enable_polymarket_armed": false,
+    "catalog_intent": {
+      "ENABLE_POLYMARKET": "1",
+      "POLYMARKET_TRADING": "0"
+    },
     "notes": [
       "Read-only public endpoints; no trading keys in this surface.",
+      "Catalog intent: ENABLE_POLYMARKET=1 for soft-live reads; POLYMARKET_TRADING=0 always.",
       "Prefer /markets/keyset (offset pagination returns 422).",
       "outcomePrices may be JSON strings \u2014 client parses defensively."
     ]
@@ -171,9 +186,11 @@
   },
   "controls": {
     "provider_trading": false,
+    "POLYMARKET_TRADING": "0",
     "credential_logging": false,
     "content_neutral": true,
     "live_default": false,
+    "soft_live_reads_when_ENABLE_POLYMARKET_1": true,
     "discord_webhook_post": false
   },
   "cli": {
@@ -188,7 +205,9 @@
   "metrics": {
     "vector_count": 8,
     "files_ok": true,
-    "live_armed": true,
-    "live_sample_ok": true
+    "live_armed": false,
+    "catalog_soft_live_intent": true,
+    "trading_off": true,
+    "prior_live_sample_retained": true
   }
 }

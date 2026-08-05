@@ -33,6 +33,11 @@
         "failClosed": false
       },
       {
+        "command": "python3 .cursor/hooks/discord-ingest-only-hook.py",
+        "timeout": 5,
+        "failClosed": false
+      },
+      {
         "command": "python3 .cursor/hooks/kimi3-asuna-zero-unify-hook.py",
         "timeout": 12,
         "failClosed": false

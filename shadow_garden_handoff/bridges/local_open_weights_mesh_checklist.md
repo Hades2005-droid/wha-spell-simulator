@@ -1,6 +1,6 @@
 # Local open-weights mesh — readiness checklist
 
-Generated: `2026-07-29T23:47:41Z`
+Generated: `2026-07-31T17:19:55Z`
 Mesh: `local_open_weights_mesh` · Carrier: `love_and_harmony_6`
 Prep ready: **True** · Cutover ready: **False**
 
@@ -12,7 +12,7 @@ Prep ready: **True** · Cutover ready: **False**
 - [ ] `kimi_local_tag` (soft) — Pull a local kimi/moonshot model before full cutover (optional for prep)
 - [ ] `comfy_8189` (soft) — ComfyUI daemon down — prefer COMFYUI_URL=http://127.0.0.1:8189 (alt 8188) when up
 - [x] `catalogs_refreshed` (blocking) — 6/6 catalogs ok
-- [x] `packet_refreshed` (blocking) — packet artifact present=True (refresh skipped)
+- [x] `packet_refreshed` (blocking) — shadow_garden_packet write
 - [ ] `remote_keys_unset_preferred` (soft) — Remote provider key names present — leave unset for pure local
 - [x] `discord_paused` (blocking) — Discord status_notify remains paused by default
 - [x] `stripe_dry_run` (blocking) — Stripe stays dry-run unless STRIPE_LIVE_OK=1
@@ -25,7 +25,7 @@ Prep ready: **True** · Cutover ready: **False**
 - `comfyui` :8189 — down
 - `comfyui_alt` :8188 — down
 - `eden` :8791 — down
-- `void_ignition` :8790 — down
+- `void_ignition` :8790 — UP
 - `portal` :8760 — down
 - `ollama` :11434 — UP
 - `stripe_local` :4242 — down

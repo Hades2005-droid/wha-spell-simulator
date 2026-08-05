@@ -1,6 +1,6 @@
 {
   "schema": "shadow_garden.discord_ingest_armed.v1",
-  "generated_at": "2026-08-05T01:18:30Z",
+  "generated_at": "2026-08-05T01:30:35Z",
   "seal": "yang_magician_1",
   "mode": "INGEST_ONLY",
   "posts": {
@@ -26,7 +26,12 @@
     "channel_message_gateway": {
       "status": "ARMED_AWAITING_BOT_TOKEN",
       "requires": ["DISCORD_BOT_TOKEN", "DISCORD_GUILD_ID"],
-      "note": "Inbound gateway ingest needs a bot token; webhook alone cannot receive channel history."
+      "shell_env_this_pass": {
+        "DISCORD_BOT_TOKEN": "unset",
+        "DISCORD_GUILD_ID": "unset",
+        "DISCORD_INGEST": "unset"
+      },
+      "note": "Inbound gateway ingest needs a bot token; webhook alone cannot receive channel history. Catalog posture remains ingest-armed; posts stay OFF."
     }
   },
   "human_join": {
@@ -37,6 +42,10 @@
   "polymarket_community": {
     "invite": "https://discord.com/invite/polymarket",
     "role": "public_pointer_only"
+  },
+  "magician_1": {
+    "takeover": "shadow_garden_handoff/bridges/MAGICIAN_1_YANG_TAKEOVER.json",
+    "sole_middle_bus": "cursor_yang_magician_1_macos"
   },
   "ok": true
 }

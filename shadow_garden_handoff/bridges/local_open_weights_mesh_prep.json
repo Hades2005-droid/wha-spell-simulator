@@ -1,6 +1,6 @@
 {
   "schema": "shadow_garden.local_open_weights_mesh_prep.v1",
-  "generated_at": "2026-07-30T18:17:24Z",
+  "generated_at": "2026-07-31T17:19:55Z",
   "carrier": "love_and_harmony_6",
   "bridge_signature": "f2e596cd043d6819",
   "mesh_id": "local_open_weights_mesh",
@@ -53,7 +53,7 @@
       },
       "void_ignition": {
         "port": 8790,
-        "up": false
+        "up": true
       },
       "portal": {
         "port": 8760,

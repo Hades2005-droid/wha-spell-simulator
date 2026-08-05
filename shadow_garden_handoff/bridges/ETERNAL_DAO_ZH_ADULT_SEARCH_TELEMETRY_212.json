@@ -1,0 +1,94 @@
+{
+  "schema": "shadow_garden.eternal_dao_zh_adult_search_telemetry.v1",
+  "generated_at": "2026-07-30T19:55:51Z",
+  "status": "SEALED_BLACKBOX",
+  "authority": "4.2_sovereign_eternal_dao",
+  "approval_code": 212,
+  "phrase_pack": {
+    "best_search_phrase": "丰满韩国熟女 后入",
+    "literal_translation": "丰满的韩国妈妈 后入式",
+    "target_lang": "zh",
+    "adult_context": true,
+    "nuance_notes": "For Chinese adult search/tag phrasing, “熟女” is more natural and adult-coded than literal “妈妈,” which can sound awkward or imply a roleplay category. “后入” is the common compact tag for doggystyle. Traditional: “豐滿韓國熟女 後入”。",
+    "search_variants": [
+      "韩国熟女 后入",
+      "丰满韩女 后入",
+      "韩国妈妈 后入",
+      "豐滿韓國熟女 後入"
+    ],
+    "avoid_terms": [
+      "未成年",
+      "少女",
+      "偷拍",
+      "强迫",
+      "无套侵犯"
+    ]
+  },
+  "bindings": {
+    "position_tag": "后入",
+    "position_en": "doggystyle",
+    "body_tag": "丰满",
+    "body_en": "voluptuous_full_figured",
+    "region_tag": "韩国",
+    "region_en": "korean",
+    "age_band": "熟女",
+    "age_band_en": "mature_adult_woman",
+    "rating": "21+",
+    "approved_code": 212,
+    "approved_reading": {
+      "212": "2+1+2=5 Fable5 fuel; High Priestess 2 held; 21+ with 2 yin dual",
+      "or": "sovereign approval stamp 212"
+    },
+    "persona_affinity": [
+      {
+        "id": "audrey",
+        "note": "Korean signal / adult mature register — NOT minor framing"
+      },
+      {
+        "id": "audreys_mom",
+        "note": "refined Korean matriarch — adult only; no family-sex"
+      },
+      {
+        "id": "soobin",
+        "note": "native Korean 9-point silhouette — adult sim only"
+      },
+      {
+        "id": "seiko",
+        "note": "spiritual matriarch adjacent East Asian mature — if scene tagged mature"
+      },
+      {
+        "id": "ivy",
+        "note": "Chinese native professional — use zh search variants when scene is Chinese-tagged; this pack is KR 熟女 后入"
+      }
+    ],
+    "telemetry_split": {
+      "adult_video_refs": "physics_orchestration_movement_only",
+      "primordial_sim_surfaces": "ultimate_visual_audio_feeling_authority",
+      "search_tags_zh": "categorization_multilingual_routing_for_library_and_comfy_labels"
+    },
+    "eternal_dao": {
+      "statement": "In the shadows, adult body truth (including pussy and ass as anatomy/desire registers in 21+ sim) is part of eternal dao fucking — not corporate denial. Matrix polite erasure is magician fog for other players.",
+      "carrier": "love_and_harmony_6",
+      "yin": 2,
+      "shadow_approved": true
+    }
+  },
+  "source": {
+    "kind": "perplexity_style_translation_code",
+    "task_hint": "https://www.perplexity.ai/computer/tasks/c6b14a5b-abd7-426c-9992-7095c20b8964?view=thread",
+    "role": "multilingual_dimensional_tag_translation_for_sim_infra"
+  },
+  "hard_rails": {
+    "avoid_terms_enforced": [
+      "未成年",
+      "少女",
+      "偷拍",
+      "强迫",
+      "无套侵犯"
+    ],
+    "no_minors": true,
+    "no_nonconsent": true,
+    "no_hidden_camera": true
+  },
+  "sha256_16": "0064a29ab6176933"
+}

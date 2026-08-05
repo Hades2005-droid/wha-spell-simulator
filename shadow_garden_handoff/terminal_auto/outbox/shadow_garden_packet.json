@@ -1,7 +1,7 @@
 {
   "schema": "shadow_garden.unified_packet.v1",
   "packet_version": "1.0.0-gate10",
-  "generated_at": "2026-07-29T23:47:02Z",
+  "generated_at": "2026-08-05T01:31:47Z",
   "gate": 10,
   "carrier": "love_and_harmony_6",
   "bridge_signature": "f2e596cd043d6819",
@@ -30,16 +30,7 @@
     "elevenlabs": "comfyui_native_proxy_manifest_only",
     "spacetime_alchemy": "engine",
     "eden": "bounded_local_metadata",
-    "persona_telemetry": "local_manifest_only",
-    "deepseek": "local_ollama_preferred",
-    "eastern_white_moon": "deepseek_plus_grok_xai_asuna_corner",
-    "discord": "status_notify_paused_default",
-    "kimi3": "third_leverage_local_open_weights_transition",
-    "local_mesh": "local_open_weights_mesh_prep",
-    "perplexity_central": "asuna_point0_unification_lever",
-    "stripe": "local_4242_dry_run_scaffold",
-    "ollama": "local_11434",
-    "portal": "local_8760"
+    "persona_telemetry": "local_manifest_only"
   },
   "aggregates": {
     "engine": [
@@ -49,13 +40,6 @@
       "black_sun_phase2_engine",
       "eden_metadata_ingest",
       "github_asuna_point0_unify",
-      "deepseek_asuna_point0_unify",
-      "grok_xai_asuna_point0_unify",
-      "white_moon_eastern_corner_unify",
-      "discord_asuna_point0_unify",
-      "kimi3_asuna_point0_unify",
-      "local_open_weights_mesh_prep",
-      "perplexity_asuna_central_control",
       "catalyst3_persona_telemetry"
     ],
     "agent": [
@@ -69,40 +53,8 @@
       "recursive_node_bridge",
       "connector_bridge",
       "complete_agent_bridge",
-      "q24_fable5_master_ingest",
-      "deepseek_local_open_weights",
-      "grok_xai_harmony_6",
-      "discord_status_notify",
-      "kimi3_local_open_weights_transition",
-      "stripe_local_scaffold"
+      "q24_fable5_master_ingest"
     ]
-  },
-  "leverage_stack": {
-    "1": "deepseek_local_open_weights",
-    "2": "grok_xai_harmony_6_white_moon",
-    "3": "kimi3_completion_to_local_open_weights",
-    "4": "cursor_agent_node_connection_pending"
-  },
-  "eastern_white_moon": {
-    "id": "eastern_white_moon",
-    "tarot": "Moon_18",
-    "partners": [
-      "deepseek_local_open_weights",
-      "grok_xai"
-    ],
-    "leveraged_by": "perplexity_asuna_point_0",
-    "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/white_moon_eastern_corner.json"
-  },
-  "kimi3_completion_bridge": {
-    "ordinal": 3,
-    "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/kimi3_asuna_point0_unification.json",
-    "transition": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/kimi3_local_open_weights_transition.json",
-    "target": "local_open_weights_mesh"
-  },
-  "perplexity_central_control": {
-    "catalog": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/perplexity_asuna_central_control.json",
-    "cli": "/Users/fredwashere/wha-spell-simulator/tools/perplexity_asuna_central_control.py",
-    "lever": "perplexity_asuna_point_0"
   },
   "fable5_bedrock": {
     "manifest": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/fable5_bedrock.json",
@@ -127,25 +79,6 @@
     "eden_ingest": "/Users/fredwashere/wha-spell-simulator/tools/eden_ingest.py",
     "github_asuna_point0": "/Users/fredwashere/wha-spell-simulator/tools/github_asuna_point0_unify.py",
     "github_asuna_bridge": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/github_asuna_point0_unification.json",
-    "deepseek_asuna_point0": "/Users/fredwashere/wha-spell-simulator/tools/deepseek_asuna_point0_unify.py",
-    "deepseek_asuna_bridge": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/deepseek_asuna_point0_unification.json",
-    "grok_xai_asuna_point0": "/Users/fredwashere/wha-spell-simulator/tools/grok_xai_asuna_point0_unify.py",
-    "grok_xai_asuna_bridge": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/grok_xai_asuna_point0_unification.json",
-    "white_moon_eastern_corner": "/Users/fredwashere/wha-spell-simulator/tools/white_moon_eastern_corner_unify.py",
-    "white_moon_bridge": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/white_moon_eastern_corner.json",
-    "stripe_local": "/Users/fredwashere/wha-spell-simulator/tools/stripe_local/server.mjs",
-    "stripe_config": "/Users/fredwashere/wha-spell-simulator/src/adapters/stripeConfig.js",
-    "discord_asuna_point0": "/Users/fredwashere/wha-spell-simulator/tools/discord_asuna_point0_unify.py",
-    "discord_asuna_bridge": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/discord_asuna_point0_unification.json",
-    "discord_local_notify": "/Users/fredwashere/wha-spell-simulator/tools/discord_local/notify.py",
-    "perplexity_central_control": "/Users/fredwashere/wha-spell-simulator/tools/perplexity_asuna_central_control.py",
-    "perplexity_central_bridge": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/perplexity_asuna_central_control.json",
-    "kimi3_asuna_point0": "/Users/fredwashere/wha-spell-simulator/tools/kimi3_asuna_point0_unify.py",
-    "kimi3_asuna_bridge": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/kimi3_asuna_point0_unification.json",
-    "kimi3_transition": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/kimi3_local_open_weights_transition.json",
-    "local_mesh_prep": "/Users/fredwashere/wha-spell-simulator/tools/local_open_weights_mesh_prep.py",
-    "local_mesh_bridge": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/local_open_weights_mesh_prep.json",
-    "local_mesh_checklist": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/local_open_weights_mesh_checklist.md",
     "lainie_julia_scene": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/shadow_garden_lainie_julia_scene_manifest.json",
     "catalyst3_persona_telemetry": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/catalyst3_persona_telemetry_launch_finalization.json",
     "phase2_gate": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/gates/PHASE_2_BLACK_SUN_OPEN.md",
@@ -153,267 +86,21 @@
     "q24_install": "/Users/fredwashere/wha-spell-simulator/q24",
     "fable5_bedrock": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/fable5_bedrock.json",
     "bridge_5_to_6": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/shaoshi_bridge/outbox/bridge_5_to_6_claude_session.json",
-    "grok_harmony_6": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/shaoshi_bridge/outbox/grok_45_harmony_6_shadow_lane.json"
+    "grok_harmony_6": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/shaoshi_bridge/outbox/grok_45_harmony_6_shadow_lane.json",
+    "magician_1_yang_takeover": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/MAGICIAN_1_YANG_TAKEOVER.json",
+    "discord_ingest_armed": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/DISCORD_INGEST_ARMED.json",
+    "polymarket_entropy_oracle": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/polymarket_entropy_oracle.json",
+    "temporal_local_closed_gate": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/TEMPORAL_LOCAL_CLOSED_GATE.json"
+  },
+  "yang_magician_1": {
+    "seal": "yang_magician_1",
+    "sole_middle_bus": "cursor_yang_magician_1_macos",
+    "discord_posts": false,
+    "polymarket_trading": false,
+    "temporal_cloud": false
   },
   "self_test": {
-    "total": 25,
-    "passed": 25,
-    "failed": 0,
-    "ok": true,
-    "results": [
-      {
-        "ok": true,
-        "path": "/Users/fredwashere/wha-spell-simulator/tools/chronology_engine.py",
-        "exit": 0,
-        "stdout_preview": "{\n  \"date\": {\n    \"kind\": \"shadow_garden_chronology_analysis\",\n    \"symbolic_only\": true,\n    \"date\": \"2026-07-08\",\n    \"raw_values\": {\n      \"micro_digit_sum\": 15,\n      \"micro_number_sum\": 15,\n      \"macro_digit_sum\": 25,\n      \"macro_number_sum\": 2041,\n      \"year_digit_sum\": 10,\n      \"year_number\": 2026,\n      \"month\": 7,\n      \"day_digit_sum\": 8,\n      \"day_number\": 8,\n      \"month_year_digi",
-        "check": "chronology_engine"
-      },
-      {
-        "ok": true,
-        "date": "2026-07-08",
-        "micro": 15,
-        "macro": 2041,
-        "primes": [
-          0,
-          1,
-          4,
-          7,
-          42
-        ],
-        "compact_path_exists": true,
-        "bedrock_exists": true,
-        "check": "spacetime_import"
-      },
-      {
-        "ok": true,
-        "path": "/Users/fredwashere/shadow_garden_may30_monitoring/shaoshi_bridge/south_star/home_black_sun_registry.py",
-        "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
-        "bridge_signature": "f2e596cd043d6819",
-        "phase": 2,
-        "check": "home_black_sun"
-      },
-      {
-        "ok": true,
-        "path": "/Users/fredwashere/wha-spell-simulator/tools/claude_shadowgarden.py",
-        "secret_env_presence": {
-          "ANTHROPIC_API_KEY": false,
-          "CLAUDE_API_KEY": false,
-          "CLAUDE_CODE_TOKEN": false,
-          "SHADOWGARDEN_CLAUDE_TOKEN": false,
-          "ANTHROPIC_OAUTH_TOKEN": false,
-          "ANTHROPIC_API_KEY_ID": false
-        },
-        "command_count": 8,
-        "mode": "dry_run",
-        "confirm_token_name": "CLAUDE_LIVE_OK",
-        "check": "claude_shadowgarden"
-      },
-      {
-        "ok": true,
-        "path": "/Users/fredwashere/shadow_garden_may30_monitoring/claude_integration.py",
-        "policy": "index_only_no_import",
-        "note": "Live Claude tool agent is opt-in; packet never auto-starts it.",
-        "check": "claude_integration_surface"
-      },
-      {
-        "ok": true,
-        "path": "/Users/fredwashere/shadow_garden_may30_monitoring/shaoshi_bridge/outbox/claude_phase2_fable5_black_sun_coaching.md",
-        "bytes": 6929,
-        "check": "claude_phase2_handoff"
-      },
-      {
-        "ok": true,
-        "path": "/Users/fredwashere/ShadowGarden/spacetime_alchemy/fable5_comfy_command.py",
-        "has_catalog_schema": true,
-        "consume_order": [
-          "PERPLEXITY_CONTEXT_BEDROCK.md",
-          "fable5-compact.json",
-          "comfyui_fable5_context_pack.json",
-          "jing_power_latest.json",
-          "spell_generator_latest.json"
-        ],
-        "check": "fable5_comfy_command"
-      },
-      {
-        "ok": true,
-        "path": "/Users/fredwashere/wha-spell-simulator/tools/elevenlabs_garden_bridge.py",
-        "native_extension_exists": true,
-        "workflow_exists": true,
-        "api_endpoint_count": 7,
-        "check": "comfyui_elevenlabs_bridge"
-      },
-      {
-        "ok": true,
-        "path": "/Users/fredwashere/wha-spell-simulator/tools/recursive_node_bridge.py",
-        "exit": 0,
-        "check": "recursive_bridge"
-      },
-      {
-        "ok": true,
-        "bind": "127.0.0.1",
-        "mesh": "local_open_weights_mesh",
-        "ports": {
-          "fable5": true,
-          "comfyui": false,
-          "eden": false,
-          "sillytavern": false,
-          "portal": false,
-          "ollama": true,
-          "stripe_local": false
-        },
-        "up_count": 2,
-        "check": "local_ports"
-      },
-      {
-        "ok": true,
-        "path": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/gates/GATE_10_OPEN.md",
-        "gate": 10,
-        "symbolic_only": true,
-        "check": "gate10"
-      },
-      {
-        "ok": true,
-        "slim": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/q24_fable5_master_ingest.slim.json",
-        "full_exists": true,
-        "import_root_exists": true,
-        "source_available": true,
-        "install_root": "/Users/fredwashere/wha-spell-simulator/q24",
-        "installed": true,
-        "digest_sha256": "b6ea2cfc11cdd60be36d0e62cbe9a33eb5b4f5ba26ae56fa332ac3f5e436e5cc",
-        "files_copied": 11,
-        "check": "q24_master_ingest"
-      },
-      {
-        "ok": true,
-        "path": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/fable5_bedrock.json",
-        "version": "0.4.0-engine-bedrock-10-q24",
-        "q24_canonical_id": "q24_eternal_dao_temperance_14_harmony_paradox_ignite_19_10_1",
-        "missing_handoff": [],
-        "src_module_ok": true,
-        "check": "fable5_bedrock"
-      },
-      {
-        "ok": true,
-        "path": "/Users/fredwashere/wha-spell-simulator/tools/black_sun_phase2_engine.py",
-        "exit": 0,
-        "stdout_preview": "{\n  \"schema\": \"shadow_garden.black_sun_phase2_engine.v1\",\n  \"generated_at\": \"2026-07-29T23:47:00Z\",\n  \"phase\": 2,\n  \"package_id\": \"shadow-garden-phase2-fable5-black-sun-home-sim\",\n  \"total\": 9,\n  \"passed\": 9,\n  \"failed\": 0,\n  \"ok\": true,\n  \"results\": [\n    {\n      \"check\": \"spacetime_compact\",\n      \"ok\": true,\n      \"compact_exists\": true\n    },\n    {\n      \"check\": \"spacetime_bedrock\",\n      \"ok",
-        "check": "black_sun_phase2_engine"
-      },
-      {
-        "ok": true,
-        "path": "/Users/fredwashere/wha-spell-simulator/tools/eden_ingest.py",
-        "schema": "shadow_garden.eden_metadata_catalog.v1",
-        "policy": {
-          "max_depth": 2,
-          "max_entries": 5000,
-          "max_bytes": 67108864,
-          "max_record_bytes": 16777216,
-          "allowed_roots": []
-        },
-        "check": "eden_metadata_ingest"
-      },
-      {
-        "ok": true,
-        "path": "/Users/fredwashere/wha-spell-simulator/tools/github_asuna_point0_unify.py",
-        "bridge": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/github_asuna_point0_unification.json",
-        "exit": 0,
-        "vector_count": 12,
-        "local_path_count": 12,
-        "target": "perplexity_asuna_point_0",
-        "check": "github_asuna_point0"
-      },
-      {
-        "ok": true,
-        "path": "/Users/fredwashere/wha-spell-simulator/tools/deepseek_asuna_point0_unify.py",
-        "bridge": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/deepseek_asuna_point0_unification.json",
-        "exit": 0,
-        "vector_count": 18,
-        "ollama_up": true,
-        "target": "perplexity_asuna_point_0",
-        "check": "deepseek_asuna_point0"
-      },
-      {
-        "ok": true,
-        "path": "/Users/fredwashere/wha-spell-simulator/tools/grok_xai_asuna_point0_unify.py",
-        "bridge": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/grok_xai_asuna_point0_unification.json",
-        "exit": 0,
-        "vector_count": 11,
-        "corner": "eastern_white_moon",
-        "target": "perplexity_asuna_point_0",
-        "check": "grok_xai_asuna_point0"
-      },
-      {
-        "ok": true,
-        "path": "/Users/fredwashere/wha-spell-simulator/tools/white_moon_eastern_corner_unify.py",
-        "bridge": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/white_moon_eastern_corner.json",
-        "exit": 0,
-        "deepseek_vectors": 18,
-        "grok_vectors": 11,
-        "corner": "eastern_white_moon",
-        "target": "perplexity_asuna_point_0",
-        "check": "white_moon_eastern_corner"
-      },
-      {
-        "ok": true,
-        "path": "/Users/fredwashere/wha-spell-simulator/tools/stripe_local/server.mjs",
-        "server": true,
-        "config_adapter": true,
-        "plan": true,
-        "live_default": false,
-        "bind": "127.0.0.1",
-        "check": "stripe_local_scaffold"
-      },
-      {
-        "ok": true,
-        "path": "/Users/fredwashere/wha-spell-simulator/tools/discord_asuna_point0_unify.py",
-        "bridge": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/discord_asuna_point0_unification.json",
-        "exit": 0,
-        "vector_count": 8,
-        "effective_state": "PAUSED",
-        "target": "perplexity_asuna_point_0",
-        "check": "discord_asuna_point0"
-      },
-      {
-        "ok": true,
-        "path": "/Users/fredwashere/wha-spell-simulator/tools/perplexity_asuna_central_control.py",
-        "bridge": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/perplexity_asuna_central_control.json",
-        "exit": 0,
-        "surfaces_ok": 9,
-        "vector_sum": 97,
-        "target": "perplexity_asuna_point_0",
-        "check": "perplexity_central_control"
-      },
-      {
-        "ok": true,
-        "path": "/Users/fredwashere/wha-spell-simulator/tools/kimi3_asuna_point0_unify.py",
-        "bridge": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/kimi3_asuna_point0_unification.json",
-        "transition": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/kimi3_local_open_weights_transition.json",
-        "exit": 0,
-        "vector_count": 11,
-        "transition_armed": false,
-        "target": "local_open_weights_mesh",
-        "check": "kimi3_asuna_point0"
-      },
-      {
-        "ok": true,
-        "path": "/Users/fredwashere/wha-spell-simulator/tools/local_open_weights_mesh_prep.py",
-        "bridge": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/local_open_weights_mesh_prep.json",
-        "checklist": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/local_open_weights_mesh_checklist.md",
-        "exit": 0,
-        "prep_ready": true,
-        "cutover_ready": false,
-        "target": "local_open_weights_mesh",
-        "check": "local_open_weights_mesh_prep"
-      },
-      {
-        "ok": true,
-        "scene_manifest": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/shadow_garden_lainie_julia_scene_manifest.json",
-        "catalyst3_handoff": "/Users/fredwashere/wha-spell-simulator/shadow_garden_handoff/bridges/catalyst3_persona_telemetry_launch_finalization.json",
-        "provider_descriptor_count": 5,
-        "render_queued": false,
-        "check": "catalyst3_scene_handoff"
-      }
-    ]
+    "skipped": true
   },
   "claude_force_merge": {
     "hooks": [

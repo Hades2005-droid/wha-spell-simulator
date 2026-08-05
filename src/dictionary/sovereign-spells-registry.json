@@ -140,19 +140,6 @@
       "effect": "phase2_recursive_spell",
       "priority": 10,
       "phase": 2
-    },
-    {
-      "id": "sovereign-persephone-shutdown",
-      "code": "SOVEREIGN_PERSEPHONE_SHUTDOWN",
-      "displayName": "Sovereign Persephone Shutdown",
-      "description": "Phase 3 Dimension 0 end-of-day seal — Yin polarity close paired with the Black Sun / White Moon gate cycle. Manifest-only; Discord application ID env pointer only.",
-      "invocation": "sovereign persephone shutdown",
-      "aliases": ["4.2 persephone", "SOVEREIGN_PERSEPHONE_SHUTDOWN", "persephone-shutdown", "dimension 0 seal"],
-      "element": "earth",
-      "effect": "phase3_persephone_shutdown",
-      "priority": 12,
-      "phase": 3,
-      "pairedWith": "sovereign-white-moon-gate"
     }
   ]
 }
