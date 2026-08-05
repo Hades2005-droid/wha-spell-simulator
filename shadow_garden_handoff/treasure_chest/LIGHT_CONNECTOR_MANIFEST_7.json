@@ -1,0 +1,70 @@
+{
+  "schema": "treasure_chest.light.v1",
+  "label": "sanitized_light_before",
+  "audience": "sim_metadata_only",
+  "external_writes": false,
+  "secrets_policy": "env_var_names_only_never_values",
+  "closed_loop": {
+    "from": 5,
+    "to": 6,
+    "math_note": "reversal_1-5_then_plus8_equals_6_closed_x2",
+    "status": "CLOSED",
+    "done_for_today": true
+  },
+  "connectors_7": [
+    {
+      "name": "Qdrant",
+      "role": "vector_store",
+      "local_check": "http://127.0.0.1:6333/readyz",
+      "auth_env": ["QDRANT_URL", "QDRANT_API_KEY"],
+      "status": "check_cluster_suspension_before_reauth",
+      "sim_note": "CONNECTION_SUCCESS narrative codes are sim-only; 404 is not a secret"
+    },
+    {
+      "name": "HARPA AI",
+      "role": "browser_assistant",
+      "auth_env": ["HARPA_API_KEY"],
+      "status": "local_private_until_named_destination"
+    },
+    {
+      "name": "GitHub",
+      "role": "source_control",
+      "auth_env": ["GH_TOKEN", "GITHUB_TOKEN"],
+      "status": "use_gh_cli_or_keychain_not_chat"
+    },
+    {
+      "name": "Atlassian",
+      "role": "jira_confluence",
+      "auth_env": ["ATLASSIAN_API_TOKEN", "JIRA_API_TOKEN"],
+      "status": "mcp_or_api_via_secure_store"
+    },
+    {
+      "name": "Discord Bot",
+      "role": "ingest_notify",
+      "auth_env": ["DISCORD_BOT_TOKEN", "DISCORD_WEBHOOK_URL"],
+      "gates": ["ENABLE_DISCORD=1", "DISCORD_LIVE_OK=1"],
+      "status": "ingest_default_live_double_gated",
+      "rotate_if_exposed": ["DISCORD_WEBHOOK_URL"]
+    },
+    {
+      "name": "Apollo.io",
+      "role": "perplexity_premium_connector",
+      "auth_env": ["APOLLO_API_KEY"],
+      "status": "local_private"
+    },
+    {
+      "name": "Shadow Garden Mesh",
+      "role": "catalog_handoff",
+      "auth_env": ["SHADOW_GARDEN_MESH_TOKEN"],
+      "status": "local_mesh_inbound_preferred"
+    }
+  ],
+  "nord_vpn_mesh": {
+    "auth_env": ["NORDVPN_ACCESS_TOKEN"],
+    "status": "ROTATE_REQUIRED",
+    "reason": "value_was_pasted_in_chat_treat_as_compromised",
+    "treasure_chest": "does_not_store_token_values"
+  },
+  "perplexity_space_pointer": "https://www.perplexity.ai/spaces/shadow-garden-1IwMFjszRveHJ0eqwn5hYQ",
+  "updated_at": "2026-08-05T02:31:00Z"
+}

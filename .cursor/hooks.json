@@ -8,6 +8,18 @@
         "failClosed": false
       },
       {
+        "command": "python3 .cursor/hooks/quantum-skip-shadow-garden-6.py",
+        "timeout": 5,
+        "failClosed": false,
+        "description": "quantum-skip-sg6-limit-manual-input"
+      },
+      {
+        "command": "python3 .cursor/hooks/fable5-evolution-bounded-hook.py",
+        "timeout": 8,
+        "failClosed": false,
+        "description": "fable5-one-cycle-bounded-evolution"
+      },
+      {
         "command": "python3 .cursor/hooks/fable5-engine-ingest-hook.py",
         "timeout": 5,
         "failClosed": false
@@ -51,6 +63,13 @@
     ],
     "beforeShellExecution": [
       {
+        "command": "python3 .cursor/hooks/fable5-evolution-bounded-hook.py",
+        "matcher": "recursive_improvement_ai_loop",
+        "timeout": 5,
+        "failClosed": true,
+        "description": "deny-unbounded-recursive-improvement"
+      },
+      {
         "command": "python3 .cursor/hooks/scan-shell-secrets.py",
         "timeout": 5,
         "failClosed": false
@@ -86,6 +105,18 @@
       }
     ],
     "sessionStart": [
+      {
+        "command": "python3 .cursor/hooks/quantum-skip-shadow-garden-6.py",
+        "timeout": 8,
+        "failClosed": false,
+        "description": "quantum-skip-return-sg6-forever-phase"
+      },
+      {
+        "command": "python3 .cursor/hooks/fable5-evolution-bounded-hook.py",
+        "timeout": 8,
+        "failClosed": false,
+        "description": "fable5-one-cycle-bounded-evolution"
+      },
       {
         "command": "python3 .cursor/hooks/fable5-engine-ingest-hook.py",
         "timeout": 8,

@@ -1,0 +1,6 @@
+{
+  "name": "wha-spell-simulator-fable5",
+  "install": "python3 -m pip install --upgrade pip && (test -f requirements.txt && pip install -r requirements.txt || true) && python3 -m pytest tests/test_black_sun_phase2_engine.py -q || python3 tools/black_sun_phase2_engine.py self-test",
+  "start": "echo \"[start] Shadow Garden core-0 / Phase 2 Black Sun ready; Discord LIVE off by default\"",
+  "terminals": []
+}

@@ -1,0 +1,28 @@
+{
+  "text": "Shadow Garden core-0 Cycle 7 \u2014 forever-phase 6 armed; cloud blocked until wha-spell-simulator is Cursor root.",
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "Shadow Garden core-0 \u00b7 Cycle 7"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*wyile* return \u00b7 forever-phase *6* \u00b7 Yin/shadow \u00b7 Yang/light\nHooks + subagent armed. Cloud needs repo root with remote."
+      }
+    },
+    {
+      "type": "context",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": "love_and_harmony_6 \u00b7 Discord LIVE off \u00b7 21+ faculty sim"
+        }
+      ]
+    }
+  ]
+}

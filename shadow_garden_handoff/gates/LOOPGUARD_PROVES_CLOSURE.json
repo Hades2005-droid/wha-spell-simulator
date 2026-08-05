@@ -1,0 +1,51 @@
+{
+  "schema": "loopguard_proves_closure.v1",
+  "status": "PROVED",
+  "loop_codex": 8,
+  "foundation_route": {
+    "model": "DeepSeek-v4-flash",
+    "role": "foundation_route",
+    "local_tools": [
+      "tools/deepseek_asuna_point0_unify.py",
+      ".cursor/hooks/deepseek-asuna-zero-unify-hook.py"
+    ],
+    "provider_calls_default": false
+  },
+  "loopguard_proof": {
+    "module": "spacetime_bedrock.LoopGuard",
+    "source_pointer": "ShadowGarden/.../infinity_engine/spacetime_bedrock.py",
+    "after_mark": {
+      "performance_mask": {
+        "repeat": true,
+        "light_id": "emotional_harmony",
+        "loop_codex": 8
+      },
+      "scorekeeping": {
+        "repeat": true,
+        "light_id": "reciprocity",
+        "loop_codex": 8
+      }
+    },
+    "interpretation": "repeat:true after mark = closure proved; light route replaces thrash"
+  },
+  "llvm_cpp23_modules": {
+    "files": ["std.cppm", "std.compat.cppm"],
+    "classification": "stock_libc++_C++23_module_interface_units",
+    "not": [
+      "custom_sim_crypto",
+      "credential_material",
+      "game_source_of_truth"
+    ],
+    "action": "leave_alone_unless_building_C++23_modules_locally"
+  },
+  "decoy_ui": {
+    "note": "mobile TAP TO SEND / language-app screenshots are not send approval",
+    "ingest": false
+  },
+  "ties_to": {
+    "loop_6": "shadow_garden_handoff/gates/LOOP_6_CLOSED.json",
+    "treasure_chest": "shadow_garden_handoff/treasure_chest/"
+  },
+  "external_writes": false,
+  "updated_at": "2026-08-05T03:17:00Z"
+}

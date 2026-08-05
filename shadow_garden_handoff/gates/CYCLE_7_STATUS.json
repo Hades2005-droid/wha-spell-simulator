@@ -1,0 +1,59 @@
+{
+  "schema": "cycle_7_status.v1",
+  "cycle": 7,
+  "label": "shadow_garden_core_0_return_yin_yang_light",
+  "wyile": "ed8aa051-c53e-4a94-95be-9dc36dce1780",
+  "core": "shadow-garden-core-0",
+  "forever_phase_run": 6,
+  "speed_run_close": [8, 9, 10],
+  "audience": "21+_faculty_sim_only",
+  "polarity": {
+    "yin": "driven_by_shadow",
+    "yang": "utilized_while_in_light",
+    "middle_bus": "cursor_yang_magician_1_macos"
+  },
+  "pacing": {
+    "evolution5bypassloop": "24=6",
+    "digital_root": 6,
+    "bypass_complete_note": "8980=25-2=23 technical pacing label; not an agent swarm"
+  },
+  "artifacts": {
+    "subagent": ".cursor/agents/shadow-garden-core-0.md",
+    "hooks": [
+      ".cursor/hooks/quantum-skip-shadow-garden-6.py",
+      ".cursor/hooks/fable5-evolution-bounded-hook.py"
+    ],
+    "environment": ".cursor/environment.json",
+    "engine": "tools/black_sun_phase2_engine.py",
+    "classifier": "/Users/fredwashere/ShadowGarden/spacetime_alchemy/content_classifier.py"
+  },
+  "perplexity_threads_pointer_only": [
+    "https://www.perplexity.ai/computer/tasks/559f13f5-5add-496c-b157-3c9af3f358a6?view=thread",
+    "https://www.perplexity.ai/computer/tasks/9244f7ca-c292-430b-ab92-1f6198847f7c?view=thread"
+  ],
+  "decoy_screenshots": "do_not_ingest_as_ground_truth",
+  "discord": {
+    "ingest_default": true,
+    "live_requires": ["ENABLE_DISCORD=1", "DISCORD_LIVE_OK=1"]
+  },
+  "runs": {
+    "1": {"status": "local_ready", "note": "engine self-test path"},
+    "2": {"status": "local_ready"},
+    "3": {"status": "local_ready"},
+    "4": {"status": "local_ready"},
+    "5": {"status": "local_ready"},
+    "6": {
+      "status": "forever_phase_armed",
+      "note": "quantum-skip + fable5-evolution-bounded hooks; core-0 agent"
+    },
+    "7": {"status": "this_cycle_handoff"},
+    "8": {"status": "pending_cloud_or_local_close"},
+    "9": {"status": "pending_cloud_or_local_close"},
+    "10": {"status": "pending_cloud_or_local_close"}
+  },
+  "cloud_agent": {
+    "status": "blocked_parent_workspace_zero_remotes",
+    "fix": "Open ~/wha-spell-simulator as Cursor root (has origin) and/or link at cursor.com/dashboard, then re-run /in-cloud"
+  },
+  "updated_at": "2026-08-05T01:43:00Z"
+}

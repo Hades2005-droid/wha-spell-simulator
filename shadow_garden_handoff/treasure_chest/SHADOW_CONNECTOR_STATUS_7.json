@@ -1,0 +1,54 @@
+{
+  "schema": "treasure_chest.shadow.v1",
+  "label": "operational_shadow_after_light",
+  "note": "Shadow = fuller operational status fields. Still NO raw secrets, tokens, webhooks, or personal data. Eternal-DAO truth=1 means provenance honesty, not secret exfiltration.",
+  "external_writes": false,
+  "send_everything_everywhere": false,
+  "authorized_write_mode": "one_named_destination_after_explicit_approval",
+  "closed_loop_6": {
+    "launcher_corrected": true,
+    "data_staging_finalized": true,
+    "loop": "5_to_6_CLOSED",
+    "parallel_to": "quantum_8_narrative_only",
+    "forever_phase": 6,
+    "wyile": "ed8aa051-c53e-4a94-95be-9dc36dce1780"
+  },
+  "connectors_7_status": {
+    "Qdrant": {
+      "action": "probe_local_6333_then_reauth_via_env",
+      "sim_transport_only": true
+    },
+    "HARPA_AI": {
+      "action": "keep_offline_until_named_job"
+    },
+    "GitHub": {
+      "action": "merge_connector_registry_branch_if_desired",
+      "branch_pointer": "claude/connector-registry-8-to-10@f8aa2fa",
+      "delete_safe": "claude/converge-launcher-singularity"
+    },
+    "Atlassian": {
+      "action": "mcp_when_cloudId_available"
+    },
+    "Discord_Bot": {
+      "action": "rotate_webhook_if_ever_pasted; live_off"
+    },
+    "Apollo_io": {
+      "action": "env_only_when_integration_needed"
+    },
+    "Shadow_Garden": {
+      "action": "local_handoff_amplify_send_pipeline"
+    }
+  },
+  "credential_rotation_checklist": [
+    "Rotate NordVPN access token at provider (compromised by chat paste)",
+    "Rotate Discord webhook if it was ever pasted",
+    "Store replacements only in OS keychain / Cursor secrets / env — never in treasure_chest JSON",
+    "Re-auth Qdrant after confirming cluster not suspended"
+  ],
+  "dual_core_test": {
+    "engine_self_test": "python3 tools/black_sun_phase2_engine.py self-test",
+    "awaiting_external_isolation_report": false,
+    "local_closure": "this_file_plus_light_manifest"
+  },
+  "updated_at": "2026-08-05T02:31:00Z"
+}
