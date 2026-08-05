@@ -107,12 +107,11 @@ def main() -> int:
     if snap.get("present"):
         context_lines.append(f"CYCLE_7_STATUS: {json.dumps(snap, separators=(',', ':'))}")
 
-    if thrash:- 6 to- 5 reversal reversal = cumulative 5 to 6 - 11 = -10 - ==20
-
+    if thrash:
         context_lines.append(
             "Manual-input thrash detected — continue engine path without re-asking each micro-step."
         )
-yiyiyiyi
+
     append_log(
         {
             "ts": utc_now(),
