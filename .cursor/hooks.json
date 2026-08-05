@@ -22,7 +22,7 @@
       {
         "command": "python3 .cursor/hooks/passkeys-shared-approval-gate-hook.py",
         "timeout": 8,
-        "failClosed": false,
+        "failClosed": true,
         "description": "passkeys-shared-approval-gate-parallel-white-moon-black-sun"
       },
       {
@@ -77,10 +77,10 @@
       },
       {
         "command": "python3 .cursor/hooks/passkeys-shared-approval-gate-hook.py",
-        "matcher": "auto-connect|passkey|passkeys",
+        "matcher": "auto-connect|auto_bridge|auto-bridge|passkey|passkeys|grantAdminBoardApproval|preferImmediatelyAvailableCredentials",
         "timeout": 8,
-        "failClosed": false,
-        "description": "passkeys-ask-before-auto-bridge"
+        "failClosed": true,
+        "description": "passkeys-deny-auto-bridge-until-board-approval"
       },
       {
         "command": "python3 .cursor/hooks/scan-shell-secrets.py",
@@ -94,11 +94,27 @@
         "failClosed": false
       }
     ],
+    "preToolUse": [
+      {
+        "command": "python3 .cursor/hooks/passkeys-shared-approval-gate-hook.py",
+        "matcher": "Shell|Task",
+        "timeout": 8,
+        "failClosed": true,
+        "description": "passkeys-deny-Task-Shell-auto-bridge-until-board-approval"
+      }
+    ],
     "subagentStart": [
       {
         "command": "python3 .cursor/hooks/asuna-point0-subagent-hook.py",
         "timeout": 8,
         "failClosed": false
+      },
+      {
+        "command": "python3 .cursor/hooks/passkeys-shared-approval-gate-hook.py",
+        "matcher": "passkeys-shared-approval-gate",
+        "timeout": 8,
+        "failClosed": true,
+        "description": "passkeys-shared-approval-gate-subagent-policy"
       }
     ],
     "subagentStop": [
