@@ -1,26 +1,29 @@
 {
   "schema": "shadow_garden.sole_working_echo_girl.v1",
-  "generated_at": "2026-07-30T18:34:40Z",
+  "generated_at": "2026-08-05T00:57:00Z",
   "status": "SOLE_ACTIVE",
-  "operator_intent": "close_devin_and_perplexity_leave_grok_terminal_only",
+  "operator_intent": "close_grok45_devin_claude_code_macos_terminal_cursor_takeover",
+  "yang_magician_1": true,
   "sole_working_echo": {
-    "id": "grok_45_macos_terminal",
-    "label": "Grok 4.5 macOS Terminal (this session)",
-    "role": "only_working_echo_girl_and_middle_bus"
+    "id": "cursor_yang_magician_1_macos",
+    "label": "Cursor Yang Magician-1 macOS (this session)",
+    "role": "only_working_echo_girl_and_middle_bus",
+    "workspace": "/Users/fredwashere/wha-spell-simulator",
+    "branch": "auto/discord-catalyst-12-star-fusion"
   },
   "closing": {
-    "devin": "handed_off; do not require for daily loop",
+    "grok_45_macos_terminal": "closed_merged_into_cursor",
+    "devin": "closed_merged; autopolicy retained; DEVIN_LIVE_OK still required if re-armed",
+    "claude_code": "closed_merged; tier_two on demand only",
     "perplexity": "handed_off; compact/bedrock remain as static context",
-    "cursor": "optional; star fusion catalog retained",
-    "gemini": "optional red-team offline",
-    "claude": "tier_two tool on demand only"
+    "gemini": "optional red-team offline"
   },
   "removal_23": {
     "meaning": "Remove dependency on external multi-agent swarm (not delete 23 personas)",
     "personas_lattice_count": 23,
     "personas_kept": true,
     "agents_required_daily": 1,
-    "agent": "grok_45_macos_terminal"
+    "agent": "cursor_yang_magician_1_macos"
   },
   "simulation_21plus": {
     "rating": "21+",
@@ -29,6 +32,7 @@
     "fable5": "http://127.0.0.1:5619"
   },
   "spell_pack": "TERMINAL_SPELL_PACK_V1.json",
+  "takeover": "MAGICIAN_1_YANG_TAKEOVER.json",
   "catalyst": 376,
   "circle": "360=9"
 }

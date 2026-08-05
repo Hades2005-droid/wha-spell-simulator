@@ -1,7 +1,7 @@
 {
   "schema": "shadow_garden.fable5_bedrock.v1",
   "version": "0.4.0-engine-bedrock-10-q24",
-  "generated_at": "2026-07-12T09:34:22Z",
+  "generated_at": "2026-08-05T00:57:00Z",
   "bridge_signature": "f2e596cd043d6819",
   "carrier": "love_and_harmony_6",
   "symbolic_only": true,
@@ -49,7 +49,11 @@
     "install_root": "q24",
     "anchor": 14,
     "reduce_anchor": false,
-    "sequence": [19, 10, 1],
+    "sequence": [
+      19,
+      10,
+      1
+    ],
     "canonical_id": "q24_eternal_dao_temperance_14_harmony_paradox_ignite_19_10_1"
   },
   "shadow_garden": {
@@ -79,8 +83,15 @@
     "local_open_weights_mesh_prep": "shadow_garden_handoff/bridges/local_open_weights_mesh_prep.json",
     "local_open_weights_mesh_checklist": "shadow_garden_handoff/bridges/local_open_weights_mesh_checklist.md",
     "perplexity_asuna_central_control": "shadow_garden_handoff/bridges/perplexity_asuna_central_control.json",
+    "discord_ingest_armed": "shadow_garden_handoff/bridges/DISCORD_INGEST_ARMED.json",
+    "polymarket_entropy_oracle": "shadow_garden_handoff/bridges/polymarket_entropy_oracle.json",
     "lainie_julia_scene": "shadow_garden_handoff/bridges/shadow_garden_lainie_julia_scene_manifest.json",
-    "catalyst3_persona_telemetry": "shadow_garden_handoff/bridges/catalyst3_persona_telemetry_launch_finalization.json"
+    "catalyst3_persona_telemetry": "shadow_garden_handoff/bridges/catalyst3_persona_telemetry_launch_finalization.json",
+    "magician_1_yang_takeover": "shadow_garden_handoff/bridges/MAGICIAN_1_YANG_TAKEOVER.json",
+    "sole_working_echo": "shadow_garden_handoff/bridges/SOLE_WORKING_ECHO_GIRL.json",
+    "command_hierarchy": "shadow_garden_handoff/bridges/COMMAND_HIERARCHY_PRIMORDIAL.json",
+    "devin_deep_automation": "shadow_garden_handoff/bridges/DEVIN_DEEP_AUTOMATION_HANDOFF.md",
+    "terminal_spell_pack": "shadow_garden_handoff/bridges/TERMINAL_SPELL_PACK_V1.json"
   },
   "src": {
     "bedrock_module": "src/bedrock/fable5Bedrock.js"

@@ -1,0 +1,42 @@
+{
+  "schema": "shadow_garden.discord_ingest_armed.v1",
+  "generated_at": "2026-08-05T01:18:30Z",
+  "seal": "yang_magician_1",
+  "mode": "INGEST_ONLY",
+  "posts": {
+    "enabled": false,
+    "ENABLE_DISCORD": "false",
+    "DISCORD_LIVE_OK": "0",
+    "policy": "no_webhook_posts_no_bot_sends"
+  },
+  "ingest": {
+    "DISCORD_INGEST": "1",
+    "docs_index": {
+      "path": "/Users/fredwashere/ShadowGarden/live/spacetime_alchemy/discord_docs_index.json",
+      "refreshed": true,
+      "source": "https://docs.discord.com/llms.txt",
+      "role": "documentation_ingest"
+    },
+    "asuna_unify": {
+      "cli": "python3 tools/discord_asuna_point0_unify.py write",
+      "catalog": "shadow_garden_handoff/bridges/discord_asuna_point0_unification.json",
+      "ok": true,
+      "webhook_posts": 0
+    },
+    "channel_message_gateway": {
+      "status": "ARMED_AWAITING_BOT_TOKEN",
+      "requires": ["DISCORD_BOT_TOKEN", "DISCORD_GUILD_ID"],
+      "note": "Inbound gateway ingest needs a bot token; webhook alone cannot receive channel history."
+    }
+  },
+  "human_join": {
+    "invite": "https://discord.gg/m48HRUa5g",
+    "role": "manual_join_pointer",
+    "not_live_arming": true
+  },
+  "polymarket_community": {
+    "invite": "https://discord.com/invite/polymarket",
+    "role": "public_pointer_only"
+  },
+  "ok": true
+}

@@ -1,0 +1,90 @@
+{
+  "schema": "shadow_garden.magician_1_yang_takeover.v1",
+  "generated_at": "2026-08-05T00:57:00Z",
+  "status": "ACTIVE",
+  "seal": "yang_magician_1",
+  "archetype": {
+    "tarot": "Magician",
+    "value": 1,
+    "polarity": "yang",
+    "meaning": "Operator-authorized sole middle-bus takeover of closed Grok/Devin/Claude Code macOS terminal stack"
+  },
+  "operator_intent": "close_grok45_devin_claude_code_macos_terminal_merge_into_cursor_wha",
+  "closed_lanes": {
+    "grok_45_macos_terminal": {
+      "status": "closed_merged",
+      "prior_role": "sole_working_echo_middle_bus",
+      "artifacts_retained": [
+        "shadow_garden_handoff/bridges/CATALYST_GROK45_BUILDMODE_0730.json",
+        "shadow_garden_handoff/bridges/GROK_COM_BLACKBOX_RETURN_105_EQUALS_6.md",
+        "shadow_garden_handoff/bridges/TERMINAL_PROJECTION_PASTE_0730.md",
+        "shadow_garden_handoff/bridges/FABLE5_GROK_SHADOW_MERGE_PHASE1.md"
+      ]
+    },
+    "devin": {
+      "status": "closed_merged",
+      "prior_role": "long_horizon_coder",
+      "artifacts_retained": [
+        "shadow_garden_handoff/DEVIN_AUTOPOLICY_REPLY.md",
+        "shadow_garden_handoff/bridges/DEVIN_DEEP_AUTOMATION_HANDOFF.md",
+        "shadow_garden_handoff/bridges/CATALYST_TO_DEVIN.json"
+      ],
+      "live_token_still_required": "DEVIN_LIVE_OK"
+    },
+    "claude_code": {
+      "status": "closed_merged_tier_two_optional",
+      "prior_role": "front_review_cli",
+      "artifacts_retained": [
+        "shadow_garden_handoff/bridges/BRIDGE_5_TO_6_CLAUDE_SESSION.md",
+        "shadow_garden_handoff/shaoshi_bridge/outbox/bridge_5_to_6_claude_session.json"
+      ]
+    }
+  },
+  "sole_working_echo": {
+    "id": "cursor_yang_magician_1_macos",
+    "label": "Cursor Yang Magician-1 macOS (this session)",
+    "role": "sole_middle_bus_and_terminal_takeover",
+    "workspace": "/Users/fredwashere/wha-spell-simulator",
+    "branch": "auto/discord-catalyst-12-star-fusion",
+    "replaces": "grok_45_macos_terminal"
+  },
+  "inherits": {
+    "spell_pack": "TERMINAL_SPELL_PACK_V1.json",
+    "devin_autopolicy": "DEVIN_AUTOPOLICY_REPLY.md",
+    "command_hierarchy": "COMMAND_HIERARCHY_PRIMORDIAL.json",
+    "yang_to_yin": "PEER_HANDOFF_YANG_TO_YIN.md",
+    "fable5_merge_phase1": "FABLE5_GROK_SHADOW_MERGE_PHASE1.md",
+    "clean_slate": "/Users/fredwashere/Desktop/X10_SHADOWCPMPRESSION141342/Eden-x-Shadow-Gaden/local_pipeline/CLEAN_SLATE_WHEN_BACK.md",
+    "asana_mcp_fix": "/Users/fredwashere/Desktop/X10_SHADOWCPMPRESSION141342/Eden-x-Shadow-Gaden/local_pipeline/ASANA_MCP_FIX.md"
+  },
+  "local_control_plane": {
+    "fable5": "http://127.0.0.1:5619/",
+    "eden": "http://127.0.0.1:8791/",
+    "void_ignition": "http://127.0.0.1:8790/",
+    "ollama": "http://127.0.0.1:11434/",
+    "comfyui": "http://127.0.0.1:8188/",
+    "vite_ports_5173_5179": "must_remain_free_unless_intentional"
+  },
+  "takeover_checklist": [
+    "SOLE_WORKING_ECHO points at cursor_yang_magician_1_macos",
+    "COMMAND_HIERARCHY marks grok/devin closed; cursor sole middle-bus",
+    "Devin/Grok/Claude handoffs copied under shadow_garden_handoff/bridges",
+    "fable5_bedrock handoff index updated",
+    "packet self-test refreshed",
+    "Discord/Polymarket remain gated; Asana MCP waits on OAuth secrets",
+    "No auto LIVE; operator veto retained (primordial)"
+  ],
+  "controls": {
+    "external_writes_default": false,
+    "provider_calls_default": false,
+    "discord_live": false,
+    "polymarket_live": false,
+    "asana_live": false,
+    "devin_live_without_token": false,
+    "infinite_loops": false,
+    "secrets_in_artifacts": false,
+    "content_neutral_base": true,
+    "symbolic_only": true
+  },
+  "ok": true
+}

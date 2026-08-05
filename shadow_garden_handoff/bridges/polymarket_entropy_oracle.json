@@ -1,6 +1,6 @@
 {
   "schema": "shadow_garden.polymarket_asuna_point0_unification.v1",
-  "generated_at": "2026-07-29T23:47:41Z",
+  "generated_at": "2026-08-05T01:17:36Z",
   "carrier": "love_and_harmony_6",
   "bridge_signature": "f2e596cd043d6819",
   "phase": 2,
@@ -32,14 +32,14 @@
       "POLYMARKET_STALE_AFTER_MS"
     ],
     "env_present": {
-      "ENABLE_POLYMARKET": false,
-      "POLYMARKET_LIVE_OK": false,
+      "ENABLE_POLYMARKET": true,
+      "POLYMARKET_LIVE_OK": true,
       "POLYMARKET_GAMMA_BASE": false,
       "POLYMARKET_CLOB_BASE": false,
       "POLYMARKET_MIN_LIQUIDITY": false,
       "POLYMARKET_STALE_AFTER_MS": false
     },
-    "enable_polymarket_armed": false,
+    "enable_polymarket_armed": true,
     "notes": [
       "Read-only public endpoints; no trading keys in this surface.",
       "Prefer /markets/keyset (offset pagination returns 422).",
@@ -124,7 +124,51 @@
     "ssl_fix": "certifi_context",
     "bulk_upload_requires_approval": true
   },
-  "live_sample": null,
+  "live_sample": {
+    "schema": "shadow_garden.polymarket_entropy_sample.v1",
+    "ok": true,
+    "degraded": false,
+    "marketId": "559651",
+    "question": "Xi Jinping out before 2027?",
+    "probabilities": [
+      0.0425,
+      0.9575
+    ],
+    "outcomes": [
+      {
+        "label": "Yes",
+        "tokenId": "32338220190071351435772801779725302244575775216413325951443816017994629993401",
+        "probability": 0.0425,
+        "midpoint": null,
+        "buyPrice": null
+      },
+      {
+        "label": "No",
+        "tokenId": "25659310674993675562345759665114759892400026242514633218387667107987341231962",
+        "probability": 0.9575,
+        "midpoint": null,
+        "buyPrice": null
+      }
+    ],
+    "entropyBits": 0.25363946182843883,
+    "entropyWord": 3892067615,
+    "seedHex": "7deb3bb1666f0a76cd0281f3c1a26cdb1f50b0ddcbd93ec544d96a10d651c609",
+    "quality": {
+      "ok": true,
+      "stale": false,
+      "lowLiquidity": false,
+      "closed": false,
+      "incompleteOutcomes": false,
+      "pricesSumNearOne": true,
+      "priceSum": 1,
+      "renormalized": false,
+      "usedClobPrices": false,
+      "warnings": []
+    },
+    "fetchedAt": "2026-08-05T01:17:36.577Z",
+    "error": null,
+    "failureMode": "soft"
+  },
   "controls": {
     "provider_trading": false,
     "credential_logging": false,
@@ -144,7 +188,7 @@
   "metrics": {
     "vector_count": 8,
     "files_ok": true,
-    "live_armed": false,
-    "live_sample_ok": false
+    "live_armed": true,
+    "live_sample_ok": true
   }
 }

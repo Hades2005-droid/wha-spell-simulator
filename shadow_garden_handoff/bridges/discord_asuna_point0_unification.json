@@ -1,6 +1,6 @@
 {
   "schema": "shadow_garden.discord_asuna_point0_unification.v1",
-  "generated_at": "2026-07-30T18:17:25Z",
+  "generated_at": "2026-08-05T01:17:36Z",
   "phase": 2,
   "package_id": "shadow-garden-phase2-fable5-black-sun-home-sim",
   "carrier": "love_and_harmony_6",
@@ -19,7 +19,7 @@
     "state": "PAUSED",
     "source": "catalyst_spell_3.json",
     "mutation_attempted": false,
-    "effective_state": "PAUSED"
+    "effective_state": "enable_flag_set_still_paused_default"
   },
   "unification_target": {
     "name": "perplexity_asuna_point_0",
@@ -69,14 +69,14 @@
       "DISCORD_GUILD_ID"
     ],
     "env_present": {
-      "ENABLE_DISCORD": false,
+      "ENABLE_DISCORD": true,
       "DISCORD_WEBHOOK_URL": false,
       "DISCORD_BOT_TOKEN": false,
       "DISCORD_TOKEN": false,
       "DISCORD_CHANNEL_ID": false,
       "DISCORD_GUILD_ID": false
     },
-    "enable_discord_armed": false,
+    "enable_discord_armed": true,
     "notes": [
       "Never print or catalog token/webhook values.",
       "Default PAUSED; ENABLE_DISCORD only arms status_notify after approval.",
@@ -153,9 +153,9 @@
       "kind": "env_surface",
       "lane": "discord_status_notify",
       "env_name_count": 6,
-      "enable_armed": false,
+      "enable_armed": true,
       "record_id": "discord:env_surface",
-      "content_hash": "797b7f5a5bd03e5c",
+      "content_hash": "0fa959c1b8305be8",
       "asuna_point0_route": "perplexity_fable5_home_sim",
       "sensitivity": "env_names_only"
     },
@@ -242,10 +242,10 @@
   ],
   "metrics": {
     "vector_count": 8,
-    "env_present_count": 0,
-    "enable_discord_armed": false,
+    "env_present_count": 1,
+    "enable_discord_armed": true,
     "connector_state": "PAUSED",
-    "effective_state": "PAUSED",
+    "effective_state": "enable_flag_set_still_paused_default",
     "webhook_posts": 0,
     "provider_calls": 0,
     "point0_manifest_ok": true
@@ -266,6 +266,6 @@
     "default_lane": "read_only",
     "paused_by_default": true
   },
-  "unification_digest": "75f58f5eecfbeeb0e587ff3a7ca4b179d6f66b3304ebbf8d62809682587ec68b",
+  "unification_digest": "a2619ec940d0ccd2262fc347146a4f7dd6fd84b9f493b9d32093010fdc1bbe86",
   "ok": true
 }

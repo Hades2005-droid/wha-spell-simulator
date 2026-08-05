@@ -1,0 +1,42 @@
+{
+  "schema": "shadow_garden.sabina_content_neutral_route.v1",
+  "generated_at": "2026-08-04T17:28:34Z",
+  "persona": {
+    "id": "sabina",
+    "spell": "persona sabina",
+    "node_id": "sabina_support_node",
+    "voice_route": "bbv_sabina_ritual_assistant_safe",
+    "xai_voice": "ara",
+    "archetype": "sabina_ritual_assistant"
+  },
+  "chronology_symbolic": {
+    "note": "User chain 13-3=1 (Death\u2192Empress gap\u2192Magician) and Temperance-14 hinge; symbolic only",
+    "reduced_path": [
+      13,
+      3,
+      1
+    ],
+    "temperance_14_hinge": true,
+    "death_vis": 0,
+    "cv": 0
+  },
+  "grok_com": {
+    "lane": "local_save_grok_plus_voices",
+    "save_script": "/Users/fredwashere/ShadowGarden/scripts/save_grok.sh",
+    "voices_script": "/Users/fredwashere/ShadowGarden/scripts/activate_voices.sh",
+    "blackbox_bridge": "shadow_garden_handoff/bridges/GROK_COM_BLACKBOX_RETURN_105_EQUALS_6.md"
+  },
+  "refused": {
+    "adult_video_urls": true,
+    "faphouse_ingest": true,
+    "explicit_scene_generation": true,
+    "reason": "Adult-site URLs and explicit scrape/ingest are blocked; use content-neutral persona route only."
+  },
+  "controls": {
+    "external_fetch": false,
+    "adult_html": false,
+    "content_neutral": true,
+    "symbolic_only": true
+  },
+  "ok": true
+}
